@@ -12,7 +12,7 @@ const WEBPACK_PORT = process.env.WEBPACK_PORT;
 if (PROD) {
   apiServer.serve(API_PORT);
 } else {
-  console.log(chalk.red('----- RUNONG IN DEVELOPMENT MODE'));
+  console.log(chalk.red('----- RUNNING IN DEVELOPMENT MODE'));
   apiServer.serve(API_PORT);
   appServer.serve(WEBPACK_PORT,API_PORT);
 }
