@@ -16,7 +16,7 @@ function serve(PORT , PORT2) {
       }
     }
   });
-  server.listen(PORT, 'localhost');
+  server.listen(PORT, '0.0.0.0');
   console.log(chalk.green('WEBPACK Server listening on port ' + PORT));
 }
 exports.serve = serve;

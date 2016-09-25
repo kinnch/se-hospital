@@ -2,7 +2,7 @@ var webpack = require("webpack");
 
 module.exports = {
   entry: {
-    "vendor": ["./src/app/vendor","webpack/hot/dev-server","webpack-dev-server/client?http://localhost:8080/"],
+    "vendor": ["./src/app/vendor","webpack/hot/dev-server","webpack-dev-server/client?http://0.0.0.0:8080/"],
     "app": "./src/app/main"
   },
   output: {
