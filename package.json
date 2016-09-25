@@ -3,6 +3,7 @@
   "version": "1.3.0",
   "description": "Angular 2, TypeScript and Webpack",
   "scripts": {
+    "start" : "gulp typescript && concurrently \"gulp watch\" \"node server\" ",
     "postinstall": "typings install",
     "dev": "node-dev server",
     "typescript": "gulp typescript",
