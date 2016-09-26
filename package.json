@@ -3,7 +3,7 @@
   "version": "1.3.0",
   "description": "Angular 2, TypeScript and Webpack",
   "scripts": {
-    "start" : "gulp typescript && concurrently \"gulp watch\" \"node-dev server\" ",
+    "start": "gulp typescript && concurrently \"gulp watch\" \"node-dev server\" ",
     "postinstall": "typings install",
     "dev": "node-dev server",
     "typescript": "gulp typescript",
@@ -34,6 +34,7 @@
   "devDependencies": {
     "concurrently": "^2.2.0",
     "gulp-watch": "^4.3.9",
+    "morgan": "^1.7.0",
     "ts-loader": "0.8.2",
     "typescript": "^2.0.3",
     "typings": "1.3.0",

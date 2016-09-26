@@ -1,11 +1,11 @@
 var express = require('express');
 // var bodyParser = require('body-parser');
-// var morgan = require('morgan');
+var morgan = require('morgan');
 var chalk = require('chalk');
 // require('dotenv').config();
 function serve(PORT) {
   var app = express();
-
+  app.use(morgan('dev'))
   var port = PORT;
   app.listen(port, function () {
       console.log(chalk.green('Api Server listening on port ' + port));
@@ -25,7 +25,7 @@ function serve(PORT) {
   app.get('/api/123', function (req, res) {
     console.log("HEY HEY");
 
-      res.send("api from webpack proxy");
+      res.send("api from webpack proxy 123");
   });
 
 }

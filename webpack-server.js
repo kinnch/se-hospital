@@ -10,7 +10,7 @@ function serve(PORT , PORT2) {
     onInfo: true,
     stats: { color: true },
     proxy: {
-      '/api': {
+      '*': {
         target: `http://localhost:${PORT2}`,
         secure: false
       }
