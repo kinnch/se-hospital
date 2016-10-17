@@ -10,7 +10,7 @@ module.exports = {
     filename: "./dist/[name].bundle.js"
   },
   resolve: {
-    extensions: ['', '.js']
+    extensions: ['', '.js','html','css']
   },
   devtool: 'source-map',
   module: {
@@ -19,7 +19,8 @@ module.exports = {
         test: /\.css/,
         loaders: ['style!css']
         // exclude: /node_modules/
-      }
+      },
+      { test: /\.html$/, loader: 'raw-loader' }
     ]
   },
   plugins: [

@@ -1,4 +1,5 @@
 var webpack = require("webpack");
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: {
@@ -10,7 +11,7 @@ module.exports = {
     filename: "./dist/[name].bundle.js"
   },
   resolve: {
-    extensions: ['', '.js']
+    extensions: ['', '.js','html','json']
   },
   devtool: 'eval-source-map',
   module: {
@@ -20,12 +21,13 @@ module.exports = {
         loaders: ['style!css']
         // exclude: /node_modules/
       },
-      { test: /\.html$/, loader: 'raw-loader' },
+      { test: /\.html$/, loader: 'html-loader?minimise=true' },
       { test: /\.json$/, loader: 'json-loader' }
     ]
   },
   plugins: [
     new webpack.optimize.CommonsChunkPlugin(/* chunkName= */"vendor", /* filename= */"./dist/vendor.bundle.js"),
     new webpack.HotModuleReplacementPlugin()
+    // new HtmlWebpackPlugin({inject: false, template: "index.html"})
   ]
 }
