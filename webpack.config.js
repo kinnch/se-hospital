@@ -19,7 +19,9 @@ module.exports = {
         test: /\.css/,
         loaders: ['style!css']
         // exclude: /node_modules/
-      }
+      },
+      { test: /\.html$/, loader: 'raw-loader' },
+      { test: /\.json$/, loader: 'json-loader' }
     ]
   },
   plugins: [

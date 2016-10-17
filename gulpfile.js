@@ -21,6 +21,7 @@ gulp.task('default', function (done) {
 gulp.task('watch', () => {
   // Auto Compile TypeScript
   watch([
+    './src/*/*/*.ts',
     './src/*/*.ts',
     './src/*.ts'
   ], function(file){
@@ -33,6 +34,7 @@ gulp.task('typescript', function () {
     'base': './'
   };
   var src = [
+    './src/*/*/*.ts',
     './src/*/*.ts',
     './src/*.ts'
   ];
