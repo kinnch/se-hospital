@@ -11,14 +11,14 @@ module.exports = {
     filename: "./dist/[name].bundle.js"
   },
   resolve: {
-    extensions: ['', '.js','html','json']
+    extensions: ['', '.js','html','json','css']
   },
   devtool: 'eval-source-map',
   module: {
     loaders: [
       {
         test: /\.css/,
-        loaders: ['style!css']
+        loaders: ['to-string-loader','css-loader']
         // exclude: /node_modules/
       },
       { test: /\.html$/, loader: 'html-loader?minimise=true' },
