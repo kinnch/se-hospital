@@ -7,7 +7,8 @@ function serve(PORT , PORT2) {
   var server = new webpackDevServer(compiler, {
     hot: true,
     quiet: false,
-    onInfo: true,
+    noInfo: false,
+    color: true,
     stats: { color: true },
     proxy: {
       '*': {
