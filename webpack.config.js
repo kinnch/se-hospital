@@ -11,7 +11,7 @@ module.exports = {
     filename: "./dist/[name].bundle.js"
   },
   resolve: {
-    extensions: ['', '.js','html','json','css']
+    extensions: ['', '.js','html','css']
   },
   devtool: 'eval-source-map',
   module: {
