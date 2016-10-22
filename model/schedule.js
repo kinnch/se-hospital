@@ -17,7 +17,7 @@ var scheduleSchema = mongoose.Schema({
             required: true
         },
         appointments: [{
-            patientID: {
+            patient: {
                 type: Schema.Types.ObjectId, 
                 ref: 'hospitalEmployee' 
             },
@@ -27,4 +27,4 @@ var scheduleSchema = mongoose.Schema({
 
 var Schedule = mongoose.model('Schedule', scheduleSchema);
 
-module.exports = Drug;
+module.exports = Schedule;

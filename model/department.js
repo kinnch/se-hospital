@@ -8,6 +8,6 @@ var departmentSchema = mongoose.Schema({
         }
     });
 
-var Deparment = mongoose.model('Deparment', departmentSchema);
+var Department = mongoose.model('Department', departmentSchema);
 
-module.exports = Deparment;
+module.exports = Department;
