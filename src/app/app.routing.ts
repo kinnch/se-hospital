@@ -8,6 +8,8 @@ import { ScheduleManageComponent } from './ScheduleManageComponent/schedule-mana
 import { ManageQueueComponent } from './ManageQueueComponent/manage-queue.component';
 import { ManageHospitalEmployeeComponent } from './ManageHospitalEmployeeComponent/manage-hospital-employee.component';
 import { DoctorCalendarComponent } from './DoctorCalendarComponent/doctor-calendar.component';
+import { PrescriptionRequestComponent } from './PrescriptionRequestComponent/prescription-request.component';
+import { PatientDetailComponent } from './PatientDetailComponent/patient-detail.component';
 
 const appRoutes: Routes = [
 //   {
@@ -47,12 +49,21 @@ const appRoutes: Routes = [
         component: ManageHospitalEmployeeComponent
       },
       {
+<<<<<<< HEAD
         path: 'doctor_calendar',
         component: DoctorCalendarComponent
       }
+=======
+        path: 'prescription_request',
+        component: PrescriptionRequestComponent
+      },
+      {
+        path: 'patient/:hn',
+        component: PatientDetailComponent
+      },
+>>>>>>> 28c5457062fff74857eade8c35d628082bf15285
       ]
     }  
-
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes);
