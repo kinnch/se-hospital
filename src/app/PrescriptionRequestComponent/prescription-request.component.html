@@ -37,7 +37,7 @@
             </div>    
         </section>
         <hr>
-        <section class = "prescriptionDetail"> 
+        <section class = "prescription-detail"> 
             <div class="table-responsive">
                 <table class="table table-sm">
                       <thead class="thead-default">
@@ -72,16 +72,18 @@
             </div>
             <p><b>ยาที่แพ้ : </b> aaaaaaaaaaaaaaaaaaaaaaaaaaa</p>    
         </section>   
-        <section class="control-button">
-            <div class="row">
-            <div class="col-sm-6 accept-button">
-                <button type="button" class="btn btn-outline-info">จ่ายยา</button>
+        <section class="control-button" [hidden]="isReject">
+            <button type="button" class="btn btn-outline-info" style="width: 150px; margin-right: 50px">จ่ายยา</button>                  
+            <button type="button" class="btn btn-outline-danger" style="width: 150px;" (click)="isReject = !isReject">ขอแก้ไขยา</button>
+        </section>
+        <section class ="reject-form" [hidden]="!isReject">
+            <p><b>เหตุผลที่ขอแก้ไข :</b></p>
+            <textarea row="3" class="form-control"></textarea>
+             <div class="form-button">
+                <button type="button" class="btn btn-outline-success" style="margin-right: 10px">ส่งคำร้อง</button>
+                <button type="button" class="btn btn-outline-warning" (click)="isReject = !isReject">ยกเลิก</button>
             </div>
-            <div class="col-sm-6">
-                <button type="button" class="btn btn-outline-danger">ขอแก้ไขยา</button>
-            </div>
-            </div>
-        </section>    
+        </section>        
     </div>  
       
     <h5>จ่ายแล้ว</h5>
