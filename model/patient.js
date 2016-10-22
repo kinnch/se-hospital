@@ -6,7 +6,7 @@ var patientSchema = mongoose.Schema({
       name: {
         title: String,
         fname: String,
-        lanem: String,
+        lname: String,
       },
       sex: {
         type: String,
