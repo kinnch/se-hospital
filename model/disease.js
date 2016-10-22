@@ -7,7 +7,7 @@ var diseaseSchema = mongoose.Schema({
             required: true
         },
         icd10: {
-            type: Number,
+            type: String,
             required: true
         }
     });

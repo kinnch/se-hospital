@@ -15,13 +15,13 @@ var hospitalEmployeeSchema = mongoose.Schema({
         },
         department:{
             type: Schema.Types.ObjectId, 
-            ref: 'Department',
             required: true
         },
+        lastPage: String,
         userName: String,
         password: String, //hash
     });
 
 var HospitalEmployee = mongoose.model('HospitalEmployee', hospitalEmployeeSchema);
 
-module.exports = Disease;
+module.exports = HospitalEmployee;

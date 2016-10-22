@@ -1,7 +1,9 @@
-<h3 class = "center">เพิ่มนัดหมายใหม่</h3>
+<a class="back" (click)="goBack()">< ย้อนกลับ</a>
 <hr>
 <div class="container">
     <br>
+    <h3 class = "center">เพิ่มนัดหมายใหม่</h3>
+    <hr>
     <div class = "row">
         <div class = "col-md-12">
             <div class="form-group row">
@@ -71,6 +73,14 @@
                     <select class="form-control" id="inputDoctor">
                         <option *ngFor="let doctor of doctors">{{doctor}}</option>
                     </select>
+                </div> 
+            </div>
+        </div>
+        <div class = "col-md-12">
+            <div class="form-group row">
+                <label for="inputNote" class="col-sm-2 col-form-label">อาการ(Optional)</label>
+                <div class="col-sm-10">
+                    <textarea class="form-control" id="inputNote" rows="3"></textarea>
                 </div> 
             </div>
         </div>

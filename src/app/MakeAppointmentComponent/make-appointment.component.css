@@ -5,3 +5,11 @@
 .center{
     text-align: center !important;
 }
+.back{
+    color: #4286F7 !important;
+}
+
+a:hover {
+    text-decoration: none;
+    cursor: pointer;
+}
