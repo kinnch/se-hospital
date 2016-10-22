@@ -16,26 +16,44 @@ const appRoutes: Routes = [
     component: PatientComponent
   },
   {
+    path: 'staff',
+    component: StaffComponent
+  },
+  {
     path: 'manage',
     component: StaffComponent,
-      children: [
-          { path: '' },
-          // { path: 'doctor',  component: ResultsComponent },
-          // { path: 'nurse',  component: ResultsComponent },
-          { path: 'staff', 
-            component: ManagePatientComponent,
-            children: [
-              { path: '',
-                component : ManagePatientComponent
-              },
-              { path: 'manage_patient',
-                component : ManagePatientComponent
-              }
-            ]
-          },
-          // { path: 'pharmacist',  component: ResultsComponent },
-      ]
-    },
+    children:[
+      { 
+        path:'',
+        component: ManagePatientComponent
+      },
+      {
+        path: 'manage_patient',
+        component: ManagePatientComponent
+      }
+    ]
+  },
+  // {
+  //   path: 'manage',
+  //   component: StaffComponent,
+  //     children: [
+  //         { path: '' },
+  //         // { path: 'doctor',  component: ResultsComponent },
+  //         // { path: 'nurse',  component: ResultsComponent },
+  //         { path: 'staff', 
+  //           component: ManagePatientComponent,
+  //           children: [
+  //             { path: '',
+  //               component : ManagePatientComponent
+  //             },
+  //             { path: 'manage_patient',
+  //               component : ManagePatientComponent
+  //             }
+  //           ]
+  //         },
+  //         // { path: 'pharmacist',  component: ResultsComponent },
+  //     ]
+  //   },
 //   {
 //     path: 'detail/:id',
 //     component: HeroDetailComponent

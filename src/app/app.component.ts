@@ -5,8 +5,9 @@ import {PatientComponent} from './PatientComponent/patient.component';
 @Component({
     selector: 'my-app',
     template: `
-    <h1>My First Angular 2  jobtoshare 8</h1>
     <a routerLink="/staff">staff</a>
+    <a routerLink="/manage">manage</a>
+    <a routerLink="/manage/manage_patient">managePatient</a>
     <router-outlet></router-outlet>    
     `
 })
