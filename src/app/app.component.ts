@@ -10,6 +10,8 @@ import {PatientComponent} from './PatientComponent/patient.component';
     <a routerLink="/manage/manage_patient">managePatient</a>
     <router-outlet></router-outlet>    
     `
+    
+
 })
 
 export class AppComponent {}
