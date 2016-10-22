@@ -1,4 +1,4 @@
-FROM node:latest
+FROM node:6.8.1
 
 RUN mkdir -p /usr/src/app
 COPY package.json usr/src/app/
