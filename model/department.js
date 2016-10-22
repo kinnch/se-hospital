@@ -1,17 +1,17 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var drugSchema = mongoose.Schema({
+var departmentSchema = mongoose.Schema({
         name: {
             type: String,
             required: true
         },
-        hasInHospital: {
-            type: Boolean,
+        id: {
+            type: Number,
             required: true
         }
     });
 
-var Drug = mongoose.model('Drug', drugSchema);
+var Deparment = mongoose.model('Deparment', departmentSchema);
 
-module.exports = Drug;
+module.exports = Deparment;
