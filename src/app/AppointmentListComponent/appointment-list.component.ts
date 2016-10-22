@@ -2,12 +2,12 @@ import {Component, Input} from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Router } from '@angular/router';
 @Component({
-    selector: 'patient-list-c',
-    template: require('./patient-list.component.html'),
-    styles: [require('./patient-list.component.css')]
+    selector: 'appointment-list-c',
+    template: require('./appointment-list.component.html'),
+    styles: [require('./appointment-list.component.css')]
 })
 
-export class PatientListComponent{
+export class AppointmentListComponent{
     constructor(private router: Router) {
     }
 }

@@ -1,13 +1,13 @@
-<h1>Manage Patient component</h1>
-<p>search bar for HN/ID | ADD BTN</p>
+<h3>จัดการผู้ป่วย: จัดการนัดหมาย, พิมพ์ใบนัดหมาย, ดูข้อมูลทะเบียน</h3>
 <hr>
-<p>
-    ทะเบียนคนไข้ zone
-</p>
+<h5>ค้นหาผู้ป่วย</h5>
+<form class="form-inline">
+  <div class="form-group">
+    <label class="sr-only" for="hnOrIDinput">กรอก HN หรือ รหัสประจำตัวประชาชน</label>
+    <input type="text" class="form-control" id="hnOrIDinput" placeholder="กรอก HN หรือ รหัสประจำตัวประชาชน">
+  </div>
+  <button type="submit" class="btn btn-primary">ค้นหา</button>
+  <button type="submit" class="btn btn-success">+ เพิ่มนัดหมายสำหรับผู้ป่วยใหม่</button>
+</form>
 <hr>
-<p>
-    BTN เพิ่มนัดหมาย
-</p>
-<p>
-    รายการนัดหมาย | BTN แก้ไข | BTN ยกเลิก | BTN print
-</p>
+<patient-appointment-c></patient-appointment-c>

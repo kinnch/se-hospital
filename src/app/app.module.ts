@@ -13,6 +13,9 @@ import { ScheduleManageComponent } from './ScheduleManageComponent/schedule-mana
 import { ManageQueueComponent } from './ManageQueueComponent/manage-queue.component';
 import { ManageHospitalEmployeeComponent } from './ManageHospitalEmployeeComponent/manage-hospital-employee.component';
 import { PatientListComponent } from './PatientListComponent/patient-list.component';
+import { PatientListElementComponent } from './PatientListElementComponent/patient-list-element.component';
+import { PatientAppointmentComponent } from './PatientAppointmentComponent/patient-appointment.component';
+import { AppointmentListComponent } from './AppointmentListComponent/appointment-list.component';
 import { PatientDetailComponent } from './PatientDetailComponent/patient-detail.component';
 import { routing } from './app.routing';
 
@@ -35,6 +38,9 @@ import { routing } from './app.routing';
         ManageQueueComponent,
         ManageHospitalEmployeeComponent,
         PatientListComponent,
+        PatientListElementComponent,
+        PatientAppointmentComponent,
+        AppointmentListComponent,
         PatientDetailComponent
                     ],
     bootstrap:      [
