@@ -69,7 +69,7 @@
             <li class="dropdown-content"><a href="profile.html">Edit Profile</a> <a href="forgot-pwd.html">Change Password</a> <a href="styled-inputs.html">Settings</a> <a href="login.html">Logout</a></li>
          </ul>
       </li>
-      <li><button type="button" id="toggleMenu" class="toggle-menu"><i class="collapse-menu-icon"></i></button></li>
+      <li><button type="button" id="toggleMenu" class="toggle-menu"><i class="collapse-menu-icon" (click)="navToggle()"></i></button></li>
    </ul>
    <div class="custom-search hidden-sm hidden-xs"><input type="text" class="search-query" placeholder="Search here ..."> <i class="icon-search3"></i></div>
 </header>
@@ -77,11 +77,13 @@
 <div class="vertical-nav">
    <button class="collapse-menu"><i class="fa fa-bars" aria-hidden="true"></i></button>
    <div class="user-details clearfix">
-      <!--<a href="profile.html" class="user-img"><img src="img/thumbs/user1.png" alt="User Info"> <span class="likes-info">9</span></a>-->
-      <h5 class="user-name">Sean</h5>
+      <a href="profile.html" class="user-img"><img src="./../../../resources/images/icon_people/fm_doctor_default.png" class="img-responsive">
+        <!--<span class="likes-info">9</span>-->
+      </a>
+      <h5 class="user-name">Gu Staff</h5>
    </div>
    <ul class="menu clearfix">
-      <li class="active selected"><a href="#"><i class="icon-air-play"></i> <span class="menu-item">ค้นหาผู้ป่วย<br>ทำการนัดหมาย</span></a></li>
+      <li class="active selected"><a href="#"><i class="icon-air-play"></i> <span class="menu-item">จัดการผู้ป่วย</span></a></li>
       <li><a href="calendar.html"><i class="icon-calendar7"></i> <span class="menu-item">จัดการตารางหมอ</span></a></li>
       <li>
          <a href="#"><i class="icon-line-graph"></i> <span class="menu-item">จัดการ Hospital Staff</span> <span class="down-arrow"></span></a>
