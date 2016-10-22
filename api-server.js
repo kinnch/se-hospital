@@ -22,8 +22,6 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
 //connect model
-var Kitten = require("./model/kitten");
-var Home = require("./model/home");
 var Drug = require("./model/drug");
 var Patient = require("./model/patient");
 
@@ -55,10 +53,6 @@ function serve(PORT) {
 
   app.get('/api', function (req, res) {
     console.log("HEY HEY");
-    var patient_0 = new Patient();
-    patient_0.OTP.text = "01531";
-    patient_0.phone = "0888983283";
-    patient_0.save();
     /*
     Kitten.find({ name: /^fluff/ },function (err, kittens) {
       if (err) return console.error(err);

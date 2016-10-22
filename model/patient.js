@@ -13,9 +13,15 @@ var patientSchema = mongoose.Schema({
         enum: ['male', 'female']
       },
       birthDate: Date,
-      phone: String,
+      tel: String,
       HN: String,
-      address: String,
+      address: {
+        detail: String,
+        subDistrict: String,
+        distict: String,
+        province: String,
+        postCode: String,
+      },
       OTP: {
         text: String,
         generatedDate: Date

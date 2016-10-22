@@ -29,6 +29,9 @@ import { EditPrescriptionRequestComponent} from './EditPrescriptionRequestCompon
 import { PrescriptionListElementComponent } from './PrescriptionListElementComponent/prescription-list-element.component';
 import { PrescriptionService } from '../services/prescription.service';
 import { PatientService } from '../services/patient.service';
+import { PatientPhysicalCheckHistoryComponent } from './PatientPhysicalCheckHistoryComponent/patient-physical-check-history.component';
+
+
 @NgModule({
     imports:        [
         BrowserModule,
@@ -60,7 +63,8 @@ import { PatientService } from '../services/patient.service';
         DiagnosisHistoryComponent,
         PrescriptionHistoryComponent,
         EditPrescriptionRequestComponent,
-        PrescriptionListElementComponent
+        PrescriptionListElementComponent,
+        PatientPhysicalCheckHistoryComponent
         ],
     providers:      [
         PrescriptionService,

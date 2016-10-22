@@ -17,9 +17,11 @@ import { DiagnosisHistoryComponent } from './DiagnosisHistoryComponent/diagnosis
 import { PrescriptionHistoryComponent } from './PrescriptionHistoryComponent/prescription-history.component';
 import { EditPrescriptionRequestComponent} from './EditPrescriptionRequestComponent/edit-prescription-request.component';
 import { PrescriptionListElementComponent } from './PrescriptionListElementComponent/prescription-list-element.component';
-
+import { PatientPhysicalCheckHistoryComponent } from './PatientPhysicalCheckHistoryComponent/patient-physical-check-history.component';
 //TODO: query state from user
 let redirectToPathLastPage: string = 'manage_patient';
+
+
 
 const appRoutes: Routes = [
   {
@@ -91,6 +93,10 @@ const appRoutes: Routes = [
         path: 'edit_prescription_request',
         component: EditPrescriptionRequestComponent
       },
+      {
+        path: 'patient/check/:hn',
+        component: PatientPhysicalCheckHistoryComponent
+      }
       ]
     }  
 ];

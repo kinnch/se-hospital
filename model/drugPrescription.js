@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var drugPrescriptionSchema = mongoose.Schema({
-        prescription = [{
+        prescription: [{
             drug: {
                 type: Schema.Types.ObjectId, 
                 ref: 'Drug' 
@@ -24,4 +24,4 @@ var drugPrescriptionSchema = mongoose.Schema({
 
 var DrugPrescription = mongoose.model('DrugPrescription', drugPrescriptionSchema);
 
-module.exports = Deparment;
+module.exports = DrugPrescription;
