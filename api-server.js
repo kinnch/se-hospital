@@ -26,7 +26,7 @@ function serve(PORT) {
   // LIKE ACCESS PUBLIC STUFF IN LARAVEL
   // app.use(express.static('dist'))
   app.use('/dist', express.static('dist'));
- 
+ app.use('/resources', express.static('resources'));
   
   
   require('./routes/route')(app);
@@ -45,7 +45,7 @@ function serve(PORT) {
 
       res.send("api from webpack proxy 123");
   });
-  
+
    app.get('*', function (req, res) {
       res.sendFile(__dirname + "/index.html");
   });
