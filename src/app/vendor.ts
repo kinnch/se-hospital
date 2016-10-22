@@ -10,3 +10,9 @@ import '@angular/http';
 import '@angular/platform-browser';
 import '@angular/platform-browser-dynamic';
 import '@angular/router';
+// jQuery and Friends
+// import 'jquery/dist/jquery';
+// import 'moment/moment';
+// import 'fullcalendar/dist/fullcalendar';
+// import 'fullcalendar/dist/fullcalendar.css';
+// import 'fullcalendar/dist/locale/th';
