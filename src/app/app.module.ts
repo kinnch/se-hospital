@@ -17,9 +17,14 @@ import { PatientListElementComponent } from './PatientListElementComponent/patie
 import { PatientAppointmentComponent } from './PatientAppointmentComponent/patient-appointment.component';
 import { AppointmentListComponent } from './AppointmentListComponent/appointment-list.component';
 import { PatientDetailComponent } from './PatientDetailComponent/patient-detail.component';
+import { PatientPhysicalCheckComponent } from './PatientPhysicalCheckComponent/patient-physical-check.component';
 import { routing } from './app.routing';
 import { DoctorCalendarComponent } from './DoctorCalendarComponent/doctor-calendar.component';
+import { MakeAppointComponent } from './MakeAppointmentComponent/make-appointment.component';
+import { RegisterComponent } from './RegisterComponent/register.component';
 import { DiagnosisHistoryComponent } from './DiagnosisHistoryComponent/diagnosis-history.component';
+import { PrescriptionHistoryComponent } from './PrescriptionHistoryComponent/prescription-history.component';
+import { EditPrescriptionRequestComponent} from './EditPrescriptionRequestComponent/edit-prescription-request.component';
 
 @NgModule({
     imports:        [
@@ -45,9 +50,13 @@ import { DiagnosisHistoryComponent } from './DiagnosisHistoryComponent/diagnosis
         PatientAppointmentComponent,
         AppointmentListComponent,
         PatientDetailComponent,
-        DiagnosisHistoryComponent
-
-                    ],
+        RegisterComponent,
+        MakeAppointComponent,
+        PatientPhysicalCheckComponent,
+        DiagnosisHistoryComponent,
+        PrescriptionHistoryComponent,
+        EditPrescriptionRequestComponent,
+        ],
     bootstrap:      [
         AppComponent
         ]
