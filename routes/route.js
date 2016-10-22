@@ -6,6 +6,7 @@ module.exports = function(app) {
     patientController.setDBConnectionsFromApp(app);
 
     function ensureAuthenticated(req, res, next){
+
         if(req.isAuthenticated()){
             return next();
         } else {
