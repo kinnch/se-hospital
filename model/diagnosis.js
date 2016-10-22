@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var drugPrescriptionSchema = mongoose.Schema({
+var diagnosisSchema = mongoose.Schema({
         drugPrescription: {
             type: Schema.Types.ObjectId, 
             ref: 'DrugPrescription' 
@@ -31,6 +31,6 @@ var drugPrescriptionSchema = mongoose.Schema({
         }]
     });
 
-var DrugPrescription = mongoose.model('DrugPrescription', drugPrescriptionSchema);
+var Diagnosis = mongoose.model('Diagnosis', diagnosisSchema);
 
-module.exports = Deparment;
+module.exports = Diagnosis;

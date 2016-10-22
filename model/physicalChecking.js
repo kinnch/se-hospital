@@ -33,6 +33,15 @@ var physicalCheckingSchema = mongoose.Schema({
             type: Number,
             min: -273,
             max: 100
+        },
+        patient: {
+            type: Schema.Types.ObjectId, 
+            ref: 'Patient',
+            required: true
+        },
+        nurse: {
+            type: Schema.Types.ObjectId, 
+            ref: 'hospitalEmployee'
         }
     });
 
