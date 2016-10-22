@@ -1,5 +1,6 @@
 import {Component, Input} from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
+import { PatientAppointmentComponent } from '../PatientAppointmentComponent/patient-appointment.component';
 import { Router } from '@angular/router';
 @Component({
     selector: 'manage-patient-c',

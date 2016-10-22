@@ -1,0 +1,16 @@
+.horizontal-container {
+    width: 100%;
+    max-height: 80%;
+    overflow-x: auto;
+    white-space: nowrap;
+    padding-bottom:0px !important;
+    padding-top:0px !important;
+}
+patient-list-c{
+    height: 75%;
+    width: 30%;
+    overflow-y: auto;
+    /*border: 1px solid #A2A2A2;*/
+    display: inline-block;
+    padding-right: 1em;
+}
