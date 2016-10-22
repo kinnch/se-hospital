@@ -8,6 +8,7 @@ import { ScheduleManageComponent } from './ScheduleManageComponent/schedule-mana
 import { ManageQueueComponent } from './ManageQueueComponent/manage-queue.component';
 import { ManageHospitalEmployeeComponent } from './ManageHospitalEmployeeComponent/manage-hospital-employee.component';
 import { PrescriptionRequestComponent } from './PrescriptionRequestComponent/prescription-request.component';
+import { PatientDetailComponent } from './PatientDetailComponent/patient-detail.component';
 
 const appRoutes: Routes = [
 //   {
@@ -49,10 +50,13 @@ const appRoutes: Routes = [
       {
         path: 'prescription_request',
         component: PrescriptionRequestComponent
-      }
+      },
+      {
+        path: 'patient/:hn',
+        component: PatientDetailComponent
+      },
       ]
     }  
-
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes);

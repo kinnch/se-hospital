@@ -1,7 +1,8 @@
 a:focus,
 a:hover {
     color: #000;
-    text-decoration: none
+    text-decoration: none;
+    cursor: pointer;
 }
 body,
 ul {
@@ -439,16 +440,16 @@ header {
     background: #FFF;
     border-bottom: 1px solid #d8d8d8
 }
-@media (max-width: 992px) {
+/*@media (max-width: 992px) {
     header {
         padding: 0 95px 0 35px
     }
-}
-@media (max-width: 767px) {
+}*/
+/*@media (max-width: 767px) {
     header {
         padding: 0 70px 0 15px
     }
-}
+}*/
 .logo {
     float: left;
     line-height: 50px
@@ -589,7 +590,7 @@ ul#header-actions .dropdown-menu .dropdown-content a:hover {
     width: 16px;
     height: 16px
 }
-#scrollUp,
+/*#scrollUp,
 .toggle-menu {
     height: 40px;
     text-align: center;
@@ -616,12 +617,12 @@ ul#header-actions .dropdown-menu .dropdown-content a:hover {
 .toggle-menu i:before {
     content: "\e9f9";
     font-style: normal
-}
-@media (min-width: 992px) {
+}*/
+/*@media (min-width: 992px) {
     .toggle-menu {
         display: none
     }
-}
+}*/
 .top-bar {
     margin: 0 0 20px
 }
@@ -664,7 +665,7 @@ ul#header-actions .dropdown-menu .dropdown-content a:hover {
     font-size: 24px;
     margin: 0
 }
-@media (max-width: 767px) {
+/*@media (max-width: 767px) {
     .toggle-menu {
         right: 20px
     }
@@ -676,7 +677,7 @@ ul#header-actions .dropdown-menu .dropdown-content a:hover {
         margin: 25px auto 10px;
         text-align: center
     }
-}
+}*/
 #scrollUp {
     bottom: 10px;
     right: 35px;
@@ -691,11 +692,11 @@ ul#header-actions .dropdown-menu .dropdown-content a:hover {
     font-size: 14px;
     line-height: 38px
 }
-@media (max-width: 767px) {
+/*@media (max-width: 767px) {
     #scrollUp {
         right: 20px
     }
-}
+}*/
 .dashboard-wrapper {
     margin: 0 auto;
     text-align: left;
@@ -708,6 +709,26 @@ ul#header-actions .dropdown-menu .dropdown-content a:hover {
     -o-transition: all .3s ease-out;
     transition: all .3s ease-out;
     background: #ebebeb;
+}
+/*HardCode*/
+.dashboard-wrapper {
+    margin-left: 90px
+}
+.dashboard-wrapper-lg {
+    margin-left: 200px;
+    -webkit-transition: all .3s ease-out;
+    -moz-transition: all .3s ease-out;
+    -ms-transition: all .3s ease-out;
+    -o-transition: all .3s ease-out;
+    transition: all .3s ease-out
+}
+.dashboard-wrapper-sm {
+    margin-left: 200px;
+    -webkit-transition: all .3s ease-out;
+    -moz-transition: all .3s ease-out;
+    -ms-transition: all .3s ease-out;
+    -o-transition: all .3s ease-out;
+    transition: all .3s ease-out
 }
 @media (min-width: 992px) {
     .dashboard-wrapper {
@@ -1027,14 +1048,14 @@ ul.progress-info li.plain .btn i {
     margin: 0;
     opacity: .7
 }
-@media (min-width: 768px) and (max-width: 991px) {
+/*@media (min-width: 768px) and (max-width: 991px) {
     .social-details .social-icon {
         display: none
     }
     .social-details .social-num {
         margin-left: 0
     }
-}
+}*/
 .website-performance .performance-graph {
     height: 50px
 }
@@ -1285,7 +1306,7 @@ ul.imp-messages li .message-date span.month {
     font-size: 12px;
     font-style: italic
 }
-@media (max-width: 767px) {
+/*@media (max-width: 767px) {
     ul.imp-messages li .message-wrapper {
         margin-left: 60px;
         margin-right: 0
@@ -1295,7 +1316,7 @@ ul.imp-messages li .message-date span.month {
         width: 32px;
         height: 32px
     }
-}
+}*/
 .blog {
     counter-increment: blogCounter
 }
@@ -2418,13 +2439,13 @@ ul.menu i {
 .btn i {
     vertical-align: middle
 }
-@media (max-width: 767px) {
+/*@media (max-width: 767px) {
     ul.menu li.active:after,
     ul.menu li.selected:after {
         right: 0;
         border-right: 0
     }
-}
+}*/
 .vertical-nav {
     -webkit-transition: all .3s ease-out;
     -moz-transition: all .3s ease-out;
@@ -2432,7 +2453,7 @@ ul.menu i {
     -o-transition: all .3s ease-out;
     transition: all .3s ease-out;
     position: absolute;
-    left: -200px;
+    /*left: -200px;*/
     top: 60px;
     bottom: 0;
     width: 200px;
@@ -2440,11 +2461,11 @@ ul.menu i {
     z-index: 10;
     border-right: 1px solid #d8d8d8
 }
-@media (max-width: 767px) {
+/*@media (max-width: 767px) {
     .vertical-nav {
         border-right: 0
     }
-}
+}*/
 .vertical-nav-opened {
     left: 0
 }
@@ -2519,7 +2540,7 @@ ul.menu i {
     border-right: 1px solid #d8d8d8;
     text-align: left;
     z-index: 100;
-    display: none
+    /*display: none*/
 }
 .collapse-menu:hover {
     color: #000;

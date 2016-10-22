@@ -16,6 +16,7 @@ import { PatientListComponent } from './PatientListComponent/patient-list.compon
 import { PatientListElementComponent } from './PatientListElementComponent/patient-list-element.component';
 import { PatientAppointmentComponent } from './PatientAppointmentComponent/patient-appointment.component';
 import { AppointmentListComponent } from './AppointmentListComponent/appointment-list.component';
+import { PatientDetailComponent } from './PatientDetailComponent/patient-detail.component';
 import { routing } from './app.routing';
 
 @NgModule({
@@ -39,7 +40,8 @@ import { routing } from './app.routing';
         PatientListComponent,
         PatientListElementComponent,
         PatientAppointmentComponent,
-        AppointmentListComponent
+        AppointmentListComponent,
+        PatientDetailComponent
                     ],
     bootstrap:      [
         AppComponent

@@ -10,10 +10,9 @@
          </div>
          <a id="drop4" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user" aria-hidden="true"></i></a>
          <ul class="dropdown-menu sm">
-            <li class="dropdown-content"><a href="login.html">Logout</a></li>
+            <li class="dropdown-content"><a>Logout</a></li>
          </ul>
       </li>
-      <li><button type="button" id="toggleMenu" class="toggle-menu"><i class="collapse-menu-icon" (click)="navToggle()"></i></button></li>
    </ul>
 </header>
 
@@ -26,10 +25,10 @@
       <h5 class="user-name">Gu Staff</h5>
    </div>
    <ul class="menu clearfix">
-      <li class="active selected"><a href="#"><i class="fa fa-user" aria-hidden="true"></i> <span class="menu-item">จัดการผู้ป่วย</span></a></li>
-      <li><a href="manage"><i class="fa fa-calendar" aria-hidden="true"></i> <span class="menu-item">จัดการตารางหมอ</span></a></li>
-      <li><a href="#"><i class="fa fa-user-plus" aria-hidden="true"></i> <span class="menu-item">จัดการ Hospital Staff</span></a></li>
-      <li><a href="manage/manage_queue"><i class="fa fa-check-square-o" aria-hidden="true"></i> <span class="menu-item">Checkin เข้าห้องหมอ</span></a></li>
+      <li [class.active]="(activatedClass===1)" [class.selected]="(activatedClass===1)"><a (click)="gotoPage(1)"><i class="fa fa-user" aria-hidden="true"></i> <span class="menu-item">จัดการผู้ป่วย</span></a></li>
+      <li [class.active]="(activatedClass===2)" [class.selected]="(activatedClass===2)"><a (click)="gotoPage(2)"><i class="fa fa-calendar" aria-hidden="true"></i> <span class="menu-item">จัดการตารางหมอ</span></a></li>
+      <li [class.active]="(activatedClass===3)" [class.selected]="(activatedClass===3)"><a (click)="gotoPage(3)"><i class="fa fa-user-plus" aria-hidden="true"></i> <span class="menu-item">จัดการ Hospital Staff</span></a></li>
+      <li [class.active]="(activatedClass===4)" [class.selected]="(activatedClass===4)"><a (click)="gotoPage(4)"><i class="fa fa-check-square-o" aria-hidden="true"></i> <span class="menu-item">Checkin เข้าห้องหมอ</span></a></li>
    </ul>
 </div>
 <div class="dashboard-wrapper dashboard-wrapper-lg">
