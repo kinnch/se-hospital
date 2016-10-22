@@ -9,6 +9,9 @@ import {StaffComponent} from './StaffComponent/staff.component';
 import { ManagePatientComponent }   from './ManagePatientComponent/manage-patient.component';
 import { HomeComponent} from './HomeComponent/home.component';
 import { PrescriptionRequestComponent } from './PrescriptionRequestComponent/prescription-request.component';
+import { ScheduleManageComponent } from './ScheduleManageComponent/schedule-manage.component';
+import { ManageQueueComponent } from './ManageQueueComponent/manage-queue.component';
+import { ManageHospitalEmployeeComponent } from './ManageHospitalEmployeeComponent/manage-hospital-employee.component';
 import { routing } from './app.routing';
 
 @NgModule({
@@ -23,9 +26,12 @@ import { routing } from './app.routing';
         AppComponent,
         PatientComponent,
         StaffComponent,
-        ManagePatientComponent
+        ManagePatientComponent,
         HomeComponent,
-        PrescriptionRequestComponent
+        PrescriptionRequestComponent,
+        ScheduleManageComponent,
+        ManageQueueComponent,
+        ManageHospitalEmployeeComponent
                     ],
     bootstrap:      [
         AppComponent

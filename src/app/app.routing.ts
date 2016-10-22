@@ -4,6 +4,9 @@ import { Routes, RouterModule } from '@angular/router';
 import { PatientComponent }      from './PatientComponent/patient.component';
 import { StaffComponent }   from './StaffComponent/staff.component';
 import { ManagePatientComponent }   from './ManagePatientComponent/manage-patient.component';
+import { ScheduleManageComponent } from './ScheduleManageComponent/schedule-manage.component'
+import { ManageQueueComponent } from './ManageQueueComponent/manage-queue.component';
+import { ManageHospitalEmployeeComponent } from './ManageHospitalEmployeeComponent/manage-hospital-employee.component';
 
 const appRoutes: Routes = [
 //   {
@@ -24,40 +27,26 @@ const appRoutes: Routes = [
     component: StaffComponent,
     children:[
       { 
-        path:'',
-        component: ManagePatientComponent
+        path:''
       },
       {
         path: 'manage_patient',
         component: ManagePatientComponent
+      },
+      {
+        path: 'manage_schedule',
+        component: ScheduleManageComponent
+      },
+      {
+        path: 'manage_queue',
+        component: ManageQueueComponent
+      },
+      {
+        path: 'manage_staff',
+        component: ManageHospitalEmployeeComponent
       }
-    ]
-  },
-  // {
-  //   path: 'manage',
-  //   component: StaffComponent,
-  //     children: [
-  //         { path: '' },
-  //         // { path: 'doctor',  component: ResultsComponent },
-  //         // { path: 'nurse',  component: ResultsComponent },
-  //         { path: 'staff', 
-  //           component: ManagePatientComponent,
-  //           children: [
-  //             { path: '',
-  //               component : ManagePatientComponent
-  //             },
-  //             { path: 'manage_patient',
-  //               component : ManagePatientComponent
-  //             }
-  //           ]
-  //         },
-  //         // { path: 'pharmacist',  component: ResultsComponent },
-  //     ]
-  //   },
-//   {
-//     path: 'detail/:id',
-//     component: HeroDetailComponent
-//   },
+      ]
+    }  
 
 ];
 
