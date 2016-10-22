@@ -2,16 +2,16 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var drugPrescriptionSchema = mongoose.Schema({
-        drugPrescriptionID: {
+        drugPrescription: {
             type: Schema.Types.ObjectId, 
             ref: 'DrugPrescription' 
         },
-        patientID: {
+        patient: {
             type: Schema.Types.ObjectId, 
             ref: 'DrugPrescription',
             required: true
         },
-        doctorID: {
+        doctor: {
             type: Schema.Types.ObjectId, 
             ref: 'DrugPrescription' 
         },

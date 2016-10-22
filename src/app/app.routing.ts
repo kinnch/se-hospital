@@ -11,7 +11,7 @@ import { DoctorCalendarComponent } from './DoctorCalendarComponent/doctor-calend
 import { PrescriptionRequestComponent } from './PrescriptionRequestComponent/prescription-request.component';
 import { PatientListComponent } from './PatientListComponent/patient-list.component';
 import { PatientDetailComponent } from './PatientDetailComponent/patient-detail.component';
-
+import { DiagnosisHistoryComponent } from './DiagnosisHistoryComponent/diagnosis-history.component';
 const appRoutes: Routes = [
 //   {
 //     path: '',
@@ -64,6 +64,10 @@ const appRoutes: Routes = [
       {
         path: 'patient/:hn',
         component: PatientDetailComponent
+      },
+      {
+        path: 'diagnosis',
+        component: DiagnosisHistoryComponent
       }
       ]
     }  

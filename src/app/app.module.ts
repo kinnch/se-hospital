@@ -20,7 +20,7 @@ import { PatientDetailComponent } from './PatientDetailComponent/patient-detail.
 import { PatientPhysicalCheckComponent } from './PatientPhysicalCheckComponent/patient-physical-check.component';
 import { routing } from './app.routing';
 import { DoctorCalendarComponent } from './DoctorCalendarComponent/doctor-calendar.component';
-
+import { DiagnosisHistoryComponent } from './DiagnosisHistoryComponent/diagnosis-history.component';
 
 @NgModule({
     imports:        [
@@ -46,9 +46,9 @@ import { DoctorCalendarComponent } from './DoctorCalendarComponent/doctor-calend
         PatientAppointmentComponent,
         AppointmentListComponent,
         PatientDetailComponent,
-        PatientPhysicalCheckComponent
-
-                    ],
+        PatientPhysicalCheckComponent,
+        DiagnosisHistoryComponent,
+        ],
     bootstrap:      [
         AppComponent
         ]
