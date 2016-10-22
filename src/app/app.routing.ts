@@ -9,6 +9,7 @@ import { ManageQueueComponent } from './ManageQueueComponent/manage-queue.compon
 import { ManageHospitalEmployeeComponent } from './ManageHospitalEmployeeComponent/manage-hospital-employee.component';
 import { DoctorCalendarComponent } from './DoctorCalendarComponent/doctor-calendar.component';
 import { PrescriptionRequestComponent } from './PrescriptionRequestComponent/prescription-request.component';
+import { PatientListComponent } from './PatientListComponent/patient-list.component';
 import { PatientDetailComponent } from './PatientDetailComponent/patient-detail.component';
 import { DiagnosisHistoryComponent } from './DiagnosisHistoryComponent/diagnosis-history.component';
 const appRoutes: Routes = [
@@ -55,6 +56,10 @@ const appRoutes: Routes = [
       {
         path: 'prescription_request',
         component: PrescriptionRequestComponent
+      },
+      {
+        path: 'patient',
+        component: PatientListComponent
       },
       {
         path: 'patient/:hn',

@@ -1,0 +1,41 @@
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
+
+var physicalCheckingSchema = mongoose.Schema({
+        bloodPresure: {
+                systolic: {
+                    type: Number,
+                    min: 0,
+                    max: 500,
+                },
+                diastolic: {
+                    type: Number,
+                    min: 0,
+                    max: 500,
+                }
+        },
+        heartRate: {
+            type: Number,
+            min: 0,
+            max: 500,
+        },
+        weight: {
+            type: Number,
+            min: 0,
+            max: 500
+        },
+        height: {
+            type: Number,
+            min: 0,
+            max: 500
+        },
+        temp: {
+            type: Number,
+            min: -273,
+            max: 100
+        }
+    });
+
+var PhysicalChecking = mongoose.model('PhysicalChecking', physicalCheckingSchema);
+
+module.exports = PhysicalChecking;
