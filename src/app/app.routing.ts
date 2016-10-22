@@ -7,6 +7,7 @@ import { ManagePatientComponent }   from './ManagePatientComponent/manage-patien
 import { ScheduleManageComponent } from './ScheduleManageComponent/schedule-manage.component'
 import { ManageQueueComponent } from './ManageQueueComponent/manage-queue.component';
 import { ManageHospitalEmployeeComponent } from './ManageHospitalEmployeeComponent/manage-hospital-employee.component';
+import { PrescriptionRequestComponent } from './PrescriptionRequestComponent/prescription-request.component';
 
 const appRoutes: Routes = [
 //   {
@@ -44,6 +45,10 @@ const appRoutes: Routes = [
       {
         path: 'manage_staff',
         component: ManageHospitalEmployeeComponent
+      },
+      {
+        path: 'prescription_request',
+        component: PrescriptionRequestComponent
       }
       ]
     }  
