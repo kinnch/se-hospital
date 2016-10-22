@@ -10,7 +10,7 @@ import { ManageHospitalEmployeeComponent } from './ManageHospitalEmployeeCompone
 import { DoctorCalendarComponent } from './DoctorCalendarComponent/doctor-calendar.component';
 import { PrescriptionRequestComponent } from './PrescriptionRequestComponent/prescription-request.component';
 import { PatientDetailComponent } from './PatientDetailComponent/patient-detail.component';
-
+import { DiagnosisHistoryComponent } from './DiagnosisHistoryComponent/diagnosis-history.component';
 const appRoutes: Routes = [
 //   {
 //     path: '',
@@ -59,6 +59,10 @@ const appRoutes: Routes = [
       {
         path: 'patient/:hn',
         component: PatientDetailComponent
+      },
+      {
+        path: 'diagnosis',
+        component: DiagnosisHistoryComponent
       }
       ]
     }  
