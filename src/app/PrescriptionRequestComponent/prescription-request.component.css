@@ -16,10 +16,16 @@
     margin-top: 20px;
 }
 
-.prescriptionDetail {
+.prescription-detail, .reject-form {
     padding: 0 50px;
 }
 
-.btn{
-    width: 200px;
+.control-button{
+    text-align: center;
+    margin-top: 20px;
+}
+
+.form-button {
+    text-align: right;
+    margin-top: 10px;
 }
