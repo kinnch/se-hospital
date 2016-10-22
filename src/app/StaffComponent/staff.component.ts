@@ -15,6 +15,8 @@ export class StaffComponent {
             this.activatedClass = 5;
         } else if(this.router.url === '/manage/prescription_request'){
             this.activatedClass = 6;
+        } else if(this.router.url === '/manage/edit_prescription_request'){
+            this.activatedClass = 7;
         }
     }
     hn = '123456'
@@ -36,6 +38,8 @@ export class StaffComponent {
             link = ['manage','patient']
         } else if(menu===6){ // 6 รายการยา
             link = ['manage','prescription_request']
+        } else if(menu===7){ // 6 แก้ไขรายการยา
+            link = ['manage','edit_prescription_request']
         }
         this.router.navigate(link);
     }

@@ -13,6 +13,7 @@ import { PatientListComponent } from './PatientListComponent/patient-list.compon
 import { PatientDetailComponent } from './PatientDetailComponent/patient-detail.component';
 import { DiagnosisHistoryComponent } from './DiagnosisHistoryComponent/diagnosis-history.component';
 import { PrescriptionHistoryComponent } from './PrescriptionHistoryComponent/prescription-history.component';
+import { EditPrescriptionRequestComponent} from './EditPrescriptionRequestComponent/edit-prescription-request.component';
 
 const appRoutes: Routes = [
 //   {
@@ -74,6 +75,10 @@ const appRoutes: Routes = [
       {
         path: 'prescription_request/:hn',
         component: PrescriptionHistoryComponent
+      },
+      {
+        path: 'edit_prescription_request',
+        component: EditPrescriptionRequestComponent
       },
       ]
     }  
