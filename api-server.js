@@ -1,5 +1,4 @@
 var express = require('express');
-// var bodyParser = require('body-parser');
 var morgan = require('morgan');
 var chalk = require('chalk');
 
@@ -15,10 +14,23 @@ var db = mongoose.connection;
       });
 
 // require('dotenv').config();
+
+var assert = require('assert');
+var bodyParser = require('body-parser');
+var path = require('path');
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+
 function serve(PORT) {
   var app = express();
-  app.use(morgan('dev'))
+  app.use(morgan('dev'));
+
+  // Register JSON body parsing for Post, Updates, Deletes, etc.
+  app.use(bodyParser.json());
+  app.use(bodyParser.urlencoded({ extended: true }));
+
   var port = PORT;
+
   app.listen(port, function () {
       console.log(chalk.green('Api Server listening on port ' + port));
   });
@@ -26,9 +38,15 @@ function serve(PORT) {
   // LIKE ACCESS PUBLIC STUFF IN LARAVEL
   // app.use(express.static('dist'))
   app.use('/dist', express.static('dist'));
-  app.get('/', function (req, res) {
-      res.sendFile(__dirname + "/index.html");
-  });
+ app.use('/resources', express.static('resources'));
+  
+  
+  require('./routes/route')(app);
+  
+  // Passport init
+  app.use(passport.initialize());
+  app.use(passport.session());
+
   app.get('/api', function (req, res) {
     console.log("HEY HEY");
     var Kitten = require("./model/kitten");
@@ -42,6 +60,10 @@ function serve(PORT) {
     console.log("HEY HEY");
 
       res.send("api from webpack proxy 123");
+  });
+
+   app.get('*', function (req, res) {
+      res.sendFile(__dirname + "/index.html");
   });
 
 }
