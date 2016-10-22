@@ -13,6 +13,8 @@ import { ScheduleManageComponent } from './ScheduleManageComponent/schedule-mana
 import { ManageQueueComponent } from './ManageQueueComponent/manage-queue.component';
 import { ManageHospitalEmployeeComponent } from './ManageHospitalEmployeeComponent/manage-hospital-employee.component';
 import { routing } from './app.routing';
+import { DoctorCalendarComponent } from './DoctorCalendarComponent/doctor-calendar.component';
+
 
 @NgModule({
     imports:        [
@@ -31,6 +33,7 @@ import { routing } from './app.routing';
         PrescriptionRequestComponent,
         ScheduleManageComponent,
         ManageQueueComponent,
+        DoctorCalendarComponent,
         ManageHospitalEmployeeComponent
                     ],
     bootstrap:      [
