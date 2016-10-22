@@ -1,0 +1,28 @@
+  
+  .banner img {
+      width: 100%; /* Set width to 100% */
+      margin: auto;
+      min-height:200px;
+  }
+
+  .btn {
+    background-color: white;
+    color: dimgray;
+    border: 2px solid #009263;
+}
+
+.btn:hover {
+    background-color: #009263;
+    color: white;
+}
+
+     
+    footer {
+      background-color: #009263;
+      color: white; 
+      padding: 25px;
+      bottom: 0;
+      width:100%;
+      text-align: center;
+    }
+  
