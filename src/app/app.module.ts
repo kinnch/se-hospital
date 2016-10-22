@@ -18,6 +18,8 @@ import { PatientAppointmentComponent } from './PatientAppointmentComponent/patie
 import { AppointmentListComponent } from './AppointmentListComponent/appointment-list.component';
 import { PatientDetailComponent } from './PatientDetailComponent/patient-detail.component';
 import { routing } from './app.routing';
+import { DoctorCalendarComponent } from './DoctorCalendarComponent/doctor-calendar.component';
+
 
 @NgModule({
     imports:        [
@@ -36,12 +38,14 @@ import { routing } from './app.routing';
         PrescriptionRequestComponent,
         ScheduleManageComponent,
         ManageQueueComponent,
+        DoctorCalendarComponent,
         ManageHospitalEmployeeComponent,
         PatientListComponent,
         PatientListElementComponent,
         PatientAppointmentComponent,
         AppointmentListComponent,
         PatientDetailComponent
+
                     ],
     bootstrap:      [
         AppComponent
