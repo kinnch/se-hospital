@@ -21,6 +21,11 @@ var path = require('path');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
+//connect model
+var Kitten = require("./model/kitten");
+var Home = require("./model/home");
+var Drug = require("./model/drug");
+
 function serve(PORT) {
   var app = express();
   app.use(morgan('dev'));
@@ -49,12 +54,29 @@ function serve(PORT) {
 
   app.get('/api', function (req, res) {
     console.log("HEY HEY");
-    var Kitten = require("./model/kitten");
     //var Kitten = mongoose.model('Kitten', kittySchema);
     var fluffy = new Kitten({ name: 'fluffy' });
     fluffy.jump();
+
+    Kitten.find({ name: /^fluff/ },function (err, kittens) {
+      if (err) return console.error(err);
+      //console.log(kittens);
+      var kitten_ids = [];
+      for(var i = 0; i < kittens.length; i++){
+        kitten_ids.push(kittens[i]._id);
+      }
+      //console.log(kitten_ids);
+      var tohHome = new Home({ name: 'toh2', cats: kitten_ids});
+      tohHome.save();
+      res.setHeader('Content-Type', 'application/json');
+      res.send(JSON.stringify(kitten_ids));
+    });
+
+    //var tohHome = new Home({ name: 'toh2', cats: kitten_id});
+    //tohHome.save();
     //console.log(kittySchema);
-      res.send("api from webpack proxy");
+      //res.send("api from webpack proxy");
+  
   });
   app.get('/api/123', function (req, res) {
     console.log("HEY HEY");
