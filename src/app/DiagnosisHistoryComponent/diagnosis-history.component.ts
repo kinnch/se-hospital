@@ -8,5 +8,7 @@ import { Router } from '@angular/router';
 
 export class DiagnosisHistoryComponent {
     constructor(private router: Router) {}
-    
+      gotoPage(hn):void{      
+        this.router.navigate(['manage','patient','check',hn]);
+    }
 }
