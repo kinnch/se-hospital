@@ -4,11 +4,11 @@ import {Component} from '@angular/core';
 import {PatientComponent} from './PatientComponent/patient.component';
 @Component({
     selector: 'my-app',
-    template: `
-    <h1>My First Angular 2  jobtoshare 8</h1>
-    <a routerLink="/staff">staff</a>
-    <router-outlet></router-outlet>    
+    template: `  
+        <router-outlet></router-outlet>
     `
+    
+
 })
 
 export class AppComponent {}

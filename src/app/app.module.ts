@@ -6,7 +6,8 @@ import { HttpModule }    from '@angular/http';
 import {AppComponent}  from './app.component';
 import {PatientComponent} from './PatientComponent/patient.component';
 import {StaffComponent} from './StaffComponent/staff.component';
-
+import { HomeComponent} from './HomeComponent/home.component';
+import { PrescriptionRequestComponent } from './PrescriptionRequestComponent/prescription-request.component';
 import { routing } from './app.routing';
 
 @NgModule({
@@ -20,7 +21,9 @@ import { routing } from './app.routing';
     declarations:   [
         AppComponent,
         PatientComponent,
-        StaffComponent
+        StaffComponent,
+        HomeComponent,
+        PrescriptionRequestComponent
                     ],
     bootstrap:      [
         AppComponent
