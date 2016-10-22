@@ -20,6 +20,8 @@ import { PatientDetailComponent } from './PatientDetailComponent/patient-detail.
 import { PatientPhysicalCheckComponent } from './PatientPhysicalCheckComponent/patient-physical-check.component';
 import { routing } from './app.routing';
 import { DoctorCalendarComponent } from './DoctorCalendarComponent/doctor-calendar.component';
+import { MakeAppointComponent } from './MakeAppointmentComponent/make-appointment.component';
+import { RegisterComponent } from './RegisterComponent/register.component';
 import { DiagnosisHistoryComponent } from './DiagnosisHistoryComponent/diagnosis-history.component';
 import { PrescriptionHistoryComponent } from './PrescriptionHistoryComponent/prescription-history.component';
 import { EditPrescriptionRequestComponent} from './EditPrescriptionRequestComponent/edit-prescription-request.component';
@@ -48,6 +50,8 @@ import { EditPrescriptionRequestComponent} from './EditPrescriptionRequestCompon
         PatientAppointmentComponent,
         AppointmentListComponent,
         PatientDetailComponent,
+        RegisterComponent,
+        MakeAppointComponent,
         PatientPhysicalCheckComponent,
         DiagnosisHistoryComponent,
         PrescriptionHistoryComponent,
