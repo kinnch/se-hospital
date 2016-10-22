@@ -12,7 +12,10 @@ import { PrescriptionRequestComponent } from './PrescriptionRequestComponent/pre
 import { ScheduleManageComponent } from './ScheduleManageComponent/schedule-manage.component';
 import { ManageQueueComponent } from './ManageQueueComponent/manage-queue.component';
 import { ManageHospitalEmployeeComponent } from './ManageHospitalEmployeeComponent/manage-hospital-employee.component';
-import { PatientListComponent } from './PatientListComponent/patient-list.component'
+import { PatientListComponent } from './PatientListComponent/patient-list.component';
+import { PatientListElementComponent } from './PatientListElementComponent/patient-list-element.component';
+import { PatientAppointmentComponent } from './PatientAppointmentComponent/patient-appointment.component';
+import { AppointmentListComponent } from './AppointmentListComponent/appointment-list.component';
 import { routing } from './app.routing';
 
 @NgModule({
@@ -33,7 +36,10 @@ import { routing } from './app.routing';
         ScheduleManageComponent,
         ManageQueueComponent,
         ManageHospitalEmployeeComponent,
-        PatientListComponent
+        PatientListComponent,
+        PatientListElementComponent,
+        PatientAppointmentComponent,
+        AppointmentListComponent
                     ],
     bootstrap:      [
         AppComponent
