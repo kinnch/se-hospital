@@ -16,14 +16,12 @@ import { RegisterComponent } from './RegisterComponent/register.component';
 import { DiagnosisHistoryComponent } from './DiagnosisHistoryComponent/diagnosis-history.component';
 import { PrescriptionHistoryComponent } from './PrescriptionHistoryComponent/prescription-history.component';
 import { EditPrescriptionRequestComponent} from './EditPrescriptionRequestComponent/edit-prescription-request.component';
+import { PrescriptionListElementComponent } from './PrescriptionListElementComponent/prescription-list-element.component';
 
+//TODO: query state from user
+let redirectToPathLastPage: string = 'manage_patient';
 
 const appRoutes: Routes = [
-//   {
-//     path: '',
-//     redirectTo: '/dashboard',
-//     pathMatch: 'full'
-//     },
   {
     path: '',
     component: PatientComponent
@@ -37,7 +35,9 @@ const appRoutes: Routes = [
     component: StaffComponent,
     children:[
       { 
-        path:''
+        path:'',
+        redirectTo: redirectToPathLastPage,
+        pathMatch: 'full'
       },
       {
         path: 'manage_patient',
