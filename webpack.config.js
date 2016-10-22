@@ -3,6 +3,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: {
+    "polyfills": "./src/app/polyfills.js",
     "vendor": ["./src/app/vendor","webpack/hot/dev-server","webpack-dev-server/client?http://0.0.0.0:8080/"],
     "app": "./src/app/main"
   },
