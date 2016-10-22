@@ -15,6 +15,8 @@ export class StaffComponent {
             this.activatedClass = 5;
         } else if(this.router.url === '/manage/prescription_request'){
             this.activatedClass = 6;
+        } else if(this.router.url === '/manage/edit_prescription_request'){
+            this.activatedClass = 7;
         }
     }
     hn = '123456'
@@ -25,17 +27,19 @@ export class StaffComponent {
         let link = ['manage'];
         this.activatedClass = menu;
         if(menu === 1){ // 1 จัดการผู้ป่วย
-            link = ['manage'];
+            link = ['manage','manage_patient'];
         } else if(menu === 2){
             link = ['manage'];
         } else if(menu === 3){
-            link = ['manage'];
+            link = ['manage','manage_staff'];
         } else if(menu === 4){ // 4 Checkin เข้าห้อง
             link = ['manage','manage_queue'];
         } else if(menu===5){ // 5 ตรวจร่างกาย
             link = ['manage','patient']
         } else if(menu===6){ // 6 รายการยา
             link = ['manage','prescription_request']
+        } else if(menu===7){ // 6 แก้ไขรายการยา
+            link = ['manage','edit_prescription_request']
         }
         this.router.navigate(link);
     }

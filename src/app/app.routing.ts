@@ -11,8 +11,12 @@ import { DoctorCalendarComponent } from './DoctorCalendarComponent/doctor-calend
 import { PrescriptionRequestComponent } from './PrescriptionRequestComponent/prescription-request.component';
 import { PatientListComponent } from './PatientListComponent/patient-list.component';
 import { PatientDetailComponent } from './PatientDetailComponent/patient-detail.component';
+import { MakeAppointComponent } from './MakeAppointmentComponent/make-appointment.component';
+import { RegisterComponent } from './RegisterComponent/register.component';
 import { DiagnosisHistoryComponent } from './DiagnosisHistoryComponent/diagnosis-history.component';
 import { PrescriptionHistoryComponent } from './PrescriptionHistoryComponent/prescription-history.component';
+import { EditPrescriptionRequestComponent} from './EditPrescriptionRequestComponent/edit-prescription-request.component';
+
 
 const appRoutes: Routes = [
 //   {
@@ -38,6 +42,14 @@ const appRoutes: Routes = [
       {
         path: 'manage_patient',
         component: ManagePatientComponent
+      },
+      {
+        path: 'manage_patient/register',
+        component: RegisterComponent
+      },
+      {
+        path: 'manage_patient/create_appointment',
+        component: MakeAppointComponent
       },
       {
         path: 'manage_schedule',
@@ -74,6 +86,10 @@ const appRoutes: Routes = [
       {
         path: 'prescription_request/:hn',
         component: PrescriptionHistoryComponent
+      },
+      {
+        path: 'edit_prescription_request',
+        component: EditPrescriptionRequestComponent
       },
       ]
     }  
