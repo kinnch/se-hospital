@@ -49,19 +49,17 @@ const appRoutes: Routes = [
         component: ManageHospitalEmployeeComponent
       },
       {
-<<<<<<< HEAD
         path: 'doctor_calendar',
         component: DoctorCalendarComponent
-      }
-=======
+      },
+      {
         path: 'prescription_request',
         component: PrescriptionRequestComponent
       },
       {
         path: 'patient/:hn',
         component: PatientDetailComponent
-      },
->>>>>>> 28c5457062fff74857eade8c35d628082bf15285
+      }
       ]
     }  
 ];

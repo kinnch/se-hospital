@@ -38,7 +38,6 @@ import { DoctorCalendarComponent } from './DoctorCalendarComponent/doctor-calend
         PrescriptionRequestComponent,
         ScheduleManageComponent,
         ManageQueueComponent,
-
         DoctorCalendarComponent,
         ManageHospitalEmployeeComponent,
         PatientListComponent,
