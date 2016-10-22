@@ -21,6 +21,8 @@ import { PatientPhysicalCheckComponent } from './PatientPhysicalCheckComponent/p
 import { routing } from './app.routing';
 import { DoctorCalendarComponent } from './DoctorCalendarComponent/doctor-calendar.component';
 import { DiagnosisHistoryComponent } from './DiagnosisHistoryComponent/diagnosis-history.component';
+import { PrescriptionHistoryComponent } from './PrescriptionHistoryComponent/prescription-history.component';
+
 
 @NgModule({
     imports:        [
@@ -48,6 +50,7 @@ import { DiagnosisHistoryComponent } from './DiagnosisHistoryComponent/diagnosis
         PatientDetailComponent,
         PatientPhysicalCheckComponent,
         DiagnosisHistoryComponent,
+        PrescriptionHistoryComponent,
         ],
     bootstrap:      [
         AppComponent

@@ -12,6 +12,8 @@ import { PrescriptionRequestComponent } from './PrescriptionRequestComponent/pre
 import { PatientListComponent } from './PatientListComponent/patient-list.component';
 import { PatientDetailComponent } from './PatientDetailComponent/patient-detail.component';
 import { DiagnosisHistoryComponent } from './DiagnosisHistoryComponent/diagnosis-history.component';
+import { PrescriptionHistoryComponent } from './PrescriptionHistoryComponent/prescription-history.component';
+
 const appRoutes: Routes = [
 //   {
 //     path: '',
@@ -68,7 +70,11 @@ const appRoutes: Routes = [
       {
         path: 'diagnosis',
         component: DiagnosisHistoryComponent
-      }
+      },
+      {
+        path: 'prescription_request/:hn',
+        component: PrescriptionHistoryComponent
+      },
       ]
     }  
 ];
