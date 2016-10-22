@@ -17,6 +17,7 @@ import { PatientListElementComponent } from './PatientListElementComponent/patie
 import { PatientAppointmentComponent } from './PatientAppointmentComponent/patient-appointment.component';
 import { AppointmentListComponent } from './AppointmentListComponent/appointment-list.component';
 import { PatientDetailComponent } from './PatientDetailComponent/patient-detail.component';
+import { PatientPhysicalCheckComponent } from './PatientPhysicalCheckComponent/patient-physical-check.component';
 import { routing } from './app.routing';
 import { DoctorCalendarComponent } from './DoctorCalendarComponent/doctor-calendar.component';
 
@@ -44,7 +45,8 @@ import { DoctorCalendarComponent } from './DoctorCalendarComponent/doctor-calend
         PatientListElementComponent,
         PatientAppointmentComponent,
         AppointmentListComponent,
-        PatientDetailComponent
+        PatientDetailComponent,
+        PatientPhysicalCheckComponent
 
                     ],
     bootstrap:      [
