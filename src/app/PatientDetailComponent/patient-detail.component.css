@@ -15,3 +15,12 @@
     margin-left: 50px;
     margin-top: 0px;
 }
+
+.back{
+    color: #4286F7 !important;
+}
+
+a:hover {
+    text-decoration: none;
+    cursor: pointer;
+}
