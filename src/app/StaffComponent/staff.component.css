@@ -712,10 +712,12 @@ ul#header-actions .dropdown-menu .dropdown-content a:hover {
 }
 /*HardCode*/
 .dashboard-wrapper {
-    margin-left: 90px
+    margin-left: 90px;
+    margin-bottom: 0px;
 }
 .dashboard-wrapper-lg {
     margin-left: 200px;
+    margin-bottom: 0px;
     -webkit-transition: all .3s ease-out;
     -moz-transition: all .3s ease-out;
     -ms-transition: all .3s ease-out;
