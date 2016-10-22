@@ -3,7 +3,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { Router } from '@angular/router';
 @Component({
     selector: 'prescription-history-c',
-    template: require('./prescription-history.component.html')
+    template: require('./prescription-history.component.html'),
     styles: [require('./prescription-history.component.css')]
 })
 
