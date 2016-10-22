@@ -16,7 +16,7 @@ import { RegisterComponent } from './RegisterComponent/register.component';
 import { DiagnosisHistoryComponent } from './DiagnosisHistoryComponent/diagnosis-history.component';
 import { PrescriptionHistoryComponent } from './PrescriptionHistoryComponent/prescription-history.component';
 import { EditPrescriptionRequestComponent} from './EditPrescriptionRequestComponent/edit-prescription-request.component';
-
+import { PatientPhysicalCheckHistoryComponent } from './PatientPhysicalCheckHistoryComponent/patient-physical-check-history.component';
 
 const appRoutes: Routes = [
 //   {
@@ -91,6 +91,10 @@ const appRoutes: Routes = [
         path: 'edit_prescription_request',
         component: EditPrescriptionRequestComponent
       },
+      {
+        path: 'patient/check/:hn',
+        component: PatientPhysicalCheckHistoryComponent
+      }
       ]
     }  
 ];
