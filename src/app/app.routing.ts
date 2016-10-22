@@ -10,7 +10,8 @@ import { ManageHospitalEmployeeComponent } from './ManageHospitalEmployeeCompone
 import { DoctorCalendarComponent } from './DoctorCalendarComponent/doctor-calendar.component';
 import { PrescriptionRequestComponent } from './PrescriptionRequestComponent/prescription-request.component';
 import { PatientDetailComponent } from './PatientDetailComponent/patient-detail.component';
-
+import { MakeAppointComponent } from './MakeAppointmentComponent/make-appointment.component';
+import { RegisterComponent } from './RegisterComponent/register.component';
 const appRoutes: Routes = [
 //   {
 //     path: '',
@@ -35,6 +36,14 @@ const appRoutes: Routes = [
       {
         path: 'manage_patient',
         component: ManagePatientComponent
+      },
+      {
+        path: 'manage_patient/register',
+        component: RegisterComponent
+      },
+      {
+        path: 'manage_patient/create_appointment',
+        component: MakeAppointComponent
       },
       {
         path: 'manage_schedule',

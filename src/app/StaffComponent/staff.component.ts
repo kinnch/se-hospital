@@ -19,11 +19,11 @@ export class StaffComponent {
         let link = ['manage'];
         this.activatedClass = menu;
         if(menu === 1){ // 1 จัดการผู้ป่วย
-            link = ['manage'];
+            link = ['manage','manage_patient'];
         } else if(menu === 2){
             link = ['manage'];
         } else if(menu === 3){
-            link = ['manage'];
+            link = ['manage','manage_staff'];
         } else if(menu === 4){ // 4 Checkin เข้าห้อง
             link = ['manage','manage_queue'];
         } else if(menu===5){
