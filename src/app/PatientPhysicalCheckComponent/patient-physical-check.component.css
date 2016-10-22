@@ -1,0 +1,18 @@
+.control-button{
+    text-align: center;
+    margin-top: 20px;
+}
+
+.form-button {
+    text-align: right;
+    margin-top: 10px;
+}
+.space-top{
+    margin-top: 13px;
+}
+.right{
+    text-align: right;
+}
+.table{
+    text-align: center;
+}

@@ -14,3 +14,6 @@ patient-list-c{
     display: inline-block;
     padding-right: 1em;
 }
+.center{
+    text-align: center !important;
+}

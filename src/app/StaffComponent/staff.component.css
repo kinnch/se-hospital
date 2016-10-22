@@ -59,7 +59,7 @@ html {
     height: 100%
 }
 body {
-    min-height: 100%;
+    /*min-height: 100%;*/
     font: 400 14px 'Open Sans', sans-serif;
     line-height: 1.6;
     color: #101010;
@@ -702,7 +702,7 @@ ul#header-actions .dropdown-menu .dropdown-content a:hover {
     text-align: left;
     position: relative;
     padding: 20px 20px 80px;
-    min-height: 602px;
+    /*min-height: 602px;*/
     -webkit-transition: all .3s ease-out;
     -moz-transition: all .3s ease-out;
     -ms-transition: all .3s ease-out;
@@ -714,6 +714,9 @@ ul#header-actions .dropdown-menu .dropdown-content a:hover {
 .dashboard-wrapper {
     margin-left: 90px;
     padding-bottom: 0px !important;
+    /*border: 1px solid #000;*/
+    overflow-y:auto;
+    height:100%;
 }
 .dashboard-wrapper-lg {
     margin-left: 200px;

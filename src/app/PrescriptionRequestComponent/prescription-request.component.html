@@ -2,35 +2,45 @@
     <h3>รายการจ่ายยา</h3>
     <h5>รอจ่าย</h5>
     <hr>
-    <div class="prescription-panel">
+    <div class="container">
+        <br>
         <section class = "patientDetail">
             <div class="row"> 
-                <div class="col-sm-3">
+                <div class="col-md-3 col-sm-12" >
                     <img src="/resources/images/icon_people/fm_adult.png" class="patient-img">
                 </div>
-                <div class="col-sm-9">
-                    <h5>ผู้ป่วย</h5>
+                <div class="col-md-9 col-sm-12" >
                     <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-sm-4">
                             <p><b>ชื่อ : </b>นางสาว กรชนก</p>
                         </div>  
-                        <div class="col-md-4">
-                            <p><b>สกุล : </b>จิรเวชกุล</p>    
+                        <div class="col-sm-4">
+                            <p><b>นามสกุล : </b>จิรเวศยกุล</p>    
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-sm-4">
+                            <p><b>HN : </b>XXXXXXXX</p>    
+                        </div> 
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <p><b>เพศ : </b>หญิง</p>
+                        </div>  
+                        <div class="col-sm-4">
                             <p><b>อายุ : </b>21 ปี 10 เดือน</p>    
                         </div> 
+                        <div class="col-sm-4">  
+                        </div>
                     </div>
                     <h5>แพทย์ผู้ตรวจ</h5>
                     <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-sm-4">
                             <p><b>ชื่อ : </b>นาย กรชนก</p>
                         </div>  
-                        <div class="col-md-4">
+                        <div class="col-sm-4">
                             <p><b>สกุล : </b>จิรเวชกุล</p>    
                         </div>
-                        <div class="col-md-4">
-                            <button type="button" class="btn btn-outline-success">ดูประวัติการได้รับยา</button>
+                        <div class="col-sm-4">
+                            <button type="button" class="btn btn-success" (click)="gotoPage(5)">ดูประวัติการได้รับยา</button>
                         </div>  
                     </div>       
                 </div>    
@@ -73,20 +83,104 @@
             <p><b>ยาที่แพ้ : </b> aaaaaaaaaaaaaaaaaaaaaaaaaaa</p>    
         </section>   
         <section class="control-button" [hidden]="isReject">
-            <button type="button" class="btn btn-outline-info" style="width: 150px; margin-right: 50px">จ่ายยา</button>                  
-            <button type="button" class="btn btn-outline-danger" style="width: 150px;" (click)="isReject = !isReject">ขอแก้ไขยา</button>
+            <button type="button" class="btn btn-info" style="width: 150px; margin-right: 50px">จ่ายยา</button>                  
+            <button type="button" class="btn btn-danger" style="width: 150px;" (click)="isReject = !isReject">ขอแก้ไขยา</button>
         </section>
         <section class ="reject-form" [hidden]="!isReject">
             <p><b>เหตุผลที่ขอแก้ไข :</b></p>
             <textarea row="3" class="form-control"></textarea>
              <div class="form-button">
-                <button type="button" class="btn btn-outline-success" style="margin-right: 10px">ส่งคำร้อง</button>
-                <button type="button" class="btn btn-outline-warning" (click)="isReject = !isReject">ยกเลิก</button>
+                <button type="button" class="btn btn-success" style="margin-right: 10px">ส่งคำร้อง</button>
+                <button type="button" class="btn btn-danger" (click)="isReject = !isReject">ยกเลิก</button>
             </div>
-        </section>        
-    </div>  
+        </section>  
+        <br>      
+    </div>    
+     
       
     <h5>จ่ายแล้ว</h5>
     <hr>
-
+    <div class="container">
+        <br>
+        <section class = "patientDetail">
+            <div class="row"> 
+                <div class="col-md-3 col-sm-12" >
+                    <img src="/resources/images/icon_people/fm_adult.png" class="patient-img">
+                </div>
+                <div class="col-md-9 col-sm-12" >
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <p><b>ชื่อ : </b>นางสาว กรชนก</p>
+                        </div>  
+                        <div class="col-sm-4">
+                            <p><b>นามสกุล : </b>จิรเวศยกุล</p>    
+                        </div>
+                        <div class="col-sm-4">
+                            <p><b>HN : </b>XXXXXXXX</p>    
+                        </div> 
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <p><b>เพศ : </b>หญิง</p>
+                        </div>  
+                        <div class="col-sm-4">
+                            <p><b>อายุ : </b>21 ปี 10 เดือน</p>    
+                        </div> 
+                        <div class="col-sm-4">  
+                        </div>
+                    </div>
+                    <h5>แพทย์ผู้ตรวจ</h5>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <p><b>ชื่อ : </b>นาย กรชนก</p>
+                        </div>  
+                        <div class="col-sm-4">
+                            <p><b>สกุล : </b>จิรเวชกุล</p>    
+                        </div>
+                        <div class="col-sm-4">
+                            <button type="button" class="btn btn-success" (click)="gotoPage(5)">ดูประวัติการได้รับยา</button>
+                        </div>  
+                    </div>       
+                </div>    
+            </div>    
+        </section>
+        <hr>
+        <section class = "prescription-detail"> 
+            <div class="table-responsive">
+                <table class="table table-sm">
+                      <thead class="thead-default">
+                        <tr>
+                        <th>#</th>
+                        <th>ชื่อยา</th>
+                        <th>จำนวน</th>
+                        <th>วิธีใช้</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                        <th scope="row">1</th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                        </tr>
+                        <tr>
+                        <th scope="row">2</th>
+                        <td>Jacob</td>
+                        <td>Thornton</td>
+                        <td>@fat</td>
+                        </tr>
+                        <tr>
+                        <th scope="row">3</th>
+                        <td>Larry</td>
+                        <td>the Bird</td>
+                        <td>@twitter</td>
+                        </tr>
+                    </tbody>  
+                </table>
+            </div>
+            <p><b>ยาที่แพ้ : </b> aaaaaaaaaaaaaaaaaaaaaaaaaaa</p>    
+        </section>   
+        <br> 
+    </div> 
+    <br>
 </div>

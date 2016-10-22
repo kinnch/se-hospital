@@ -9,7 +9,14 @@ import { ManageQueueComponent } from './ManageQueueComponent/manage-queue.compon
 import { ManageHospitalEmployeeComponent } from './ManageHospitalEmployeeComponent/manage-hospital-employee.component';
 import { DoctorCalendarComponent } from './DoctorCalendarComponent/doctor-calendar.component';
 import { PrescriptionRequestComponent } from './PrescriptionRequestComponent/prescription-request.component';
+import { PatientListComponent } from './PatientListComponent/patient-list.component';
 import { PatientDetailComponent } from './PatientDetailComponent/patient-detail.component';
+import { MakeAppointComponent } from './MakeAppointmentComponent/make-appointment.component';
+import { RegisterComponent } from './RegisterComponent/register.component';
+import { DiagnosisHistoryComponent } from './DiagnosisHistoryComponent/diagnosis-history.component';
+import { PrescriptionHistoryComponent } from './PrescriptionHistoryComponent/prescription-history.component';
+import { EditPrescriptionRequestComponent} from './EditPrescriptionRequestComponent/edit-prescription-request.component';
+
 
 const appRoutes: Routes = [
 //   {
@@ -37,6 +44,14 @@ const appRoutes: Routes = [
         component: ManagePatientComponent
       },
       {
+        path: 'manage_patient/register',
+        component: RegisterComponent
+      },
+      {
+        path: 'manage_patient/create_appointment',
+        component: MakeAppointComponent
+      },
+      {
         path: 'manage_schedule',
         component: ScheduleManageComponent
       },
@@ -57,9 +72,25 @@ const appRoutes: Routes = [
         component: PrescriptionRequestComponent
       },
       {
+        path: 'patient',
+        component: PatientListComponent
+      },
+      {
         path: 'patient/:hn',
         component: PatientDetailComponent
-      }
+      },
+      {
+        path: 'diagnosis',
+        component: DiagnosisHistoryComponent
+      },
+      {
+        path: 'prescription_request/:hn',
+        component: PrescriptionHistoryComponent
+      },
+      {
+        path: 'edit_prescription_request',
+        component: EditPrescriptionRequestComponent
+      },
       ]
     }  
 ];
