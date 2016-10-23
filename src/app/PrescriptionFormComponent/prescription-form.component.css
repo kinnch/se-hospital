@@ -1,0 +1,21 @@
+.header{
+    border-bottom: 1px solid #999999;
+}
+
+.drug {
+    margin-bottom: 15px;
+}
+
+.center {
+    text-align: center;
+}
+
+.form-control {
+    display: inline;
+    width: 85%;
+}
+
+.icon {
+    margin-top: 10px;
+    color: #e84234;
+}
