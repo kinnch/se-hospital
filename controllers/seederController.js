@@ -72,6 +72,7 @@ exports.seed = function(req, res) {
             fname: "กีรติ",
             lname: "ธนกิจเจริญพัฒน์"
         },
+        email: "keerati.tan@gmail.com",
         tel: "0888983283",
         nationalID: '1103701553821',
         sex: "male",
