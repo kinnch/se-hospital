@@ -82,8 +82,8 @@ const appRoutes: Routes = [
         component: PatientDetailComponent
       },
       {
-        path: 'diagnosis',
-        component: DiagnosisHistoryComponent
+        path: 'diagnosis/:hn',
+        component: PatientDetailComponent
       },
       {
         path: 'prescription_request/:hn',

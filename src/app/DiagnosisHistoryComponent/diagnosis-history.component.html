@@ -9,6 +9,17 @@
 					<blockquote _ngcontent-bir-6="" class="card-blockquote">
 						<div class="row">
 							<div class="col-md-4">
+								<p>น้ำหนัก (กก.) : </p>
+							</div>
+							<div class="col-md-4">
+								<p>ส่วนสูง (ซม.) : </p>
+							</div>
+							<div class="col-md-4">
+								<p>อุณหภูมิ (องศา) : </p>
+							</div>
+						</div>
+                        <div class="row">
+							<div class="col-md-4">
 								<p>อัตราการเต้นหัวใจ : </p>
 							</div>
 							<div class="col-md-4">
@@ -16,17 +27,6 @@
 							</div>
 							<div class="col-md-4">
 								<p>ความดันช่วงคลาย : </p>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-4">
-								<p>น้ำหนัก : </p>
-							</div>
-							<div class="col-md-4">
-								<p>ส่วนสูง : </p>
-							</div>
-							<div class="col-md-4">
-								<p>อุณหภูมิ : </p>
 							</div>
 						</div>
 						<button class="btn btn-primary pull-right" role="button" (click)="gotoPage(5)">ดูรายละเอียดทั้งหมด</button>
@@ -53,18 +53,18 @@
 								</thead>
 								<tbody>
 									<tr>
-										<td>John</td>
-										<td><a href="#" class="btn btn-info pull-right" role="button">ดูเพิ่มเติม</a>Doe</td>
+										<th>01/10/59</th>
+										<td><button class="btn btn-info pull-right" role="button" (click)="gotoPage(6)">ดูเพิ่มเติม</button>H1N1</td>
 
 									</tr>
 									<tr>
-										<td>Mary</td>
-										<td> <a href="#" class="btn btn-info pull-right" role="button">ดูเพิ่มเติม</a>Moe</td>
+										<th>17/08/59</th>
+										<td> <button class="btn btn-info pull-right" role="button" (click)="gotoPage(6)">ดูเพิ่มเติม</button>H1N1</td>
 
 									</tr>
 									<tr>
-										<td>July</td>
-										<td> <a href="#" class="btn btn-info pull-right" role="button">ดูเพิ่มเติม</a>Dooley</td>
+										<th>07/06/59</th>
+										<td> <button class="btn btn-info pull-right" role="button" (click)="gotoPage(6)">ดูเพิ่มเติม</button>H1N1</td>
 
 									</tr>
 								</tbody>

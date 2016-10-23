@@ -32,5 +32,6 @@
         </div>    
     </div>
     <br>
-    <patient-physical-check-c></patient-physical-check-c>
+    <patient-physical-check-c *ngIf="router.url == '/manage/patient/11'"></patient-physical-check-c>
+    <diagnosis-history-c *ngIf="router.url == '/manage/diagnosis/11'"></diagnosis-history-c>
 </section>
