@@ -415,7 +415,11 @@
 /*----------------
   Extra Content
 -----------------*/
-
+.row-container{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 .ui.cards > .card > .extra,
 .ui.card > .extra {
   max-width: 100%;

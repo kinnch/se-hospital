@@ -84,6 +84,10 @@ const appRoutes: Routes = [
         component: DoctorCalendarComponent
       },
       {
+        path: 'doctor_calendar/:hn',
+        component: DoctorCalendarComponent
+      },
+      {
         path: 'prescription_request',
         component: PrescriptionRequestComponent
       },
@@ -135,8 +139,7 @@ const appRoutes: Routes = [
 {
         path: 'edit_prescription',
         component: EditPrescriptionComponent
-}
-      
+}   
     ]
   }
 ];
