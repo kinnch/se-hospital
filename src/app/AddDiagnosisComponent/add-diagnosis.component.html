@@ -1,0 +1,49 @@
+<a class="back" (click)="goback()">
+	< ย้อนกลับ</a>
+		<hr>
+		<section class="container">
+			<br>
+			<div class="rows">
+				<div class="col-md-6">
+					<h5 _ngcontent-bir-6="">รายละเอียดการวินิจฉัย</h5>
+					<form>
+						<div class="form-group">
+							<!--<label for="comment">Comment:</label>-->
+							<textarea class="form-control" rows="15" id="comment"></textarea>
+						</div>
+					</form>
+				</div>
+				<div class="col-md-6">
+					<h5 _ngcontent-bir-6="">รหัสโรค</h5>
+					<form class="form-horizontal">
+						<div class="form-group ">
+							<label>[1] </label>
+							<input class="form-control" id="focusedInput" type="text">
+						</div>
+						<div class="form-group ">
+							<label>[2] </label>
+							<input class="form-control" id="focusedInput" type="text">
+						</div>
+						<div class="form-group ">
+							<label>[3] </label>
+							<input class="form-control" id="focusedInput" type="text">
+						</div>
+						<div class="form-group ">
+							<label>[4] </label>
+							<input class="form-control" id="focusedInput" type="text">
+						</div>
+					</form>
+				</div>
+			</div>
+			<br>
+			<prescription-form-c></prescription-form-c>
+			<div class="rows">
+				<div class="col-md-12">
+					<button id="save" type="button" class="btn btn-success pull-right" (click)="goback()"><i class="fa fa-floppy-o" aria-hidden="true"></i> <span> บันทึก</span></button>
+					<button id="save" type="button" class="btn btn-danger pull-left" (click)="goback()"><i class="fa fa-times" aria-hidden="true"></i> <span> ยกเลิก</span></button>
+				</div>
+			
+			<br>
+			</div>
+			<br>
+		</section>

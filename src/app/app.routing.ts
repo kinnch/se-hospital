@@ -19,9 +19,13 @@ import { EditPrescriptionRequestComponent } from './EditPrescriptionRequestCompo
 import { PrescriptionListElementComponent } from './PrescriptionListElementComponent/prescription-list-element.component';
 import { PatientPhysicalCheckHistoryComponent } from './PatientPhysicalCheckHistoryComponent/patient-physical-check-history.component';
 import { StaffLoginComponent } from './StaffLoginComponent/staff-login.component';
+import { LoginComponent } from './LoginComponent/login.component';
+import { HomeComponent } from './HomeComponent/home.component';       
+import { AddDiagnosisComponent } from './AddDiagnosisComponent/add-diagnosis.component';
 import { AddHospitalEmployeeComponent } from './AddHospitalEmployeeComponent/add-hospital-employee.component';
 import { DiagnosisDetailComponent } from './DiagnosisDetailComponent/diagnosis-detail.component'; 
-import { EditPrescriptionComponent } from './EditPrescriptionComponent/edit-prescription.component'
+import { EditPrescriptionComponent } from './EditPrescriptionComponent/edit-prescription.component';
+
 
 //TODO: query state from user
 let redirectToPathLastPage: string = 'manage_patient';
@@ -31,7 +35,21 @@ let redirectToPathLastPage: string = 'manage_patient';
 const appRoutes: Routes = [
   {
     path: '',
-    component: PatientComponent
+    component: PatientComponent,
+    children: [
+      {
+        path: '',
+        component: HomeComponent
+      },
+      {
+        path: 'login',
+        component: LoginComponent
+      },
+      {
+        path: 'register',
+        component: RegisterComponent
+      }
+    ]
   },
   {
     path: 'staff',
@@ -111,7 +129,7 @@ const appRoutes: Routes = [
         component: DiagnosisDetailComponent
       },
       {
-        path: 'diagnosis/resault/:hn',
+        path: 'diagnosis/result/:hn',
         component: DiagnosisDetailComponent
       },
       {
@@ -122,10 +140,16 @@ const appRoutes: Routes = [
         path: 'login',
         component: StaffLoginComponent
       },
-      {
+      
+{
+        path: 'diagnosis/add/:hn',
+        component: AddDiagnosisComponent
+},
+{
         path: 'edit_prescription',
         component: EditPrescriptionComponent
-      }
+}
+      
     ]
   }
 ];
