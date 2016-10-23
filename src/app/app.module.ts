@@ -43,6 +43,7 @@ import { PrescriptionService } from '../services/prescription.service';
 import { PatientService } from '../services/patient.service';
 import { AppointmentService } from '../services/appointment.service';
 import { PhysicalCheckService } from '../services/physical-check.service';
+import { HospitalEmployeeService } from '../services/hospital-employee.service';
 
 @NgModule({
     imports:        [
@@ -93,7 +94,8 @@ import { PhysicalCheckService } from '../services/physical-check.service';
         PrescriptionService,
         PatientService,
         AppointmentService,
-        PhysicalCheckService
+        PhysicalCheckService,
+        HospitalEmployeeService
     ],
     bootstrap:      [
         AppComponent
