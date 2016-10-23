@@ -8,6 +8,6 @@
 .right{
     text-align: right;
 }
-.table{
+.table,th{
     text-align: center;
 }
