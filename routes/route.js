@@ -43,6 +43,7 @@ module.exports = function(app) {
 
     var physicalDataController = require('../controllers/physicalDataController');
     app.post('/api/physicalData/add',  physicalDataController.add);
+    app.post('/api/physicalData/history',  physicalDataController.showHistory);    
 
     var prescriptionController = require("../controllers/prescriptionController");
     app.post('/api/appointment/all',  prescriptionController.showAll);

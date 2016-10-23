@@ -41,3 +41,12 @@ exports.add = function(req, res){
         })
     });
 }
+
+exports.showHistory = function(req, res){
+    Patient.findOne({HN: req.body.HN}, (err,patient)=>{
+        PhysicalData.find({patient: patient._id}, (err,all_physical_check) => {
+            res.send(all_physical_check)
+            return;
+        })
+    });
+}
