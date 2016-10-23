@@ -14,12 +14,12 @@ export class PhysicalCheckService {
         console.error('An error occurred', error); // for demo purposes only
         return Promise.reject(error.message || error);
     }
-    addPhysicalCheck(systolic:number,diastolic:number,heartRate:number,weight:number,height:number,temp:number,HN:string) : Promise<JSON> {
+    addPhysicalCheck(systolic:number,diastolic:number,heartRate:number,weight:number,height:number,temp:number,HN:string) : Promise<string> {
         return this.http
                     .post(this.apiUrl, JSON.stringify({systolic: systolic,diastolic:diastolic,heartRate:heartRate,weight:weight,height:height,temp:temp,HN:HN}), {headers: this.headers})
                     .toPromise()
-                    .then(function(res){
-                        return res.json();
+                    .then(res => {
+                        return "success";
                     });
     }
 }
