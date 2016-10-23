@@ -6,16 +6,20 @@ var session = require('express-session');
 
 var Staff = require('../model/staff');
 var HospitalEmployee = require("../model/hospitalEmployee");
-var staffController = require('../controllers/staff');
+var Patient = require('../model/patient');
 
 module.exports = function(app) {
 
     //initialize passport
-    passport.use(HospitalEmployee.createStrategy());
+    passport.use('staff',HospitalEmployee.createStrategy());
     // use static serialize and deserialize of model for passport session support
-    passport.serializeUser(HospitalEmployee.serializeUser());
-    passport.deserializeUser(HospitalEmployee.deserializeUser());
+    // passport.serializeUser(HospitalEmployee.serializeUser());
+    // passport.deserializeUser(HospitalEmployee.deserializeUser());
 
+    passport.serializeUser(Patient.serializeUser());
+    passport.deserializeUser(Patient.deserializeUser());
+    
+    passport.use('patient',Patient.createStrategy());
     //need this according to passport guide
     app.use(cookieParser());
     app.use(session({
@@ -29,8 +33,6 @@ module.exports = function(app) {
     //patientController.setDBConnectionsFromApp(app);
 
    
-     var patientController = require('../controllers/patient');
-    app.get('/test',staffController.checkAuth, patientController.testt);
 
     var patientController = require('../controllers/patientController');
     app.get('/testing',  patientController.testing);
@@ -43,9 +45,15 @@ module.exports = function(app) {
     app.post('/api/physicalData/add',  physicalDataController.add);
 
     var prescriptionController = require("../controllers/prescriptionController");
+    app.post('/api/presciption/all',  prescriptionController.showAll);
+    app.post('/api/presciption/showInDepartment',  prescriptionController.showInDepartment);
+    app.post('/api/presciption/History',  prescriptionController.showHistory);
     app.post('/api/prescriptions',  prescriptionController.showForPharma);
     app.post('/api/check-in-list',  prescriptionController.showInDepartment);
     app.post('/api/prescriptionHistory',  prescriptionController.showHistory);
+    app.post('/api/updateStatusPres', prescriptionController.updateStatus);
+    app.post('/api/changeRequestPres', prescriptionController.changeRequest);
+    app.post('/api/allPrescription', prescriptionController.allPrescription);
 
     var hospitalEmployeeController = require('../controllers/hospitalEmployeeController');
     app.post('/api/hospitalEmployee/isInSystem',  hospitalEmployeeController.isInSystem);
@@ -61,6 +69,13 @@ module.exports = function(app) {
     app.post('/login', hospitalEmployeeController.login);
     app.post('/register', hospitalEmployeeController.register);
     app.get('/login', hospitalEmployeeController.getLogin)
+
+    app.post('/loginPatient', patientController.login);
+    app.post('/registerPatient', patientController.register);
+    app.get('/loginPatient', patientController.getLogin);
+
+    var otpController = require('../controllers/otpController');
+    app.get('/requestOTP', otpController.requestOTP);
 
 }
 

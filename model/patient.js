@@ -34,7 +34,8 @@ var patientSchema = mongoose.Schema({
       }]
     });
 
-var options = ({missingPasswordError: "Wrong password"});
+var options = ({usernameField: "tel" });
+options.errorMessages = { IncorrectPasswordError:'Password are incorrect', IncorrectUsernameError:' username are incorrect'}
 patientSchema.plugin(passportLocalMongoose,options);
 var Patient = mongoose.model('Patient', patientSchema);
 

@@ -37,7 +37,7 @@ exports.isInSystem = function(req, res) {
 
 exports.login = function (req, res, next) {
  
-    HospitalEmployee.authenticate()(req.body.username, req.body.password, function (err, user, options) {
+    HospitalEmployee.authenticate('staff')(req.body.username, req.body.password, function (err, user, options) {
         if (err) return next(err);
         if (user === false) {
             res.send({
