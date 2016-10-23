@@ -34,6 +34,7 @@ var physicalCheckingSchema = mongoose.Schema({
             min: -273,
             max: 100
         },
+        date: Date,
         patient: {
             type: Schema.Types.ObjectId, 
             ref: 'Patient',

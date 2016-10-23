@@ -18,6 +18,16 @@ export class PrescriptionService {
         return Promise.reject(error.message || error);
     }
 
+    private apiUrlPresciptionsHistory = 'api/prescriptionHistory';
+    getPrescriptionHistory(HN:string): Promise<JSON>{
+        return this.http
+                    .post(this.apiUrlPresciptionsHistory, JSON.stringify({HN : HN}), {headers: this.headers})
+                    .toPromise()
+                    .then(function(res){
+                        return res.json();
+                    });
+    }
+
     //For pharmacist
     getPrescriptionRequestForPharmacist(department_name:string): Promise<JSON> {
     return this.http
