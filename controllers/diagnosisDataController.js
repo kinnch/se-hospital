@@ -65,6 +65,7 @@ exports.add = function(req, res){
             });
             newData.save();
             res.send('done');
+            return;
         })
     });
 }
