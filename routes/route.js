@@ -44,6 +44,7 @@ module.exports = function(app) {
 
     var hospitalEmployeeController = require('../controllers/hospitalEmployeeController');
     app.post('/api/hospitalEmployee/isInSystem',  hospitalEmployeeController.isInSystem);
+    app.post('/api/hospitalEmployee/add',  hospitalEmployeeController.add);
     //patientController.setDBConnectionsFromApp(app);
 
     app.post('/login', hospitalEmployeeController.login);

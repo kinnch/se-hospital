@@ -17,7 +17,7 @@ export class AppointmentService {
     }
     getPatientAndAppointment(idOrHN:string) : Promise<JSON> {
         return this.http
-                    .post(this.apiUrl, JSON.stringify({data: idOrHN}), {headers: this.headers})
+                    .post(this.apiUrl, JSON.stringify({key: idOrHN}), {headers: this.headers})
                     .toPromise()
                     .then(function(res){
                         return res.json();
