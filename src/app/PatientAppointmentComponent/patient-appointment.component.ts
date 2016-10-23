@@ -10,6 +10,8 @@ import { AppointmentListComponent } from '../AppointmentListComponent/appointmen
 })
 
 export class PatientAppointmentComponent{
+    @Input() found:boolean;
+    @Input() data:JSON;
     constructor(private router: Router) {
     }
 }
