@@ -33,6 +33,9 @@ import { PatientPhysicalCheckHistoryComponent } from './PatientPhysicalCheckHist
 import { PatientDetailElementComponent } from './PatientDetailElementComponent/patient-detail-element.component';
 import { DiagnosisDetailResaultComponent } from './DiagnosisDetailResaultComponent/diagnosis-detail-resault.component';
 import { DiagnosisDetailComponent } from './DiagnosisDetailComponent/diagnosis-detail.component';
+import { StaffLoginComponent } from './StaffLoginComponent/staff-login.component';       
+import { PrescriptionTableComponent } from './PrescriptionTableComponent/prescription-table.component';
+
 
 @NgModule({
     imports:        [
@@ -69,7 +72,9 @@ import { DiagnosisDetailComponent } from './DiagnosisDetailComponent/diagnosis-d
         PatientPhysicalCheckHistoryComponent,
         DiagnosisDetailComponent,
         PatientDetailElementComponent,
-        DiagnosisDetailResaultComponent
+        DiagnosisDetailResaultComponent,
+        StaffLoginComponent,
+        PrescriptionTableComponent
         ],
     providers:      [
         PrescriptionService,

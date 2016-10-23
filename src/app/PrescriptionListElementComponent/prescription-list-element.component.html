@@ -42,41 +42,32 @@
                 </div>    
             </div>    
         </section>
+        <ng-content></ng-content>
         <hr>
-        <section class = "prescription-detail"> 
-            <div class="table-responsive">
-                <table class="table table-sm">
-                      <thead class="thead-default">
-                        <tr>
-                        <th>#</th>
-                        <th>ชื่อยา</th>
-                        <th>จำนวน</th>
-                        <th>วิธีใช้</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let pres of data.prescriptionList; let i = index">
-                        <th scope="row">{{i}}</th>
-                        <td>{{pres.drugName}}</td>
-                        <td>{{pres.amount}}</td>
-                        <td>{{pres.manual}}</td>
-                        </tr>
-                    </tbody>  
-                </table>
-            </div>
-            <p><b>ยาที่แพ้ : {{data.patient.allegicTo}}</b> </p>    
-        </section>   
-        <section class="control-button" [hidden]="isReject">
-            <button type="button" class="btn btn-info" style="width: 150px; margin-right: 50px">จ่ายยา</button>                  
-            <button type="button" class="btn btn-danger" style="width: 150px;" (click)="isReject = !isReject">ขอแก้ไขยา</button>
-        </section>
-        <section class ="reject-form" [hidden]="!isReject">
-            <p><b>เหตุผลที่ขอแก้ไข :</b></p>
-            <textarea row="3" class="form-control"></textarea>
-             <div class="form-button">
-                <button type="button" class="btn btn-success" style="margin-right: 10px">ส่งคำร้อง</button>
-                <button type="button" class="btn btn-danger" (click)="isReject = !isReject">ยกเลิก</button>
-            </div>
-        </section>  
-        <br>      
+        <prescription-table-c [prescriptionList]="data.prescriptionList">
+            <b>ยาที่แพ้ : {{data.patient.allegicTo}}</b>
+        </prescription-table-c>
+        <div *ngIf="data.status==1">
+            <section class="control-button" [hidden]="isReject">
+                <button type="button" class="btn btn-info" style="width: 150px; margin-right: 50px">จ่ายยา</button>                  
+                <button type="button" class="btn btn-danger" style="width: 150px;" (click)="isReject = !isReject">ขอแก้ไขยา</button>
+            </section>
+            <section class ="reject-form" [hidden]="!isReject">
+                <p><b>เหตุผลที่ขอแก้ไข :</b></p>
+                <textarea row="3" class="form-control"></textarea>
+                <div class="form-button">
+                    <button type="button" class="btn btn-success" style="margin-right: 10px">ส่งคำร้อง</button>
+                    <button type="button" class="btn btn-danger" (click)="isReject = !isReject">ยกเลิก</button>
+                </div>
+            </section>  
+            <br>
+        </div>
+
+        <div *ngIf="data.status==0">
+            <section class="control-button">
+                <button type="button" class="btn btn-info" style="width: 150px; margin-right: 50px">แก้ไขยา</button>                  
+            </section>  
+            <br>
+        </div>
+              
     </div>

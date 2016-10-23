@@ -10,10 +10,12 @@ import { PrescriptionListElement } from '../../models/prescription-list-element'
 })
 
 export class PrescriptionRequestComponent{
+    role: string = 'pharmacist';
     isReject : boolean = false;
     data: PrescriptionListElement[]; 
     constructor(private router: Router, private prescriptionService: PrescriptionService) {
         this.data=prescriptionService.getPrescriptionElements();
+        //this.prescriptionService.getPrescriptionElements().then(data => this.data = data);
         console.log(this.data);
     }
 
