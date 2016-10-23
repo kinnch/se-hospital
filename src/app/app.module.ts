@@ -51,7 +51,7 @@ import { AppointmentService } from '../services/appointment.service';
 import { PhysicalCheckService } from '../services/physical-check.service';
 import { HospitalEmployeeService } from '../services/hospital-employee.service';
 import { DepartmentService } from '../services/department.service';
-
+import { DoctorDateElementService } from '../services/doctor-date-element.service';
 
 @NgModule({
     imports:        [
@@ -109,7 +109,8 @@ import { DepartmentService } from '../services/department.service';
         HospitalEmployeeService,
         DepartmentService,
         UserService,
-        LoggedInGuard
+        LoggedInGuard,
+        DoctorDateElementService
     ],
     bootstrap:      [
         AppComponent
