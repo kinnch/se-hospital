@@ -79,7 +79,7 @@ exports.showHistory = function(reg, res){
                 });
             }
                 return aligh_data;
-            }).then(function(last_data){ res.send(last_data); return; });
+            }).then(function(last_data){ res.send({history:last_data}); return; });
         });
     });
     return;
