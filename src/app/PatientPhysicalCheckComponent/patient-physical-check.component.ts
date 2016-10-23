@@ -18,12 +18,15 @@ export class PatientPhysicalCheckComponent {
     weight:number;
     height:number;
     temp:number;
-    hn:string = HN_NO;
+    HN:string = HN_NO;
+
+    
+
     constructor(private router: Router, private physicalCheckService: PhysicalCheckService) {}
     addPhysicalCheck(){
-        this.physicalCheckService.addPhysicalCheck(this.systolic,this.diastolic,this.heartRate,this.weight,this.height,this.temp,this.hn)
+        this.physicalCheckService.addPhysicalCheck(this.systolic,this.diastolic,this.heartRate,this.weight,this.height,this.temp,this.HN)
         .then((res) => {
-            console.log('>>>>',res);
+            console.log(">>>",res);
         });
     }
 }
