@@ -1,0 +1,23 @@
+<section class = "prescription-detail"> 
+            <div class="table-responsive">
+                <table class="table table-sm">
+                      <thead class="thead-default">
+                        <tr>
+                        <th>#</th>
+                        <th>ชื่อยา</th>
+                        <th>จำนวน</th>
+                        <th>วิธีใช้</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let pres of prescriptionList; let i = index">
+                        <th scope="row">{{i}}</th>
+                        <td>{{pres.drugName}}</td>
+                        <td>{{pres.amount}}</td>
+                        <td>{{pres.manual}}</td>
+                        </tr>
+                    </tbody>  
+                </table>
+            </div>
+            <p><ng-content></ng-content></p>    
+        </section>
