@@ -22,8 +22,46 @@ var hashWithSalt = function(otp,salt){
 exports.requestOTP = function(req, res){
     var otp = randomOTP();
     otp = otp.toString();
-    var hashed = hashWithSalt(otp,"f1780da01d1c3d4f8cf66ccfcddcc2c1a627f1aa61dd4eb9c38e0990134dbf23");
-    updateHash("0984593556",hashed,otp,req,res);
+
+    
+    // key is HN
+    if(req.body.key.length==8){
+        Patient.findOne({HN: req.body.key}).select("+salt").exec(function (err, patient) {
+            if(patient != null && !err){
+                // console.log(parent);
+                var hashed = hashWithSalt(otp, patient.salt);
+                updateHash(patient.tel, hashed,otp,req,res);
+            }else{
+                 res.send({
+                    success: false,
+                    message: "connot findone patient by HN at requestOTP" 
+                });
+                return;
+            }
+        });
+    // nationalID
+    }else if (req.body.key.length==13){
+        Patient.findOne({nationalID: req.body.key}).select("+salt").exec(function(err,patient){
+            if(patient != null && !err){
+                console.log("salt");
+                var hashed = hashWithSalt(otp, patient.salt);
+                updateHash(patient.tel, hashed,otp,req,res);
+            }else{
+                 res.send({
+                    success: false,
+                    message: "connot findone patient by nationalID at requestOTP" 
+                });
+                console.log(err);
+                return;
+            }
+        });
+    }else{
+        res.send({
+            success: false,
+            message: "key is invalid : accept only string length 8 or 13" 
+        });
+    }
+     
 
 }
 var randomOTP = function(){
@@ -65,8 +103,20 @@ var updateHash = function(tel,hash,otp,req,res){
                     //     }
                         
                     // });
+                }else{
+                    res.send({
+                        success: false,
+                        message: "connot save patient at updateHash"
+                    });
+                    return;
                 }
             });
+        }else{
+            res.send({
+                success: false,
+                message: "connot findone patient by tel."
+            });
+            return;
         }
     });
 }

@@ -74,7 +74,7 @@ module.exports = function(app) {
     app.get('/loginPatient', patientController.getLogin);
 
     var otpController = require('../controllers/otpController');
-    app.get('/requestOTP', otpController.requestOTP);
+    app.post('/requestOTP', otpController.requestOTP);
 
 }
 

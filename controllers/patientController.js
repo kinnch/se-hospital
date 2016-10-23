@@ -161,8 +161,10 @@ exports.register = function (req, res) {
                 OTP: {
                     text: "NOTUSE",
                     generatedDate: new Date()
-                }
-        }), data.password, function (err, user) {
+                },
+                nationalID: data.nationalID,
+                HN: data.HN
+        }), '845792', function (err, user) {
             if (err) {
                 console.log(err);
                 return res.send(err);

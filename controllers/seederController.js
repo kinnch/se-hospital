@@ -85,6 +85,7 @@ exports.seed = function(req, res) {
         sex: "male",
         birthDate: new Date("1994-11-16"),
         HN: '12344321',
+        salt: '471e91c751f97efdfa7e6df71a497dd739564a3db679c8ab1564f92368a23d29',
         address: {
             detail: "842 เสนาวิลล่า84 ถ.แฮบปี้แลนด์",
             subDistrict: "คลองจั่น",
