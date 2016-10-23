@@ -48,9 +48,8 @@ module.exports = function(app) {
     app.post('/api/presciption/all',  prescriptionController.showAll);
     app.post('/api/presciption/showInDepartment',  prescriptionController.showInDepartment);
     app.post('/api/presciption/History',  prescriptionController.showHistory);
-    app.post('/api/prescriptions',  prescriptionController.showForPharma);
+    // app.post('/api/prescriptions',  prescriptionController.showForPharma);
     app.post('/api/check-in-list',  prescriptionController.showInDepartment);
-    app.post('/api/presciptionHistory',  prescriptionController.showHistory);
     app.post('/api/updateStatusPres', prescriptionController.updateStatus);
     app.post('/api/changeRequestPres', prescriptionController.changeRequest);
     app.post('/api/allPrescription', prescriptionController.allPrescription);
