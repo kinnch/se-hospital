@@ -9,6 +9,7 @@ import { ManagePatientComponent } from './ManagePatientComponent/manage-patient.
 import { ScheduleManageComponent } from './ScheduleManageComponent/schedule-manage.component'
 import { ManageQueueComponent } from './ManageQueueComponent/manage-queue.component';
 import { ManageHospitalEmployeeComponent } from './ManageHospitalEmployeeComponent/manage-hospital-employee.component';
+import { ManageDoctorCalendarComponent} from './ManageDoctorCalendarComponent/manage-doctor-calendar.component';
 import { DoctorCalendarComponent } from './DoctorCalendarComponent/doctor-calendar.component';
 import { PrescriptionRequestComponent } from './PrescriptionRequestComponent/prescription-request.component';
 import { PatientListComponent } from './PatientListComponent/patient-list.component';
@@ -99,6 +100,10 @@ const appRoutes: Routes = [
       {
         path: 'add_staff',
         component: AddHospitalEmployeeComponent
+      },
+      {
+        path: 'manage_doctor_calendar',
+        component: ManageDoctorCalendarComponent
       },
       {
         path: 'doctor_calendar',

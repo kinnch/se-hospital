@@ -15,7 +15,7 @@ export class StaffComponent{
         //Check loggin 
             this.loggedIn = this.userService.isLoggedIn();
         });
-        if(this.router.url === '/manage/doctor_calendar'){
+        if(this.router.url === '/manage/manage_doctor_calendar'){
             this.activatedClass = 2;
         } else if(this.router.url === '/manage/manage_queue'){
             this.activatedClass = 4;
@@ -41,7 +41,7 @@ export class StaffComponent{
         if(menu === 1){ // 1 จัดการผู้ป่วย
             link = ['manage','manage_patient'];
         } else if(menu === 2){
-            link = ['manage','doctor_calendar'];
+            link = ['manage','manage_doctor_calendar'];
         } else if(menu === 3){
             link = ['manage','manage_staff'];
         } else if(menu === 4){ // 4 Checkin เข้าห้อง

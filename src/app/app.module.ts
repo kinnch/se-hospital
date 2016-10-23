@@ -22,6 +22,8 @@ import { PatientAppointmentComponent } from './PatientAppointmentComponent/patie
 import { AppointmentListComponent } from './AppointmentListComponent/appointment-list.component';
 import { PatientDetailComponent } from './PatientDetailComponent/patient-detail.component';
 import { PatientPhysicalCheckComponent } from './PatientPhysicalCheckComponent/patient-physical-check.component';
+import { ManageDoctorCalendarComponent} from './ManageDoctorCalendarComponent/manage-doctor-calendar.component';
+import { CalendarContainerComponent} from './CalendarContainerComponent/calendar-container.component';
 import { DoctorCalendarComponent } from './DoctorCalendarComponent/doctor-calendar.component';
 import { ModalComponent } from './ModalComponent/modal.component';
 import { MakeAppointComponent } from './MakeAppointmentComponent/make-appointment.component';
@@ -89,7 +91,10 @@ import { PhysicalCheckService } from '../services/physical-check.service';
         AddDiagnosisComponent,
         AddHospitalEmployeeComponent,
         EditPrescriptionComponent,
-        PrescriptionFormComponent
+        PrescriptionFormComponent,
+        ManageDoctorCalendarComponent,
+        DoctorCalendarComponent,
+        CalendarContainerComponent
 
         ],
     providers:      [
