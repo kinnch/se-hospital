@@ -1,0 +1,25 @@
+<div class = "upload-zone">
+    <div class = "row">
+        <div class="col-md-12">
+            <h5>แก้ไขตารางเวร</h5>
+        </div>
+        <div class="col-md-5">
+            <div class="form-group">
+                <label for="exampleSelect1">เลือกเดือนที่ต้องการแก้ไข</label>
+                <select class="form-control" id="exampleSelect1">
+                <option *ngFor = "let month of months">{{month}}</option>
+                </select>
+            </div>
+            <input type="file" id="input">
+            <button type="button" class="btn btn-primary">อัพโหลด</button>
+        </div>
+    </div>
+</div>
+<hr>
+<div id = "calendar-zone">
+    <h5>ตารางเวร</h5>
+    <calendar-container-c>
+        <full-calendar></full-calendar>
+    </calendar-container-c>
+    
+</div>
