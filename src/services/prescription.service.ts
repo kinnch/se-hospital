@@ -3,9 +3,25 @@ import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs';
 
 import { PrescriptionListElement } from '../models/prescription-list-element';
+import { Headers } from '@angular/http';
+import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class PrescriptionService {
+    
+    private apiUrl = 'app/prescription/today';  // URL to web api
+    private headers = new Headers({'Content-Type': 'application/json'});
+    constructor(private http: Http) { }
+    private handleError(error: any): Promise<any> {
+        console.error('An error occurred', error); // for demo purposes only
+        return Promise.reject(error.message || error);
+    }
+    getPrescriptionElements2(): Promise<PrescriptionListElement[]> {
+    return this.http.get(this.apiUrl)
+               .toPromise()
+               .then(response => response.json().data as PrescriptionListElement[])
+               .catch(this.handleError);
+    }
     getPrescriptionElements() : PrescriptionListElement[] {
         return [
             {
@@ -88,7 +104,7 @@ export class PrescriptionService {
                 age: '12ปี',
                 allegicTo: "string"
             },
-            status: 3,
+            status: 2,
             prescriptionList: [
                 {
                 id: 1,

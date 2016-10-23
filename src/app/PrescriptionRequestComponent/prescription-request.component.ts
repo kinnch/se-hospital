@@ -14,6 +14,7 @@ export class PrescriptionRequestComponent{
     data: PrescriptionListElement[]; 
     constructor(private router: Router, private prescriptionService: PrescriptionService) {
         this.data=prescriptionService.getPrescriptionElements();
+        //this.prescriptionService.getPrescriptionElements().then(data => this.data = data);
         console.log(this.data);
     }
 

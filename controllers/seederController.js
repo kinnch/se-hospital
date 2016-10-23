@@ -73,6 +73,7 @@ exports.seed = function(req, res) {
             lname: "ธนกิจเจริญพัฒน์"
         },
         tel: "0888983283",
+        nationalID: '1103701553821',
         sex: "male",
         birthDate: new Date("1994-11-16"),
         HN: "12344321",

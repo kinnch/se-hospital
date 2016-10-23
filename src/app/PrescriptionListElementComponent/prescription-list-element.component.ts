@@ -2,6 +2,7 @@ import {Component, Input } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Router } from '@angular/router';
 import { PrescriptionListElement } from '../../models/prescription-list-element';
+import { PrescriptionTableComponent } from '../PrescriptionTableComponent/prescription-table.component';
 @Component({
     selector: 'prescription-list-element-c',
     template: require('./prescription-list-element.component.html'),

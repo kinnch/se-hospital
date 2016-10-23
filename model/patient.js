@@ -14,6 +14,7 @@ var patientSchema = mongoose.Schema({
       },
       birthDate: Date,
       tel: String,
+      nationalID: String,
       HN: String,
       address: {
         detail: String,
