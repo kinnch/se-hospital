@@ -14,7 +14,7 @@ export class HospitalEmployeeService {
         console.error('An error occurred', error); // for demo purposes only
         return Promise.reject(error.message || error);
     }
-    getHospitalEmployee() : Promise<JSON> {
+    getAllHospitalEmployees() : Promise<JSON> {
         return this.http
                     .get(this.apiUrl)
                     .toPromise()
