@@ -21,9 +21,9 @@ export class ManageHospitalEmployeeComponent implements OnInit{
     pharmacists = [];
     staffs = [];
     departmentId:string = "0";
-    fname:string = ""; //selected
-    lname:string = ""; //selected
-    staffId:string = ""; //selected
+    selectedFname:string = ""; //selected
+    selectedLname:string = ""; //selected
+    selectedStaffId:string = ""; //selected
     constructor(private router: Router, 
                 private hospitalEmployeeService: HospitalEmployeeService,
                 private departmentService: DepartmentService) {
@@ -69,9 +69,9 @@ export class ManageHospitalEmployeeComponent implements OnInit{
         this.employees.forEach((employee)=>{
             console.log(staffId)
             if(employee._id == staffId){
-                this.fname = employee.name.fname;
-                this.lname = employee.name.lname;
-                this.staffId = staffId;
+                this.selectedFname = employee.name.fname;
+                this.selectedLname = employee.name.lname;
+                this.selectedStaffId = staffId;
                 this.modal.modalOpen();
             }
         });
