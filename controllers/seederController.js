@@ -156,7 +156,8 @@ exports.seed = function(req, res) {
         doctor: hospitalEmployees[1]._id,
         appointments: [{
             patient: patients[0]._id,
-            reason: "ตัวร้อน ไข้สูง เจ็บคอ กลืนน้ำลายไม่ได้"
+            reason: "ตัวร้อน ไข้สูง เจ็บคอ กลืนน้ำลายไม่ได้",
+            status: 3
         }]
     }));
     schedules.push(new Schedule({
