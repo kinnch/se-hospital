@@ -8,24 +8,31 @@ exports.setDBConnectionsFromApp = function(app) {
 
 var mongoose = require('mongoose');
 var Staff = require('../model/staff');
- 
+var Department = require("../model/department");
+
 exports.register = function (req, res) {
-    console.log("registering: " + req.body.firstName);
-    Staff.register(new Staff({
-        username: req.body.username,
-        firstname: req.body.firstname
-    }), req.body.password, function (err, user) {
-        if (err) {
-            console.log(err);
-            return res.send(err);
-        } else {
-            res.send({
-                success: true,
-                user: user
-            });
-        }
+    console.log("registering aaaa : " + req.body.firstname);
+    var data = req.body;
+    Department.findOne({name: data.department},function (err, department){
+
+        Staff.register(new Staff({
+            userName: data.username,
+            department: department._id
+        }), req.body.password, function (err, user) {
+            if (err) {
+                console.log(err);
+                return res.send(err);
+            } else {
+                res.send({
+                    success: true,
+                    user: user
+                });
+            }
+        });
+        return;
     });
 };
+
  
 exports.login = function (req, res, next) {
  

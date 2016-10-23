@@ -133,3 +133,32 @@ exports.showHistory = function(reg, res){
     });
     return;
 }
+
+exports.updateStatus = function(reg, res){
+    Prescription.findOne({_id: reg.body.id}, function(err, prescription){
+        prescription.status = reg.body.status;
+        prescription.save();
+        res.send('done');
+    });
+    return;
+}
+
+exports.changeRequest = function(reg, res){
+    Prescription.findOne({_id: reg.body.id}, function(err, prescription){
+        prescription.note = reg.body.reason;
+        prescription.save();
+        res.send('done');
+    });
+    return;
+}
+
+function getDateNow(){
+    var this_date = new Date(new Date().getTime() + 7 * 3600 * 1000);
+    this_date = new Date(this_date.getFullYear()+'-'+(this_date.getMonth() + 1)+"-"+this_date.getDate());
+    return this_date;
+}
+exports.allPrescription = function(reg, res){
+    Diagnosis.find({date: getDateNow() }, function(err, diagnosises){
+           res.send(diagnosises); 
+    });
+}

@@ -14,7 +14,7 @@ export class LoginComponent {
     OTPCode: string;
 
     loginSuccess: boolean = false;
-    sendOTPSuccess: boolean = false;
+    sendOTPSuccess: boolean = true;
 
     constructor(private router: Router, private location: Location) {
     }

@@ -5,14 +5,12 @@ a:hover {
     text-decoration: none;
     cursor: pointer;
 }
-.patient-login-area {
-    padding: 8rem 3rem;
-    margin: 3rem;
-}
-.login-block{
-    width: 30%;
-    margin-left: auto;
-    margin-right: auto;
+.form-signin {
+    max-width: 380px;
+    padding: 70px 45px;
+    margin: 0 auto;
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.1);
 }
 .icon-block{
     position: absolute;
