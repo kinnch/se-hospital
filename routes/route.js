@@ -47,7 +47,7 @@ module.exports = function(app) {
 
     var prescriptionController = require("../controllers/prescriptionController");
     app.post('/api/appointment/all',  prescriptionController.showAll);
-    app.post('/api/presciption/showInDepartment',  prescriptionController.showInDepartment);
+    app.post('/api/appointment/showSomeDoctors',  prescriptionController.showSomeDoctors);
     app.post('/api/presciption/History',  prescriptionController.showHistory);
     app.post('/api/updateStatusPres', prescriptionController.updateStatus);
     app.post('/api/changeRequestPres', prescriptionController.changeRequest);
