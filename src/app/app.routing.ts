@@ -1,6 +1,8 @@
 import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoggedInGuard } from './logged-in.guard';
+import { UserService } from '../services/user.service';
+
 import { PatientComponent } from './PatientComponent/patient.component';
 import { StaffComponent } from './StaffComponent/staff.component';
 import { ManagePatientComponent } from './ManagePatientComponent/manage-patient.component';
@@ -29,8 +31,13 @@ import { EditPrescriptionComponent } from './EditPrescriptionComponent/edit-pres
 
 //TODO: query state from user
 let redirectToPathLastPage: string = 'manage_patient';
-
-
+// let userService: UserService;
+// if(userService.isLoggedIn()){
+//   redirectToPathLastPage = 'manage_patient';
+// }
+// else{
+//   redirectToPathLastPage = 'login';
+// }
 
 const appRoutes: Routes = [
   {
