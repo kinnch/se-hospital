@@ -46,6 +46,8 @@ module.exports = function(app) {
     app.post('/api/hospitalEmployee/isInSystem',  hospitalEmployeeController.isInSystem);
     app.post('/api/hospitalEmployee/add',  hospitalEmployeeController.add);
     //patientController.setDBConnectionsFromApp(app);
+    //-----bone not testing zone-----
+    app.get('/api/employees',hospitalEmployeeController.getAllEmployee);
 
     app.post('/login', hospitalEmployeeController.login);
     app.post('/register', hospitalEmployeeController.register);
