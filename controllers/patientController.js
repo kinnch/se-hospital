@@ -6,6 +6,8 @@ exports.setDBConnectionsFromApp = function(app) {
     dbConnection = app.get("dbConnection");
 }
 
+var mongoose = require('mongoose');
+
 var Patient = require("../model/patient");
 var Schedule = require("../model/schedule");
 var HospitalEmployee = require("../model/hospitalEmployee");
@@ -91,4 +93,5 @@ exports.search = function(req, res){
         });
     }
     else res.send(null);
+    return;
 }
