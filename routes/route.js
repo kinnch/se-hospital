@@ -9,7 +9,8 @@ module.exports = function(app) {
     var seederController = require('../controllers/seederController');
     app.get('/seed',  seederController.seed);
 
-    
+    var physicalDataController = require('../controllers/physicalDataController');
+    app.post('/api/physicalData/add',  physicalDataController.add);
 
     //patientController.setDBConnectionsFromApp(app);
 
