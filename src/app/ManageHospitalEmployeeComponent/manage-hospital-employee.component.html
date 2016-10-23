@@ -1,3 +1,17 @@
+ <modal #modal [id]="'change-1'" [size]="'md'" [title]="'เปลี่ยน Password : กรชนก จิรเวศยกุล'">
+     <div class="form-group row">
+            <label class="col-xs-4 col-form-label right">Password</label>
+            <div class="col-xs-6">
+                <input class="form-control" type="password">
+            </div>                
+        </div> 
+        <div class="form-group row"> 
+            <label class="col-xs-4 col-form-label right">Confirm Password</label>
+            <div class="col-xs-6">
+                <input class="form-control" type="password">
+            </div>                
+        </div> 
+ </modal>
 <h3>จัดการบุคคลากร</h3>
 <hr>
 <div class="container">
@@ -44,7 +58,7 @@
                                 <td>กรชนก</td>
                                 <td>จิรเวศยกุล</td>
                                 <td>Pohfy</td>
-                                <td><button type="button" class="btn btn-warning" style="width: 150px">เปลี่ยน Password</button></td>
+                                <td><button type="button" (click)="modal.modalOpen()" class="btn btn-warning" style="width: 150px">เปลี่ยน Password</button></td>
                                 <td><button type="button" class="btn btn-danger">ลบ</button></td>                                        
                             </tr>
                             <tr>
