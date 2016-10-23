@@ -16,6 +16,12 @@ var HospitalEmployee = require("../model/hospitalEmployee");
 var PhysicalChecking = require("../model/physicalChecking");
 var Schedule = require("../model/schedule");
 
+function getDateNow(){
+    var this_date = new Date(new Date().getTime() + 7 * 3600 * 1000);
+    this_date = new Date(this_date.getFullYear()+'-'+(this_date.getMonth() + 1)+"-"+this_date.getDate());
+    return this_date;
+}
+
 exports.seed = function(req, res) {
     var para = new Drug({
             name: "paracetamol",
@@ -100,7 +106,9 @@ exports.seed = function(req, res) {
             lname: "เป็นสตาฟ"
         },
         roleID: 1, //staff
-        department: departments[10]._id
+        department: departments[10]._id,
+        userName: "somchai555",
+        password: "$2a$06$W.V7LCN5i9lREvGEHip4jeCF.E8FpuEd3gKMAIcX9to6CGq1XrgHO" //bcrypt('hello')
     }));
     hospitalEmployees.push(new HospitalEmployee({
         name: {
@@ -139,7 +147,7 @@ exports.seed = function(req, res) {
     var schedules = [];
     schedules.push(new Schedule({
         timePeriod: 'am',
-        date: new Date(),
+        date: getDateNow(),
         doctor: hospitalEmployees[1]._id,
         appointments: [{
             patient: patients[0]._id,
@@ -147,8 +155,8 @@ exports.seed = function(req, res) {
         }]
     }));
     schedules.push(new Schedule({
-        timePeriod: 'ยม',
-        date: new Date(),
+        timePeriod: 'pm',
+        date: getDateNow(),
         doctor: hospitalEmployees[1]._id,
         appointments: []
     }));
@@ -179,13 +187,17 @@ exports.seed = function(req, res) {
         }]
     }));
 
+    //var this_date = new Date();
+    //this_date = new Date(this_date.getFullYear()+'-'+(this_date.getMonth() + 1)+"-"+this_date.getDate());
+    console.log(getDateNow());
+
     var diagnosises = [];
     diagnosises.push(new Diagnosis({
         drugPrescription: drugPrescriptions[0]._id,
         patient: patients[0]._id,
         doctor: hospitalEmployees[1]._id,
         timePeriod: 'am',
-        date: new Date(),
+        date: getDateNow(),
         detail: "ทอนซิล บวมใหญ่ แดง แอสไปรอลปกติ มีหนอง",
         disease: h1n1._id
     }));

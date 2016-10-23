@@ -47,6 +47,10 @@ module.exports = function(app) {
     var physicalDataController = require('../controllers/physicalDataController');
     app.post('/api/physicalData/add',  physicalDataController.add);
 
+    var prescriptionController = require("../controllers/prescriptionController");
+    app.post('/api/prescriptions',  prescriptionController.showForPharma);
+    app.post('/api/check-in-list',  prescriptionController.showInDepartment);
+
     var hospitalEmployeeController = require('../controllers/hospitalEmployeeController');
     app.post('/api/hospitalEmployee/isInSystem',  hospitalEmployeeController.isInSystem);
     app.post('/api/hospitalEmployee/add',  hospitalEmployeeController.add);
