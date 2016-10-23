@@ -46,7 +46,8 @@ export class LoginComponent {
     }
     verifyOTP(): void {
         if (this.OTPauth(this.OTPCode)) { // success
-            alert("[PPPPPPPPP] PASSED!");
+        alert("OTP passed!");    
+        this.router.navigate(['patient']);
         } else {
             alert("OTP is mismatched!");
             this.sendOTPSuccess = false;
