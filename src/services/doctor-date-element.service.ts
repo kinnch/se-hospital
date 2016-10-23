@@ -6,7 +6,7 @@ import { Headers } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
 @Injectable()
-export class DoctorDateElement {
+export class DoctorDateElementService {
     
     private apiUrl = 'api/schedule/getTable';  
     private headers = new Headers({'Content-Type': 'application/json'});

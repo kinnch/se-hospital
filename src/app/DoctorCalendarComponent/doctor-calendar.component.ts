@@ -1,5 +1,6 @@
 import { Component, AfterViewInit , OnInit } from '@angular/core';
 import { ModalComponent } from '../ModalComponent/modal.component';
+import { DoctorDateElementService } from '../../services/doctor-date-element.service';
 
 @Component({
     selector: 'full-calendar',
@@ -7,6 +8,9 @@ import { ModalComponent } from '../ModalComponent/modal.component';
 })
 
 export class DoctorCalendarComponent implements AfterViewInit, OnInit {
+    constructor(private elementService : DoctorDateElementService){
+
+    }
     ngOnInit(){
          jQuery('#stylehere').append("<style>" + require('./doctor-calendar.component.css')+"</style>");
     }
