@@ -10,7 +10,14 @@ var mongoose = require('mongoose');
 
 var HospitalEmployee = require("../model/hospitalEmployee");
 var Department = require("../model/department");
-
+exports.getAllEmployee = function(req, res){
+    HospitalEmployee.find({},function(err,employees){
+        data = { 'employees':employees};
+        res.send(data);
+        return;
+    });
+    
+}
 exports.isInSystem = function(req, res) {
     HospitalEmployee.findOne({
         userName: (req.body.username)+''
@@ -43,21 +50,32 @@ exports.login = function (req, res, next) {
  
 };
 exports.register = function (req, res) {
-    console.log("registering: " + req.body.firstName);
-    HospitalEmployee.register(new HospitalEmployee({
-        userName: req.body.username
-    }), req.body.password, function (err, user) {
-        if (err) {
-            console.log(err);
-            return res.send(err);
-        } else {
-            res.send({
-                success: true,
-                user: user
-            });
-        }
+    var data = req.body;
+    Department.findOne({name: data.department},function (err, department){
+        HospitalEmployee.register(new HospitalEmployee({
+            name: {
+                    title: data.title,
+                    fname: data.fname,
+                    lname: data.lname
+                },
+                roleID: data.roleID,
+                userName: data.username,
+                department: department._id,
+                password: data.password
+        }), data.password, function (err, user) {
+            if (err) {
+                console.log(err);
+                return res.send(err);
+            } else {
+                res.send({
+                    success: true,
+                    user: user
+                });
+            }        
+        });
+        return;
     });
-};
+}
 
  
 exports.getLogin = function (req, res) {

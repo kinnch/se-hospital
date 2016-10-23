@@ -33,6 +33,7 @@ import { DiagnosisDetailResultComponent } from './DiagnosisDetailResultComponent
 import { DiagnosisDetailComponent } from './DiagnosisDetailComponent/diagnosis-detail.component';
 import { StaffLoginComponent } from './StaffLoginComponent/staff-login.component';       
 import { PrescriptionTableComponent } from './PrescriptionTableComponent/prescription-table.component';
+import { LoginComponent } from './LoginComponent/login.component';
 import { AddDiagnosisComponent } from './AddDiagnosisComponent/add-diagnosis.component';
 import { AddHospitalEmployeeComponent } from './AddHospitalEmployeeComponent/add-hospital-employee.component';
 import { EditPrescriptionComponent } from './EditPrescriptionComponent/edit-prescription.component';
@@ -42,8 +43,6 @@ import { PrescriptionService } from '../services/prescription.service';
 import { PatientService } from '../services/patient.service';
 import { AppointmentService } from '../services/appointment.service';
 import { PhysicalCheckService } from '../services/physical-check.service';
-
-
 
 @NgModule({
     imports:        [
@@ -83,9 +82,8 @@ import { PhysicalCheckService } from '../services/physical-check.service';
         DiagnosisDetailResultComponent,
         StaffLoginComponent,
         PrescriptionTableComponent,
-
+        LoginComponent,
         AddDiagnosisComponent,
-
         AddHospitalEmployeeComponent,
         EditPrescriptionComponent,
         PrescriptionFormComponent

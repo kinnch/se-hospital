@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'home-c',
@@ -6,4 +7,8 @@ import {Component} from '@angular/core';
     styles: [require('./home.component.css')]
 })
 
-export class HomeComponent {}
+export class HomeComponent {
+    constructor(private router: Router) {
+
+    }
+}
