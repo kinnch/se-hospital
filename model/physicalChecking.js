@@ -35,6 +35,10 @@ var physicalCheckingSchema = mongoose.Schema({
             max: 100
         },
         date: Date,
+        timePeriod: {
+            type: String,
+            enum: ['am','pm']
+        },
         patient: {
             type: Schema.Types.ObjectId, 
             ref: 'Patient',

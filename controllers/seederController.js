@@ -22,6 +22,7 @@ function getDateNow(){
     return this_date;
 }
 
+
 exports.seed = function(req, res) {
     var para = new Drug({
             name: "paracetamol",
@@ -166,18 +167,34 @@ exports.seed = function(req, res) {
     }));
 
     var checkings = [];
-    checkings.push(new PhysicalChecking({
-        bloodPresure: {
-            systolic: 120,
-            diastolic: 80
-        },
-        heartRate: 83,
-        weight: 60,
-        height: 164,
-        temp: 38.9,
-        patient: patients[0]._id,
-        nurse: hospitalEmployees[2]._id
-    }));
+        checkings.push(new PhysicalChecking({
+            bloodPresure: {
+                systolic: 120,
+                diastolic: 80
+            },
+            heartRate: 83,
+            date: new Date(),
+            timePeriod: "am",
+            weight: 60,
+            height: 164,
+            temp: 38.9,
+            patient: patients[0]._id,
+            nurse: hospitalEmployees[2]._id
+        }));
+        checkings.push(new PhysicalChecking({
+            bloodPresure: {
+                systolic: 140,
+                diastolic: 70
+            },
+            heartRate: 83,
+            date: new Date(),
+            timePeriod: "pm",
+            weight: 60,
+            height: 164,
+            temp: 38.9,
+            patient: patients[0]._id,
+            nurse: hospitalEmployees[2]._id
+        }));
 
     var drugPrescriptions = [];
     drugPrescriptions.push(new DrugPrescription({
