@@ -36,8 +36,8 @@ import { DiagnosisDetailComponent } from './DiagnosisDetailComponent/diagnosis-d
 import { StaffLoginComponent } from './StaffLoginComponent/staff-login.component';       
 import { PrescriptionTableComponent } from './PrescriptionTableComponent/prescription-table.component';
 import { AddHospitalEmployeeComponent } from './AddHospitalEmployeeComponent/add-hospital-employee.component';
-
-
+import { EditPrescriptionComponent } from './EditPrescriptionComponent/edit-prescription.component'
+import { PrescriptionFormComponent } from './PrescriptionFormComponent/prescription-form.component'
 
 @NgModule({
     imports:        [
@@ -77,7 +77,9 @@ import { AddHospitalEmployeeComponent } from './AddHospitalEmployeeComponent/add
         DiagnosisDetailResaultComponent,
         StaffLoginComponent,
         PrescriptionTableComponent,
-        AddHospitalEmployeeComponent
+        AddHospitalEmployeeComponent,
+        EditPrescriptionComponent,
+        PrescriptionFormComponent
         ],
     providers:      [
         PrescriptionService,

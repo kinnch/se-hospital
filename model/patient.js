@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+var passportLocalMongoose = require('passport-local-mongoose');
 
 var patientSchema = mongoose.Schema({
       email: String,
@@ -33,6 +34,8 @@ var patientSchema = mongoose.Schema({
       }]
     });
 
+var options = ({missingPasswordError: "Wrong password"});
+patientSchema.plugin(passportLocalMongoose,options);
 var Patient = mongoose.model('Patient', patientSchema);
 
 module.exports = Patient;
