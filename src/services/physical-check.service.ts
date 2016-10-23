@@ -16,7 +16,7 @@ export class PhysicalCheckService {
     }
     addPhysicalCheck(systolic:number,diastolic:number,heartRate:number,weight:number,height:number,temp:number,HN:string) : Promise<JSON> {
         return this.http
-                    .post(this.apiUrl, JSON.stringify({key: HN}), {headers: this.headers})
+                    .post(this.apiUrl, JSON.stringify({systolic: systolic,diastolic:diastolic,heartRate:heartRate,weight:weight,height:height,temp:temp,HN:HN}), {headers: this.headers})
                     .toPromise()
                     .then(function(res){
                         return res.json();
