@@ -14,6 +14,8 @@ export class DiagnosisHistoryComponent {
             link = ['manage','patient','check',hn];
         } else if(choice == 2){
             link = ['manage','diagnosis','detail',hn];
+        } else if(choice == 3){
+            link = ['manage','diagnosis','add',hn];
         }
       this.router.navigate(link);
     }
