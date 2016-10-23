@@ -8,6 +8,7 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class HospitalEmployeeService {
     private apiUrl = 'api/employees';  // URL to web api
+    private apiAddUrl = 'api/hospitalEmployee/add';
     private headers = new Headers({'Content-Type': 'application/json'});
     constructor(private http: Http) { }
     private handleError(error: any): Promise<any> {
@@ -20,6 +21,14 @@ export class HospitalEmployeeService {
                     .toPromise()
                     .then(data => {
                         return data.json();
+                    });
+    }
+    addHospitalEmployee(username,password,roleID,department,title,fname,lname) : Promise<string>{
+        return this.http
+                    .post(this.apiAddUrl, JSON.stringify({username:username,password:password,roleID:roleID,department:department,title:title,fname:fname,lname:lname}), {headers: this.headers})
+                    .toPromise()
+                    .then(res => {
+                        return "success";
                     });
     }
 }

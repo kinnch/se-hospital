@@ -121,10 +121,7 @@ const appRoutes: Routes = [
         path: 'doctor_calendar/:hn',
         component: DoctorCalendarComponent
       },
-      {
-        path: 'prescription_request',
-        component: PrescriptionRequestComponent
-      },
+     
       {
         path: 'patient',
         component: PatientListComponent
@@ -136,6 +133,10 @@ const appRoutes: Routes = [
       {
         path: 'diagnosis/:hn',
         component: PatientDetailComponent
+      },
+       {
+        path: 'prescription_request',
+        component: PrescriptionRequestComponent
       },
       {
         path: 'prescription_request/:hn',

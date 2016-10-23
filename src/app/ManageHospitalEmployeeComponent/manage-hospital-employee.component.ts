@@ -78,6 +78,6 @@ export class ManageHospitalEmployeeComponent implements OnInit{
     }
     
     confirm():void{
-        this.modalClose();
+        // this.modalClose();
     }
 }

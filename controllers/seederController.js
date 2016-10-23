@@ -117,7 +117,7 @@ exports.seed = function(req, res) {
             fname: "สมชาย",
             lname: "กลายเป็นหมอศัลย์"
         },
-        roleID: 2, //staff
+        roleID: 2, //doctor
         department: departments[1]._id,
         userName: "somchai556",
         salt: "ca32c2542af60469091b9a9f9541aff16882dfa66a1dc69b6458422383f7b3a7",
@@ -129,7 +129,7 @@ exports.seed = function(req, res) {
             fname: "ชลกานต์",
             lname: "พยาบาลโดยกำเนิด"
         },
-        roleID: 3, //staff
+        roleID: 3, //nurse
         department: departments[1]._id,
         userName: "chonlakarnSexy",
          salt: "ca32c2542af60469091b9a9f9541aff16882dfa66a1dc69b6458422383f7b3a7",
@@ -141,7 +141,7 @@ exports.seed = function(req, res) {
             fname: "ชมผกา",
             lname: "ยาดี"
         },
-        roleID: 4, //staff
+        roleID: 4, //phar
         department: departments[10]._id,
         userName: "chomphaka",
          salt: "ca32c2542af60469091b9a9f9541aff16882dfa66a1dc69b6458422383f7b3a7",
