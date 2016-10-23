@@ -32,7 +32,7 @@ import { PatientService } from '../services/patient.service';
 import { AppointmentService } from '../services/appointment.service';
 import { PatientPhysicalCheckHistoryComponent } from './PatientPhysicalCheckHistoryComponent/patient-physical-check-history.component';
 import { PatientDetailElementComponent } from './PatientDetailElementComponent/patient-detail-element.component';
-import { DiagnosisDetailResaultComponent } from './DiagnosisDetailResaultComponent/diagnosis-detail-resault.component';
+import { DiagnosisDetailResultComponent } from './DiagnosisDetailResultComponent/diagnosis-detail-result.component';
 import { DiagnosisDetailComponent } from './DiagnosisDetailComponent/diagnosis-detail.component';
 import { StaffLoginComponent } from './StaffLoginComponent/staff-login.component';       
 import { PrescriptionTableComponent } from './PrescriptionTableComponent/prescription-table.component';
@@ -75,7 +75,7 @@ import { PrescriptionFormComponent } from './PrescriptionFormComponent/prescript
         PatientPhysicalCheckHistoryComponent,
         DiagnosisDetailComponent,
         PatientDetailElementComponent,
-        DiagnosisDetailResaultComponent,
+        DiagnosisDetailResultComponent,
         StaffLoginComponent,
         PrescriptionTableComponent,
         AddHospitalEmployeeComponent,
