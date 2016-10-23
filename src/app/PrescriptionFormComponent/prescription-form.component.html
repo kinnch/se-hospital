@@ -1,0 +1,28 @@
+<div class="row header">
+    <div class="col-sm-3">
+        <p><b>ชื่อยา</b></p>
+    </div>
+    <div class="col-sm-3">
+        <p><b>จำนวน</b></p>
+    </div>
+    <div class="col-sm-6">
+        <p><b>วิธีใช้</b></p>
+    </div>    
+</div>
+<br>
+<div class="row drug" *ngFor="let elem of prescriptionList; let i = index;">
+    <div class="col-sm-3">
+        <input class="form-control" type="text" [(ngModel)]="elem.drugName" />
+    </div>
+    <div class="col-sm-3">
+        <input class="form-control" type="text" [(ngModel)]="elem.amount" />
+    </div>
+    <div class="col-sm-6">
+        <input class="form-control" type="text" [(ngModel)]="elem.manual" />
+        <a (click)="deletePrescriptionField(i)" ><i  class="fa fa-trash pull-right icon" aria-hidden="true"></i></a>   
+    </div>
+</div>
+<div class="row center">
+    <button (click)="addPrescriptionField()" type="button" class="btn btn-info" style="width: 30%; min-width: 100px"><i class="fa fa-plus" aria-hidden="true"></i> <span> เพิ่มยา</span></button>                  
+</div>
+<br>  
