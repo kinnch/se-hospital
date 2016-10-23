@@ -21,7 +21,7 @@ exports.testing = function(req, res) {
 }
 
 exports.search = function(req, res){
-    var data = (req.body.data);
+    var data = (req.body.key) + '';
     if(data.length == 8){
         Patient.findOne({HN: data}, function (err, patient) {
             if (err) return console.error(err);
