@@ -9,15 +9,15 @@
             <div class="form-group">
                 <label for="exampleInputEmail1" class="martop17">ชื่อผู้ใช้</label>
                 <div class="icon-block-parent">
-                  <input type="email" class="form-control" id="exampleInputEmail1"  placeholder="กรุณากรอกชื่อผู้ใช้">
+                  <input type="text" class="form-control" id="exampleInputEmail1"  placeholder="กรุณากรอกชื่อผู้ใช้" name="username" [(ngModel)]="username">
                   <i class="fa fa-users icon-block" aria-hidden="true"></i>
                 </div>
                 <label for="exampleInputPassword" class="martop17">รหัสผ่าน</label>
                 <div class="icon-block-parent">
-                  <input type="email" class="form-control" id="exampleInputPassword"  placeholder="กรุณากรอกรหัสผ่าน">
+                  <input type="password" class="form-control" id="exampleInputPassword"  placeholder="กรุณากรอกรหัสผ่าน" name="password" [(ngModel)]="password">
                   <i class="fa fa-unlock-alt icon-block" aria-hidden="true"></i>
                 </div>
-                <input type="submit" value="Sign In">
+                <input type="submit" value="Sign In" (click)="onSubmit()">
                 <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
               
             </div>

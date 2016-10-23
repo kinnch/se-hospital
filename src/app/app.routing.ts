@@ -1,5 +1,7 @@
 import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { LoggedInGuard } from './logged-in.guard';
+import { UserService } from '../services/user.service';
 
 import { PatientComponent } from './PatientComponent/patient.component';
 import { StaffComponent } from './StaffComponent/staff.component';
@@ -7,6 +9,7 @@ import { ManagePatientComponent } from './ManagePatientComponent/manage-patient.
 import { ScheduleManageComponent } from './ScheduleManageComponent/schedule-manage.component'
 import { ManageQueueComponent } from './ManageQueueComponent/manage-queue.component';
 import { ManageHospitalEmployeeComponent } from './ManageHospitalEmployeeComponent/manage-hospital-employee.component';
+import { ManageDoctorCalendarComponent} from './ManageDoctorCalendarComponent/manage-doctor-calendar.component';
 import { DoctorCalendarComponent } from './DoctorCalendarComponent/doctor-calendar.component';
 import { PrescriptionRequestComponent } from './PrescriptionRequestComponent/prescription-request.component';
 import { PatientListComponent } from './PatientListComponent/patient-list.component';
@@ -25,12 +28,17 @@ import { AddDiagnosisComponent } from './AddDiagnosisComponent/add-diagnosis.com
 import { AddHospitalEmployeeComponent } from './AddHospitalEmployeeComponent/add-hospital-employee.component';
 import { DiagnosisDetailComponent } from './DiagnosisDetailComponent/diagnosis-detail.component'; 
 import { EditPrescriptionComponent } from './EditPrescriptionComponent/edit-prescription.component';
-
+import { PatientPanelComponent } from './PatientPanelComponent/patient-panel.component';
 
 //TODO: query state from user
 let redirectToPathLastPage: string = 'manage_patient';
-
-
+// let userService: UserService;
+// if(userService.isLoggedIn()){
+//   redirectToPathLastPage = 'manage_patient';
+// }
+// else{
+//   redirectToPathLastPage = 'login';
+// }
 
 const appRoutes: Routes = [
   {
@@ -48,6 +56,14 @@ const appRoutes: Routes = [
       {
         path: 'p_register',
         component: RegisterComponent
+      },
+      {
+        path: 'patient',
+        component: PatientPanelComponent
+      },
+      {
+        path: 'patient/create_appointment',
+        component: MakeAppointComponent
       }
     ]
   },
@@ -82,7 +98,8 @@ const appRoutes: Routes = [
       },
       {
         path: 'manage_queue',
-        component: ManageQueueComponent
+        component: ManageQueueComponent,
+        canActivate: [LoggedInGuard]
       },
       {
         path: 'manage_staff',
@@ -93,7 +110,15 @@ const appRoutes: Routes = [
         component: AddHospitalEmployeeComponent
       },
       {
+        path: 'manage_doctor_calendar',
+        component: ManageDoctorCalendarComponent
+      },
+      {
         path: 'doctor_calendar',
+        component: DoctorCalendarComponent
+      },
+      {
+        path: 'doctor_calendar/:hn',
         component: DoctorCalendarComponent
       },
       {
@@ -148,8 +173,7 @@ const appRoutes: Routes = [
 {
         path: 'edit_prescription',
         component: EditPrescriptionComponent
-}
-      
+}   
     ]
   }
 ];
