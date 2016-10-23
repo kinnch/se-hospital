@@ -40,7 +40,7 @@ module.exports = function(app) {
 
     var seederController = require('../controllers/seederController');
     app.get('/seed',  seederController.seed);
-
+    
     var physicalDataController = require('../controllers/physicalDataController');
     app.post('/api/physicalData/add',  physicalDataController.add);
     app.post('/api/physicalData/history',  physicalDataController.showHistory);    
@@ -49,6 +49,7 @@ module.exports = function(app) {
     app.post('/api/appointment/all',  prescriptionController.showAll);
     app.post('/api/appointment/showSomeDoctors',  prescriptionController.showSomeDoctors);
     app.post('/api/presciption/History',  prescriptionController.showHistory);
+    
     app.post('/api/updateStatusPres', prescriptionController.updateStatus);
     app.post('/api/changeRequestPres', prescriptionController.changeRequest);
     app.post('/api/allPrescription', prescriptionController.allPrescription);
