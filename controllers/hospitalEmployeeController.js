@@ -10,7 +10,14 @@ var mongoose = require('mongoose');
 
 var HospitalEmployee = require("../model/hospitalEmployee");
 var Department = require("../model/department");
-
+exports.getAllEmployee = function(req, res){
+    HospitalEmployee.find({},function(err,employees){
+        data = { 'employees':employees};
+        res.send(data);
+        return;
+    });
+    
+}
 exports.isInSystem = function(req, res) {
     HospitalEmployee.findOne({
         userName: (req.body.username)+''
