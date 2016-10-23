@@ -18,6 +18,9 @@ import { PrescriptionHistoryComponent } from './PrescriptionHistoryComponent/pre
 import { EditPrescriptionRequestComponent} from './EditPrescriptionRequestComponent/edit-prescription-request.component';
 import { PrescriptionListElementComponent } from './PrescriptionListElementComponent/prescription-list-element.component';
 import { PatientPhysicalCheckHistoryComponent } from './PatientPhysicalCheckHistoryComponent/patient-physical-check-history.component';
+import { StaffLoginComponent } from './StaffLoginComponent/staff-login.component';       
+        
+
 //TODO: query state from user
 let redirectToPathLastPage: string = 'manage_patient';
 
@@ -96,6 +99,10 @@ const appRoutes: Routes = [
       {
         path: 'patient/check/:hn',
         component: PatientPhysicalCheckHistoryComponent
+      },
+      {
+        path: 'login',
+        component: StaffLoginComponent
       }
       ]
     }  
