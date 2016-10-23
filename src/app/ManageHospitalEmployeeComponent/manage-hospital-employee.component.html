@@ -1,189 +1,159 @@
- <modal #modal [id]="'change-1'" [size]="'md'" [title]="'เปลี่ยน Password : กรชนก จิรเวศยกุล'">
-     <div class="form-group row">
-            <label class="col-xs-4 col-form-label right">Password</label>
-            <div class="col-xs-6">
-                <input class="form-control" type="password">
-            </div>                
-        </div> 
-        <div class="form-group row"> 
-            <label class="col-xs-4 col-form-label right">Confirm Password</label>
-            <div class="col-xs-6">
-                <input class="form-control" type="password">
-            </div>                
-        </div> 
- </modal>
+<modal #modal [id]="'change-1'" [size]="'md'" [title]="'เปลี่ยน Password : '+fname+' '+lname" [callback]="confirm">
+	<div class="form-group row">
+		<label class="col-xs-4 col-form-label right">Password</label>
+		<div class="col-xs-6">
+			<input class="form-control" type="password">
+		</div>
+	</div>
+	<div class="form-group row">
+		<label class="col-xs-4 col-form-label right">Confirm Password</label>
+		<div class="col-xs-6">
+			<input class="form-control" type="password">
+		</div>
+	</div>
+</modal>
 <h3>จัดการบุคคลากร</h3>
 <hr>
 <div class="container">
-<br>
-    <div class = "row">
-        <div class = "col-md-12">
-            <br>
-            <div class="right">
-                <button type="button" (click)="gotoAddStaff()" class="btn btn-primary" style="width: 150px"><i class="fa fa-plus" aria-hidden="true"></i> เพิ่มบุคคลากร</button>
-            </div>
-            <div class="form-group row">
-                <label for="inputDepartment" class="col-xs-1 col-form-label">แผนก</label>
-                <div class="col-xs-4">
-                    <select class="form-control" id="inputDepartment">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
+	<div class="row">
+		<div class="col-md-12">
+			<br>
+			<div class="right">
+				<button routerLink="/manage/add_staff" type="button" class="btn btn-primary" style="width: 150px"><i class="fa fa-plus" aria-hidden="true"></i> เพิ่มบุคคลากร</button>
+			</div>
+			<div class="form-group row">
+				<label for="inputDepartment" class="col-xs-1 col-form-label">แผนก</label>
+				<div class="col-xs-4">
+					<select class="form-control" id="inputDepartment" [(ngModel)]="departmentId" (ngModelChange)="onChangeDep($event)">
+                        <option value="0" selected disabled>กรุณาเลือกแผนก</option>                        
+                        <option *ngFor="let dep of departments" value={{dep._id}}>{{dep.name}}</option>
                     </select>
-                </div> 
-            </div>
-            <hr>            
-        </div>
-        
-        <div class = "col-md-12">
-            <h6>แพทย์</h6>
-            <div class="staff">
-                <div class="table-responsive">
-                    <table class="table table-sm">
-                        <thead class="thead-default">
-                            <tr>
-                                <th>#</th>
-                                <th>ชื่อ</th>
-                                <th>นามสกุล</th>
-                                <th>username</th>
-                                <th>เปลี่ยน Password</th>
-                                <th>ลบบุคคลากร</th>                                                                
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>กรชนก</td>
-                                <td>จิรเวศยกุล</td>
-                                <td>Pohfy</td>
-                                <td><button type="button" (click)="modal.modalOpen()" class="btn btn-warning" style="width: 150px">เปลี่ยน Password</button></td>
-                                <td><button type="button" class="btn btn-danger">ลบ</button></td>                                        
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>กรชนก</td>
-                                <td>จิรเวศยกุล</td>
-                                <td>Pohfy</td>
-                                <td><button type="button" class="btn btn-warning" style="width: 150px">เปลี่ยน Password</button></td>                                
-                                <td><button type="button" class="btn btn-danger">ลบ</button></td>        
-                            </tr>
-                        </tbody>  
-                    </table>
-                </div>
-            </div>
-        </div>
-        <div class = "col-md-12">
-            <h6>พยาบาล</h6>
-            <div class="staff">
-                <div class="table-responsive">
-                    <table class="table table-sm">
-                        <thead class="thead-default">
-                            <tr>
-                                <th>#</th>
-                                <th>ชื่อ</th>
-                                <th>นามสกุล</th>
-                                <th>username</th>
-                                <th>เปลี่ยน Password</th>
-                                <th>ลบบุคคลากร</th>                                                                
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>กรชนก</td>
-                                <td>จิรเวศยกุล</td>
-                                <td>Pohfy</td>
-                                <td><button type="button" class="btn btn-warning" style="width: 150px">เปลี่ยน Password</button></td>
-                                <td><button type="button" class="btn btn-danger">ลบ</button></td>                                        
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>กรชนก</td>
-                                <td>จิรเวศยกุล</td>
-                                <td>Pohfy</td>
-                                <td><button type="button" class="btn btn-warning" style="width: 150px">เปลี่ยน Password</button></td>                                
-                                <td><button type="button" class="btn btn-danger">ลบ</button></td>        
-                            </tr>
-                        </tbody>  
-                    </table>
-                </div>
-            </div>
-        </div>
-        <div class = "col-md-12">
-            <h6>เภสัชกร</h6>
-            <div class="staff">
-                <div class="table-responsive">
-                    <table class="table table-sm">
-                        <thead class="thead-default">
-                            <tr>
-                                <th>#</th>
-                                <th>ชื่อ</th>
-                                <th>นามสกุล</th>
-                                <th>username</th>
-                                <th>เปลี่ยน Password</th>
-                                <th>ลบบุคคลากร</th>                                                                
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>กรชนก</td>
-                                <td>จิรเวศยกุล</td>
-                                <td>Pohfy</td>
-                                <td><button type="button" class="btn btn-warning" style="width: 150px">เปลี่ยน Password</button></td>
-                                <td><button type="button" class="btn btn-danger">ลบ</button></td>                                        
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>กรชนก</td>
-                                <td>จิรเวศยกุล</td>
-                                <td>Pohfy</td>
-                                <td><button type="button" class="btn btn-warning" style="width: 150px">เปลี่ยน Password</button></td>                                
-                                <td><button type="button" class="btn btn-danger">ลบ</button></td>        
-                            </tr>
-                        </tbody>  
-                    </table>
-                </div>
-            </div>
-        </div>
-        <div class = "col-md-12">
-            <h6>เจ้าหน้าที่ของโรงพยาบาล</h6>
-            <div class="staff">
-                <div class="table-responsive">
-                    <table class="table table-sm">
-                        <thead class="thead-default">
-                            <tr>
-                                <th>#</th>
-                                <th>ชื่อ</th>
-                                <th>นามสกุล</th>
-                                <th>username</th>
-                                <th>เปลี่ยน Password</th>
-                                <th>ลบบุคคลากร</th>                                                                
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>กรชนก</td>
-                                <td>จิรเวศยกุล</td>
-                                <td>Pohfy</td>
-                                <td><button type="button" class="btn btn-warning" style="width: 150px">เปลี่ยน Password</button></td>
-                                <td><button type="button" class="btn btn-danger">ลบ</button></td>                                        
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>กรชนก</td>
-                                <td>จิรเวศยกุล</td>
-                                <td>Pohfy</td>
-                                <td><button type="button" class="btn btn-warning" style="width: 150px">เปลี่ยน Password</button></td>                                
-                                <td><button type="button" class="btn btn-danger">ลบ</button></td>        
-                            </tr>
-                        </tbody>  
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
+				</div>
+			</div>
+			<hr>
+		</div>
+		<div class="employee" [hidden]="departmentId=='0'">
+			<div class="col-md-12">
+				<h6><b>แพทย์</b></h6>
+				<div class="staff">
+					<div class="table-responsive">
+						<p [hidden]="doctors.length>0">&emsp;&emsp;ไม่มี</p>
+						<table class="table table-sm" [hidden]="doctors.length<=0">
+							<thead class="thead-default">
+								<tr>
+									<th style="width: 50px;">#</th>
+									<th>ชื่อ</th>
+									<th>นามสกุล</th>
+									<th>username</th>
+									<th>เปลี่ยน Password</th>
+									<th>ลบบุคคลากร</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr *ngFor="let doc of doctors; let i = index;">
+									<th scope="row">{{i+1}}</th>
+									<td>{{doc.name.fname}}</td>
+									<td>{{doc.name.lname}}</td>
+									<td>{{doc.userName}}</td>
+									<td><button type="button" id="chg-{{doc._id}}" (click)="changePwd($event)" class="btn btn-sm btn-warning" style="width: 150px">เปลี่ยน Password</button></td>
+									<td><button type="button" id="rem-{{doc._id}}" class="btn btn-sm btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-12">
+				<h6><b>พยาบาล</b></h6>
+				<div class="staff">
+					<div class="table-responsive">
+						<p [hidden]="nurses.length>0">&emsp;&emsp;ไม่มี</p>
+						<table class="table table-sm" [hidden]="nurses.length<=0">
+							<thead class="thead-default">
+								<tr>
+									<th style="width: 50px;">#</th>
+									<th>ชื่อ</th>
+									<th>นามสกุล</th>
+									<th>username</th>
+									<th>เปลี่ยน Password</th>
+									<th>ลบบุคคลากร</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr *ngFor="let nurse of nurses; let i = index;">
+									<th scope="row">{{i+1}}</th>
+									<td>{{nurse.name.fname}}</td>
+									<td>{{nurse.name.lname}}</td>
+									<td>{{nurse.userName}}</td>
+									<td><button type="button" id="chg-{{nurse._id}}" (click)="changePwd($event)" class="btn btn-sm btn-warning" style="width: 150px">เปลี่ยน Password</button></td>
+									<td><button type="button" id="rem-{{nurse._id}}" class="btn btn-sm btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-12">
+				<h6><b>เภสัชกร</b></h6>
+				<div class="staff">
+					<div class="table-responsive">
+						<p [hidden]="pharmacists.length>0">&emsp;&emsp;ไม่มี</p>
+						<table class="table table-sm" [hidden]="pharmacists.length<=0">
+							<thead class="thead-default">
+								<tr>
+									<th style="width: 50px;">#</th>
+									<th>ชื่อ</th>
+									<th>นามสกุล</th>
+									<th>username</th>
+									<th>เปลี่ยน Password</th>
+									<th>ลบบุคคลากร</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr *ngFor="let phar of pharmacists; let i = index;">
+									<th scope="row">{{i+1}}</th>
+									<td>{{phar.name.fname}}</td>
+									<td>{{phar.name.lname}}</td>
+									<td>{{phar.userName}}</td>
+									<td><button type="button" id="chg-{{phar._id}}" (click)="changePwd($event)" class="btn btn-sm btn-warning" style="width: 150px">เปลี่ยน Password</button></td>
+									<td><button type="button" id="rem-{{phar._id}}" class="btn btn-sm btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-12">
+				<h6><b>เจ้าหน้าที่ของโรงพยาบาล</b></h6>
+				<div class="staff">
+					<div class="table-responsive">
+						<p [hidden]="staffs.length>0">&emsp;&emsp;ไม่มี</p>
+						<table class="table table-sm" [hidden]="staffs.length<=0">
+							<thead class="thead-default">
+								<tr>
+									<th style="width: 50px;">#</th>
+									<th>ชื่อ</th>
+									<th>นามสกุล</th>
+									<th>username</th>
+									<th>เปลี่ยน Password</th>
+									<th>ลบบุคคลากร</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr *ngFor="let staff of staffs; let i = index;">
+									<th scope="row">{{i+1}}</th>
+									<td>{{staff.name.fname}}</td>
+									<td>{{staff.name.lname}}</td>
+									<td>{{staff.userName}}</td>
+									<td><button type="button" id="chg-{{staff._id}}" (click)="changePwd($event)" class="btn btn-sm btn-warning" style="width: 150px">เปลี่ยน Password</button></td>
+									<td><button type="button" id="rem-{{staff._id}}" class="btn btn-sm btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+    <br>
 </div>

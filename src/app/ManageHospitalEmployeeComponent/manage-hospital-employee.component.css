@@ -16,3 +16,5 @@
 .table,th{
     text-align: center;
 }
+table { table-layout:fixed; }
+table td { overflow: hidden; }
