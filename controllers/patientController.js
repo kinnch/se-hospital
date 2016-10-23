@@ -9,6 +9,8 @@ exports.setDBConnectionsFromApp = function(app) {
 var Patient = require("../model/patient");
 var Schedule = require("../model/schedule");
 var HospitalEmployee = require("../model/hospitalEmployee");
+var Department = require("../model/department")
+
 
 exports.testing = function(req, res) {
     var patient2 = new Patient();
@@ -19,64 +21,73 @@ exports.testing = function(req, res) {
 }
 
 exports.search = function(req, res){
-    var data = (req.body.data);
+    var data = (req.body.key) + '';
     if(data.length == 8){
         Patient.findOne({HN: data}, function (err, patient) {
             if (err) return console.error(err);
         }).populate('allegicDrugs').exec(function(error, patient) {
-            patient.name.fname = patient.name.fname + "A";
             return patient;
-            //console.log(patient);
-        }).then( function(patientdata){
-            //res.send(patientdata);
+        }).then(function (patientdata){
             Schedule.find({}, function (err, patient) {
                 if (err) return console.error(err);
-             }).populate('doctor').exec(function (err, Schedules) {
+             }).populate('doctor').exec(function (err, data) {
+                    
+                    var option = {
+                        path: 'doctor.department',
+                        model: 'Department'
+                    };
+                    Schedule.populate(data, option, function(err, Schedules){
                     var all_schedules = [];
                     for(var i = 0; i < Schedules.length; i++){
                         for(var j = 0; j < Schedules[i].appointments.length; j++){
-                            console.log(Schedules[i].appointments[j].patient);
-                            console.log(patientdata._id);
                             if(Schedules[i].appointments[j].patient.equals(patientdata._id)){
                                 all_schedules.push(Schedules[i]);
-                                break;
                             }
                         }
                     }
                     var patient_aligh_data = {
-                        patientInfo: patientdata,
-                        Schedule: all_schedules
+                        patientdata,
+                        Schedule: all_schedules,
                     };
                     res.send(patient_aligh_data);
+                    return;
+                    })
                 }
             );
-
-            /*
-            Schedule.find({},{
-                "appointments": [{patient: patientdata._id}]
-            },function (err, Schedule) {
-                if (err) return console.error(err);
-                patientdata.hello = 'YO';
-                res.send(Schedule);
-            })
-            */
         });
-        /*
-        .then(function (patient){
-            console.log(patient);
-            res.send(bands);
-        });
-        */
     }
     else if(data.length == 13){
         Patient.findOne({nationalID: data}, function (err, patient) {
             if (err) return console.error(err);
         }).populate('allegicDrugs').exec(function(error, patient) {
-            //patient.name.fname = patient.name.fname + "A";
             return patient;
-            //console.log(patient);
-        }).then( function(patient){
-            res.send(patient);
+        }).then(function (patientdata){
+            Schedule.find({}, function (err, patient) {
+                if (err) return console.error(err);
+             }).populate('doctor').exec(function (err, data) {
+                    
+                    var option = {
+                        path: 'doctor.department',
+                        model: 'Department'
+                    };
+                    Schedule.populate(data, option, function(err, Schedules){
+                    var all_schedules = [];
+                    for(var i = 0; i < Schedules.length; i++){
+                        for(var j = 0; j < Schedules[i].appointments.length; j++){
+                            if(Schedules[i].appointments[j].patient.equals(patientdata._id)){
+                                all_schedules.push(Schedules[i]);
+                            }
+                        }
+                    }
+                    var patient_aligh_data = {
+                        patientdata,
+                        Schedule: all_schedules,
+                    };
+                    res.send(patient_aligh_data);
+                    return;
+                    })
+                }
+            );
         });
     }
     else res.send(null);

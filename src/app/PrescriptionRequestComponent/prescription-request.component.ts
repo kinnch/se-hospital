@@ -18,8 +18,4 @@ export class PrescriptionRequestComponent{
         //this.prescriptionService.getPrescriptionElements().then(data => this.data = data);
         console.log(this.data);
     }
-
-    gotoPage(hn):void{      
-        this.router.navigate(['manage','prescription_request',hn]);
-    }
 }

@@ -30,8 +30,14 @@ import { PrescriptionListElementComponent } from './PrescriptionListElementCompo
 import { PrescriptionService } from '../services/prescription.service';
 import { PatientService } from '../services/patient.service';
 import { PatientPhysicalCheckHistoryComponent } from './PatientPhysicalCheckHistoryComponent/patient-physical-check-history.component';
+import { PatientDetailElementComponent } from './PatientDetailElementComponent/patient-detail-element.component';
+import { DiagnosisDetailResaultComponent } from './DiagnosisDetailResaultComponent/diagnosis-detail-resault.component';
+import { DiagnosisDetailComponent } from './DiagnosisDetailComponent/diagnosis-detail.component';
 import { StaffLoginComponent } from './StaffLoginComponent/staff-login.component';       
 import { PrescriptionTableComponent } from './PrescriptionTableComponent/prescription-table.component';
+import { AddHospitalEmployeeComponent } from './AddHospitalEmployeeComponent/add-hospital-employee.component';
+import { EditPrescriptionComponent } from './EditPrescriptionComponent/edit-prescription.component'
+import { PrescriptionFormComponent } from './PrescriptionFormComponent/prescription-form.component'
 
 @NgModule({
     imports:        [
@@ -66,8 +72,14 @@ import { PrescriptionTableComponent } from './PrescriptionTableComponent/prescri
         EditPrescriptionRequestComponent,
         PrescriptionListElementComponent,
         PatientPhysicalCheckHistoryComponent,
+        DiagnosisDetailComponent,
+        PatientDetailElementComponent,
+        DiagnosisDetailResaultComponent,
         StaffLoginComponent,
-        PrescriptionTableComponent
+        PrescriptionTableComponent,
+        AddHospitalEmployeeComponent,
+        EditPrescriptionComponent,
+        PrescriptionFormComponent
         ],
     providers:      [
         PrescriptionService,
