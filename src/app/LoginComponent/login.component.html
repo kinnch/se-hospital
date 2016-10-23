@@ -1,37 +1,76 @@
-<a class="back" (click)="goBack()">< ย้อนกลับ</a>
-<div class = "container">
-    <div class = "col-sm-12 patient-login-area"> 
-        <div class="card login-block center-block">
-        <!--<img class="card-img-top" src="" alt="Card image cap">-->
-        <div class="card-block">
-            <div class="row">
-                <h2 class="card-title text-center">เข้าสู่ระบบ</h2>
-            </div>
-            <div class="text-center" style="margin: 20px auto;">
-                <i class="fa fa-users fa-lg fa-4x"></i>
-            </div>
-            <!--<p class="card-text">-->
+<a class="back" (click)="goBack()">&lt; ย้อนกลับ</a>
+<div class="container">
+	<div class="col-sm-12 patient-login-area">
 
-            <!--<form class="form-inline">            -->
-                <div class="form-signin">
-                    <!--<label for="labelPatientIdentifier">รหัส HN หรือ รหัสบัตรประชาชน</label>-->
-                    <div class="form-group">
-                        <input type="text" class="form-control" id="inputPatientIdentifier" placeholder="กรอกรหัส HN หรือรหัสบัตรประชาชน" style="margin-bottom: 10px important!;" required>
-                    </div>
-                    <div class="form-group">
-                        <button type="submit" class="form-control btn btn-primary btn-block">เข้าสู่ระบบ</button>
-                    </div>
+		<!--LOGIN PART-->
+		<div class="card login-block center-block" [hidden]="loginSuccess">
+			<div class="card-block">
+				<div class="row">
+					<h2 class="card-title text-center">เข้าสู่ระบบ</h2>
+				</div>
+				<div class="text-center" style="margin: 20px auto;">
+					<i class="fa fa-users fa-lg fa-4x"></i>
+				</div>
+
+				<div class="form-signin">
+					<div class="form-group">
+						<input type="text" [(ngModel)]="patientID" class="form-control" id="inputPatientIdentifier" placeholder="กรอกรหัส HN หรือรหัสบัตรประชาชน"
+							style="margin-bottom: 10px important!;" required>
+					</div>
+					<div class="form-group">
+						<button (click)="login()" class="form-control btn btn-primary btn-block">เข้าสู่ระบบ</button>
+					</div>
+				</div>
+
+				<hr style="margin: 20px auto;">
+
+				<form class="form-inline">
+					<p class="pull-left">กรณีเป็นผู้ป่วยใหม่</p>
+					<a routerLink="/p_register" class="btn btn-primary pull-right">ลงทะเบียนใหม่</a>
+				</form>
+			</div>
+		</div>
+
+		<!--OTP PART-->
+		<div class="card login-block center-block" [hidden]="!loginSuccess">
+			<div class="card-block">
+				<div class="row">
+					<h2 class="card-title text-center">ยืนยันตัวตนผ่านโทรศัพท์มือถือ</h2>
+				</div>
+                
+                <div class="text-center" style="margin: 20px auto;">
+                    <span [hidden]="!loginSuccess || (loginSuccess && sendOTPSuccess)">
+                        <i class="fa fa-mobile fa-4x"></i>
+                        <i class="fa fa-commenting text-success fa-2x"></i>
+                    </span>
+					<i class="fa fa-unlock-alt fa-4x" [hidden]="!loginSuccess || (loginSuccess && !sendOTPSuccess)"></i>
                 </div>
-            <!--</form>-->
-            <!--</p>-->
-            
-            <hr style="margin: 20px auto;">
-            
-            <form class="form-inline">
-                <p class="pull-left">กรณีเป็นผู้ป่วยใหม่</p>
-                <a routerLink="/register" class="btn btn-primary pull-right">ลงทะเบียนใหม่</a>
-            </form>
-        </div>
-        </div>
-    </div>
+
+                <!-- Get PhoneNo -->
+				<div class="form-signin" [hidden]="!loginSuccess || (loginSuccess && sendOTPSuccess)">
+					<div class="form-group">
+                        <p><small>กรุณากรอกเบอร์โทรศัพท์เพื่อรับรหัส OTP(One-Time Password) สำหรับยืนยันตัวตน</small></p>
+						<input type="number" [(ngModel)]="phoneNo" class="form-control" id="inputPhoneNo" placeholder="กรอกเบอร์โทรศัพท์มือถือ"
+							style="margin-bottom: 10px important!;" required>
+					</div>
+					<div class="form-group">
+						<button (click)="sendOTP()" class="form-control btn btn-primary btn-block">ส่งรหัส OTP</button>
+					</div>
+				</div>
+
+                <!-- OTP Verify -->
+				<div class="form-signin" [hidden]="!loginSuccess || (loginSuccess && !sendOTPSuccess)">
+					<div class="form-group">
+						<input type="number" maxlength="4" [(ngModel)]="OTPCode" class="form-control" id="inputOTPCode" placeholder="กรอกรหัส OTP 4 หลัก"
+							style="margin-bottom: 10px important!;" required>
+					</div>
+					<div class="form-group">
+						<button (click)="verifyOTP()" class="form-control btn btn-primary btn-block">ยืนยันรหัส OTP</button>
+					</div>
+                    <p>หากไม่ได้รับรหัส OTP กด <a (click)="sendOTPSuccess=!sendOTPSuccess;">ที่นี่</a> เพื่อส่งรหัส OTP อีกครั้ง</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
 </div>
