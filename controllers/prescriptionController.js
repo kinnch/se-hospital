@@ -16,26 +16,18 @@ var Diagnosis = require("../model/diagnosis");
 var Patient = require("../model/patient");
 var Drug = require("../model/drug");
 
-function getAllDoctorInDepartment(department){
-    Department.find({name: department}, function(err, department){
-        if(err) console.log(err);
-        HospitalEmployee.find({department: department._id}, function(err, doctors){
-            var doctors_id = [];
-            for(var i = 0; i < doctors.length; i++){
-                doctors_id.push(doctors[i]._id);
-            }
-            return doctors_id;
-        })
-    });
+function getDateNow(){
+    var this_date = new Date(new Date().getTime() + 7 * 3600 * 1000);
+    this_date = new Date(this_date.getFullYear()+'-'+(this_date.getMonth() + 1)+"-"+this_date.getDate());
+    return this_date;
 }
 
 exports.showAll = function(reg, res){
     Patient.find({},function(err, all_patient){
         Schedule.find({
+            date: getDateNow()
         }, function (err,result){
         }).populate('doctor').exec(function(err, data){
-            //res.send(result);
-            //return;
             var option = {
                 path: 'doctor.department',
                 model: 'Department'
@@ -57,7 +49,7 @@ exports.showAll = function(reg, res){
                     }
                     formated_data.push(element);
                 }
-                res.send(formated_data);
+                res.send({appointments:formated_data});
                 return;
             });
         });
@@ -65,6 +57,9 @@ exports.showAll = function(reg, res){
 }
 
 exports.showInDepartment = function(reg, res){
+    res.send(getAllDoctorInDepartment(reg.body.department));
+    return;
+    /*
     Patient.find({},function(err, all_patient){
         Schedule.find({
             doctor: { $in: getAllDoctorInDepartment(reg.body.department)}
@@ -98,6 +93,7 @@ exports.showInDepartment = function(reg, res){
             });
         });
     });
+    */
 }
 
 exports.showHistory = function(reg, res){

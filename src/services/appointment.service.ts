@@ -23,4 +23,14 @@ export class AppointmentService {
                         return res.json();
                     });
     }
+    private apiUrlTodayAppointment = 'api/appointment/all';
+    getTodayAppointments(department:string):Promise<JSON>{
+        console.log({department: department});
+        return this.http
+                    .post(this.apiUrlTodayAppointment, JSON.stringify({department: department}), {headers: this.headers})
+                    .toPromise()
+                    .then(function(res){
+                        return res.json();
+                    });
+    }
 }

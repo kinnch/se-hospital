@@ -131,3 +131,18 @@ exports.add = function(req, res){
         return;
     });
 }
+
+exports.showDoctorList = function (req, res){
+    Department.find({name: req.body.department}, function(err, department){
+        return 'Hello';
+        if(err) console.log(err);
+        HospitalEmployee.find({department: department._id}, function(err, doctors){
+            var doctors_id = [];
+            for(var i = 0; i < doctors.length; i++){
+                doctors_id.push(doctors[i]._id);
+            }
+            res.send(doctors_id);
+            return;
+        })
+    });
+}

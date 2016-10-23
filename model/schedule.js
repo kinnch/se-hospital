@@ -19,7 +19,11 @@ var scheduleSchema = mongoose.Schema({
         appointments: [{
             patient: {
                 type: Schema.Types.ObjectId, 
-                ref: 'Patient' 
+                ref: 'Patient',
+            },
+            status: {
+                type: Number,
+                enum: [0,1,2,3,4]
             },
             reason: String
         }]
