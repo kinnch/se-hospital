@@ -4,10 +4,10 @@
 <form class="form-inline">
   <div class="form-group">
     <label class="sr-only" for="hnOrIDinput">กรอก HN หรือ รหัสประจำตัวประชาชน</label>
-    <input type="text" class="form-control" id="hnOrIDinput" placeholder="กรอก HN หรือ รหัสประจำตัวประชาชน">
+    <input type="text" class="form-control" id="hnOrIDinput" name="hnOrIDinput" placeholder="กรอก HN หรือ รหัสประจำตัวประชาชน" [(ngModel)]="hnOrIDinput">
   </div>
-  <button type="submit" class="btn btn-primary">ค้นหา</button>
+  <button type="submit" class="btn btn-primary" (click)="getPatientAndAppointment()">ค้นหา</button>
   <a routerLink="register"><button type="submit" class="btn btn-success">+ เพิ่มนัดหมายสำหรับผู้ป่วยใหม่</button></a>
 </form>
 <hr>
-<patient-appointment-c></patient-appointment-c>
+<patient-appointment-c [found]="found" [data]="data" ></patient-appointment-c>

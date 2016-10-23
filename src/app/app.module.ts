@@ -29,6 +29,7 @@ import { EditPrescriptionRequestComponent} from './EditPrescriptionRequestCompon
 import { PrescriptionListElementComponent } from './PrescriptionListElementComponent/prescription-list-element.component';
 import { PrescriptionService } from '../services/prescription.service';
 import { PatientService } from '../services/patient.service';
+import { AppointmentService } from '../services/appointment.service';
 import { PatientPhysicalCheckHistoryComponent } from './PatientPhysicalCheckHistoryComponent/patient-physical-check-history.component';
 import { PatientDetailElementComponent } from './PatientDetailElementComponent/patient-detail-element.component';
 import { DiagnosisDetailResaultComponent } from './DiagnosisDetailResaultComponent/diagnosis-detail-resault.component';
@@ -83,7 +84,8 @@ import { PrescriptionFormComponent } from './PrescriptionFormComponent/prescript
         ],
     providers:      [
         PrescriptionService,
-        PatientService
+        PatientService,
+        AppointmentService
     ],
     bootstrap:      [
         AppComponent
