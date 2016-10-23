@@ -483,7 +483,8 @@ temporary rendered events).
 .fc-row .fc-content-skeleton td,
 .fc-row .fc-helper-skeleton td {
 	/* see-through to the background below */
-	background: none; /* in case <td>s are globally styled */
+	/*background: none;  //kinnch */ 
+	/* in case <td>s are globally styled */
 	/*border-color: transparent;*/
 
 	/* don't put a border between events and/or the day number */
@@ -1401,3 +1402,19 @@ be a descendant of the grid when it is being dragged.
 .fc-content:hover {
    cursor: pointer;
 }
+.left-event{
+	float: left !important;
+	margin-left: 5px;
+	margin-top: 0.1vh;
+	line-height: 1px;
+	color: rgb(61, 217, 74);
+}
+.right-event{
+	float: right !important;
+	margin-right: 5px;
+	margin-top: 0.1vh;
+	line-height: 1px;
+	color: rgb(217, 83, 79);
+
+}
+
