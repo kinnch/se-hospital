@@ -1,0 +1,13 @@
+.login-block{
+    width: 30%;
+}
+.icon-block{
+    position: absolute;
+    right: 40px;
+    top: 17px;
+    color: #666;
+    font-size: 16px;
+}
+.icon-block-parent{
+    position: relative;
+}
