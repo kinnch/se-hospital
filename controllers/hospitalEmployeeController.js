@@ -16,7 +16,13 @@ exports.getAllEmployee = function(req, res){
         res.send(data);
         return;
     });
-    
+}
+exports.getAllDepartment = function(req, res){
+    Department.find({},function(err,departments){
+        data = { 'departments':departments};
+        res.send(data);
+        return;
+    });
 }
 exports.isInSystem = function(req, res) {
     HospitalEmployee.findOne({
