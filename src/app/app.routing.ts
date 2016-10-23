@@ -42,11 +42,11 @@ const appRoutes: Routes = [
         component: HomeComponent
       },
       {
-        path: 'login',
+        path: 'p_login',
         component: LoginComponent
       },
       {
-        path: 'register',
+        path: 'p_register',
         component: RegisterComponent
       }
     ]

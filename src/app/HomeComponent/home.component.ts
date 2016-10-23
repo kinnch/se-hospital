@@ -11,8 +11,4 @@ export class HomeComponent {
     constructor(private router: Router) {
 
     }
-    gotoLogin():void{
-        let link = ['login'];
-        this.router.navigate(link);
-    }
 }
