@@ -16,11 +16,11 @@ export class ManagePatientComponent{
     }
     data;
     getPatientAndAppointment(){
-        console.log(this.hnOrIDinput);
+        // console.log(this.hnOrIDinput);
         this.appointmentService.getPatientAndAppointment(this.hnOrIDinput)
         .then((data) => {
-            console.log('then');
-            console.log(data);
+            // console.log('then');
+            // console.log(data);
             this.data = data;
             this.found = true;
         });
