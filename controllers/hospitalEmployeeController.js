@@ -16,6 +16,7 @@ exports.isInSystem = function(req, res) {
         if(err) return console.error(err);
         if(employee == null) res.send(false);
         else res.send(true);
+        return;
     });
 }
 
@@ -37,5 +38,6 @@ exports.add = function(req, res){
         //res.send(hospitalEmployee);
         hospitalEmployee.save();
         res.send('done');
+        return;
     });
 }
