@@ -10,4 +10,7 @@ import { Router } from '@angular/router';
 export class ManageHospitalEmployeeComponent{
     constructor(private router: Router) {
     }
+    gotoAddStaff():void{
+        this.router.navigate(['manage','add_staff']);
+    }
 }

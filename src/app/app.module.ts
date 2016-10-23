@@ -32,6 +32,8 @@ import { PatientService } from '../services/patient.service';
 import { PatientPhysicalCheckHistoryComponent } from './PatientPhysicalCheckHistoryComponent/patient-physical-check-history.component';
 import { StaffLoginComponent } from './StaffLoginComponent/staff-login.component';       
 import { PrescriptionTableComponent } from './PrescriptionTableComponent/prescription-table.component';
+import { AddHospitalEmployeeComponent } from './AddHospitalEmployeeComponent/add-hospital-employee.component';
+
 
 @NgModule({
     imports:        [
@@ -67,7 +69,8 @@ import { PrescriptionTableComponent } from './PrescriptionTableComponent/prescri
         PrescriptionListElementComponent,
         PatientPhysicalCheckHistoryComponent,
         StaffLoginComponent,
-        PrescriptionTableComponent
+        PrescriptionTableComponent,
+        AddHospitalEmployeeComponent
         ],
     providers:      [
         PrescriptionService,

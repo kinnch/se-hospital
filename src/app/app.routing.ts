@@ -18,7 +18,9 @@ import { PrescriptionHistoryComponent } from './PrescriptionHistoryComponent/pre
 import { EditPrescriptionRequestComponent} from './EditPrescriptionRequestComponent/edit-prescription-request.component';
 import { PrescriptionListElementComponent } from './PrescriptionListElementComponent/prescription-list-element.component';
 import { PatientPhysicalCheckHistoryComponent } from './PatientPhysicalCheckHistoryComponent/patient-physical-check-history.component';
-import { StaffLoginComponent } from './StaffLoginComponent/staff-login.component';       
+import { StaffLoginComponent } from './StaffLoginComponent/staff-login.component';
+import { AddHospitalEmployeeComponent } from './AddHospitalEmployeeComponent/add-hospital-employee.component';
+       
         
 
 //TODO: query state from user
@@ -67,6 +69,10 @@ const appRoutes: Routes = [
       {
         path: 'manage_staff',
         component: ManageHospitalEmployeeComponent
+      },
+      {
+        path: 'add_staff',
+        component: AddHospitalEmployeeComponent
       },
       {
         path: 'doctor_calendar',
