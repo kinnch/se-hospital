@@ -1,9 +1,13 @@
-import {NgModule}      from '@angular/core';
-import {BrowserModule} from '@angular/platform-browser';
+import { NgModule }      from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule }   from '@angular/forms';
 import { HttpModule }    from '@angular/http';
+import { RouterModule } from '@angular/router';
+import { AppComponent } from './app.component';
+import { routing } from './app.routing';
+import { LoggedInGuard } from './logged-in.guard';
+import { UserService } from '../services/user.service';
 
-import {AppComponent}  from './app.component';
 import {PatientComponent} from './PatientComponent/patient.component';
 import {StaffComponent} from './StaffComponent/staff.component';
 import { ManagePatientComponent }   from './ManagePatientComponent/manage-patient.component';
@@ -18,7 +22,6 @@ import { PatientAppointmentComponent } from './PatientAppointmentComponent/patie
 import { AppointmentListComponent } from './AppointmentListComponent/appointment-list.component';
 import { PatientDetailComponent } from './PatientDetailComponent/patient-detail.component';
 import { PatientPhysicalCheckComponent } from './PatientPhysicalCheckComponent/patient-physical-check.component';
-import { routing } from './app.routing';
 import { DoctorCalendarComponent } from './DoctorCalendarComponent/doctor-calendar.component';
 import { ModalComponent } from './ModalComponent/modal.component';
 import { MakeAppointComponent } from './MakeAppointmentComponent/make-appointment.component';
@@ -47,10 +50,10 @@ import { PhysicalCheckService } from '../services/physical-check.service';
 @NgModule({
     imports:        [
         BrowserModule,
-        BrowserModule,
         FormsModule,
         routing,
-        HttpModule
+        HttpModule,
+        // RouterModule.forRoot(routing)
                     ],
     declarations:   [
         AppComponent,
@@ -93,7 +96,9 @@ import { PhysicalCheckService } from '../services/physical-check.service';
         PrescriptionService,
         PatientService,
         AppointmentService,
-        PhysicalCheckService
+        PhysicalCheckService,
+        UserService,
+        LoggedInGuard
     ],
     bootstrap:      [
         AppComponent

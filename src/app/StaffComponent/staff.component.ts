@@ -1,14 +1,20 @@
-import {Component} from '@angular/core';
+import {Component,OnInit, AfterViewInit} from '@angular/core';
 import { Router } from '@angular/router';
-
+import { UserService } from '../../services/user.service';
 @Component({
     selector: 'staff-c',
     template: require('./staff.component.html'),
     styles: [require('./staff.component.css')]
 })
 
-export class StaffComponent {
-    constructor(private router: Router) {
+export class StaffComponent{
+    
+    loggedIn:boolean;
+    constructor(private userService: UserService, private router: Router) {
+        router.events.subscribe((val) => {
+        //Check loggin 
+            this.loggedIn = this.userService.isLoggedIn();
+        });
         if(this.router.url === '/manage/doctor_calendar'){
             this.activatedClass = 2;
         } else if(this.router.url === '/manage/manage_queue'){
@@ -21,7 +27,11 @@ export class StaffComponent {
             this.activatedClass = 7;
         }
     }
-    hn = '123456'
+    
+    // ngOnInit(): void {
+    //     this.loggedIn = this.userService.isLoggedIn();
+    // }
+    hn = '123456';
     // isExpanded: Boolean = true;
     activatedClass = 1; //1 จัดการผู้ป่วย ,2,3,4
 
@@ -44,6 +54,11 @@ export class StaffComponent {
             link = ['manage','edit_prescription_request']
         }
         this.router.navigate(link);
+    }
+    goToLogout():void{
+        this.userService.logout();
+        this.loggedIn=false;
+        this.router.navigate(['manage','login']);
     }
     // navToggle(){
     //     console.log("pohfy"); 

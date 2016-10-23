@@ -1,6 +1,6 @@
 import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
+import { LoggedInGuard } from './logged-in.guard';
 import { PatientComponent } from './PatientComponent/patient.component';
 import { StaffComponent } from './StaffComponent/staff.component';
 import { ManagePatientComponent } from './ManagePatientComponent/manage-patient.component';
@@ -82,7 +82,8 @@ const appRoutes: Routes = [
       },
       {
         path: 'manage_queue',
-        component: ManageQueueComponent
+        component: ManageQueueComponent,
+        canActivate: [LoggedInGuard]
       },
       {
         path: 'manage_staff',
