@@ -9,7 +9,9 @@ import { Router } from '@angular/router';
 
 export class StaffComponent {
     constructor(private router: Router) {
-        if(this.router.url === '/manage/manage_queue'){
+        if(this.router.url === '/manage/doctor_calendar'){
+            this.activatedClass = 2;
+        } else if(this.router.url === '/manage/manage_queue'){
             this.activatedClass = 4;
         } else if(this.router.url === '/manage/patient'){
             this.activatedClass = 5;
