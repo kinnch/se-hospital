@@ -32,10 +32,12 @@ exports.add = function(req, res){
                 height: data.height,
                 temp: data.temp,
                 patient: patient._id,
-                nurse: nurse_id
+                nurse: nurse_id,
+                date: new Date()
             });
             newData.save();
             res.send('done');
+            return;
         })
     });
 }

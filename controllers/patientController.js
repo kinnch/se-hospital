@@ -6,13 +6,12 @@ exports.setDBConnectionsFromApp = function(app) {
     dbConnection = app.get("dbConnection");
 }
 
-var mongoose = require('mongoose');
-
 var Patient = require("../model/patient");
 var Schedule = require("../model/schedule");
 var HospitalEmployee = require("../model/hospitalEmployee");
 var Department = require("../model/department")
 var timeLimit = 15;
+
 
 var checkTimeExceedOtp = function(tel){
       Patient.findOne({tel: tel}, function (err, patient) {
