@@ -29,7 +29,7 @@ export class StaffComponent {
         if(menu === 1){ // 1 จัดการผู้ป่วย
             link = ['manage','manage_patient'];
         } else if(menu === 2){
-            link = ['manage'];
+            link = ['manage','doctor_calendar'];
         } else if(menu === 3){
             link = ['manage','manage_staff'];
         } else if(menu === 4){ // 4 Checkin เข้าห้อง

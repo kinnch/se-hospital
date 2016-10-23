@@ -11,14 +11,19 @@
 .patient-img {
     width: 100px;
     margin-left: 50px;
-    margin-top: 0px;
+    margin-top: 20px;
 }
 
-.back{
-    color: #4286F7 !important;
+.prescription-detail, .reject-form {
+    padding: 0 50px;
 }
 
-a:hover {
-    text-decoration: none;
-    cursor: pointer;
+.control-button{
+    text-align: center;
+    margin-top: 20px;
+}
+
+.form-button {
+    text-align: right;
+    margin-top: 10px;
 }

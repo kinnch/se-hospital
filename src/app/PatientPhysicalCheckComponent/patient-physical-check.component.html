@@ -1,4 +1,4 @@
-<div class="add-physical-check">
+<div class="add-physical-check" *ngIf="router.url == '/manage/patient/11'">
     <div class="form-group row">
         <div class="col-xs-4">
             <label for="example-text-input" class="col-xs-5 col-form-label right">น้ำหนัก (กก.)</label>
@@ -42,8 +42,8 @@
     <div class="right">
         <button type="button" class="btn btn-primary" style="width: 150px">เพิ่ม</button>
     </div>
+    <hr>
 </div>
-<hr>
 <div class="physical-check-history">
     <div class="table-responsive">
         <table class="table table-sm">
