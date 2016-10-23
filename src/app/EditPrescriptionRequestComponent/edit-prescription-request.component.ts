@@ -2,7 +2,7 @@ import {Component, Input} from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Router } from '@angular/router';
 @Component({
-    selector: 'prescription-request-c',
+    selector: 'edit-prescription-request-c',
     template: require('./edit-prescription-request.component.html'),
     styles: [require('./edit-prescription-request.component.css')]
 })

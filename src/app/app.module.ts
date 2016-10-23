@@ -26,7 +26,11 @@ import { RegisterComponent } from './RegisterComponent/register.component';
 import { DiagnosisHistoryComponent } from './DiagnosisHistoryComponent/diagnosis-history.component';
 import { PrescriptionHistoryComponent } from './PrescriptionHistoryComponent/prescription-history.component';
 import { EditPrescriptionRequestComponent} from './EditPrescriptionRequestComponent/edit-prescription-request.component';
+import { PrescriptionListElementComponent } from './PrescriptionListElementComponent/prescription-list-element.component';
+import { PrescriptionService } from '../services/prescription.service';
+import { PatientService } from '../services/patient.service';
 import { PatientPhysicalCheckHistoryComponent } from './PatientPhysicalCheckHistoryComponent/patient-physical-check-history.component';
+
 
 @NgModule({
     imports:        [
@@ -59,8 +63,13 @@ import { PatientPhysicalCheckHistoryComponent } from './PatientPhysicalCheckHist
         DiagnosisHistoryComponent,
         PrescriptionHistoryComponent,
         EditPrescriptionRequestComponent,
+        PrescriptionListElementComponent,
         PatientPhysicalCheckHistoryComponent
         ],
+    providers:      [
+        PrescriptionService,
+        PatientService
+    ],
     bootstrap:      [
         AppComponent
         ]
