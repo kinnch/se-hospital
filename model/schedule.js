@@ -13,13 +13,13 @@ var scheduleSchema = mongoose.Schema({
         },
         doctor: {
             type: Schema.Types.ObjectId, 
-            ref: 'hospitalEmployee',
+            ref: 'HospitalEmployee',
             required: true
         },
         appointments: [{
             patient: {
                 type: Schema.Types.ObjectId, 
-                ref: 'hospitalEmployee' 
+                ref: 'Patient' 
             },
             reason: String
         }]
