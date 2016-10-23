@@ -9,4 +9,5 @@ exports.setDBConnectionsFromApp = function(app) {
 exports.testt = function(req, res) {
 
     console.log("patient controller Started");
+    res.send("Loggeg in");
 }
