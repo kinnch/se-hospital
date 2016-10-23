@@ -12,6 +12,8 @@ module.exports = function(app) {
     var physicalDataController = require('../controllers/physicalDataController');
     app.post('/api/physicalData/add',  physicalDataController.add);
 
+    var hospitalEmployeeController = require('../controllers/hospitalEmployeeController');
+    app.post('/api/hospitalEmployee/isInSystem',  hospitalEmployeeController.isInSystem);
     //patientController.setDBConnectionsFromApp(app);
 
     function ensureAuthenticated(req, res, next){
