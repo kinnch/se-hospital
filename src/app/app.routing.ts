@@ -116,7 +116,7 @@ const appRoutes: Routes = [
         component: DiagnosisDetailComponent
       },
       {
-        path: 'diagnosis/resault/:hn',
+        path: 'diagnosis/result/:hn',
         component: DiagnosisDetailComponent
       },
       {

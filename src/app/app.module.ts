@@ -29,7 +29,7 @@ import { EditPrescriptionRequestComponent} from './EditPrescriptionRequestCompon
 import { PrescriptionListElementComponent } from './PrescriptionListElementComponent/prescription-list-element.component';
 import { PatientPhysicalCheckHistoryComponent } from './PatientPhysicalCheckHistoryComponent/patient-physical-check-history.component';
 import { PatientDetailElementComponent } from './PatientDetailElementComponent/patient-detail-element.component';
-import { DiagnosisDetailResaultComponent } from './DiagnosisDetailResaultComponent/diagnosis-detail-resault.component';
+import { DiagnosisDetailResultComponent } from './DiagnosisDetailResultComponent/diagnosis-detail-result.component';
 import { DiagnosisDetailComponent } from './DiagnosisDetailComponent/diagnosis-detail.component';
 import { StaffLoginComponent } from './StaffLoginComponent/staff-login.component';       
 import { PrescriptionTableComponent } from './PrescriptionTableComponent/prescription-table.component';
@@ -80,7 +80,7 @@ import { PhysicalCheckService } from '../services/physical-check.service';
         PatientPhysicalCheckHistoryComponent,
         DiagnosisDetailComponent,
         PatientDetailElementComponent,
-        DiagnosisDetailResaultComponent,
+        DiagnosisDetailResultComponent,
         StaffLoginComponent,
         PrescriptionTableComponent,
 
