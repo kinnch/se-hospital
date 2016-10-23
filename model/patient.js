@@ -31,7 +31,14 @@ var patientSchema = mongoose.Schema({
       allegicDrugs: [{ 
         type: Schema.Types.ObjectId, 
         ref: 'Drug' 
-      }]
+      }],
+      salt: {
+        type: String,
+        select: false,
+        toJSON: true,
+        hide: false
+      },
+      hash: String
     });
 
 var options = ({usernameField: "tel" });

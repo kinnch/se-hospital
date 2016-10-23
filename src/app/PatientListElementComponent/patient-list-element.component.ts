@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 })
 
 export class PatientListElementComponent{
+    @Input() oneData;
     constructor(private router: Router) {
     }
 }

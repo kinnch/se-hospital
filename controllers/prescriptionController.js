@@ -49,7 +49,7 @@ exports.showAll = function(reg, res){
                     }
                     formated_data.push(element);
                 }
-                res.send(formated_data);
+                res.send({appointments:formated_data});
                 return;
             });
         });
