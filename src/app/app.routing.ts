@@ -1,9 +1,9 @@
-import { ModuleWithProviders }  from '@angular/core';
+import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { PatientComponent }      from './PatientComponent/patient.component';
-import { StaffComponent }   from './StaffComponent/staff.component';
-import { ManagePatientComponent }   from './ManagePatientComponent/manage-patient.component';
+import { PatientComponent } from './PatientComponent/patient.component';
+import { StaffComponent } from './StaffComponent/staff.component';
+import { ManagePatientComponent } from './ManagePatientComponent/manage-patient.component';
 import { ScheduleManageComponent } from './ScheduleManageComponent/schedule-manage.component'
 import { ManageQueueComponent } from './ManageQueueComponent/manage-queue.component';
 import { ManageHospitalEmployeeComponent } from './ManageHospitalEmployeeComponent/manage-hospital-employee.component';
@@ -15,9 +15,10 @@ import { MakeAppointComponent } from './MakeAppointmentComponent/make-appointmen
 import { RegisterComponent } from './RegisterComponent/register.component';
 import { DiagnosisHistoryComponent } from './DiagnosisHistoryComponent/diagnosis-history.component';
 import { PrescriptionHistoryComponent } from './PrescriptionHistoryComponent/prescription-history.component';
-import { EditPrescriptionRequestComponent} from './EditPrescriptionRequestComponent/edit-prescription-request.component';
+import { EditPrescriptionRequestComponent } from './EditPrescriptionRequestComponent/edit-prescription-request.component';
 import { PrescriptionListElementComponent } from './PrescriptionListElementComponent/prescription-list-element.component';
 import { PatientPhysicalCheckHistoryComponent } from './PatientPhysicalCheckHistoryComponent/patient-physical-check-history.component';
+import { DiagnosisDetailComponent } from './DiagnosisDetailComponent/diagnosis-detail.component';
 //TODO: query state from user
 let redirectToPathLastPage: string = 'manage_patient';
 
@@ -35,9 +36,9 @@ const appRoutes: Routes = [
   {
     path: 'manage',
     component: StaffComponent,
-    children:[
-      { 
-        path:'',
+    children: [
+      {
+        path: '',
         redirectTo: redirectToPathLastPage,
         pathMatch: 'full'
       },
@@ -96,9 +97,21 @@ const appRoutes: Routes = [
       {
         path: 'patient/check/:hn',
         component: PatientPhysicalCheckHistoryComponent
+      },
+      {
+        path: 'patient/element/:hn',
+        component: DiagnosisDetailComponent
+      },
+      {
+        path: 'diagnosis/resault/:hn',
+        component: DiagnosisDetailComponent
+      },
+      {
+        path: 'diagnosis/detail/:hn',
+        component: DiagnosisDetailComponent
       }
-      ]
-    }  
+    ]
+  }
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes);
