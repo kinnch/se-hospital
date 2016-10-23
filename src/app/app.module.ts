@@ -1,9 +1,13 @@
-import {NgModule}      from '@angular/core';
-import {BrowserModule} from '@angular/platform-browser';
+import { NgModule }      from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule }   from '@angular/forms';
 import { HttpModule }    from '@angular/http';
+import { RouterModule } from '@angular/router';
+import { AppComponent } from './app.component';
+import { routing } from './app.routing';
+import { LoggedInGuard } from './logged-in.guard';
+import { UserService } from '../services/user.service';
 
-import {AppComponent}  from './app.component';
 import {PatientComponent} from './PatientComponent/patient.component';
 import {StaffComponent} from './StaffComponent/staff.component';
 import { ManagePatientComponent }   from './ManagePatientComponent/manage-patient.component';
@@ -18,7 +22,8 @@ import { PatientAppointmentComponent } from './PatientAppointmentComponent/patie
 import { AppointmentListComponent } from './AppointmentListComponent/appointment-list.component';
 import { PatientDetailComponent } from './PatientDetailComponent/patient-detail.component';
 import { PatientPhysicalCheckComponent } from './PatientPhysicalCheckComponent/patient-physical-check.component';
-import { routing } from './app.routing';
+import { ManageDoctorCalendarComponent} from './ManageDoctorCalendarComponent/manage-doctor-calendar.component';
+import { CalendarContainerComponent} from './CalendarContainerComponent/calendar-container.component';
 import { DoctorCalendarComponent } from './DoctorCalendarComponent/doctor-calendar.component';
 import { ModalComponent } from './ModalComponent/modal.component';
 import { MakeAppointComponent } from './MakeAppointmentComponent/make-appointment.component';
@@ -38,6 +43,7 @@ import { AddDiagnosisComponent } from './AddDiagnosisComponent/add-diagnosis.com
 import { AddHospitalEmployeeComponent } from './AddHospitalEmployeeComponent/add-hospital-employee.component';
 import { EditPrescriptionComponent } from './EditPrescriptionComponent/edit-prescription.component';
 import { PrescriptionFormComponent } from './PrescriptionFormComponent/prescription-form.component';
+import { PatientPanelComponent } from './PatientPanelComponent/patient-panel.component';
 
 import { PrescriptionService } from '../services/prescription.service';
 import { PatientService } from '../services/patient.service';
@@ -50,10 +56,10 @@ import { DepartmentService } from '../services/department.service';
 @NgModule({
     imports:        [
         BrowserModule,
-        BrowserModule,
         FormsModule,
         routing,
-        HttpModule
+        HttpModule,
+        // RouterModule.forRoot(routing)
                     ],
     declarations:   [
         AppComponent,
@@ -89,8 +95,11 @@ import { DepartmentService } from '../services/department.service';
         AddDiagnosisComponent,
         AddHospitalEmployeeComponent,
         EditPrescriptionComponent,
-        PrescriptionFormComponent
-
+        PrescriptionFormComponent,
+        ManageDoctorCalendarComponent,
+        DoctorCalendarComponent,
+        CalendarContainerComponent,
+        PatientPanelComponent
         ],
     providers:      [
         PrescriptionService,
@@ -98,7 +107,9 @@ import { DepartmentService } from '../services/department.service';
         AppointmentService,
         PhysicalCheckService,
         HospitalEmployeeService,
-        DepartmentService
+        DepartmentService,
+        UserService,
+        LoggedInGuard
     ],
     bootstrap:      [
         AppComponent
