@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+var passportLocalMongoose = require('passport-local-mongoose');
 
 var hospitalEmployeeSchema = mongoose.Schema({
         name: {
@@ -29,6 +30,8 @@ var hospitalEmployeeSchema = mongoose.Schema({
         }
     });
 
+var options = ({usernameField: "userName"});
+hospitalEmployeeSchema.plugin(passportLocalMongoose,options);
 var HospitalEmployee = mongoose.model('HospitalEmployee', hospitalEmployeeSchema);
 
 module.exports = HospitalEmployee;

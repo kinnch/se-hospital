@@ -5,15 +5,13 @@ var cookieParser = require('cookie-parser');
 var session = require('express-session');
 
 var Staff = require('../model/staff');
+var HospitalEmployee = require("../model/hospitalEmployee");
 var staffController = require('../controllers/staff');
 
 module.exports = function(app) {
-    //var patientController = require('../controllers/patient');
-    //app.get('/test',ensureAuthenticated, patientController.testt);
-   
 
     //initialize passport
-    passport.use(Staff.createStrategy());
+    passport.use(HospitalEmployee.createStrategy());
     // use static serialize and deserialize of model for passport session support
     passport.serializeUser(Staff.serializeUser());
     passport.deserializeUser(Staff.deserializeUser());
@@ -30,10 +28,7 @@ module.exports = function(app) {
 
     //patientController.setDBConnectionsFromApp(app);
 
-    app.post('/login', staffController.login);
-    app.post('/register', staffController.register);
-    app.get('/login', staffController.getLogin)
-
+   
      var patientController = require('../controllers/patient');
     app.get('/test',staffController.checkAuth, patientController.testt);
 
@@ -49,16 +44,12 @@ module.exports = function(app) {
 
     var hospitalEmployeeController = require('../controllers/hospitalEmployeeController');
     app.post('/api/hospitalEmployee/isInSystem',  hospitalEmployeeController.isInSystem);
+    app.post('/api/hospitalEmployee/add',  hospitalEmployeeController.add);
     //patientController.setDBConnectionsFromApp(app);
 
-    function ensureAuthenticated(req, res, next){
-        // console.log(req.isAuthenticated);
-        console.log(req);
-        if(req.user){
-            return next();
-        } else {
-            res.redirect('/users/login');
-        }
-    }
+    app.post('/login', hospitalEmployeeController.login);
+    app.post('/register', hospitalEmployeeController.register);
+    app.get('/login', hospitalEmployeeController.getLogin)
+
 }
 
