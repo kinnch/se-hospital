@@ -13,4 +13,7 @@ export class PrescriptionListElementComponent{
     @Input() data : PrescriptionListElement ; //(0)หมอต้องแก้ Doctor needs to edit (1)หมอจ่ายมา Doctor prescipe, (2)เภสัชจ่ายแล้ว 
     constructor(private router: Router) {
     }
+    gotoPage(hn):void{      
+        this.router.navigate(['manage','prescription_request',hn]);
+    }
 }

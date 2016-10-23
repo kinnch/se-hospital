@@ -27,12 +27,22 @@ import { DiagnosisHistoryComponent } from './DiagnosisHistoryComponent/diagnosis
 import { PrescriptionHistoryComponent } from './PrescriptionHistoryComponent/prescription-history.component';
 import { EditPrescriptionRequestComponent} from './EditPrescriptionRequestComponent/edit-prescription-request.component';
 import { PrescriptionListElementComponent } from './PrescriptionListElementComponent/prescription-list-element.component';
-import { PrescriptionService } from '../services/prescription.service';
-import { PatientService } from '../services/patient.service';
 import { PatientPhysicalCheckHistoryComponent } from './PatientPhysicalCheckHistoryComponent/patient-physical-check-history.component';
+import { PatientDetailElementComponent } from './PatientDetailElementComponent/patient-detail-element.component';
+import { DiagnosisDetailResultComponent } from './DiagnosisDetailResultComponent/diagnosis-detail-result.component';
+import { DiagnosisDetailComponent } from './DiagnosisDetailComponent/diagnosis-detail.component';
 import { StaffLoginComponent } from './StaffLoginComponent/staff-login.component';       
 import { PrescriptionTableComponent } from './PrescriptionTableComponent/prescription-table.component';
 import { LoginComponent } from './LoginComponent/login.component';
+import { AddDiagnosisComponent } from './AddDiagnosisComponent/add-diagnosis.component';
+import { AddHospitalEmployeeComponent } from './AddHospitalEmployeeComponent/add-hospital-employee.component';
+import { EditPrescriptionComponent } from './EditPrescriptionComponent/edit-prescription.component';
+import { PrescriptionFormComponent } from './PrescriptionFormComponent/prescription-form.component';
+
+import { PrescriptionService } from '../services/prescription.service';
+import { PatientService } from '../services/patient.service';
+import { AppointmentService } from '../services/appointment.service';
+import { PhysicalCheckService } from '../services/physical-check.service';
 
 @NgModule({
     imports:        [
@@ -67,13 +77,23 @@ import { LoginComponent } from './LoginComponent/login.component';
         EditPrescriptionRequestComponent,
         PrescriptionListElementComponent,
         PatientPhysicalCheckHistoryComponent,
+        DiagnosisDetailComponent,
+        PatientDetailElementComponent,
+        DiagnosisDetailResultComponent,
         StaffLoginComponent,
         PrescriptionTableComponent,
-        LoginComponent
+        LoginComponent,
+        AddDiagnosisComponent,
+        AddHospitalEmployeeComponent,
+        EditPrescriptionComponent,
+        PrescriptionFormComponent
+
         ],
     providers:      [
         PrescriptionService,
-        PatientService
+        PatientService,
+        AppointmentService,
+        PhysicalCheckService
     ],
     bootstrap:      [
         AppComponent

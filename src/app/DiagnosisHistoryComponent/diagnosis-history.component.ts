@@ -8,7 +8,15 @@ import { Router } from '@angular/router';
 
 export class DiagnosisHistoryComponent {
     constructor(private router: Router) {}
-      gotoPage(hn):void{      
-        this.router.navigate(['manage','patient','check',hn]);
+      gotoPage(hn,choice):void{
+        let link = ['manage'];
+        if(choice == 1){
+            link = ['manage','patient','check',hn];
+        } else if(choice == 2){
+            link = ['manage','diagnosis','detail',hn];
+        } else if(choice == 3){
+            link = ['manage','diagnosis','add',hn];
+        }
+      this.router.navigate(link);
     }
 }

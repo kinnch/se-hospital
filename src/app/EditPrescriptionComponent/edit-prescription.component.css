@@ -1,25 +1,22 @@
-.container{
+.container {
     background-color: #ffffff;
+    border: 0;
     -webkit-border-radius: 2px;
     -moz-border-radius: 2px;
     border-radius: 2px;
     -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2), 0 1px 1px rgba(0,0,0,0.1);
     box-shadow: 0 1px 0 rgba(0,0,0,.2), 0 1px 1px rgba(0,0,0,.1);
-    margin-bottom: 50px;
 }
 
-.back{
+a{
+    cursor: pointer;
     color: #4286F7 !important;
 }
 
-a:hover {
-    text-decoration: none;
-    cursor: pointer;
+.contain{
+    margin: 0 10%;
 }
 
-/*#save{
-    margin: 0 auto;
-    display: block;
-    width: 30%;
-    min-width: 100px
-}*/
+.right {
+    text-align: right;
+}

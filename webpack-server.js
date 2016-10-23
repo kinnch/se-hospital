@@ -6,8 +6,8 @@ var compiler = webpack(config);
 function serve(PORT , PORT2) {
   var server = new webpackDevServer(compiler, {
     hot: true,
-    quiet: false,
-    noInfo: false,
+    quiet: true,
+    noInfo: true,
     color: true,
     stats: { color: true },
     proxy: {

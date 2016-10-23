@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 })
 
 export class AppointmentListComponent{
+    @Input() data:JSON;
     constructor(private router: Router) {
     }
 }

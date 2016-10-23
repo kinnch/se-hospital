@@ -1,24 +1,24 @@
-<div class = "row">
+<div class = "row" *ngIf="found">
     <div class = "col-md-6">
         <h5>ทะเบียนผู้ป่วย</h5>
         <div class="card">
             <div class="card-header">
-                ณพล เมฆาวุฒิกุล
+                {{data['patientdata']['name']['title']}}{{data['patientdata']['name']['fname']}} {{data['patientdata']['name']['lname']}}
             </div>
         <div class="card-block">
             <blockquote class="card-blockquote">
-            <p><i class="fa fa-phone" aria-hidden="true"></i>  084-084-1184</p>
-            <p><i class="fa fa-envelope" aria-hidden="true"></i>  <a href ="mailto:napon.meka@gmail.com">napon.meka@gmail.com </a></p>
+            <p><i class="fa fa-phone" aria-hidden="true"></i>  {{data['patientdata']['tel']}} </p>
+            <p><i class="fa fa-envelope" aria-hidden="true"></i>  <a href ="mailto:{{data['patientdata']['email']}}">{{data['patientdata']['email']}} </a></p>
             <hr>
-            <p>246 หมู่บ้านสาทรแมนชั่น1 ถนนกรุงธนบุรี</p>
-            <p>คลองต้นไทร คลองสาน</p>
-            <p>กทม. 10600</p>
+            <p>{{data['patientdata']['address']['detail']}}</p>
+            <p>{{data['patientdata']['address']['subDistrict']}} {{data['patientdata']['address']['distict']}}</p>
+            <p>{{data['patientdata']['address']['province']}} {{data['patientdata']['address']['postCode']}}</p>
             </blockquote>
         </div>
         </div>
     </div>
     <div class = "col-md-6">
         <h5>รายการนัดทั้งหมด <a routerLink="create_appointment"><button type="submit" class="btn btn-success">+เพิ่มนัดหมายใหม่</button></a></h5>
-        <appointment-list-c></appointment-list-c>
+        <appointment-list-c [data]="data"></appointment-list-c>
     </div>
 </div>
