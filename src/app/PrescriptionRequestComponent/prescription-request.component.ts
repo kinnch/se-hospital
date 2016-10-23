@@ -10,6 +10,7 @@ import { PrescriptionListElement } from '../../models/prescription-list-element'
 })
 
 export class PrescriptionRequestComponent{
+    role: string = 'pharmacist';
     isReject : boolean = false;
     data: PrescriptionListElement[]; 
     constructor(private router: Router, private prescriptionService: PrescriptionService) {

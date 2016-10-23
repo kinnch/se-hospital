@@ -10,6 +10,7 @@ import { PrescriptionListElement } from '../../models/prescription-list-element'
 })
 
 export class EditPrescriptionRequestComponent{    
+    role: string = 'doctor';
     data: PrescriptionListElement[]; 
     constructor(private router: Router, private prescriptionService: PrescriptionService) {
         this.data=prescriptionService.getPrescriptionElements();
