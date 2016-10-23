@@ -19,8 +19,14 @@ var hospitalEmployeeSchema = mongoose.Schema({
             required: true
         },
         lastPage: String,
-        userName: String,
-        password: String, //hash
+        userName:{
+            type: String,
+            required: true
+        },
+        password:{
+            type: String, //hash
+            required: true
+        }
     });
 
 var HospitalEmployee = mongoose.model('HospitalEmployee', hospitalEmployeeSchema);
