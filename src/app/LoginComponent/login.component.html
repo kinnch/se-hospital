@@ -1,0 +1,37 @@
+<a class="back" (click)="goBack()">< ย้อนกลับ</a>
+<div class = "container">
+    <div class = "col-sm-12 patient-login-area"> 
+        <div class="card login-block center-block">
+        <!--<img class="card-img-top" src="" alt="Card image cap">-->
+        <div class="card-block">
+            <div class="row">
+                <h2 class="card-title text-center">เข้าสู่ระบบ</h2>
+            </div>
+            <div class="text-center" style="margin: 20px auto;">
+                <i class="fa fa-users fa-lg fa-4x"></i>
+            </div>
+            <!--<p class="card-text">-->
+
+            <!--<form class="form-inline">            -->
+                <div class="form-signin">
+                    <!--<label for="labelPatientIdentifier">รหัส HN หรือ รหัสบัตรประชาชน</label>-->
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="inputPatientIdentifier" placeholder="กรอกรหัส HN หรือรหัสบัตรประชาชน" style="margin-bottom: 10px important!;" required>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="form-control btn btn-primary btn-block">เข้าสู่ระบบ</button>
+                    </div>
+                </div>
+            <!--</form>-->
+            <!--</p>-->
+            
+            <hr style="margin: 20px auto;">
+            
+            <form class="form-inline">
+                <p class="pull-left">กรณีเป็นผู้ป่วยใหม่</p>
+                <a routerLink="/register" class="btn btn-primary pull-right">ลงทะเบียนใหม่</a>
+            </form>
+        </div>
+        </div>
+    </div>
+</div>
