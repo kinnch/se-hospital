@@ -1,12 +1,15 @@
 module.exports = function(app) {
-    var patientController = require('../controllers/patient');
-    app.get('/test',ensureAuthenticated, patientController.testt);
+    //var patientController = require('../controllers/patient');
+    //app.get('/test',ensureAuthenticated, patientController.testt);
 
-    var patientController2 = require('../controllers/patientController');
-    app.get('/testing',  patientController2.testing);
+    var patientController = require('../controllers/patientController');
+    app.get('/testing',  patientController.testing);
+    app.post('/api/patient/search',  patientController.search);
 
     var seederController = require('../controllers/seederController');
     app.get('/seed',  seederController.seed);
+
+    
 
     //patientController.setDBConnectionsFromApp(app);
 
