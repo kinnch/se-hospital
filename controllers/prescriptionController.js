@@ -16,39 +16,44 @@ var Diagnosis = require("../model/diagnosis");
 var Patient = require("../model/patient");
 var Drug = require("../model/drug");
 
-exports.showForPharma = function(reg, res){
-    /*
-    var data = (reg.body.department);
-    Department.findOne({
-        name: data
-    }, function(err, department){
-        if (err) return console.error(err);
-        if(department == null){
-            if(data == 'ทั้งหมด'){
-                res.send('DONE');
-            }
-        }
-        else{
-            res.send('OH');
-        }
+exports.showAll = function(reg, res){
+    Patient.find({},function(err, all_patient){
+        Schedule.find({
+        }, function (err,result){
+        }).populate('doctor').exec(function(err, data){
+            //res.send(result);
+            //return;
+            var option = {
+                path: 'doctor.department',
+                model: 'Department'
+            };
+            Schedule.populate(data, option, function(err, Schedules){
+                var formated_data = [];
+                for(var i = 0; i < Schedules.length; i++){
+                    var patient_list = [];
+                    for(var j = 0; j < Schedules[i].appointments.length; j++){
+                        for(var k = 0; k < all_patient.length; k++){
+                            if(all_patient[k]._id+'' == Schedules[i].appointments[j].patient+''){
+                                patient_list.push(all_patient[k]);
+                            }
+                        }
+                    }
+                    var element = {
+                        Schedules : Schedules[i],
+                        patient_list: patient_list
+                    }
+                    formated_data.push(element);
+                }
+                res.send(formated_data);
+                return;
+            });
+        });
     });
-    return;
-    */
+
 }
 
 exports.showInDepartment = function(reg, res){
-    /*
-    var data = (reg.body.department);
-    if(data != 'ทั้งหมด'){
-        Schedule.find({
-            date: 
-        })
-    }
-    else{
 
-    }
-    return;
-    */
 }
 
 exports.showHistory = function(reg, res){
@@ -83,4 +88,33 @@ exports.showHistory = function(reg, res){
         });
     });
     return;
+}
+
+exports.updateStatus = function(reg, res){
+    Prescription.findOne({_id: reg.body.id}, function(err, prescription){
+        prescription.status = reg.body.status;
+        prescription.save();
+        res.send('done');
+    });
+    return;
+}
+
+exports.changeRequest = function(reg, res){
+    Prescription.findOne({_id: reg.body.id}, function(err, prescription){
+        prescription.note = reg.body.reason;
+        prescription.save();
+        res.send('done');
+    });
+    return;
+}
+
+function getDateNow(){
+    var this_date = new Date(new Date().getTime() + 7 * 3600 * 1000);
+    this_date = new Date(this_date.getFullYear()+'-'+(this_date.getMonth() + 1)+"-"+this_date.getDate());
+    return this_date;
+}
+exports.allPrescription = function(reg, res){
+    Diagnosis.find({date: getDateNow() }, function(err, diagnosises){
+           res.send(diagnosises); 
+    });
 }
