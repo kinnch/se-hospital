@@ -133,16 +133,20 @@ exports.add = function(req, res){
 }
 
 exports.showDoctorList = function (req, res){
-    Department.find({name: req.body.department}, function(err, department){
-        return 'Hello';
+    Department.findOne({name: req.body.department}, function(err, department){
         if(err) console.log(err);
-        HospitalEmployee.find({department: department._id}, function(err, doctors){
-            var doctors_id = [];
-            for(var i = 0; i < doctors.length; i++){
-                doctors_id.push(doctors[i]._id);
+        //res.send(department);
+        //return;
+        HospitalEmployee.find({
+            department: department._id,
+            roleID: 2
+        }).select('_id').exec(function (err, result){
+            var item_list = [];
+            for(var i = 0; i < result.length; i++){
+                item_list.push(result[0]._id);
             }
-            res.send(doctors_id);
+            res.send(item_list);
             return;
-        })
+        });
     });
 }

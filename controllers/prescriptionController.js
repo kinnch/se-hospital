@@ -58,11 +58,9 @@ exports.showAll = function(reg, res){
 
 exports.showInDepartment = function(reg, res){
     res.send(getAllDoctorInDepartment(reg.body.department));
-    return;
-    /*
     Patient.find({},function(err, all_patient){
         Schedule.find({
-            doctor: { $in: getAllDoctorInDepartment(reg.body.department)}
+            doctor: { $in: getAllDoctorInDepartment(reg.body.doctorList)}
         }, function (err,result){
         }).populate('doctor').exec(function(err, data){
             //res.send(result);
@@ -93,7 +91,6 @@ exports.showInDepartment = function(reg, res){
             });
         });
     });
-    */
 }
 
 exports.showHistory = function(reg, res){

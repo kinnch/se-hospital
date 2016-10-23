@@ -3,6 +3,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { Router } from '@angular/router';
 import { PatientService } from '../../services/patient.service';
 import { AppointmentService } from '../../services/appointment.service';
+import * as moment from 'moment';
 @Component({
     selector: 'patient-list-c',
     template: require('./patient-list.component.html'),
@@ -38,7 +39,9 @@ export class PatientListComponent{
                     title = data['appointments'][i]['patient_list'][j]['name']['title'];
                     fname = data['appointments'][i]['patient_list'][j]['name']['fname'];
                     lname = data['appointments'][i]['patient_list'][j]['name']['lname'];
-                    
+                    var years = moment().diff(birthdate, 'years');
+                    // var months = moment().diff(birthdate, 'months');
+                    birthdate = ''+years+' ปี';
                     var oneData = {
                                     title: title,
                                     fname: fname,
