@@ -13,8 +13,8 @@ module.exports = function(app) {
     //initialize passport
     passport.use(HospitalEmployee.createStrategy());
     // use static serialize and deserialize of model for passport session support
-    passport.serializeUser(Staff.serializeUser());
-    passport.deserializeUser(Staff.deserializeUser());
+    passport.serializeUser(HospitalEmployee.serializeUser());
+    passport.deserializeUser(HospitalEmployee.deserializeUser());
 
     //need this according to passport guide
     app.use(cookieParser());

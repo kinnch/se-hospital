@@ -1,5 +1,13 @@
+.back{
+    color: #4286F7 !important;
+}
+a:hover {
+    text-decoration: none;
+    cursor: pointer;
+}
 .patient-login-area {
     padding: 8rem 3rem;
+    margin: 3rem;
 }
 .login-block{
     width: 30%;

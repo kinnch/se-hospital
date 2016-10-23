@@ -23,10 +23,6 @@ var hospitalEmployeeSchema = mongoose.Schema({
         userName:{
             type: String,
             required: true
-        },
-        password:{
-            type: String, //hash
-            required: true
         }
     });
 
