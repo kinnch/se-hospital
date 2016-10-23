@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {Router} from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
     selector: 'login-c',
@@ -8,14 +9,13 @@ import {Router} from '@angular/router';
 })
 
 export class LoginComponent {
-    constructor(private router: Router) {
+    constructor(private router: Router, private location: Location) {
 
     }
     login():void {
         
     }
-    gotoRegister():void {
-        let link = ['register'];
-        this.router.navigate(link);
+    goBack(): void {
+        this.location.back();
     }
 }
