@@ -8,7 +8,7 @@ import { DoctorDateElementService } from '../../services/doctor-date-element.ser
 })
 
 export class DoctorCalendarComponent implements AfterViewInit, OnInit {
-    constructor(private elementService : DoctorDateElementService){
+    constructor(private elementService: DoctorDateElementService){
 
     }
     ngOnInit(){
