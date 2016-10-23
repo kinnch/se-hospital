@@ -35,7 +35,7 @@ import { DiagnosisDetailResaultComponent } from './DiagnosisDetailResaultCompone
 import { DiagnosisDetailComponent } from './DiagnosisDetailComponent/diagnosis-detail.component';
 import { StaffLoginComponent } from './StaffLoginComponent/staff-login.component';       
 import { PrescriptionTableComponent } from './PrescriptionTableComponent/prescription-table.component';
-
+import { AddDiagnosisComponent } from './AddDiagnosisComponent/add-diagnosis.component';
 
 @NgModule({
     imports:        [
@@ -74,7 +74,8 @@ import { PrescriptionTableComponent } from './PrescriptionTableComponent/prescri
         PatientDetailElementComponent,
         DiagnosisDetailResaultComponent,
         StaffLoginComponent,
-        PrescriptionTableComponent
+        PrescriptionTableComponent,
+        AddDiagnosisComponent
         ],
     providers:      [
         PrescriptionService,
