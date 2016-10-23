@@ -43,6 +43,7 @@ import { AddDiagnosisComponent } from './AddDiagnosisComponent/add-diagnosis.com
 import { AddHospitalEmployeeComponent } from './AddHospitalEmployeeComponent/add-hospital-employee.component';
 import { EditPrescriptionComponent } from './EditPrescriptionComponent/edit-prescription.component';
 import { PrescriptionFormComponent } from './PrescriptionFormComponent/prescription-form.component';
+import { PatientPanelComponent } from './PatientPanelComponent/patient-panel.component';
 
 import { PrescriptionService } from '../services/prescription.service';
 import { PatientService } from '../services/patient.service';
@@ -94,8 +95,8 @@ import { PhysicalCheckService } from '../services/physical-check.service';
         PrescriptionFormComponent,
         ManageDoctorCalendarComponent,
         DoctorCalendarComponent,
-        CalendarContainerComponent
-
+        CalendarContainerComponent,
+        PatientPanelComponent
         ],
     providers:      [
         PrescriptionService,

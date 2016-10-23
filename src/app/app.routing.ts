@@ -28,7 +28,7 @@ import { AddDiagnosisComponent } from './AddDiagnosisComponent/add-diagnosis.com
 import { AddHospitalEmployeeComponent } from './AddHospitalEmployeeComponent/add-hospital-employee.component';
 import { DiagnosisDetailComponent } from './DiagnosisDetailComponent/diagnosis-detail.component'; 
 import { EditPrescriptionComponent } from './EditPrescriptionComponent/edit-prescription.component';
-
+import { PatientPanelComponent } from './PatientPanelComponent/patient-panel.component';
 
 //TODO: query state from user
 let redirectToPathLastPage: string = 'manage_patient';
@@ -56,6 +56,14 @@ const appRoutes: Routes = [
       {
         path: 'p_register',
         component: RegisterComponent
+      },
+      {
+        path: 'patient',
+        component: PatientPanelComponent
+      },
+      {
+        path: 'patient/create_appointment',
+        component: MakeAppointComponent
       }
     ]
   },
