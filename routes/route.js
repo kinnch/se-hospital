@@ -62,6 +62,9 @@ module.exports = function(app) {
     var scheduleController = require('../controllers/scheduleController');
     app.post('/api/schedule/getTable',  scheduleController.getTable);
 
+    var diagnosisDataController = require('../controllers/diagnosisDataController');
+    app.post('/api/diagnosisHistory', diagnosisDataController.diagnosisHistory);
+
     //patientController.setDBConnectionsFromApp(app);
     //-----bone not testing zone-----
     app.get('/api/employees',hospitalEmployeeController.getAllEmployee);
