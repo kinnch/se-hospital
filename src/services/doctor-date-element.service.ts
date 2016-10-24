@@ -18,7 +18,7 @@ export class DoctorDateElementService {
         return Promise.reject(error.message || error);
     }
 
-    getDoctorDateElements() : Promise<JSON> {
+    getDoctorDateElements() : Promise<any> {
          return this.http
                     .post(this.apiUrl, {headers: this.headers})
                     .toPromise()
