@@ -57,10 +57,9 @@ exports.showAll = function(reg, res){
 }
 
 exports.showSomeDoctors = function(reg, res){
-    res.send(getAllDoctorInDepartment(reg.body.department));
     Patient.find({},function(err, all_patient){
         Schedule.find({
-            doctor: { $in: getAllDoctorInDepartment(reg.body.doctorList)},
+            doctor: { $in: (reg.body.doctorList)},
             date: getDateNow()
         }, function (err,result){
         }).populate('doctor').exec(function(err, data){
@@ -120,9 +119,11 @@ exports.showHistory = function(reg, res){
                     data: data[i],
                     drug_list: drug_list
                 });
+                
             }
-                return aligh_data;
-            }).then(function(last_data){ res.send({history:last_data}); return; });
+                res.send(aligh_data);
+                return;
+            });
         });
     });
     return;
