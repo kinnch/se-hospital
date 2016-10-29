@@ -4,7 +4,18 @@ var chalk = require('chalk');
 
 //require("./model/patient.js");
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/test');
+var MONGO_DB;
+var DOCKER_DB = process.env.DB_PORT;
+if ( DOCKER_DB ) {
+  MONGO_DB = DOCKER_DB.replace( 'tcp', 'mongodb' ) + '/test';
+} else {
+  // MONGO_DB = process.env.MONGODB;
+  MONGO_DB = 'mongodb://localhost:27017/test'
+}
+var retry = 0;
+mongoose.connect(MONGO_DB);
+
+//mongoose.connect('mongodb://0.0.0.0/test');
 
 var db = mongoose.connection;
       db.on('error', console.error.bind(console, 'connection error:'));
