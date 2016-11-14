@@ -17,8 +17,8 @@ import { Component, Input, trigger, animate, state, style, transition , OnChange
        <ng-content></ng-content>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" (click)="modalClose()">Close</button>
-        <button type="button" class="btn btn-primary" (click)="callCallback()" >Save changes</button>
+        <button type="button" class="btn btn-secondary" (click)="callCallbackCancel()">{{close}}</button>
+        <button type="button" class="btn btn-primary" (click)="callCallbackSuccess()" >{{success}}</button>
       </div>
     </div>
   </div>
@@ -36,7 +36,10 @@ export class ModalComponent implements AfterViewInit {
     @Input() size : string = "";
     @Input() id : string = "";
     @Input() title : string = "";
-    @Input() callback: Function;
+    @Input() success : string = "บันทึก";
+    @Input() close : string = "ยกเลิก";
+    @Input() callbackSuccess: Function = function(){ console.log("do not thing : success")};
+    @Input() callbackCancel: Function = function(){ console.log("do not thing : cancel")};
     sizeClass : string = "";
     modal;
     modalOpen(){
@@ -46,7 +49,12 @@ export class ModalComponent implements AfterViewInit {
         console.log("close");
         this.modal.modal('hide')
     }
-    callCallback(){
-        this.callback();
+    callCallbackSuccess(){
+        this.modal.modal('hide')
+        this.callbackSuccess();
+    }
+    callCallbackCancel(){
+        this.modal.modal('hide')
+        this.callbackCancel();
     }
 }
