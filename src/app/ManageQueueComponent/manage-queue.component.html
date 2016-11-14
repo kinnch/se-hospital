@@ -1,11 +1,13 @@
 <h3>รายชื่อผู้ป่วยวันนี้</h3>
 <hr>
+
 <div class="horizontal-container">
-    <div>
-            <patient-list-c></patient-list-c>
-            <patient-list-c></patient-list-c>
-            <patient-list-c></patient-list-c>
-            <patient-list-c></patient-list-c>
+    <div>        
+            <patient-list-c *ngFor="let x of [1,2,3,4,5]" [roomNo]="x"></patient-list-c>
+            <!--<patient-list-c style="height:85%" [roomNo]="2"></patient-list-c>
+            <patient-list-c style="height:85%" [roomNo]="3"></patient-list-c>
+            <patient-list-c style="height:85%" [roomNo]="4"></patient-list-c>-->
+
     </div>
     
 </div>

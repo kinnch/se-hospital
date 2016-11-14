@@ -1,43 +1,4 @@
 <div class="diagnosis">
-
-	<hr _ngcontent-vsw-5="">
-	<div _ngcontent-bir-6="" class="row">
-		<div _ngcontent-bir-6="" class="col-md-12">
-			<h5 _ngcontent-bir-6="">ข้อมูลการตรวจร่างกายเบื้องต้น</h5>
-			<div _ngcontent-bir-6="" class="card">
-				<div _ngcontent-bir-6="" class="card-block">
-					<blockquote _ngcontent-bir-6="" class="card-blockquote">
-						<div class="row">
-							<div class="col-md-4">
-								<p>น้ำหนัก (กก.) : </p>
-							</div>
-							<div class="col-md-4">
-								<p>ส่วนสูง (ซม.) : </p>
-							</div>
-							<div class="col-md-4">
-								<p>อุณหภูมิ (องศา) : </p>
-							</div>
-						</div>
-                        <div class="row">
-							<div class="col-md-4">
-								<p>อัตราการเต้นหัวใจ : </p>
-							</div>
-							<div class="col-md-4">
-								<p>ความดันช่วงบีบ : </p>
-							</div>
-							<div class="col-md-4">
-								<p>ความดันช่วงคลาย : </p>
-							</div>
-						</div>
-						<button class="btn btn-primary pull-right" role="button" (click)="gotoPage(5,1)">ดูรายละเอียดทั้งหมด</button>
-					</blockquote>
-				</div>
-			</div>
-		</div>
-	</div>
-	<button id="detail" type="button" class="btn btn-success" (click)="gotoPage(7,3)">เพิ่มการวินิจฉัย</button>
-	<button id="detail" type="button" class="btn btn-warning" (click)="gotoPage(8,4)">นัดหมายครั้งต่อไป</button>
-	<hr _ngcontent-vsw-5="">
 	<div _ngcontent-bir-6="" class="row">
 		<div _ngcontent-bir-6="" class="col-md-12">
 			<h5 _ngcontent-bir-6="">ประวัติการรักษา</h5>
@@ -55,17 +16,17 @@
 								<tbody>
 									<tr>
 										<th>01/10/59</th>
-										<td><button class="btn btn-info pull-right" role="button" (click)="gotoPage(6,2)">ดูเพิ่มเติม</button>H1N1</td>
+										<td><button class="btn btn-info pull-right" role="button" (click)="gotoDetail(6,2)">ดูเพิ่มเติม</button>H1N1</td>
 
 									</tr>
 									<tr>
 										<th>17/08/59</th>
-										<td> <button class="btn btn-info pull-right" role="button" (click)="gotoPage(6,2)">ดูเพิ่มเติม</button>H1N1</td>
+										<td> <button class="btn btn-info pull-right" role="button" (click)="gotoDetail(6,2)">ดูเพิ่มเติม</button>H1N1</td>
 
 									</tr>
 									<tr>
 										<th>07/06/59</th>
-										<td> <button class="btn btn-info pull-right" role="button" (click)="gotoPage(6,2)">ดูเพิ่มเติม</button>H1N1</td>
+										<td> <button class="btn btn-info pull-right" role="button" (click)="gotoDetail(6,2)">ดูเพิ่มเติม</button>H1N1</td>
 
 									</tr>
 								</tbody>
@@ -79,3 +40,4 @@
 	</div>
 
 </div>
+
