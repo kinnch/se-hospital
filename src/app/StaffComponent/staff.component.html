@@ -17,7 +17,7 @@
    </ul>
 </header>
 
-<div class="vertical-nav" *ngIf="router.url != '/manage/login'">
+<div [class.vertical-nav-sm]="isExpandedNav == false" (click)="isExpandedNav = !isExpandedNav" class="vertical-nav" *ngIf="router.url != '/manage/login'">
    <button class="collapse-menu"><i class="fa fa-bars" aria-hidden="true"></i></button>
    <div class="user-details clearfix">
       <a class="user-img"><img src="{{userPic}}" class="img-responsive">
@@ -35,6 +35,6 @@
       <li *ngIf="userRoleId == '2'" [class.active]="(activatedClass===7)" [class.selected]="(activatedClass===7)"><a (click)="gotoPage(7)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> <span class="menu-item">รายการยาที่ต้องแก้ไข</span></a></li>            
    </ul>
 </div>
-<div [class.dashboard-wrapper-lg]="router.url!='/manage/login'" [class.dashboard-wrapper]="router.url!='/manage/login'" class="dashboard-wrapper dashboard-wrapper-lg">
+<div [class.dashboard-wrapper-sm]="isExpandedNav == false" [class.dashboard-wrapper-lg]="router.url!='/manage/login'" [class.dashboard-wrapper]="router.url!='/manage/login'" class="dashboard-wrapper dashboard-wrapper-lg">
     <router-outlet></router-outlet>
 </div>

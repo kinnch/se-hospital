@@ -61,7 +61,7 @@ export class StaffComponent{
                        
     }
     hn = '123456';
-    // isExpanded: Boolean = true;
+    isExpandedNav: Boolean = true;
     activatedClass = 1; //1 จัดการผู้ป่วย ,2,3,4
 
     gotoPage(menu):void{

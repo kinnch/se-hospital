@@ -729,7 +729,8 @@ ul#header-actions .dropdown-menu .dropdown-content a:hover {
     transition: all .3s ease-out
 }
 .dashboard-wrapper-sm {
-    margin-left: 200px;
+    margin-left: 90px !important;
+    padding-bottom: 0px !important;    
     -webkit-transition: all .3s ease-out;
     -moz-transition: all .3s ease-out;
     -ms-transition: all .3s ease-out;
@@ -2561,7 +2562,7 @@ ul.menu i {
     font-size: 20px;
     text-align: center
 }
-@media (min-width: 992px) {
+/*@media (min-width: 992px) {*/
     .collapse-menu {
         display: block
     }
@@ -2659,7 +2660,7 @@ ul.menu i {
     .vertical-nav-sm ul.menu .down-arrow {
         right: 0
     }
-}
+/*}*/
 .thumbs-sm {
     /*background: url(../img/thumbs-sm.png) no-repeat;*/
     width: 36px;
