@@ -29,10 +29,11 @@ export class PatientPhysicalCheckComponent implements OnInit {
     ngOnInit(): void {
         this.physicalCheckService.getPhysicalCheckHistory(this.HN).then((physicalData)=>{
             let physicalArray = physicalData['physical_check'];
+            console.log(">>",physicalData)            
             physicalArray.forEach((phy)=>{
                 phy.date = moment_().format('l'); 
-                console.log(physicalData)
             })
+            this.physicalData = physicalArray;
         });
     }
     addPhysicalCheck() {
