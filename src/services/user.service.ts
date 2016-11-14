@@ -28,6 +28,11 @@ export class UserService {
       .map((res) => {
         if (res.success) {
           localStorage.setItem('auth_token', res.auth_token);
+          localStorage.setItem('user_username', res.user.userName);
+          localStorage.setItem('user_roleID', res.user.roleID);
+          localStorage.setItem('user_title', res.user.name.title);
+          localStorage.setItem('user_fname', res.user.name.fname);
+          localStorage.setItem('user_lname', res.user.name.lname);
           this.loggedIn = true;
         }
 
