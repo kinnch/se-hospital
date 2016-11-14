@@ -1,4 +1,4 @@
-import { Component, AfterViewInit , OnInit } from '@angular/core';
+import { Component, AfterViewInit , OnInit, ViewChild } from '@angular/core';
 import { ModalComponent } from '../ModalComponent/modal.component';
 import { DoctorDateElementService } from '../../services/doctor-date-element.service';
 import * as moment from 'moment';
@@ -9,12 +9,19 @@ import * as moment from 'moment';
 })
 
 export class DoctorCalendarComponent implements AfterViewInit, OnInit {
+    @ViewChild( ModalComponent ) modal1: ModalComponent; 
     events: Object[] = [];
+    titleModal: string = "รายละเอียดการออกตรวจ";
+    numbers = Array(5).map((x,i)=>i);
+    isOperate: boolean  = true;
+    selectedEvent;
+
     constructor(private elementService: DoctorDateElementService){
        
     }
     ngOnInit(){
          jQuery('#stylehere').append("<style>" + require('./doctor-calendar.component.css')+"</style>");
+          moment.locale('th');
     }
     ngAfterViewInit () {
         this.fetchAndAdaptData();
@@ -45,6 +52,11 @@ export class DoctorCalendarComponent implements AfterViewInit, OnInit {
                     console.log('Event id : '+ calEvent.id);
                     console.log('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
                     console.log('View: ' + view.name);
+                    self.selectedEvent = calEvent;
+                    console.log( moment(new Date(calEvent.start)).format("ll"));
+                    console.log(moment.locale());
+                    self.titleModal = "รายละเอียดการออกตรวจของวันที่     "+ moment(new Date(calEvent.start)).format("ll");
+                    self.modal1.modalOpen();
                 },
                 dayClick: function () {
                 console.log('clicked');

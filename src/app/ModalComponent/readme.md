@@ -7,3 +7,4 @@ to open set id to tag modal e.g. <modal #modal1 [id]="'tmpid'" [title]="'some ti
 to open call modal1.modalOpen()
 [callbackSuccess]= fill in function name that need to be called back after บันทึก were hit ex [callbackSuccess]="somfuction"
 [callbackCancel]= fill in function name that need to be called back after ยกเลิก were hit ex [callbackCancel]="somfuction"
+[isShowFooter] boolean
