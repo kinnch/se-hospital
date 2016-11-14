@@ -15,6 +15,7 @@ var Schedule = require("../model/schedule");
 var Diagnosis = require("../model/diagnosis");
 var Patient = require("../model/patient");
 var Drug = require("../model/drug");
+var PrescriptionDrug  = require("../model/prescriptionDrug");
 
 function getDateNow(){
     var this_date = new Date(new Date().getTime() + 7 * 3600 * 1000);
@@ -23,6 +24,7 @@ function getDateNow(){
 }
 
 exports.showAll = function(reg, res){
+    //have to fix 
     Patient.find({},function(err, all_patient){
         Schedule.find({
             date: getDateNow()
@@ -57,6 +59,7 @@ exports.showAll = function(reg, res){
 }
 
 exports.showSomeDoctors = function(reg, res){
+    //have to fix 
     Patient.find({},function(err, all_patient){
         Schedule.find({
             doctor: { $in: (reg.body.doctorList)},
@@ -65,11 +68,11 @@ exports.showSomeDoctors = function(reg, res){
         }).populate('doctor').exec(function(err, data){
             //res.send(result);
             //return;
-            var option = {
+            var options = {
                 path: 'doctor.department',
                 model: 'Department'
             };
-            Schedule.populate(data, option, function(err, Schedules){
+            Schedule.populate(data, options, function(err, Schedules){
                 var formated_data = [];
                 for(var i = 0; i < Schedules.length; i++){
                     var patient_list = [];
@@ -93,7 +96,8 @@ exports.showSomeDoctors = function(reg, res){
     });
 }
 
-exports.showHistory = function(reg, res){
+exports.showHistory = function(req, res){  //have to fix
+    /*
     Drug.find({}, function(err, all_drug){
     Patient.findOne({HN: reg.body.HN}, function(err, patient){
         Diagnosis.find({patient: patient._id}, function(err, diagnosises){
@@ -126,13 +130,49 @@ exports.showHistory = function(reg, res){
             });
         });
     });
-    return;
+    */
+    Patient.findOne({HN: req.body.HN}, function(err, patient){
+            Diagnosis.find({patient: patient._id}).populate({
+                path: 'drugPrescription',
+                populate: {
+                    path: 'prescriptions',
+                    model: 'PrescriptionDrug',
+                    populate: {
+                        path: 'drug',
+                        model: 'Drug'
+                    }
+                }
+            }).exec( function(err, data){
+                res.send(data);
+                return;
+            });
+    });
+    /*
+    Patient.findOne({HN: req.body.HN}, function(err, patient){
+        Diagnosis.find({patient: patient._id}, function(err, diagnosises){
+        }).populate('drugPrescription').exec( function(err, data){
+
+                var option = {
+                    path: 'drugPrescription.prescriptions'
+                };
+
+                Diagnosis.populate(data, option, function(last_data){
+                    res.send(last_data);
+                    return;
+                });
+                //prescriptionDrug
+                //res.send(data);
+                //return;
+            
+            });
+        });
+        */
 }
 
 exports.updateStatus = function(reg, res){
     Prescription.findOne({_id: reg.body.id}, function(err, prescription){
         prescription.status = reg.body.status;
-        prescription.save();
+        prescription.save(); 
         res.send('done');
     });
     return;
