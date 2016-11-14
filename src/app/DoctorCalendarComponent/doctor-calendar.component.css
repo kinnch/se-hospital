@@ -500,7 +500,7 @@ temporary rendered events).
 
 /*//kinnch*/
 .fc-state-highlight::after{
-	content: "Today";
+	content: "วันนี้";
 	text-align: left;
 	margin-left: 5px;
 	font-weight: bold;
