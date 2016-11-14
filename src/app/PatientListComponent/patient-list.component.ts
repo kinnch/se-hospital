@@ -11,6 +11,7 @@ import * as moment from 'moment';
 })
 
 export class PatientListComponent{
+    @Input() roomNo:string;
     department: string = 'ศัลยกรรม';
     notHereApt = [];
     printedApt = [];

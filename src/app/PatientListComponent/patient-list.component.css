@@ -17,6 +17,11 @@
 /*--------------
       Card
 ---------------*/
+.mycon{
+  margin-left:0px !important;
+  margin-right:0px !important;
+  padding-top:1.5em !important;
+}
 .patientlist{
     width:100% !important;
     margin-bottom: 1em !important;
