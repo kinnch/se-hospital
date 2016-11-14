@@ -60,6 +60,7 @@ export class StaffComponent{
         this.loggedIn=false;
         this.router.navigate(['manage','login']);
     }
+    
     // navToggle(){
     //     console.log("pohfy"); 
     // }
