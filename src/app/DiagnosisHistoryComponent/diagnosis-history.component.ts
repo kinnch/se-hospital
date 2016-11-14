@@ -7,18 +7,10 @@ import { Router } from '@angular/router';
 })
 
 export class DiagnosisHistoryComponent {
-    constructor(private router: Router) {}
-      gotoPage(hn,choice):void{
-        let link = ['manage'];
-        if(choice == 1){
-            link = ['manage','patient','check',hn];
-        } else if(choice == 2){
-            link = ['manage','diagnosis','detail',hn];
-        } else if(choice == 3){
-            link = ['manage','diagnosis','add',hn];
-        } else if(choice == 4){
-            link = ['manage','doctor_calendar',hn];
-        }
-      this.router.navigate(link);
+    constructor(private router: Router) {
+    }
+
+    gotoDetail(hn, date):void{
+        this.router.navigate(['manage','diagnosis',hn,date]);
     }
 }
