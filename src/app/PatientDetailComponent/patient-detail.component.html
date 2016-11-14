@@ -26,12 +26,14 @@
                 <div class="col-md-4">
                     <p><b>อายุ : </b>21 ปี 10 เดือน</p>    
                 </div> 
-                <div class="col-md-4">  
+                <div class="col-md-4"> 
+                    <p><b>กรุ๊ปเลือด : </b> A </p> 
                 </div>
             </div>
         </div>    
     </div>
+    <hr>
     <br>
     <patient-physical-check-c *ngIf="router.url == '/manage/patient/11'"></patient-physical-check-c>
-    <diagnosis-history-c *ngIf="router.url == '/manage/diagnosis/11'"></diagnosis-history-c>
+    <diagnosis-c *ngIf="router.url == '/manage/diagnosis/11'"></diagnosis-c>
 </section>

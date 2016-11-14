@@ -8,6 +8,7 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class PhysicalCheckService {
     private apiUrl = 'api/physicalData/add';  // URL to web api
+    private apiHistoryUrl = 'api/physicalData/history';
     private headers = new Headers({'Content-Type': 'application/json'});
     constructor(private http: Http) { }
     private handleError(error: any): Promise<any> {
@@ -20,6 +21,14 @@ export class PhysicalCheckService {
                     .toPromise()
                     .then(res => {
                         return "success";
+                    });
+    }
+    getPhysicalCheckHistory(HN:string):Promise<JSON>{
+        return this.http
+                    .post(this.apiHistoryUrl, JSON.stringify({HN: HN}), {headers: this.headers})
+                    .toPromise()
+                    .then(data => {
+                        return data.json();
                     });
     }
 }

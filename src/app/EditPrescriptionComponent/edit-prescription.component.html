@@ -1,7 +1,7 @@
 <div>
-    <h3>แก้ไขรายการจ่ายยา</h3>
     <a (click)=goBack()>< ย้อนกลับ</a>
     <hr>
+    <h5>แก้ไขรายการจ่ายยา</h5>
     <div class="container">
         <br>
         <br>
@@ -9,7 +9,8 @@
                 <prescription-form-c></prescription-form-c>
                 <hr>
                 <div class="row right">
-                    <button type="button" class="btn btn-success" style="width: 15%; min-width: 150px"> ยืนยันการจ่ายยา </button>                  
+                    <button routerLink="/manage/edit_prescription_request" type="button" class="btn btn-danger" style="width: 15%; min-width: 150px"> ยกเลิก </button>                  
+                    <button type="button" class="btn btn-primary" style="width: 15%; min-width: 150px"> ยืนยันการจ่ายยา </button>                  
                 </div>   
             </div>
         <br>

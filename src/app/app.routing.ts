@@ -16,7 +16,7 @@ import { PatientListComponent } from './PatientListComponent/patient-list.compon
 import { PatientDetailComponent } from './PatientDetailComponent/patient-detail.component';
 import { MakeAppointComponent } from './MakeAppointmentComponent/make-appointment.component';
 import { RegisterComponent } from './RegisterComponent/register.component';
-import { DiagnosisHistoryComponent } from './DiagnosisHistoryComponent/diagnosis-history.component';
+import { DiagnosisComponent } from './DiagnosisComponent/diagnosis.component';
 import { PrescriptionHistoryComponent } from './PrescriptionHistoryComponent/prescription-history.component';
 import { EditPrescriptionRequestComponent } from './EditPrescriptionRequestComponent/edit-prescription-request.component';
 import { PrescriptionListElementComponent } from './PrescriptionListElementComponent/prescription-list-element.component';
@@ -131,10 +131,6 @@ const appRoutes: Routes = [
         component: PatientDetailComponent
       },
       {
-        path: 'diagnosis/:hn',
-        component: PatientDetailComponent
-      },
-       {
         path: 'prescription_request',
         component: PrescriptionRequestComponent
       },
@@ -151,30 +147,30 @@ const appRoutes: Routes = [
         component: PatientPhysicalCheckHistoryComponent
       },
       {
-        path: 'patient/element/:hn',
-        component: DiagnosisDetailComponent
-      },
-      {
-        path: 'diagnosis/result/:hn',
-        component: DiagnosisDetailComponent
-      },
-      {
-        path: 'diagnosis/detail/:hn',
-        component: DiagnosisDetailComponent
+        path: 'diagnosis/:hn',
+        component: PatientDetailComponent
       },
       {
         path: 'login',
         component: StaffLoginComponent
       },
       
-{
+      {
         path: 'diagnosis/add/:hn',
         component: AddDiagnosisComponent
-},
-{
-        path: 'edit_prescription',
+      },
+      {
+        path: 'edit_prescription/:obj',
         component: EditPrescriptionComponent
-}   
+      },
+      {
+        path: 'diagnosis/:hn/:date',
+        component: DiagnosisDetailComponent
+      },
+      {
+        path: 'create_appointment/:hn/:doctor_id/:department_id',
+        component: MakeAppointComponent
+      }
     ]
   }
 ];

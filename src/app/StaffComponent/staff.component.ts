@@ -8,7 +8,14 @@ import { UserService } from '../../services/user.service';
 })
 
 export class StaffComponent{
-    
+    userRoleId = localStorage.getItem('user_roleID'); //1=staff, 2=doctor, 3=nurse, 4=pharmacist
+    userRole = "";
+    userFname = localStorage.getItem('user_fname');
+    userLname = localStorage.getItem('user_lname');
+    userTitle = localStorage.getItem('user_title');
+    userSex = "male";
+    userPic = "";
+
     loggedIn:boolean;
     constructor(private userService: UserService, private router: Router) {
         router.events.subscribe((val) => {
@@ -28,11 +35,33 @@ export class StaffComponent{
         }
     }
     
-    // ngOnInit(): void {
-    //     this.loggedIn = this.userService.isLoggedIn();
-    // }
+    ngOnInit(): void {
+        // this.loggedIn = this.userService.isLoggedIn();
+        this.userRole = (this.userRoleId == "1") ? "เจ้าหน้าที่ของโรงพยาบาล" : 
+                        (this.userRoleId == "2") ? "แพทย์" : 
+                        (this.userRoleId == "3") ? "พยาบาล" : 
+                        (this.userRoleId == "4") ? "เภสัชกร" : "ไม่มีในระบบ";
+        this.userPic =  (this.userRoleId == "1" && this.userSex == "male") ? 
+                        "/resources/images/icon_people/m_staff.png" : 
+                        (this.userRoleId == "1" && this.userSex == "female") ? 
+                        "/resources/images/icon_people/fm_staff.png" :
+                        (this.userRoleId == "2" && this.userSex == "male") ? 
+                        "/resources/images/icon_people/m_doctor.png" :
+                        (this.userRoleId == "2" && this.userSex == "female") ? 
+                        "/resources/images/icon_people/fm_doctor.png" :
+                        (this.userRoleId == "3" && this.userSex == "male") ? 
+                        "/resources/images/icon_people/m_nurse.png" :
+                        (this.userRoleId == "3" && this.userSex == "female") ? 
+                        "/resources/images/icon_people/fm_nurse.png" :
+                        (this.userRoleId == "4" && this.userSex == "male") ? 
+                        "/resources/images/icon_people/m_phar.png" :
+                        (this.userRoleId == "4" && this.userSex == "male") ? 
+                        "/resources/images/icon_people/fm_phar.png" : 
+                        "/resources/images/icon_people/m_staff.png";
+                       
+    }
     hn = '123456';
-    // isExpanded: Boolean = true;
+    isExpandedNav: Boolean = true;
     activatedClass = 1; //1 จัดการผู้ป่วย ,2,3,4
 
     gotoPage(menu):void{
@@ -60,6 +89,7 @@ export class StaffComponent{
         this.loggedIn=false;
         this.router.navigate(['manage','login']);
     }
+    
     // navToggle(){
     //     console.log("pohfy"); 
     // }

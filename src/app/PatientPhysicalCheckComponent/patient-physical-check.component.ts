@@ -1,7 +1,8 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Router } from '@angular/router';
 import { PhysicalCheckService } from '../../services/physical-check.service';
+import * as moment_ from 'moment';
 
 const HN_NO: string = "12344321";
 
@@ -11,7 +12,8 @@ const HN_NO: string = "12344321";
     styles: [require('./patient-physical-check.component.css')]
 })
 
-export class PatientPhysicalCheckComponent {
+export class PatientPhysicalCheckComponent implements OnInit {
+    physicalData = [];
     systolic: number;
     diastolic: number;
     heartRate: number;
@@ -21,15 +23,44 @@ export class PatientPhysicalCheckComponent {
     HN: string = HN_NO;
     isAdd: boolean = false;
     buttonName: string = 'เพิ่ม';
-    constructor(private router: Router, private physicalCheckService: PhysicalCheckService) { }
+    constructor(private router: Router, 
+                private physicalCheckService: PhysicalCheckService
+                ) { }
+    ngOnInit(): void {
+        moment_.locale('th');
+        this.physicalCheckService.getPhysicalCheckHistory(this.HN).then((physicalData)=>{
+            let physicalArray = [];
+            console.log(">>",physicalData)            
+            physicalData['physical_check'].forEach((phy)=>{             
+                if(moment_(phy.date).format('ll') == moment_().format('ll')){
+                    this.systolic = phy.bloodPresure.systolic;
+                    this.diastolic = phy.bloodPresure.diastolic;
+                    this.heartRate = phy.heartRate;
+                    this.weight = phy.weight;
+                    this.height = phy.height;
+                    this.temp = phy.temp;
+                    this.isAdd = true;
+                    this.buttonName = "แก้ไข"
+                }
+                else{
+                    phy.date = moment_(phy.date).format('ll'); 
+                    physicalArray.push(phy);
+                }
+            })
+            this.physicalData = physicalArray
+        });
+    }
     addPhysicalCheck() {
-        this.physicalCheckService.addPhysicalCheck(this.systolic, this.diastolic, this.heartRate, this.weight, this.height, this.temp, this.HN)
+        if(this.buttonName === "เพิ่ม"){
+            this.physicalCheckService.addPhysicalCheck(this.systolic, this.diastolic, this.heartRate, this.weight, this.height, this.temp, this.HN)
             .then((res) => {
                 if (res == "success") {
                     this.isAdd = !this.isAdd;
-                    if (this.isAdd) this.buttonName = 'แก้ไข'
-                    else this.buttonName = 'บันทึก'
+                    this.buttonName = 'แก้ไข'
                 }
             });
+        }
+        
     }
+
 }
