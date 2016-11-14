@@ -12,11 +12,11 @@ import { PatientListElementComponent } from '../PatientListElementComponent/pati
 export class ManageQueueComponent{
     constructor(private router: Router) {
     }
-    @HostListener('window:resize', ['$event'])
-    contentHeight = window.innerHeight;
-    navHeight = 59;
-    onResize(event) {
-        let height = event.target.innerHeight;
-        this.contentHeight = height - this.navHeight;
-    }
+    // @HostListener('window:resize', ['$event'])
+    // contentHeight = window.innerHeight;
+    // navHeight = 59;
+    // onResize(event) {
+    //     let height = event.target.innerHeight;
+    //     this.contentHeight = height - this.navHeight;
+    // }
 }
