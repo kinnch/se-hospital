@@ -18,4 +18,7 @@ export class DiagnosisComponent {
         this.router.navigate(['manage', 'diagnosis', 'add', hn]);
     }
     
+    addApp(hn, doctor_id, department_id): void{
+        this.router.navigate(['manage', 'create_appointment',hn,doctor_id,department_id]);
+    }
 }

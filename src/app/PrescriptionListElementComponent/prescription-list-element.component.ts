@@ -16,4 +16,8 @@ export class PrescriptionListElementComponent{
     gotoPage(hn):void{      
         this.router.navigate(['manage','prescription_request',hn]);
     }
+
+    edit(obj):void{
+        this.router.navigate(['manage','edit_prescription', obj]);
+    }
 }

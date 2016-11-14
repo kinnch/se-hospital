@@ -160,13 +160,17 @@ const appRoutes: Routes = [
         component: AddDiagnosisComponent
       },
       {
-        path: 'edit_prescription',
+        path: 'edit_prescription/:obj',
         component: EditPrescriptionComponent
       },
       {
         path: 'diagnosis/:hn/:date',
         component: DiagnosisDetailComponent
-      } 
+      },
+      {
+        path: 'create_appointment/:hn/:doctor_id/:department_id',
+        component: MakeAppointComponent
+      }
     ]
   }
 ];
