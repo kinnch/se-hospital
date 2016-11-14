@@ -15,6 +15,7 @@ var DrugPrescription = require("../model/drugPrescription");
 var HospitalEmployee = require("../model/hospitalEmployee");
 var PhysicalChecking = require("../model/physicalChecking");
 var Schedule = require("../model/schedule");
+var PrescriptionDrug  = require("../model/PrescriptionDrug");
 
 function getDateNow(){
     var this_date = new Date(new Date().getTime() + 7 * 3600 * 1000);
@@ -198,16 +199,19 @@ exports.seed = function(req, res) {
             nurse: hospitalEmployees[2]._id
         }));
 
+    var prescription = new PrescriptionDrug({
+        drug: para._id,
+        detail: "1 เม็ดทุกมื้อ หลังอาหาร เช้า กลางวัน เย็น",
+        amount: 30
+    });
+
     var drugPrescriptions = [];
+
     drugPrescriptions.push(new DrugPrescription({
         status: 0, //reject
         inspectedBy: hospitalEmployees[3]._id,
-        note: "ผู้ป้วยแพ้ยาพารา",
-        prescription: [{
-            drug: para._id,
-            detail: "1 เม็ดทุกมื้อ หลังอาหาร เช้า กลางวัน เย็น",
-            amount: 30
-        }]
+        note: "ผู้ป้วยแพ้ยาพาโล",
+        prescription: [patients[0]._id]
     }));
 
     //var this_date = new Date();
@@ -225,7 +229,8 @@ exports.seed = function(req, res) {
         disease: h1n1._id
     }));
 
-    Patient.remove({}, function(err) { 
+    Patient.remove({}, function(err) {
+        if(err) console.log('ERROR - patient table');
         console.log('patient collection removed');
         for(var i = 0; i < patients.length; i++){
             patients[i].save();
@@ -234,6 +239,11 @@ exports.seed = function(req, res) {
     Drug.remove({}, function(err) { 
         console.log('drug collection removed');
         para.save();
+    });
+
+    PrescriptionDrug.remove({}, function(err) { 
+        console.log('PrescriptionDrug collection removed');
+        prescription.save();
     });
     Department.remove({}, function(err) { 
         console.log('department collection removed');
@@ -275,5 +285,5 @@ exports.seed = function(req, res) {
         console.log('schedule collection removed');
         h1n1.save(); 
     });
-    res.send('Seeded');
+    res.send('Seeded2');
 }
