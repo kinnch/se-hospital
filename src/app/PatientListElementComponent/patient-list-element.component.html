@@ -1,6 +1,8 @@
 <div class="ui card patientlist">
   <div class="content" styles = "font-size:120%;">
-    <div class="right floated "><a href="#" class="card-link">Check in</a></div>
+    <div *ngIf="enableCheckin" class="right floated ">
+        <a href="#" class="card-link">Check in</a>
+    </div>
     <img class="ui avatar image margin-avartar" src="/resources/images/icon_people/m_adult.png"> {{oneData['title']}}{{oneData['fname']}} {{oneData['lname']}}
   </div>
   <div class="image">
