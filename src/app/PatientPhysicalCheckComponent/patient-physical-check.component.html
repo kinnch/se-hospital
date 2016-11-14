@@ -60,23 +60,14 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <th scope="row">01/10/59</th>
-                    <td>40</td>
-                    <td>145</td>
-                    <td>37.5</td>
-                    <td>80</td>
-                    <td>90</td>
-                    <td>120</td>                
-                </tr>
-                <tr>
-                    <th scope="row">17/08/59</th>
-                    <td>30</td>
-                    <td>145</td>
-                    <td>37.5</td>
-                    <td>80</td>
-                    <td>90</td>
-                    <td>110</td>
+                <tr *ngFor="let phy of physicalData">
+                    <th scope="row">{{phy.date}}</th>
+                    <td>{{phy.weight}}</td>
+                    <td>{{phy.height}}</td>
+                    <td>{{phy.temp}}</td>
+                    <td>{{phy.heartRate}}</td>
+                    <td>{{phy.bloodPresure.systolic}}</td>
+                    <td>{{phy.bloodPresure.diastolic}}</td>                
                 </tr>
             </tbody>  
         </table>

@@ -1,7 +1,8 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Router } from '@angular/router';
 import { PhysicalCheckService } from '../../services/physical-check.service';
+import * as moment_ from 'moment';
 
 const HN_NO: string = "12344321";
 
@@ -11,7 +12,8 @@ const HN_NO: string = "12344321";
     styles: [require('./patient-physical-check.component.css')]
 })
 
-export class PatientPhysicalCheckComponent {
+export class PatientPhysicalCheckComponent implements OnInit {
+    physicalData = [];
     systolic: number;
     diastolic: number;
     heartRate: number;
@@ -21,7 +23,18 @@ export class PatientPhysicalCheckComponent {
     HN: string = HN_NO;
     isAdd: boolean = false;
     buttonName: string = 'เพิ่ม';
-    constructor(private router: Router, private physicalCheckService: PhysicalCheckService) { }
+    constructor(private router: Router, 
+                private physicalCheckService: PhysicalCheckService
+                ) { }
+    ngOnInit(): void {
+        this.physicalCheckService.getPhysicalCheckHistory(this.HN).then((physicalData)=>{
+            let physicalArray = physicalData['physical_check'];
+            physicalArray.forEach((phy)=>{
+                phy.date = moment_().format('l'); 
+                console.log(physicalData)
+            })
+        });
+    }
     addPhysicalCheck() {
         this.physicalCheckService.addPhysicalCheck(this.systolic, this.diastolic, this.heartRate, this.weight, this.height, this.temp, this.HN)
             .then((res) => {
@@ -32,4 +45,5 @@ export class PatientPhysicalCheckComponent {
                 }
             });
     }
+
 }
