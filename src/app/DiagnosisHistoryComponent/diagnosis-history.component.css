@@ -1,8 +1,6 @@
-
-#detail{
-    margin: 0 auto;
-    display: block;
-    width: 50%;
+button {
+    width: 20%;
+    margin-left: 20px;
 }
 
 

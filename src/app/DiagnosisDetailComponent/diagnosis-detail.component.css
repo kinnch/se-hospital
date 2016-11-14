@@ -16,3 +16,7 @@ a:hover {
     text-decoration: none;
     cursor: pointer;
 }
+
+#drug {
+    margin: 0 15px;
+}

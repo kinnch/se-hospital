@@ -544,7 +544,7 @@ ul#header-actions li.list-box.user-admin .admin-details {
 }
 ul#header-actions li.list-box.user-admin .admin-details .name {
     font-size: 13px;
-    color: #4286F7
+    color: #1abc9c;
 }
 ul#header-actions li.list-box.user-admin .admin-details .designation {
     font-size: 12px
@@ -554,7 +554,7 @@ ul#header-actions li.list-box.user-admin a.dropdown-toggle {
     float: right
 }
 ul#header-actions li.list-box.user-admin a.dropdown-toggle i {
-    color: #4286F7
+    color: #1abc9c;
 }
 ul#header-actions .dropdown-menu {
     padding: 0;
@@ -2392,10 +2392,10 @@ ul.menu li .down-arrow:after {
     position: absolute;
     top: 0;
     right: 0;
-    color: #4286F7
+    color: #1abc9c;
 }
 ul.menu li.active>a {
-    color: #4286F7;
+    color: #1abc9c;
     text-shadow: none
 }
 ul.menu li.active .down-arrow {
@@ -2409,10 +2409,10 @@ ul.menu li.active .down-arrow:after {
     position: absolute;
     top: 0;
     right: 0;
-    color: #4286F7
+    color: #1abc9c;
 }
 ul.menu li.selected>a {
-    background-color: #4286F7;
+    background-color: #1abc9c;
     transition: all .3s ease-out;
     color: #fff;
     text-shadow: none
@@ -2491,7 +2491,7 @@ ul.menu i {
 .user-details .user-img .likes-info {
     position: absolute;
     background: #fafafa;
-    color: #E84234;
+    color: #1abc9c;
     cursor: pointer
 }
 .user-details .user-img img {

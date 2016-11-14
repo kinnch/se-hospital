@@ -25,6 +25,7 @@
                             <p><b>อายุ : </b>{{data.patient.age}}</p>    
                         </div> 
                         <div class="col-sm-4">  
+                            <p><b>กรุ๊ปเลือด : </b> </p>
                         </div>
                     </div>
                     <h5>แพทย์ผู้ตรวจ</h5>
@@ -49,23 +50,26 @@
         </prescription-table-c>
         <div *ngIf="data.status==1">
             <section class="control-button" [hidden]="isReject">
-                <button type="button" class="btn btn-info" style="width: 150px; margin-right: 50px">จ่ายยา</button>                  
-                <button type="button" class="btn btn-danger" style="width: 150px;" (click)="isReject = !isReject">ขอแก้ไขยา</button>
+                <button type="button" class="btn btn-danger" style="width: 150px; margin-right: 50px" (click)="isReject = !isReject">ขอแก้ไขยา</button>
+                <button type="button" class="btn btn-primary" style="width: 150px;">จ่ายยา</button>                  
             </section>
             <section class ="reject-form" [hidden]="!isReject">
                 <p><b>เหตุผลที่ขอแก้ไข :</b></p>
                 <textarea row="3" class="form-control"></textarea>
                 <div class="form-button">
-                    <button type="button" class="btn btn-success" style="margin-right: 10px">ส่งคำร้อง</button>
-                    <button type="button" class="btn btn-danger" (click)="isReject = !isReject">ยกเลิก</button>
+                    <button type="button" class="btn btn-danger" (click)="isReject = !isReject" style="margin-right: 10px">ยกเลิก</button>
+                    <button type="button" class="btn btn-primary" >ส่งคำร้อง</button>
                 </div>
             </section>  
             <br>
         </div>
 
         <div *ngIf="data.status==0">
+            <section>
+                <p><b>เหตุผลที่ขอแก้ไข :</b> aaaaaaaaaaaaaaa</p>
+            </section>
             <section class="control-button">
-                <button type="button" class="btn btn-info" style="width: 150px; margin-right: 50px">แก้ไขยา</button>                  
+                <button type="button" class="btn btn-danger" style="width: 150px; margin-right: 50px" (click)="edit(1)">แก้ไขยา</button>                  
             </section>  
             <br>
         </div>

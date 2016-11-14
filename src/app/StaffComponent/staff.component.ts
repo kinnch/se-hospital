@@ -8,6 +8,7 @@ import { UserService } from '../../services/user.service';
 })
 
 export class StaffComponent{
+    userRole = localStorage.getItem('user_roleID'); //1=staff, 2=doctor, 3=nurse, 4=pharmacist
     
     loggedIn:boolean;
     constructor(private userService: UserService, private router: Router) {

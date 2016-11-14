@@ -11,6 +11,7 @@ import * as moment from 'moment';
 })
 
 export class PatientListComponent{
+    @Input() roomNo:string;
     department: string = 'ศัลยกรรม';
     notHereApt = [];
     printedApt = [];
@@ -49,10 +50,16 @@ export class PatientListComponent{
                                     tel: tel,
                                     birthdate: birthdate
                                     };
+                        oneData['enableCheckin'] = false;            
                     if(status == 0){
                         this.notHereApt.push(oneData);
                     }
                     else if(status == 1){
+                        //console.log('user_roleID');
+                        //console.log(localStorage.getItem('user_roleID'));
+                        if(localStorage.getItem('user_roleID') == '1'){
+                            oneData['enableCheckin'] = true;
+                        }
                         this.printedApt.push(oneData);
                     }
                     else if(status == 2){
