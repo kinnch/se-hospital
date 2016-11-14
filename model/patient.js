@@ -38,6 +38,10 @@ var patientSchema = mongoose.Schema({
         toJSON: true,
         hide: false
       },
+      bloodType: {
+        type: String,
+        enum: ["A","B","AB","O"]
+      },
       hash: String
     });
 

@@ -15,6 +15,9 @@ var DrugPrescription = require("../model/drugPrescription");
 var HospitalEmployee = require("../model/hospitalEmployee");
 var PhysicalChecking = require("../model/physicalChecking");
 var Schedule = require("../model/schedule");
+var Appointment = require("../model/appointment");
+
+var PrescriptionDrug  = require("../model/prescriptionDrug");
 
 function getDateNow(){
     var this_date = new Date(new Date().getTime() + 7 * 3600 * 1000);
@@ -150,16 +153,18 @@ exports.seed = function(req, res) {
         hash:"4585c2bb65725fff7c15d98a1107e3d2adc209d63c8819da6e5f7a09b9b5a948ba7112e85cd527cbbfaf7bda02d3d8fb0970cdeffe17bcee05b017810cfe645fc59f644c8228032f1a3b10312aab0c86dda750a7d174db26457d9ccac8138784ce079257ebdc95906d6ee651e77656f9a992e9d08c973e78eecee3187ed7ce1ba9106b521fe563400fda79e16e2e7bf5b37ad22f3fd612ff7f3b5b421eb8fa6b97460137a98bdaee5c31429e40e967db9a1774753784cfe29f3914fef4edb82792b451f72ac712a04f1f25ebef91cf6f9530ca63587fd0af7ff1214aca6a184bb5900cf292fce3b519314b37783d8894f6a5b81cfaef35530d56ab24ca7c55568d43d4fd03fb61f2cb734971c8b80729a6996a5799323d3552a9b436799b34aa757b69935a202e456954dac288d1106d661144c34e06ba15f976833521782bc5d839cc5af63e189ee92ec29c16b5b52d9f47e61baf6d64ee2cea6c03beacda0963c073a3cf6a9c03205cf4e50875128a64ff804fe63bb035a6a1d7951fb7e4599f7e2d65d4417c974362a1589e3547bbbbbacc95a2a7ecfed034be6c3eee702dd13da31837773b94db3cf29c72e291eb1cacb256c20c84ecf5402a2394a5424bb0f96f49099dabf4e605b394b6a207b94a2785739a6acc833b5208d05dda0d03e704cebc8e098bd02a12c091ccb408c93d4d3e0dd258b56c4033f74b2c88b4d0"
     }));
 
+    var appointment = new Appointment({
+        patient: patients[0]._id,
+        reason: "ตัวร้อน ไข้สูง เจ็บคอ กลืนน้ำลายไม่ได้",
+        status: 3
+    });
+
     var schedules = [];
     schedules.push(new Schedule({
         timePeriod: 'am',
         date: getDateNow(),
         doctor: hospitalEmployees[1]._id,
-        appointments: [{
-            patient: patients[0]._id,
-            reason: "ตัวร้อน ไข้สูง เจ็บคอ กลืนน้ำลายไม่ได้",
-            status: 3
-        }]
+        appointments: [appointment._id]
     }));
     schedules.push(new Schedule({
         timePeriod: 'pm',
@@ -198,16 +203,19 @@ exports.seed = function(req, res) {
             nurse: hospitalEmployees[2]._id
         }));
 
+    var prescription = new PrescriptionDrug({
+        drug: para._id,
+        detail: "1 เม็ดทุกมื้อ หลังอาหาร เช้า กลางวัน เย็น",
+        amount: 30
+    });
+
     var drugPrescriptions = [];
+
     drugPrescriptions.push(new DrugPrescription({
         status: 0, //reject
         inspectedBy: hospitalEmployees[3]._id,
-        note: "ผู้ป้วยแพ้ยาพารา",
-        prescription: [{
-            drug: para._id,
-            detail: "1 เม็ดทุกมื้อ หลังอาหาร เช้า กลางวัน เย็น",
-            amount: 30
-        }]
+        note: "ผู้ป้วยแพ้ยาพาโล",
+        prescriptions: [prescription._id]
     }));
 
     //var this_date = new Date();
@@ -225,7 +233,8 @@ exports.seed = function(req, res) {
         disease: h1n1._id
     }));
 
-    Patient.remove({}, function(err) { 
+    Patient.remove({}, function(err) {
+        if(err) console.log('ERROR - patient table');
         console.log('patient collection removed');
         for(var i = 0; i < patients.length; i++){
             patients[i].save();
@@ -234,6 +243,11 @@ exports.seed = function(req, res) {
     Drug.remove({}, function(err) { 
         console.log('drug collection removed');
         para.save();
+    });
+
+    PrescriptionDrug.remove({}, function(err) { 
+        console.log('PrescriptionDrug collection removed');
+        prescription.save();
     });
     Department.remove({}, function(err) { 
         console.log('department collection removed');
@@ -264,6 +278,10 @@ exports.seed = function(req, res) {
         for(var i = 0; i < checkings.length; i++){
             checkings[i].save();
         }
+    });
+    Appointment.remove({}, function(err) { 
+        console.log('Appointment collection removed');
+        appointment.save();
     });
     Schedule.remove({}, function(err) { 
         console.log('schedule collection removed');

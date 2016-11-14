@@ -16,14 +16,20 @@ var hospitalEmployeeSchema = mongoose.Schema({
         },
         department:{
             type: Schema.Types.ObjectId,
-            ref: 'Department',
-            required: true
+            ref: 'Department'
         },
         lastPage: String,
         userName:{
             type: String,
             required: true
-        }
+        },
+        salt: {
+            type: String,
+            select: false,
+            toJSON: true,
+            hide: false
+      },
+      hash: String
     });
 
 var options = ({usernameField: "userName"});

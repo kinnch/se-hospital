@@ -2,13 +2,9 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var drugPrescriptionSchema = mongoose.Schema({
-        prescription: [{
-            drug: {
-                type: Schema.Types.ObjectId, 
-                ref: 'Drug' 
-            },
-            detail: String,
-            amount: Number                                 
+        prescriptions: [{
+            type: Schema.Types.ObjectId, 
+            ref: 'PrescriptionDrug'                           
         }],
         status: {
             type: Number,
