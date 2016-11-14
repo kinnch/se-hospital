@@ -16,7 +16,7 @@ import { Component, Input, trigger, animate, state, style, transition , OnChange
       <div class="modal-body">
        <ng-content></ng-content>
       </div>
-      <div class="modal-footer">
+      <div class="modal-footer" *ngIf="isShowFooter">
         <button type="button" class="btn btn-secondary" (click)="callCallbackCancel()">{{close}}</button>
         <button type="button" class="btn btn-primary" (click)="callCallbackSuccess()" >{{success}}</button>
       </div>
@@ -38,6 +38,7 @@ export class ModalComponent implements AfterViewInit {
     @Input() title : string = "";
     @Input() success : string = "บันทึก";
     @Input() close : string = "ยกเลิก";
+    @Input() isShowFooter : boolean = true;
     @Input() callbackSuccess: Function = function(){ console.log("do not thing : success")};
     @Input() callbackCancel: Function = function(){ console.log("do not thing : cancel")};
     sizeClass : string = "";

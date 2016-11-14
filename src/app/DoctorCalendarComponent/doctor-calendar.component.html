@@ -1,5 +1,30 @@
- <modal #modal [id]="'kinnch'" [size]="'lg'" [title]="'title'" [callbackSuccess]="callback">
- </modal>
- <button (click)="modal.modalOpen()">open</button>  
+<modal #modal1 [id]="'modal'" [title]="titleModal" [callbackSuccess]="callback" [isShowFooter]="false" >
+    <div class="row" style="display: inline-flex; padding-bottom: 10px;">
+        <div class="container">สถานะการออกตรวจของท่าน  </div>
+        <div class="" style="display: inline;">
+            <i aria-hidden="true" class="fa " [ngClass]="isOperate ? 'fa-check-circle-o text-success' : 'fa-times text-danger'" ></i> {{ isOperate ? 'ออกตรวจ' : 'ไม่ออกตรวจ'  }}
+        </div>    
+    </div>    
+    <button class="form-control btn btn-block" [ngClass]="!isOperate ? 'btn-success' : 'btn-danger'" (click)="isOperate = !isOperate">{{ !isOperate ? 'ออกตรวจ' : 'ยกเลิกออกตรวจ'  }}</button>
+    <hr>
+    <h6 style="text-align: center;"> รายชื่อผู้ป่วยที่นัดหมายกับท่าน </h6>
+    
+    <div class="table-responsive">
+    <table class="table">
+        <tbody>
+        <tr *ngFor="let x of numbers; let i = index;" >
+            <td>{{i}}</td>
+            <td>Anna</td>
+            <td>Pitt</td>
+            <td>35</td>
+            <td>New York</td>
+            <td>USA</td>
+        </tr>
+        </tbody>
+    </table>
+  </div>
+
+</modal>
+ <!--<button (click)="modal.modalOpen()">open</button>  -->
 <div id="calendar"></div>
 <div id="stylehere"></div>
