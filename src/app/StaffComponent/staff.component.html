@@ -17,8 +17,8 @@
    </ul>
 </header>
 
-<div [class.vertical-nav-sm]="isExpandedNav == false" (click)="isExpandedNav = !isExpandedNav" class="vertical-nav" *ngIf="router.url != '/manage/login'">
-   <button class="collapse-menu"><i class="fa fa-bars" aria-hidden="true"></i></button>
+<div [class.vertical-nav-sm]="isExpandedNav == false" class="vertical-nav" *ngIf="router.url != '/manage/login'">
+   <button class="collapse-menu" (click)="isExpandedNav = !isExpandedNav"><i class="fa fa-bars" aria-hidden="true"></i></button>
    <div class="user-details clearfix">
       <a class="user-img"><img src="{{userPic}}" class="img-responsive">
         <!--<span class="likes-info">9</span>-->
