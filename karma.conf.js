@@ -87,6 +87,7 @@ module.exports = function(config) {
         coverageReporter: {
             includeAllSources: false,
             reporters:[
+                {"type": "text"},
                 {type: 'json', subdir: '.', file: 'coverage-final.json'},
                 { type: 'text-summary' },
                 { type: 'html' }
