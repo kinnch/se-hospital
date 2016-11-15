@@ -47,7 +47,8 @@ module.exports = function(config) {
  
         autoWatch: true,
  
-        browsers: ['Chrome'],
+        browsers: ['Chrome','PhantomJS'],
+        //browsers : ['PhantomJS'],
  
         // Karma plugins loaded
         plugins: [
@@ -57,7 +58,8 @@ module.exports = function(config) {
             'karma-webpack',
             'karma-sourcemap-loader',
             'karma-mocha',
-            'karma-mocha-reporter'
+            'karma-mocha-reporter',
+            'karma-phantomjs-launcher'
         ],
  
         // Coverage reporter generates the coverage // progress
