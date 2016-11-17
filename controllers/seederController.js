@@ -163,7 +163,8 @@ exports.seed = function(req, res) {
                 text: "931278",
                 generatedDate: new Date()
             },
-            allegicDrugs: [drugs[0]._id]
+            allegicDrugs: [drugs[0]._id],
+            bloodType: "A"
         }),
         new Patient({
             name: {
@@ -189,7 +190,9 @@ exports.seed = function(req, res) {
                 text: "092201",
                 generatedDate: new Date()
             },
-            allegicDrugs: [drugs[0], drugs[4]]
+            allegicDrugs: [drugs[0], drugs[4]],
+            bloodType: "O"
+
         }),
         new Patient({
             name: {
@@ -215,7 +218,9 @@ exports.seed = function(req, res) {
                 text: "111112",
                 generatedDate: new Date()
             },
-            allegicDrugs: [drugs[0], drugs[1], drugs[2]]
+            allegicDrugs: [drugs[0], drugs[1], drugs[2]],
+            bloodType: "AB"
+
         }),
         new Patient({
             name: {
@@ -241,7 +246,9 @@ exports.seed = function(req, res) {
                 text: "111112",
                 generatedDate: new Date()
             },
-            allegicDrugs: []
+            allegicDrugs: [],
+            bloodType: "A"
+
         }),
         new Patient({
             name: {
@@ -267,7 +274,10 @@ exports.seed = function(req, res) {
                 text: "002020",
                 generatedDate: new Date()
             },
-            allegicDrugs: []
+            allegicDrugs: [],
+            bloodType: "A"
+
+
         }),
         new Patient({
             name: {
@@ -293,7 +303,9 @@ exports.seed = function(req, res) {
                 text: "999999",
                 generatedDate: new Date()
             },
-            allegicDrugs: []
+            allegicDrugs: [],
+            bloodType: "A"
+
         })
     ];
 
@@ -555,31 +567,31 @@ exports.seed = function(req, res) {
     var drugPrescriptions = [
         new DrugPrescription({
             status: 3,
-            inspectedBy: hospitalEmployees[0]._id,
+            inspectedBy: hospitalEmployees[3]._id,
             note: "",
             prescriptions: [prescriptionDrugs[0]._id, prescriptionDrugs[1]._id]
         }),
         new DrugPrescription({
             status: 3,
-            inspectedBy: hospitalEmployees[5]._id,
+            inspectedBy: hospitalEmployees[3]._id,
             note: "",
             prescriptions: [prescriptionDrugs[2]._id]
         }),
         new DrugPrescription({
             status: 2, // pharmacist approved
-            inspectedBy: hospitalEmployees[5]._id,
+            inspectedBy: hospitalEmployees[3]._id,
             note: "",
             prescriptions: [prescriptionDrugs[3]._id]
         }),
         new DrugPrescription({
             status: 0, // reject
-            inspectedBy: hospitalEmployees[5]._id,
+            inspectedBy: hospitalEmployees[3]._id,
             note: "ผู้ป้วยแพ้ยาพาราเซตามอน",
             prescriptions: [prescriptionDrugs[4]._id]
         }),
         new DrugPrescription({
             status: 1, // doctor created
-            inspectedBy: hospitalEmployees[5]._id,
+            inspectedBy: null,
             note: "ผู้ป้วยแพ้ยาพาราเซตามอน",
             prescriptions: [prescriptionDrugs[5]._id]
         })

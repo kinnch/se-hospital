@@ -71,6 +71,7 @@ module.exports = function(app) {
     //-----bone not testing zone-----
     app.get('/api/employees',hospitalEmployeeController.getAllEmployee);
     app.get('/api/departments',hospitalEmployeeController.getAllDepartment);
+    app.get('/api/departmentsDoctors',hospitalEmployeeController.getAllDepartmentOfDoctor);
     app.post('/api/staff/changePassword',hospitalEmployeeController.changePassword);
     app.post('/api/staff/deleteStaff',hospitalEmployeeController.deleteStaff);
     app.post('/login', hospitalEmployeeController.login);
