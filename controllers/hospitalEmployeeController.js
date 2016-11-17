@@ -47,9 +47,13 @@ exports.changePassword = function(req,res){
     })
 }
 
-// TODO : Delete Staff
 exports.deleteStaff = function(req,res){
-
+    var data = req.body;
+    HospitalEmployee.findOne({
+        userName: (data.username)+''
+    }).remove().exec();
+    res.send("done");
+    return;
 }
 
 exports.isInSystem = function(req, res) {
