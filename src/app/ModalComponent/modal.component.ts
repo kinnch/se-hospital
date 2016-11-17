@@ -1,4 +1,4 @@
-import { Component, Input, trigger, animate, state, style, transition , OnChanges, SimpleChange, AfterViewInit } from '@angular/core';
+import { Component, Input, trigger, animate, state, style, transition , OnChanges, SimpleChange, AfterViewInit, Output, EventEmitter } from '@angular/core';
 
 
 @Component({
@@ -41,6 +41,8 @@ export class ModalComponent implements AfterViewInit {
     @Input() isShowFooter : boolean = true;
     @Input() callbackSuccess: Function = function(){ console.log("do not thing : success")};
     @Input() callbackCancel: Function = function(){ console.log("do not thing : cancel")};
+    @Output() modalSuccess = new EventEmitter();
+    @Output() modalCancel = new EventEmitter();
     sizeClass : string = "";
     modal;
     modalOpen(){
@@ -52,10 +54,12 @@ export class ModalComponent implements AfterViewInit {
     }
     callCallbackSuccess(){
         this.modal.modal('hide')
-        this.callbackSuccess();
+        this.modalSuccess.emit();
+        // this.callbackSuccess();
     }
     callCallbackCancel(){
         this.modal.modal('hide')
-        this.callbackCancel();
+         this.modalCancel.emit();
+        // this.callbackCancel();
     }
 }
