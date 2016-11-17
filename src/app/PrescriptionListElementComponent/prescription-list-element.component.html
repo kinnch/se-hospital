@@ -8,10 +8,10 @@
                 <div class="col-md-9 col-sm-12" >
                     <div class="row">
                         <div class="col-sm-4">
-                            <p><b>ชื่อ : </b>{{data.patient.title}}&nbsp;{{data.patient.firstName}}  </p>
+                            <p><b>ชื่อ : </b>{{data.patient.name.title}}&nbsp;{{data.patient.name.fname}}  </p>
                         </div>  
                         <div class="col-sm-4">
-                            <p><b>นามสกุล : </b>{{data.patient.lastName}}</p>    
+                            <p><b>นามสกุล : </b>{{data.patient.name.lname}}</p>    
                         </div>
                         <div class="col-sm-4">
                             <p><b>HN : </b>{{data.patient.HN}}</p>    
@@ -22,19 +22,19 @@
                             <p><b>เพศ : </b>{{data.patient.sex}}</p>
                         </div>  
                         <div class="col-sm-4">
-                            <p><b>อายุ : </b>{{data.patient.age}}</p>    
+                            <p><b>อายุ : </b>{{year}}&nbsp;ปี&nbsp;{{month}}&nbsp;เดือน</p>    
                         </div> 
                         <div class="col-sm-4">  
-                            <p><b>กรุ๊ปเลือด : </b> </p>
+                            <p><b>กรุ๊ปเลือด : </b> {{data.patient.bloodType}}</p>
                         </div>
                     </div>
                     <h5>แพทย์ผู้ตรวจ</h5>
                     <div class="row">
                         <div class="col-sm-4">
-                            <p><b>ชื่อ : </b>{{data.doctor.title}}&nbsp;{{data.doctor.firstName}}</p>
+                            <p><b>ชื่อ : </b>{{data.doctor.name.title}}&nbsp;{{data.doctor.name.fname}}</p>
                         </div>  
                         <div class="col-sm-4">
-                            <p><b>สกุล : </b>{{data.doctor.lastName}}</p>    
+                            <p><b>สกุล : </b>{{data.doctor.name.lname}}</p>    
                         </div>
                         <div class="col-sm-4">
                             <button type="button" class="btn btn-success" (click)="gotoPage(5)">ดูประวัติการได้รับยา</button>
@@ -45,10 +45,20 @@
         </section>
         <ng-content></ng-content>
         <hr>
-        <prescription-table-c [prescriptionList]="data.prescriptionList">
-            <b>ยาที่แพ้ : {{data.patient.allegicTo}}</b>
-        </prescription-table-c>
-        <div *ngIf="data.status==1">
+        <div id="preList">
+            <prescription-table-c [prescriptionList]="data.drugPrescription.prescriptions">
+                <hr>
+                <div *ngIf="data.patient.allegicDrugs.length == 0">
+                    <p><b>ยาที่แพ้ :&nbsp;&nbsp;</b> - </p>
+                </div>
+                <div *ngIf="data.patient.allegicDrugs.length != 0">
+                    <p><b>ยาที่แพ้ :&nbsp;&nbsp;</b> <span *ngFor="let allegic of data.patient.allegicDrugs; let i = index">
+                        {{i+1}})&nbsp;{{allegic.name}}&nbsp;&nbsp;
+                        </span></p>
+                </div>
+            </prescription-table-c>
+        </div>
+        <div *ngIf="data.drugPrescription.status==1">
             <section class="control-button" [hidden]="isReject">
                 <button type="button" class="btn btn-danger" style="width: 150px; margin-right: 50px" (click)="isReject = !isReject">ขอแก้ไขยา</button>
                 <button type="button" class="btn btn-primary" style="width: 150px;">จ่ายยา</button>                  
@@ -64,9 +74,9 @@
             <br>
         </div>
 
-        <div *ngIf="data.status==0">
+        <div *ngIf="data.drugPrescription.status==0">
             <section>
-                <p><b>เหตุผลที่ขอแก้ไข :</b> aaaaaaaaaaaaaaa</p>
+                <p><b>เหตุผลที่ขอแก้ไข :</b> {{data.drugPrescription.note}}</p>
             </section>
             <section class="control-button">
                 <button type="button" class="btn btn-danger" style="width: 150px; margin-right: 50px" (click)="edit(1)">แก้ไขยา</button>                  

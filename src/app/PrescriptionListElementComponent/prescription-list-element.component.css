@@ -14,8 +14,8 @@
     margin-top: 20px;
 }
 
-.prescription-detail, .reject-form {
-    padding: 0 50px;
+.prescription-detail, .reject-form , #preList{
+    padding: 0 5%;
 }
 
 .control-button{
