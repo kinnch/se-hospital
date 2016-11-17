@@ -10,6 +10,12 @@ var drugPrescriptionSchema = mongoose.Schema({
             type: Number,
             enum: [0,1,2,3],
             required: true
+            /*  
+                0 == phamasist reported to doctor
+                1 == doctor create drugList
+                2 == approved by phamasist 
+                3 == drug was sent to patient
+            */
         },
         inspectedBy: {
             type: Schema.Types.ObjectId, 
