@@ -17,13 +17,8 @@ var HospitalEmployee = require("../model/hospitalEmployee");
 
 exports.getTable = function(reg, res){
     //res.send(getDateNow());
-    Department.find({
-        name: reg.body.department
-    }, function(err, department){
-        HospitalEmployee.find({department: department._id}, function(err, doctors){
-            return doctors;
-        });
-    }).then(function (doctors){
+    //return res.send(reg.body.department);
+    Department.findOne({name: reg.body.department}, function(err, department){
         Schedule.aggregate([
         {
             $group: { 
@@ -34,12 +29,14 @@ exports.getTable = function(reg, res){
                 doctors: {$sum: 1},
                 patients: {$sum: { $size: "$appointments" }}
             }
-        }],
-        function(err,result) {
-            res.send(result)
+        }],function(err,result) {
+            Schedule.find({doctor: reg.body.doctorID}, function(err, data){
+                return res.send({
+                    table: result,
+                    thisdoctor: data
+                });
+            });
         // Result is an array of documents
         });
-    })
-    //res.send(getDateNow());
-    return; 
+    });
 }

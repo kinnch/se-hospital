@@ -10,6 +10,7 @@ var mongoose = require('mongoose');
 
 var HospitalEmployee = require("../model/hospitalEmployee");
 var Department = require("../model/department");
+var Schedule = require("../model/schedule");
 
 var pbkdf2 = require('pbkdf2');
 
@@ -55,6 +56,21 @@ exports.changePassword = function(req,res){
         res.send("done")
         return;
     })
+}
+exports.getDoctorInTime = function(req,res){
+    Schedule.find({
+        date: {"$gte": new Date(req.body.date),
+                $lt:new Date(new Date(req.body.date).getTime() + 24 * 3600 * 1000)},
+        timePeriod: req.body.period
+    }).populate({
+        path:'doctor',
+        match: {department: req.body.dapartmentID}
+    }).exec( function(err,data){
+        data = data.filter(function(doc){
+            return doc.appointments.length < 15;
+        });
+        return res.send(data);
+    });
 }
 
 exports.deleteStaff = function(req,res){

@@ -41,6 +41,7 @@ export class UserService {
           localStorage.setItem('user_title', res.user.name.title);
           localStorage.setItem('user_fname', res.user.name.fname);
           localStorage.setItem('user_lname', res.user.name.lname);
+          localStorage.setItem('department_id', res.user.department);
           this.loggedIn = true;
         }
 

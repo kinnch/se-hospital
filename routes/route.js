@@ -46,7 +46,8 @@ module.exports = function(app) {
     app.post('/api/physicalData/history',  physicalDataController.showHistory);    
 
     var prescriptionController = require("../controllers/prescriptionController");
-    app.post('/api/appointment/all',  prescriptionController.showAll);
+    var appointmentController = require("../controllers/appointmentController");
+    app.post('/api/departmentAppointment/byTime',  appointmentController.getAppointmentByTime);
     app.post('/api/appointment/showSomeDoctors',  prescriptionController.showSomeDoctors);
     app.post('/api/presciption/History',  prescriptionController.showHistory);
     
@@ -57,7 +58,9 @@ module.exports = function(app) {
     var hospitalEmployeeController = require('../controllers/hospitalEmployeeController');
     app.post('/api/hospitalEmployee/isInSystem',  hospitalEmployeeController.isInSystem);
     app.post('/api/hospitalEmployee/add',  hospitalEmployeeController.add);
-    app.post('/api/hospitalEmployee/showDoctorFromDepartment', hospitalEmployeeController.showDoctorList)
+    app.post('/api/hospitalEmployee/showDoctorFromDepartment', hospitalEmployeeController.showDoctorList);
+    app.post('/api/timeperiodDoctor', hospitalEmployeeController.getDoctorInTime);
+    ///api/timeperiodDoctor
 
     var scheduleController = require('../controllers/scheduleController');
     app.post('/api/schedule/getTable',  scheduleController.getTable);
@@ -66,7 +69,7 @@ module.exports = function(app) {
     app.post('/api/diagnosisHistory', diagnosisDataController.diagnosisHistory);
 
     //patientController.setDBConnectionsFromApp(app);
-    //-----bone not testing zone-----
+    
     app.get('/api/employees',hospitalEmployeeController.getAllEmployee);
     app.get('/api/departments',hospitalEmployeeController.getAllDepartment);
     app.get('/api/departmentsDoctors',hospitalEmployeeController.getAllDepartmentOfDoctor);
