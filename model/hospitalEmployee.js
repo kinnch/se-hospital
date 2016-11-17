@@ -13,6 +13,7 @@ var hospitalEmployeeSchema = mongoose.Schema({
             min: 1,
             max: 4,
             required: true
+            // 1 ==  2 ==  3 == 4 == 
         },
         department:{
             type: Schema.Types.ObjectId,
