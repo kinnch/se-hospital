@@ -66,6 +66,9 @@ exports.getDoctorInTime = function(req,res){
         path:'doctor',
         match: {department: req.body.dapartmentID}
     }).exec( function(err,data){
+        if (err){
+            return res.send('error not found');
+        };
         data = data.filter(function(doc){
             return doc.appointments.length < 15;
         });
