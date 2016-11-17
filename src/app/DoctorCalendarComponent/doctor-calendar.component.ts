@@ -38,7 +38,8 @@ export class DoctorCalendarComponent implements AfterViewInit, OnInit {
                         start  : moment(e["_id"]["date"]).format(),
                         color : e["_id"]["period"] == "am"? "rgba(98, 208, 233, 0.3)": "rgba(255, 255, 0, 0.3)",
                         allDay: true,
-                        id : "id_tmp" 
+                        // url : e,
+                        id : e 
                     }
                 );
                
@@ -48,6 +49,8 @@ export class DoctorCalendarComponent implements AfterViewInit, OnInit {
             jQuery('#calendar').fullCalendar({
                 aspectRatio: 1.35 ,
                 eventClick: function(calEvent, jsEvent, view) {
+                    console.log(calEvent.id);
+                    var data = calEvent.id
                     console.log('Event: ' + calEvent.title);
                     console.log('Event id : '+ calEvent.id);
                     console.log('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
@@ -55,7 +58,8 @@ export class DoctorCalendarComponent implements AfterViewInit, OnInit {
                     self.selectedEvent = calEvent;
                     console.log( moment(new Date(calEvent.start)).format("ll"));
                     console.log(moment.locale());
-                    self.titleModal = "รายละเอียดการออกตรวจของวันที่     "+ moment(new Date(calEvent.start)).format("ll");
+                    var period = data.peroid=='am' ? 'เช้า' : 'บ่าย';
+                    self.titleModal = "รายละเอียดของช่วง<span class='text-primary'>        "+ period +"       วันที่         "+ moment(new Date(calEvent.start)).format("ll")+"</span>";
                     self.modal1.modalOpen();
                 },
                 dayClick: function () {

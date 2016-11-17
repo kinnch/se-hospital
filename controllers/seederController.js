@@ -294,31 +294,22 @@ exports.seed = function(req, res) {
     }));
 
     //HospitalEmployees N=4
-    var hospitalEmployees = [];
-    hospitalEmployees.push(new HospitalEmployee({
-        name: {
-            title: "นาย",
-            fname: "หมาย",
-            lname: "เป็นสตาฟ"
-        },
-        roleID: 1, //staff
-        department: departments[10]._id,
-        userName: "staffuser",
-        salt: "ca32c2542af60469091b9a9f9541aff16882dfa66a1dc69b6458422383f7b3a7",
-        hash:"4585c2bb65725fff7c15d98a1107e3d2adc209d63c8819da6e5f7a09b9b5a948ba7112e85cd527cbbfaf7bda02d3d8fb0970cdeffe17bcee05b017810cfe645fc59f644c8228032f1a3b10312aab0c86dda750a7d174db26457d9ccac8138784ce079257ebdc95906d6ee651e77656f9a992e9d08c973e78eecee3187ed7ce1ba9106b521fe563400fda79e16e2e7bf5b37ad22f3fd612ff7f3b5b421eb8fa6b97460137a98bdaee5c31429e40e967db9a1774753784cfe29f3914fef4edb82792b451f72ac712a04f1f25ebef91cf6f9530ca63587fd0af7ff1214aca6a184bb5900cf292fce3b519314b37783d8894f6a5b81cfaef35530d56ab24ca7c55568d43d4fd03fb61f2cb734971c8b80729a6996a5799323d3552a9b436799b34aa757b69935a202e456954dac288d1106d661144c34e06ba15f976833521782bc5d839cc5af63e189ee92ec29c16b5b52d9f47e61baf6d64ee2cea6c03beacda0963c073a3cf6a9c03205cf4e50875128a64ff804fe63bb035a6a1d7951fb7e4599f7e2d65d4417c974362a1589e3547bbbbbacc95a2a7ecfed034be6c3eee702dd13da31837773b94db3cf29c72e291eb1cacb256c20c84ecf5402a2394a5424bb0f96f49099dabf4e605b394b6a207b94a2785739a6acc833b5208d05dda0d03e704cebc8e098bd02a12c091ccb408c93d4d3e0dd258b56c4033f74b2c88b4d0"
-    }));
-    hospitalEmployees.push(new HospitalEmployee({
-        name: {
-            title: "นพ.",
-            fname: "สมชาย",
-            lname: "กลายเป็นหมอศัลย์"
-        },
-        roleID: 2, //doctor
-        department: departments[1]._id,
-        userName: "doctoruser",
-        salt: "ca32c2542af60469091b9a9f9541aff16882dfa66a1dc69b6458422383f7b3a7",
-        hash:"4585c2bb65725fff7c15d98a1107e3d2adc209d63c8819da6e5f7a09b9b5a948ba7112e85cd527cbbfaf7bda02d3d8fb0970cdeffe17bcee05b017810cfe645fc59f644c8228032f1a3b10312aab0c86dda750a7d174db26457d9ccac8138784ce079257ebdc95906d6ee651e77656f9a992e9d08c973e78eecee3187ed7ce1ba9106b521fe563400fda79e16e2e7bf5b37ad22f3fd612ff7f3b5b421eb8fa6b97460137a98bdaee5c31429e40e967db9a1774753784cfe29f3914fef4edb82792b451f72ac712a04f1f25ebef91cf6f9530ca63587fd0af7ff1214aca6a184bb5900cf292fce3b519314b37783d8894f6a5b81cfaef35530d56ab24ca7c55568d43d4fd03fb61f2cb734971c8b80729a6996a5799323d3552a9b436799b34aa757b69935a202e456954dac288d1106d661144c34e06ba15f976833521782bc5d839cc5af63e189ee92ec29c16b5b52d9f47e61baf6d64ee2cea6c03beacda0963c073a3cf6a9c03205cf4e50875128a64ff804fe63bb035a6a1d7951fb7e4599f7e2d65d4417c974362a1589e3547bbbbbacc95a2a7ecfed034be6c3eee702dd13da31837773b94db3cf29c72e291eb1cacb256c20c84ecf5402a2394a5424bb0f96f49099dabf4e605b394b6a207b94a2785739a6acc833b5208d05dda0d03e704cebc8e098bd02a12c091ccb408c93d4d3e0dd258b56c4033f74b2c88b4d0"
-    }));
+    var hospitalEmployees = [
+        new HospitalEmployee({
+            name: {
+                title: "นาย",
+                fname: "หมาย",
+                lname: "เป็นสตาฟ"
+            },
+            roleID: 1, //staff
+            department: departments[10]._id,
+            userName: "staffuser",
+            salt: "ca32c2542af60469091b9a9f9541aff16882dfa66a1dc69b6458422383f7b3a7",
+            hash:"4585c2bb65725fff7c15d98a1107e3d2adc209d63c8819da6e5f7a09b9b5a948ba7112e85cd527cbbfaf7bda02d3d8fb0970cdeffe17bcee05b017810cfe645fc59f644c8228032f1a3b10312aab0c86dda750a7d174db26457d9ccac8138784ce079257ebdc95906d6ee651e77656f9a992e9d08c973e78eecee3187ed7ce1ba9106b521fe563400fda79e16e2e7bf5b37ad22f3fd612ff7f3b5b421eb8fa6b97460137a98bdaee5c31429e40e967db9a1774753784cfe29f3914fef4edb82792b451f72ac712a04f1f25ebef91cf6f9530ca63587fd0af7ff1214aca6a184bb5900cf292fce3b519314b37783d8894f6a5b81cfaef35530d56ab24ca7c55568d43d4fd03fb61f2cb734971c8b80729a6996a5799323d3552a9b436799b34aa757b69935a202e456954dac288d1106d661144c34e06ba15f976833521782bc5d839cc5af63e189ee92ec29c16b5b52d9f47e61baf6d64ee2cea6c03beacda0963c073a3cf6a9c03205cf4e50875128a64ff804fe63bb035a6a1d7951fb7e4599f7e2d65d4417c974362a1589e3547bbbbbacc95a2a7ecfed034be6c3eee702dd13da31837773b94db3cf29c72e291eb1cacb256c20c84ecf5402a2394a5424bb0f96f49099dabf4e605b394b6a207b94a2785739a6acc833b5208d05dda0d03e704cebc8e098bd02a12c091ccb408c93d4d3e0dd258b56c4033f74b2c88b4d0"
+        })
+    ];
+    hospitalEmployees.push();
+    hospitalEmployees.push();
     hospitalEmployees.push(new HospitalEmployee({
         name: {
             title: "นางสาว",
@@ -344,7 +335,7 @@ exports.seed = function(req, res) {
         hash:"4585c2bb65725fff7c15d98a1107e3d2adc209d63c8819da6e5f7a09b9b5a948ba7112e85cd527cbbfaf7bda02d3d8fb0970cdeffe17bcee05b017810cfe645fc59f644c8228032f1a3b10312aab0c86dda750a7d174db26457d9ccac8138784ce079257ebdc95906d6ee651e77656f9a992e9d08c973e78eecee3187ed7ce1ba9106b521fe563400fda79e16e2e7bf5b37ad22f3fd612ff7f3b5b421eb8fa6b97460137a98bdaee5c31429e40e967db9a1774753784cfe29f3914fef4edb82792b451f72ac712a04f1f25ebef91cf6f9530ca63587fd0af7ff1214aca6a184bb5900cf292fce3b519314b37783d8894f6a5b81cfaef35530d56ab24ca7c55568d43d4fd03fb61f2cb734971c8b80729a6996a5799323d3552a9b436799b34aa757b69935a202e456954dac288d1106d661144c34e06ba15f976833521782bc5d839cc5af63e189ee92ec29c16b5b52d9f47e61baf6d64ee2cea6c03beacda0963c073a3cf6a9c03205cf4e50875128a64ff804fe63bb035a6a1d7951fb7e4599f7e2d65d4417c974362a1589e3547bbbbbacc95a2a7ecfed034be6c3eee702dd13da31837773b94db3cf29c72e291eb1cacb256c20c84ecf5402a2394a5424bb0f96f49099dabf4e605b394b6a207b94a2785739a6acc833b5208d05dda0d03e704cebc8e098bd02a12c091ccb408c93d4d3e0dd258b56c4033f74b2c88b4d0"
     }));
 
-    //HospitalEmployees N=9
+    //HospitalEmployees N=8
     var appointments = [
         new Appointment({
             patient: patients[0]._id,
@@ -379,17 +370,12 @@ exports.seed = function(req, res) {
         new Appointment({
             patient: patients[5]._id,
             reason: "กินข้าวไม่ลง คลื่นไส้อาเจียร",
-            status: 3
-        }),
-        new Appointment({
-            patient: patients[6]._id,
-            reason: "ปวดกระดูก ตกบันได",
             status: 4
         }),
         new Appointment({
-            patient: patients[6]._id,
+            patient: patients[5]._id,
             reason: "ปวดกระดูก ตกบันได",
-            status: 3
+            status: 4
         })
     ];
 
@@ -398,25 +384,25 @@ exports.seed = function(req, res) {
             timePeriod: 'am',
             date: getDateYesterday(),
             doctor: hospitalEmployees[1]._id,
-            appointments: [appointments[0]._id]
+            appointments: [appointments[0]._id, appointments[6]._id]
         }),
         new Schedule({
             timePeriod: 'pm',
             date: getDateYesterday(),
             doctor: hospitalEmployees[1]._id,
-            appointments: [,appointments[7]._id]
+            appointments: [appointments[7]._id]
         }),
         new Schedule({
             timePeriod: 'am',
             date: getDateNow(),
             doctor: hospitalEmployees[1]._id,
-            appointments: [appointments[0]._id,appointments[2]._id,appointments[4]._id,appointments[5]._id,appointments[6]._id]
+            appointments: [appointments[0]._id,appointments[2]._id,appointments[4]._id,appointments[5]._id]
         }),
         new Schedule({
             timePeriod: 'pm',
             date: getDateNow(),
             doctor: hospitalEmployees[1]._id,
-            appointments: [appointments[1]._id,appointments[3]._id,appointments[8]._id]
+            appointments: [appointments[1]._id,appointments[3]._id]
         })
     ];
 
@@ -485,14 +471,14 @@ exports.seed = function(req, res) {
         amount: 30
     });
 
-    var drugPrescriptions = [];
-
-    drugPrescriptions.push(new DrugPrescription({
-        status: 0, //reject
-        inspectedBy: hospitalEmployees[3]._id,
-        note: "ผู้ป้วยแพ้ยาพาโล",
-        prescriptions: [prescription._id]
-    }));
+    var drugPrescriptions = [
+        new DrugPrescription({
+            status: 0, //reject
+            inspectedBy: hospitalEmployees[3]._id,
+            note: "ผู้ป้วยแพ้ยาพาโล",
+            prescriptions: [prescription._id]
+        })
+    ];
 
     //var this_date = new Date();
     //this_date = new Date(this_date.getFullYear()+'-'+(this_date.getMonth() + 1)+"-"+this_date.getDate());
