@@ -23,38 +23,17 @@ function getDateNow(){
     return this_date;
 }
 
-exports.showAll = function(reg, res){
-    //have to fix 
-    Patient.find({},function(err, all_patient){
-        Schedule.find({
-            date: getDateNow()
-        }, function (err,result){
-        }).populate('doctor').exec(function(err, data){
-            var option = {
-                path: 'doctor.department',
-                model: 'Department'
-            };
-            Schedule.populate(data, option, function(err, Schedules){
-                var formated_data = [];
-                for(var i = 0; i < Schedules.length; i++){
-                    var patient_list = [];
-                    for(var j = 0; j < Schedules[i].appointments.length; j++){
-                        for(var k = 0; k < all_patient.length; k++){
-                            if(all_patient[k]._id+'' == Schedules[i].appointments[j].patient+''){
-                                patient_list.push(all_patient[k]);
-                            }
-                        }
-                    }
-                    var element = {
-                        Schedules : Schedules[i],
-                        patient_list: patient_list
-                    }
-                    formated_data.push(element);
-                }
-                res.send({appointments:formated_data});
-                return;
-            });
-        });
+exports.showAll = function(req, res){
+    //have to fix '582d28d511121d002c9f34e1'
+    Schedule.find({})
+    .populate({
+        path: 'doctor',
+        match: { department: req.body.departmentID }
+    })
+    .populate('appointments')
+    .exec(function(error,data){
+        res.send({data: data});
+        return;
     });
 }
 
