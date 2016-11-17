@@ -27,7 +27,7 @@ export class DepartmentService {
         .post('api/timeperiodDoctor', JSON.stringify({
             departmentID: departmentID,
             date: new Date().toISOString().slice(0, 10), 
-            timePeriod: timePeriod
+            period: timePeriod
             }), {headers: this.headers})
                     .toPromise()
                     .then(function(res){
