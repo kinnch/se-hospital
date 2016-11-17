@@ -47,7 +47,7 @@ exports.getAllDepartmentOfDoctor = function(req, res){
 exports.changePassword = function(req,res){
     var data = req.body;
     HospitalEmployee.findOne({
-        userName: (data.username)+''
+        _id: (data.id)+''
     }).select("+salt").exec(function(err, employee){
         var hashed = hashWithSalt(data.password, employee.salt);
         employee.hash = hashed;
@@ -60,7 +60,7 @@ exports.changePassword = function(req,res){
 exports.deleteStaff = function(req,res){
     var data = req.body;
     HospitalEmployee.findOne({
-        userName: (data.username)+''
+        _id: (data.id)+''
     }).remove().exec();
     res.send("done");
     return;
