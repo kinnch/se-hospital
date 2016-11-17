@@ -48,10 +48,13 @@ exports.getAppointmentByTime = function(req, res){
             path: 'doctor',
         })
         .populate({
-            path: 'appointments'
+            path: 'appointments',
+            populate: {
+                path: 'patient',
+            }
         })
         .exec(function(error,data){
-            res.send({data: data});
+            res.send({scheduleList: data});
             return;
         });
     }

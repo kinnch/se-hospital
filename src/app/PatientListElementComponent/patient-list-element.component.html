@@ -3,15 +3,15 @@
     <div *ngIf="enableCheckin" class="right floated ">
         <a href="#" class="card-link">Check in</a>
     </div>
-    <img class="ui avatar image margin-avartar" src="/resources/images/icon_people/m_adult.png"> {{oneData['title']}}{{oneData['fname']}} {{oneData['lname']}}
+    <img class="ui avatar image margin-avartar" src="/resources/images/icon_people/m_adult.png"> {{oneData['patient']['name']['title']}}{{oneData['patient']['name']['fname']}} {{oneData['patient']['name']['lname']}}
   </div>
   <div class="image">
     <img>
   </div>
   <div class="content">
-    อายุ : {{oneData['birthdate']}}
+    อายุ : {{oneData['patient']['birthDate']}}
     <span class="right floated">
-      <i class="fa fa-phone" aria-hidden="true"></i> {{oneData['tel']}}
+      <i class="fa fa-phone" aria-hidden="true"></i> {{oneData['patient']['tel']}}
     </span>
   </div>
 </div>

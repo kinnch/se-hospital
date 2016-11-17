@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { PatientListComponent } from '../PatientListComponent/patient-list.component';
 import { PatientListElementComponent } from '../PatientListElementComponent/patient-list-element.component';
 import { DepartmentService } from '../../services/department.service';
+import { AppointmentService } from '../../services/appointment.service';
 @Component({
     selector: 'manage-queue-c',
     template: require('./manage-queue.component.html'),
@@ -13,15 +14,18 @@ import { DepartmentService } from '../../services/department.service';
 export class ManageQueueComponent{ 
     roleID : number;
     departmentID : string;
-    constructor(private router: Router, private departmentService : DepartmentService) {
+    doctorList : any;
+    scheduleList : any;
+    constructor(private router: Router, private departmentService : DepartmentService, private appointmentService : AppointmentService ) {
         /*
-                1 == hospitalStaff
-                2 == doctor
-                3 == nurse
+                1 == hospitalStaff // muliple queue
+                2 == doctor         // 1 queue
+                3 == nurse          //merged queue
                 4 == pharmacist 
             */
+            
         this.roleID = Number(localStorage.getItem('user_roleID'));
-        if(this.roleID == 1){
+        this.departmentID  = localStorage.getItem('department_id');
             var hours = new Date().getHours();
             var hours = (hours+24-2)%24; 
             var mid='am';
@@ -32,16 +36,16 @@ export class ManageQueueComponent{
                 hours=hours%12;
                 mid='pm';
             }
-            this.departmentID  = localStorage.getItem('department_id');
-            this.departmentID = '582d7edf711d23002c40ff35';
-            this.departmentService.getAllDoctor(this.departmentID, 'pm')
+            
+            //Retrive all appointment in queue (now)
+            this.departmentID = '';
+            mid = 'pm';
+            this.appointmentService.getTodayAppointments(this.departmentID,mid)
             .then((data) => {
-                console.log('hello');
-                console.log(data);
+                this.scheduleList  = data.scheduleList;
+                // console.log(data);
             });
-        }
-
-        
+                    
     }
     // @HostListener('window:resize', ['$event'])
     // contentHeight = window.innerHeight;

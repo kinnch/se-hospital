@@ -23,10 +23,10 @@ export class AppointmentService {
                         return res.json();
                     });
     }
-    private apiUrlTodayAppointment = 'api/departmentAppointment/byTime';
+    
     getTodayAppointments(departmentID :string, timePeriod : string):Promise<JSON>{
         return this.http
-                    .post(this.apiUrlTodayAppointment, JSON.stringify({
+                    .post('api/departmentAppointment/byTime', JSON.stringify({
                         departmentID: departmentID,
                         date : new Date().toISOString().slice(0, 10),
                         timePeriod : timePeriod

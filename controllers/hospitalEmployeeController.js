@@ -72,7 +72,7 @@ exports.getDoctorInTime = function(req,res){
         data = data.filter(function(doc){
             return doc.appointments.length < 15;
         });
-        return res.send(data);
+        return res.send({doctorAtTime : data});
     });
 }
 
