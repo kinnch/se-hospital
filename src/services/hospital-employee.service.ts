@@ -8,7 +8,7 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class HospitalEmployeeService {
     private apiUrl = 'api/employees';  // URL to web api
-    private apiAddUrl = 'api/hospitalEmployee/add';
+    private apiAddUrl = 'register';
     private headers = new Headers({'Content-Type': 'application/json'});
     constructor(private http: Http) { }
     private handleError(error: any): Promise<any> {
