@@ -579,7 +579,7 @@ exports.seed = function(req, res) {
         }),
         new DrugPrescription({
             status: 1, // doctor created
-            inspectedBy: none,
+            inspectedBy: null,
             note: "ผู้ป้วยแพ้ยาพาราเซตามอน",
             prescriptions: [prescriptionDrugs[5]._id]
         })
