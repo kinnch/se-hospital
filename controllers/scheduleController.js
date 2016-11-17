@@ -14,6 +14,7 @@ function getDateNow(){
 var Schedule = require("../model/schedule");
 var Department = require("../model/department");
 var HospitalEmployee = require("../model/hospitalEmployee");
+var Appointment = require("../model/appointment");
 
 exports.getTable = function(reg, res){
     //res.send(getDateNow());
@@ -36,7 +37,17 @@ exports.getTable = function(reg, res){
                     thisdoctor: data
                 });
             });
-        // Result is an array of documents
         });
     });
-}
+};
+
+exports.deleteAppointment = function(req, res){
+    //return res.send(req.body.appointmentID);
+    
+    Appointment.remove({_id: req.body.appointmentID})
+    .exec(function (err, data){
+        if(err) return res.send("Fail");
+        return res.send("Success");
+    });
+    
+};
