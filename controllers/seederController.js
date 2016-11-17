@@ -555,31 +555,31 @@ exports.seed = function(req, res) {
     var drugPrescriptions = [
         new DrugPrescription({
             status: 3,
-            inspectedBy: hospitalEmployees[0]._id,
+            inspectedBy: hospitalEmployees[3]._id,
             note: "",
             prescriptions: [prescriptionDrugs[0]._id, prescriptionDrugs[1]._id]
         }),
         new DrugPrescription({
             status: 3,
-            inspectedBy: hospitalEmployees[5]._id,
+            inspectedBy: hospitalEmployees[3]._id,
             note: "",
             prescriptions: [prescriptionDrugs[2]._id]
         }),
         new DrugPrescription({
             status: 2, // pharmacist approved
-            inspectedBy: hospitalEmployees[5]._id,
+            inspectedBy: hospitalEmployees[3]._id,
             note: "",
             prescriptions: [prescriptionDrugs[3]._id]
         }),
         new DrugPrescription({
             status: 0, // reject
-            inspectedBy: hospitalEmployees[5]._id,
+            inspectedBy: hospitalEmployees[3]._id,
             note: "ผู้ป้วยแพ้ยาพาราเซตามอน",
             prescriptions: [prescriptionDrugs[4]._id]
         }),
         new DrugPrescription({
             status: 1, // doctor created
-            inspectedBy: hospitalEmployees[5]._id,
+            inspectedBy: none,
             note: "ผู้ป้วยแพ้ยาพาราเซตามอน",
             prescriptions: [prescriptionDrugs[5]._id]
         })
