@@ -44,7 +44,7 @@ export class StaffCalendarComponent implements AfterViewInit, OnInit {
     }
     fetchAndAdaptData(){
         this.elementService.getDoctorDateElements().then((jsonObject) => {
-           jsonObject.forEach((e)=>{
+           jsonObject.table.forEach((e)=>{
             //    (e["_id"]["period"] == "am")
                 this.events.push(
                     {
