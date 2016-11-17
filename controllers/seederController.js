@@ -152,7 +152,137 @@ exports.seed = function(req, res) {
             text: "931278",
             generatedDate: new Date()
         },
-        allegicDrugs: [drug1._id]
+        allegicDrugs: [drugs[0]._id]
+    }));
+    patients.push(new Patient({
+        name: {
+            title: "นาย",
+            fname: "Somrak",
+            lname: "Farang"
+        },
+        email: "eName.P@gmail.com",
+        tel: "0899991010",
+        nationalID: '31013300020937',
+        sex: "male",
+        birthDate: new Date("1994-08-06"),
+        HN: '100001',
+        salt: '471e91c751f97efdfa7e6df71a497dd739564a3db679c8ab1564f92368a23d29',
+        address: {
+            detail: "622/100 ม.พฤกษ์ภิรมย์",
+            subDistrict: "แสมดำ",
+            distict: "บางขุนเทียน",
+            province: "กรุงเทพฯ",
+            postCode: "10150"
+        },
+        OTP: {
+            text: "092201",
+            generatedDate: new Date()
+        },
+        allegicDrugs: [drugs[0], drugs[4]]
+    }));
+    patients.push(new Patient({
+        name: {
+            title: "นาย",
+            fname: "กรุงศรี",
+            lname: "คนที่สอง"
+        },
+        email: "Krung_sri@hotmail.co.th",
+        tel: "0890891111",
+        nationalID: '1100100011231',
+        sex: "male",
+        birthDate: new Date("1994-08-06"),
+        HN: '100005',
+        salt: '471e91c751f97efdfa7e6df71a497dd739564a3db679c8ab1564f92368a23d29',
+        address: {
+            detail: "622/100 ม.พฤกษ์ภิรมย์",
+            subDistrict: "คลองต้นไทร",
+            distict: "คลองสาน",
+            province: "กทม.",
+            postCode: "10600"
+        },
+        OTP: {
+            text: "111112",
+            generatedDate: new Date()
+        },
+        allegicDrugs: [drugs[0], drugs[1], drugs[2]]
+    }));
+    patients.push(new Patient({
+        name: {
+            title: "นางสาว",
+            fname: "ลำดวล",
+            lname: "คนที่สาม"
+        },
+        email: "R_a_k.Dee@jobtoshare.com",
+        tel: "0890891112",
+        nationalID: '4908921116081',
+        sex: "female",
+        birthDate: new Date("1960-01-02"),
+        HN: '200009',
+        salt: '471e91c751f97efdfa7e6df71a497dd739564a3db679c8ab1564f92368a23d29',
+        address: {
+            detail: "17/4 หมู่ 5 ถนนบำรุงราษฎร์",
+            subDistrict: "พิบูลสงคราม",
+            distict: "เมือง",
+            province: "เชียงราย",
+            postCode: "51000"
+        },
+        OTP: {
+            text: "111112",
+            generatedDate: new Date()
+        },
+        allegicDrugs: []
+    }));
+    patients.push(new Patient({
+        name: {
+            title: "นาง",
+            fname: "ลำดวล",
+            lname: "คนที่สี่"
+        },
+        email: "",
+        tel: "0818132200",
+        nationalID: '0941327919461',
+        sex: "female",
+        birthDate: new Date("1911-02-28"),
+        HN: '123321',
+        salt: '471e91c751f97efdfa7e6df71a497dd739564a3db679c8ab1564f92368a23d29',
+        address: {
+            detail: "197 ถนนเจริญราษฎร์",
+            subDistrict: "วัดเกต",
+            distict: "เมืองเชียงใหม่",
+            province: "เชียงใหม่",
+            postCode: "50000"
+        },
+        OTP: {
+            text: "002020",
+            generatedDate: new Date()
+        },
+        allegicDrugs: []
+    }));
+    patients.push(new Patient({
+        name: {
+            title: "นาย",
+            fname: "Miracle",
+            lname: "ธนกิจเจริญพัฒน์"
+        },
+        email: "miracle@me.in.th",
+        tel: "0818132200",
+        nationalID: '2749477015164',
+        sex: "male",
+        birthDate: new Date("1990-01-06"),
+        HN: '200000',
+        salt: '471e91c751f97efdfa7e6df71a497dd739564a3db679c8ab1564f92368a23d29',
+        address: {
+            detail: "1873 ถนนพระราม 4 ",
+            subDistrict: "ปทุมวัน",
+            distict: "ปทุมวัน",
+            province: "กรุงเทพมหานคร",
+            postCode: "10330"
+        },
+        OTP: {
+            text: "999999",
+            generatedDate: new Date()
+        },
+        allegicDrugs: []
     }));
 
     var hospitalEmployees = [];
