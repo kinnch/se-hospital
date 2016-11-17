@@ -46,7 +46,8 @@ var physicalCheckingSchema = mongoose.Schema({
         },
         nurse: {
             type: Schema.Types.ObjectId, 
-            ref: 'hospitalEmployee'
+            ref: 'hospitalEmployee',
+            required: true
         }
     });
 
