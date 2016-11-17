@@ -42,7 +42,7 @@ export class LoginComponent {
             this.sendOTPSuccess = true;
     }
     OTPauth(OTP: string): boolean {
-        return OTP == "9999";
+        return OTP == "999999";
     }
     verifyOTP(): void {
         if (this.OTPauth(this.OTPCode)) { // success

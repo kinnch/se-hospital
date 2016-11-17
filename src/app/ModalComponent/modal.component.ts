@@ -11,7 +11,7 @@ import { Component, Input, trigger, animate, state, style, transition , OnChange
         <button type="button" class="close" (click)="modalClose()" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-        <h4 class="modal-title" >{{title}}</h4>
+        <h4 class="modal-title" [innerHtml]="title" ></h4>
       </div>
       <div class="modal-body">
        <ng-content></ng-content>
