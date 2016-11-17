@@ -13,5 +13,7 @@ RUN chown -R node:node /usr/src/app
 
 USER node
 RUN npm install 
+USER root
+RUN npm install -g karma-cli
 CMD [ "npm", "start" ]
 EXPOSE 3000 8080

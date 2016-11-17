@@ -11,4 +11,6 @@ import {PatientComponent} from './PatientComponent/patient.component';
 
 })
 
-export class AppComponent {}
+export class AppComponent {
+    url : string = "https://twitter.com/AngularClass";
+}

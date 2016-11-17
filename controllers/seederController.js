@@ -27,16 +27,68 @@ function getDateNow(){
 
 
 exports.seed = function(req, res) {
-    var para = new Drug({
-            name: "paracetamol",
-            hasInHospital:  true
-    });
-
-    var h1n1 = new Disease({
-            name: "วัดใหญ่",
-            icd10: "H1N1"
-    });
-
+    //Drugs
+    var drugs = [];
+    drugs.push(new Drug({
+        name: "paracetamol",
+        hasInHospital:  true
+    }));
+    drugs.push(new Drug({
+        name: "cpm",
+        hasInHospital: true
+    }));
+    drugs.push(new Drug({
+        name: "chemicalX",
+        hasInHospital: false
+    }));
+    drugs.push(new Drug({
+        name: "aspirin",
+        hasInHospital: true
+    }));
+    drugs.push(new Drug({
+        name: "colgate",
+        hasInHospital: true
+    }));
+    drugs.push(new Drug({
+        name: "listerline",
+        hasInHospital: true
+    }));
+    drugs.push(new Drug({
+        name: "ponstan",
+        hasInHospital: true
+    }));
+    //Diseases 
+    //len(icd10) = 2-20 char
+    var diseases = [];
+    diseases.push(new Disease({
+        name: "วัดใหญ่",
+        icd10: "H1N1"
+    }));
+    diseases.push(new Disease({
+        name: "เบาหวาน",
+        icd10: "DIA1"
+    }));
+    diseases.push(new Disease({
+        name: "ความดันโลหิต",
+        icd10: "PRES"
+    }));
+    diseases.push(new Disease({
+        name: "รูมาตอยด์",
+        icd10: "ROO1"
+    }));
+    diseases.push(new Disease({
+        name: "คาวาซากิ",
+        icd10: "KWAZ"
+    }));
+    diseases.push(new Disease({
+        name: "ทรพิษ",
+        icd10: "POIS134"
+    }));
+    diseases.push(new Disease({
+        name: "พาร์กินสัน",
+        icd10: "PAKS"
+    }));
+    //Departments
     var departments = [];
     departments.push(new Department({
             name: "อายุรกรรม"
@@ -74,7 +126,7 @@ exports.seed = function(req, res) {
     departments.push(new Department({
             name: "BOSS"
     }));
-
+    //Patients
     var patients = [];
     patients.push(new Patient({
         name: {
@@ -100,7 +152,7 @@ exports.seed = function(req, res) {
             text: "931278",
             generatedDate: new Date()
         },
-        allegicDrugs: [para._id]
+        allegicDrugs: [drug1._id]
     }));
 
     var hospitalEmployees = [];
@@ -204,7 +256,7 @@ exports.seed = function(req, res) {
         }));
 
     var prescription = new PrescriptionDrug({
-        drug: para._id,
+        drug: drugs[0]._id,
         detail: "1 เม็ดทุกมื้อ หลังอาหาร เช้า กลางวัน เย็น",
         amount: 30
     });
@@ -230,7 +282,7 @@ exports.seed = function(req, res) {
         timePeriod: 'am',
         date: getDateNow(),
         detail: "ทอนซิล บวมใหญ่ แดง แอสไปรอลปกติ มีหนอง",
-        disease: h1n1._id
+        disease: diseases[0]._id
     }));
 
     Patient.remove({}, function(err) {
@@ -242,7 +294,9 @@ exports.seed = function(req, res) {
     });
     Drug.remove({}, function(err) { 
         console.log('drug collection removed');
-        para.save();
+        for(var i = 0 ; i <drugs.length ; i++){
+            drugs[i].save();
+        }
     });
 
     PrescriptionDrug.remove({}, function(err) { 
@@ -291,7 +345,9 @@ exports.seed = function(req, res) {
     });
     Disease.remove({}, function(err) { 
         console.log('schedule collection removed');
-        h1n1.save(); 
+        for(var i = 0 ; i < diseases.length ; i++){
+            diseases[i].save();
+        }
     });
     res.send('Seeded');
 }
