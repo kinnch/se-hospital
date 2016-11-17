@@ -32,6 +32,7 @@ export class PatientListComponent{
             var birthdate;
             console.log('then');
             console.log(data);
+            /*
             for(i=0;i<data['appointments'].length;i++){
                 for(j=0;j<data['appointments'][i]['Schedules']['appointments'].length;j++){
                     status = data['appointments'][i]['Schedules']['appointments'][j]['status'];
@@ -73,6 +74,7 @@ export class PatientListComponent{
                     }
                 }   
             }
+            */
             console.log(this.withDoctorApt);
         });
     }

@@ -22,4 +22,16 @@ export class DepartmentService {
                         return data.json();
                     });
     }
+    getAllDoctor(departmentID : string ,timePeriod : string): Promise<JSON>{
+        return this.http
+        .post('api/timeperiodDoctor', JSON.stringify({
+            departmentID: departmentID,
+            date: new Date().toISOString().slice(0, 10), 
+            period: timePeriod
+            }), {headers: this.headers})
+                    .toPromise()
+                    .then(function(res){
+                        return res.json();
+                    });
+    }
 }
