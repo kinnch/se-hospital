@@ -24,6 +24,8 @@ export class ManageHospitalEmployeeComponent implements OnInit{
     selectedFname:string = ""; //selected
     selectedLname:string = ""; //selected
     selectedStaffId:string = ""; //selected
+    selectedPass:string = ""; //selected
+    selectedConfirmPass:string = ""; //selected
     constructor(private router: Router, 
                 private hospitalEmployeeService: HospitalEmployeeService,
                 private departmentService: DepartmentService) {
@@ -63,9 +65,9 @@ export class ManageHospitalEmployeeComponent implements OnInit{
     onChangeDep(depId):void{
         this.getEachDepStaff(depId);
     }
-    changePwd(event):void{
-        let id = event.target.attributes.id.nodeValue;     
-        let staffId = id.substr(4,id.length);
+    changePwd(staffId):void{
+        this.selectedPass = "";
+        this.selectedConfirmPass = "";
         this.employees.forEach((employee)=>{
             console.log(staffId)
             if(employee._id == staffId){
@@ -76,8 +78,17 @@ export class ManageHospitalEmployeeComponent implements OnInit{
             }
         });
     }
-    
-    confirm():void{
+    removeStaff(staffId):void{  
+        this.hospitalEmployeeService.removeStaff(staffId).then((res)=>{
+            if(res == "success"){
+                console.log("deleted");
+            }
+        })
+    }
+    confirmChangePass():void{
         console.log("confirm")
+    }
+    cancelChangePass():void{
+        console.log("cancel")
     }
 }
