@@ -10,6 +10,16 @@ var mongoose = require('mongoose');
 
 var HospitalEmployee = require("../model/hospitalEmployee");
 var Department = require("../model/department");
+var Schedule = require("../model/schedule");
+
+var pbkdf2 = require('pbkdf2');
+
+var hashWithSalt = function(otp,salt){
+    salt = salt.toString('hex');
+    var derivedKey = pbkdf2.pbkdf2Sync(otp, salt, 25000, 512, 'sha256');
+    return derivedKey.toString("hex");
+}
+
 exports.getAllEmployee = function(req, res){
     HospitalEmployee.find({},function(err,employees){
         data = { 'employees':employees};
@@ -24,6 +34,54 @@ exports.getAllDepartment = function(req, res){
         return;
     });
 }
+exports.getAllDepartmentOfDoctor = function(req, res){
+    HospitalEmployee.find({roleID: 2})
+        .distinct("department", function(error,depIDs) {
+            Department.find({'_id': {$in: depIDs}}, 'name', function(err,depNames) {
+                res.send(depNames);
+                return;
+            });
+            return;
+        });
+}
+
+exports.changePassword = function(req,res){
+    var data = req.body;
+    HospitalEmployee.findOne({
+        userName: (data.username)+''
+    }).select("+salt").exec(function(err, employee){
+        var hashed = hashWithSalt(data.password, employee.salt);
+        employee.hash = hashed;
+        employee.save();
+        res.send("done")
+        return;
+    })
+}
+exports.getDoctorInTime = function(req,res){
+    Schedule.find({
+        date: {"$gte": new Date(req.body.date),
+                $lt:new Date(new Date(req.body.date).getTime() + 24 * 3600 * 1000)},
+        timePeriod: req.body.period
+    }).populate({
+        path:'doctor',
+        match: {department: req.body.dapartmentID}
+    }).exec( function(err,data){
+        data = data.filter(function(doc){
+            return doc.appointments.length < 15;
+        });
+        return res.send(data);
+    });
+}
+
+exports.deleteStaff = function(req,res){
+    var data = req.body;
+    HospitalEmployee.findOne({
+        userName: (data.username)+''
+    }).remove().exec();
+    res.send("done");
+    return;
+}
+
 exports.isInSystem = function(req, res) {
     HospitalEmployee.findOne({
         userName: (req.body.username)+''

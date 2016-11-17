@@ -10,6 +10,7 @@ var Patient = require("../model/patient");
 var Schedule = require("../model/schedule");
 var HospitalEmployee = require("../model/hospitalEmployee");
 var Department = require("../model/department")
+var Appointment = require("../model/appointment");
 var timeLimit = 15;
 
 
@@ -37,71 +38,45 @@ exports.testing = function(req, res) {
 exports.search = function(req, res){
     var data = (req.body.key) + '';
     if(data.length == 8){
-        Patient.findOne({HN: data}, function (err, patient) {
-            if (err) return console.error(err);
-        }).populate('allegicDrugs').exec(function(error, patient) {
-            return patient;
-        }).then(function (patientdata){
-            Schedule.find({}, function (err, patient) {
-                if (err) return console.error(err);
-             }).populate('doctor').exec(function (err, data) {
-                    
-                    var option = {
-                        path: 'doctor.department',
-                        model: 'Department'
-                    };
-                    Schedule.populate(data, option, function(err, Schedules){
-                    var all_schedules = [];
-                    for(var i = 0; i < Schedules.length; i++){
-                        for(var j = 0; j < Schedules[i].appointments.length; j++){
-                            if(Schedules[i].appointments[j].patient.equals(patientdata._id)){
-                                all_schedules.push(Schedules[i]);
-                            }
-                        }
-                    }
-                    var patient_aligh_data = {
-                        patientdata,
-                        Schedule: all_schedules,
-                    };
-                    res.send(patient_aligh_data);
-                    return;
-                    })
-                }
-            );
+        Patient.findOne({HN: data})
+        .populate('allegicDrugs')
+        .exec( function(err,patient_data){
+            //res.send(patient_data._id);
+            Schedule.find({appointments: {$gt: []}}, function(err, data){
+            }).populate({
+                path: 'appointments',
+                match: {patient: patient_data._id}
+            })
+            .exec(function (err, data){
+                data = data.filter(function(doc){
+                    return doc.appointments.length
+                });
+                return res.send({
+                    patient_data,
+                    appoint: data
+                });
+            });
         });
     }
     else if(data.length == 13){
-        Patient.findOne({nationalID: data}, function (err, patient) {
-            if (err) return console.error(err);
-        }).populate('allegicDrugs').exec(function(error, patient) {
-            return patient;
-        }).then(function (patientdata){
-            Schedule.find({}, function (err, patient) {
-                if (err) return console.error(err);
-             }).populate('doctor').exec(function (err, data) {
-                    
-                    var option = {
-                        path: 'doctor.department',
-                        model: 'Department'
-                    };
-                    Schedule.populate(data, option, function(err, Schedules){
-                    var all_schedules = [];
-                    for(var i = 0; i < Schedules.length; i++){
-                        for(var j = 0; j < Schedules[i].appointments.length; j++){
-                            if(Schedules[i].appointments[j].patient.equals(patientdata._id)){
-                                all_schedules.push(Schedules[i]);
-                            }
-                        }
-                    }
-                    var patient_aligh_data = {
-                        patientdata,
-                        Schedule: all_schedules,
-                    };
-                    res.send(patient_aligh_data);
-                    return;
-                    })
-                }
-            );
+        Patient.findOne({nationalID: data})
+        .populate('allegicDrugs')
+        .exec( function(err,patient_data){
+            //res.send(patient_data._id);
+            Schedule.find({appointments: {$gt: []}}, function(err, data){
+            }).populate({
+                path: 'appointments',
+                match: {patient: patient_data._id}
+            })
+            .exec(function (err, data){
+                data = data.filter(function(doc){
+                    return doc.appointments.length
+                });
+                return res.send({
+                    patient_data,
+                    appoint: data
+                });
+            });
         });
     }
     else res.send(null);
