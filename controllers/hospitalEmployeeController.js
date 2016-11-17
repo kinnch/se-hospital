@@ -33,6 +33,16 @@ exports.getAllDepartment = function(req, res){
         return;
     });
 }
+exports.getAllDepartmentOfDoctor = function(req, res){
+    HospitalEmployee.find({roleID: 2})
+        .distinct("department", function(error,depIDs) {
+            Department.find({'_id': {$in: depIDs}}, 'name', function(err,depNames) {
+                res.send(depNames);
+                return;
+            });
+            return;
+        });
+}
 
 exports.changePassword = function(req,res){
     var data = req.body;
