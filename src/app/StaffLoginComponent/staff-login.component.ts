@@ -9,8 +9,8 @@ import { Router } from '@angular/router';
 })
 export class StaffLoginComponent{
     constructor(private userService: UserService, private router: Router) {}
-    username;
-    password;
+    username='';
+    password='';
     onSubmit() {
         this.userService.login(this.username, this.password).subscribe((result) => {
         if (result) {
