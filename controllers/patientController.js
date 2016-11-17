@@ -10,6 +10,7 @@ var Patient = require("../model/patient");
 var Schedule = require("../model/schedule");
 var HospitalEmployee = require("../model/hospitalEmployee");
 var Department = require("../model/department")
+var Appointment = require("../model/appointment");
 var timeLimit = 15;
 
 
@@ -37,6 +38,29 @@ exports.testing = function(req, res) {
 exports.search = function(req, res){
     var data = (req.body.key) + '';
     if(data.length == 8){
+        Patient.findOne({HN: data}, function(err,patient_data){
+            //res.send(patient_data._id);
+            Schedule.find({appointments: {$gt: []}}, function(err, data){
+            }).populate('appointments', {patient: patient_data._id})
+            .exec(function (err, data){
+                res.send(data);
+                return;
+            });
+            /*
+            Appointment.find({patient: patient_data._id}, function(err, data){
+                Schedule.find({appointments: data._id}, function(err, data2){
+                    res.send(data2);
+                    return;
+                })
+            });
+            /*
+            appointments.find({patient: patient._id}, function(err, data){
+                res.send(data);
+                return;
+            });
+            */
+        });
+        /*
         Patient.findOne({HN: data}, function (err, patient) {
             if (err) return console.error(err);
         }).populate('allegicDrugs').exec(function(error, patient) {
@@ -69,6 +93,7 @@ exports.search = function(req, res){
                 }
             );
         });
+        */
     }
     else if(data.length == 13){
         Patient.findOne({nationalID: data}, function (err, patient) {

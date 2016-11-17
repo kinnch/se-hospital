@@ -69,6 +69,8 @@ module.exports = function(app) {
     //-----bone not testing zone-----
     app.get('/api/employees',hospitalEmployeeController.getAllEmployee);
     app.get('/api/departments',hospitalEmployeeController.getAllDepartment);
+    app.post('/api/staff/changePassword',hospitalEmployeeController.changePassword);
+    app.post('/api/staff/deleteStaff',hospitalEmployeeController.deleteStaff);
     app.post('/login', hospitalEmployeeController.login);
     app.post('/register', hospitalEmployeeController.register);
     app.get('/login', hospitalEmployeeController.getLogin)
@@ -76,6 +78,8 @@ module.exports = function(app) {
     app.post('/loginPatient', patientController.login);
     app.post('/registerPatient', patientController.register);
     app.get('/loginPatient', patientController.getLogin);
+
+    
 
     var otpController = require('../controllers/otpController');
     app.post('/requestOTP', otpController.requestOTP);
