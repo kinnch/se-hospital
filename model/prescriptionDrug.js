@@ -4,7 +4,8 @@ var Schema = mongoose.Schema;
 var prescription_drug_Schema = mongoose.Schema({
     drug: {
         type: Schema.Types.ObjectId, 
-        ref: 'Drug' 
+        ref: 'Drug',
+        required: true
     },
     detail: String,
     amount: Number                                 

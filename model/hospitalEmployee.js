@@ -14,7 +14,12 @@ var hospitalEmployeeSchema = mongoose.Schema({
             min: 1,
             max: 4,
             required: true
-            // 1 ==  2 ==  3 == 4 == 
+            /*
+                1 == hospitalStaff
+                2 == doctor
+                3 == nurse
+                4 == pharmacist 
+            */
         },
         department:{
             type: Schema.Types.ObjectId,
