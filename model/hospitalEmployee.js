@@ -7,6 +7,7 @@ var hospitalEmployeeSchema = mongoose.Schema({
             title: String,
             fname: String,
             lname: String,
+            
         },
         roleID: {
             type: Number,

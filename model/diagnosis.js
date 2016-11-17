@@ -4,7 +4,7 @@ var Schema = mongoose.Schema;
 var diagnosisSchema = mongoose.Schema({
         drugPrescription: {
             type: Schema.Types.ObjectId, 
-            ref: 'DrugPrescription' 
+            ref: 'DrugPrescription'
         },
         patient: {
             type: Schema.Types.ObjectId, 
@@ -13,7 +13,8 @@ var diagnosisSchema = mongoose.Schema({
         },
         doctor: {
             type: Schema.Types.ObjectId, 
-            ref: 'Doctor' 
+            ref: 'HospitalEmployee',
+            required: true
         },
         timePeriod: {
             type: String,
