@@ -23,19 +23,6 @@ function getDateNow(){
     return this_date;
 }
 
-exports.showAll = function(req, res){
-    //have to fix '582d28d511121d002c9f34e1'
-    Schedule.find({})
-    .populate({
-        path: 'doctor',
-        match: { department: req.body.departmentID }
-    })
-    .populate('appointments')
-    .exec(function(error,data){
-        res.send({data: data});
-        return;
-    });
-}
 
 exports.showSomeDoctors = function(reg, res){
     //have to fix 
