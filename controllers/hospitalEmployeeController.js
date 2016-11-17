@@ -10,6 +10,15 @@ var mongoose = require('mongoose');
 
 var HospitalEmployee = require("../model/hospitalEmployee");
 var Department = require("../model/department");
+
+var pbkdf2 = require('pbkdf2');
+
+var hashWithSalt = function(otp,salt){
+    salt = salt.toString('hex');
+    var derivedKey = pbkdf2.pbkdf2Sync(otp, salt, 25000, 512, 'sha256');
+    return derivedKey.toString("hex");
+}
+
 exports.getAllEmployee = function(req, res){
     HospitalEmployee.find({},function(err,employees){
         data = { 'employees':employees};
@@ -24,6 +33,25 @@ exports.getAllDepartment = function(req, res){
         return;
     });
 }
+
+exports.changePassword = function(req,res){
+    var data = req.body;
+    HospitalEmployee.findOne({
+        userName: (data.username)+''
+    }).select("+salt").exec(function(err, employee){
+        var hashed = hashWithSalt(data.password, employee.salt);
+        employee.hash = hashed;
+        employee.save();
+        res.send("done")
+        return;
+    })
+}
+
+// TODO : Delete Staff
+exports.deleteStaff = function(req,res){
+
+}
+
 exports.isInSystem = function(req, res) {
     HospitalEmployee.findOne({
         userName: (req.body.username)+''
