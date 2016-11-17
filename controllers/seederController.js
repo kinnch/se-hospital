@@ -352,7 +352,7 @@ exports.seed = function(req, res) {
     
     
 
-    //Appointments N=8
+    //Appointments N=9
     var appointments = [
         new Appointment({
             patient: patients[0]._id,
@@ -393,9 +393,15 @@ exports.seed = function(req, res) {
             patient: patients[5]._id,
             reason: "ปวดกระดูก ตกบันได",
             status: 4
+        }),
+        new Appointment({
+            patient: patients[2]._id,
+            reason: "ปวดท้อง",
+            status: 3
         })
     ];
 
+    // Schedules  N=4
     var schedules = [
         new Schedule({
             timePeriod: 'am',
@@ -407,13 +413,13 @@ exports.seed = function(req, res) {
             timePeriod: 'pm',
             date: getDateYesterday(),
             doctor: hospitalEmployees[1]._id,
-            appointments: [appointments[7]._id]
+            appointments: []
         }),
         new Schedule({
             timePeriod: 'am',
             date: getDateNow(),
             doctor: hospitalEmployees[1]._id,
-            appointments: [appointments[2]._id,appointments[4]._id,appointments[5]._id]
+            appointments: [appointments[7]._id, appointments[2]._id, appointments[4]._id, appointments[5]._id, appointments[8]._id]
         }),
         new Schedule({
             timePeriod: 'pm',
@@ -423,6 +429,7 @@ exports.seed = function(req, res) {
         })
     ];
 
+    // PhysicalChecking  N=6
     var checkings = [
         new PhysicalChecking({
             bloodPresure: {
@@ -493,10 +500,24 @@ exports.seed = function(req, res) {
             temp: 38.9,
             patient: patients[1]._id,
             nurse: hospitalEmployees[2]._id
+        }),
+        new PhysicalChecking({
+            bloodPresure: {
+                systolic: 120,
+                diastolic: 50
+            },
+            heartRate: 80,
+            date: getDateNow(),
+            timePeriod: "am",
+            weight: 65,
+            height: 150,
+            temp: 38.9,
+            patient: patients[1]._id,
+            nurse: hospitalEmployees[2]._id
         })
     ];
 
-    // PrescriptionDrugs N=5
+    // PrescriptionDrugs N=6
     var prescriptionDrugs = [
         new PrescriptionDrug({
             drug: drugs[0]._id,
@@ -522,6 +543,11 @@ exports.seed = function(req, res) {
             drug: drugs[1]._id,
             detail: "1 เม็ดทุกมื้อ หลังอาหาร เช้า กลางวัน เย็น",
             amount: 30
+        }),
+        new PrescriptionDrug({
+            drug: drugs[6]._id,
+            detail: "1 เม็ดทุกมื้อ หลังอาหาร เช้า กลางวัน เย็น",
+            amount: 10
         })
     ];
 
@@ -540,7 +566,7 @@ exports.seed = function(req, res) {
             prescriptions: [prescriptionDrugs[2]._id]
         }),
         new DrugPrescription({
-            status: 3,
+            status: 2, // pharmacist approved
             inspectedBy: hospitalEmployees[5]._id,
             note: "",
             prescriptions: [prescriptionDrugs[3]._id]
@@ -550,6 +576,12 @@ exports.seed = function(req, res) {
             inspectedBy: hospitalEmployees[5]._id,
             note: "ผู้ป้วยแพ้ยาพาราเซตามอน",
             prescriptions: [prescriptionDrugs[4]._id]
+        }),
+        new DrugPrescription({
+            status: 1, // doctor created
+            inspectedBy: hospitalEmployees[5]._id,
+            note: "ผู้ป้วยแพ้ยาพาราเซตามอน",
+            prescriptions: [prescriptionDrugs[5]._id]
         })
     ];
 
@@ -581,7 +613,7 @@ exports.seed = function(req, res) {
             drugPrescription: drugPrescriptions[2]._id,
             patient: patients[5]._id,
             doctor: hospitalEmployees[1]._id,
-            timePeriod: 'pm',
+            timePeriod: 'am',
             date: getDateNow(),
             detail: "ผู้ป่วยปวดหัวไมเกรน เวียนศีรษะ",
             disease: diseases[2]._id
