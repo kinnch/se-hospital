@@ -29,7 +29,10 @@ module.exports = function(app) {
     }));
     app.use(passport.initialize());
     app.use(passport.session());
-
+    app.use(function (err, req, res, next) {
+    console.error(err.stack)
+    res.status(500).send('Something broke!')
+    });
     //patientController.setDBConnectionsFromApp(app);
 
    
@@ -37,6 +40,7 @@ module.exports = function(app) {
     var patientController = require('../controllers/patientController');
     app.get('/testing',  patientController.testing);
     app.post('/api/patient/search',  patientController.search);
+    app.post('api/patient/register', patientController.register);
 
     var seederController = require('../controllers/seederController');
     app.get('/seed',  seederController.seed);
@@ -64,6 +68,7 @@ module.exports = function(app) {
 
     var scheduleController = require('../controllers/scheduleController');
     app.post('/api/schedule/getTable',  scheduleController.getTable);
+    app.post('/api/appointment/delete', scheduleController.deleteAppointment);
 
     var diagnosisDataController = require('../controllers/diagnosisDataController');
     app.post('/api/diagnosisHistory', diagnosisDataController.diagnosisHistory);

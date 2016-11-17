@@ -1,25 +1,25 @@
-<modal #modal [id]="'change-1'" [size]="'md'" [title]="'เปลี่ยน Password : '+selectedFname+' '+selectedLname" [callbackSuccess]="confirm">
+<modal #modal [id]="'change-1'" [size]="'md'" [title]="'เปลี่ยน Password : '+selectedFname+' '+selectedLname" (modalSuccess)="confirmChangePass()" (modalCancel)="cancelChangePass()">
 	<div class="form-group row">
 		<label class="col-xs-4 col-form-label right">Password</label>
 		<div class="col-xs-6">
-			<input class="form-control" type="password">
+			<input class="form-control" type="password" [(ngModel)]="selectedPass">
 		</div>
 	</div>
 	<div class="form-group row">
 		<label class="col-xs-4 col-form-label right">Confirm Password</label>
 		<div class="col-xs-6">
-			<input class="form-control" type="password">
+			<input class="form-control" type="password" [(ngModel)]="selectedConfirmPass" value="{{selectedConfirmPass}}">
 		</div>
 	</div>
 </modal>
-<h3>จัดการบุคคลากร</h3>
+<h3>จัดการบุคลากร</h3>
 <hr>
 <div class="container">
 	<div class="row">
 		<div class="col-md-12">
 			<br>
 			<div class="right">
-				<button routerLink="/manage/add_staff" type="button" class="btn btn-primary" style="width: 150px"><i class="fa fa-plus" aria-hidden="true"></i> เพิ่มบุคคลากร</button>
+				<button routerLink="/manage/add_staff" type="button" class="btn btn-primary" style="width: 150px"><i class="fa fa-plus" aria-hidden="true"></i> เพิ่มบุคลากร</button>
 			</div>
 			<div class="form-group row">
 				<label for="inputDepartment" class="col-xs-1 col-form-label">แผนก</label>
@@ -46,7 +46,7 @@
 									<th>นามสกุล</th>
 									<th>username</th>
 									<th>เปลี่ยน Password</th>
-									<th>ลบบุคคลากร</th>
+									<th>ลบบุคลากร</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -55,8 +55,8 @@
 									<td>{{doc.name.fname}}</td>
 									<td>{{doc.name.lname}}</td>
 									<td>{{doc.userName}}</td>
-									<td><button type="button" id="chg-{{doc._id}}" (click)="changePwd($event)" class="btn btn-sm btn-warning" style="width: 150px">เปลี่ยน Password</button></td>
-									<td><button type="button" id="rem-{{doc._id}}" class="btn btn-sm btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
+									<td><button type="button" (click)="changePwd(doc._id)" class="btn btn-sm btn-warning" style="width: 150px">เปลี่ยน Password</button></td>
+									<td><button type="button" (click)="removeStaff(doc._id)" class="btn btn-sm btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
 								</tr>
 							</tbody>
 						</table>
@@ -76,7 +76,7 @@
 									<th>นามสกุล</th>
 									<th>username</th>
 									<th>เปลี่ยน Password</th>
-									<th>ลบบุคคลากร</th>
+									<th>ลบบุคลากร</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -85,8 +85,8 @@
 									<td>{{nurse.name.fname}}</td>
 									<td>{{nurse.name.lname}}</td>
 									<td>{{nurse.userName}}</td>
-									<td><button type="button" id="chg-{{nurse._id}}" (click)="changePwd($event)" class="btn btn-sm btn-warning" style="width: 150px">เปลี่ยน Password</button></td>
-									<td><button type="button" id="rem-{{nurse._id}}" class="btn btn-sm btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
+									<td><button type="button" (click)="changePwd(nurse._id)" class="btn btn-sm btn-warning" style="width: 150px">เปลี่ยน Password</button></td>
+									<td><button type="button" (click)="removeStaff(nurse._id)" class="btn btn-sm btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
 								</tr>
 							</tbody>
 						</table>
@@ -106,7 +106,7 @@
 									<th>นามสกุล</th>
 									<th>username</th>
 									<th>เปลี่ยน Password</th>
-									<th>ลบบุคคลากร</th>
+									<th>ลบบุคลากร</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -115,8 +115,8 @@
 									<td>{{phar.name.fname}}</td>
 									<td>{{phar.name.lname}}</td>
 									<td>{{phar.userName}}</td>
-									<td><button type="button" id="chg-{{phar._id}}" (click)="changePwd($event)" class="btn btn-sm btn-warning" style="width: 150px">เปลี่ยน Password</button></td>
-									<td><button type="button" id="rem-{{phar._id}}" class="btn btn-sm btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
+									<td><button type="button" (click)="changePwd(phar._id)" class="btn btn-sm btn-warning" style="width: 150px">เปลี่ยน Password</button></td>
+									<td><button type="button" (click)="removeStaff(phar._id)" class="btn btn-sm btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
 								</tr>
 							</tbody>
 						</table>
@@ -136,7 +136,7 @@
 									<th>นามสกุล</th>
 									<th>username</th>
 									<th>เปลี่ยน Password</th>
-									<th>ลบบุคคลากร</th>
+									<th>ลบบุคลากร</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -145,8 +145,8 @@
 									<td>{{staff.name.fname}}</td>
 									<td>{{staff.name.lname}}</td>
 									<td>{{staff.userName}}</td>
-									<td><button type="button" id="chg-{{staff._id}}" (click)="changePwd($event)" class="btn btn-sm btn-warning" style="width: 150px">เปลี่ยน Password</button></td>
-									<td><button type="button" id="rem-{{staff._id}}" class="btn btn-sm btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
+									<td><button type="button" (click)="changePwd(staff._id)" class="btn btn-sm btn-warning" style="width: 150px">เปลี่ยน Password</button></td>
+									<td><button type="button" (click)="removeStaff(staff._id)" class="btn btn-sm btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
 								</tr>
 							</tbody>
 						</table>

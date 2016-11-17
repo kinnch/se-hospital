@@ -48,7 +48,7 @@ exports.getAllDepartmentOfDoctor = function(req, res){
 exports.changePassword = function(req,res){
     var data = req.body;
     HospitalEmployee.findOne({
-        userName: (data.username)+''
+        _id: (data.id)+''
     }).select("+salt").exec(function(err, employee){
         var hashed = hashWithSalt(data.password, employee.salt);
         employee.hash = hashed;
@@ -66,17 +66,20 @@ exports.getDoctorInTime = function(req,res){
         path:'doctor',
         match: {department: req.body.dapartmentID}
     }).exec( function(err,data){
+        if (err){
+            return res.send('error not found');
+        };
         data = data.filter(function(doc){
             return doc.appointments.length < 15;
         });
-        return res.send(data);
+        return res.send({doctorAtTime : data});
     });
 }
 
 exports.deleteStaff = function(req,res){
     var data = req.body;
     HospitalEmployee.findOne({
-        userName: (data.username)+''
+        _id: (data.id)+''
     }).remove().exec();
     res.send("done");
     return;

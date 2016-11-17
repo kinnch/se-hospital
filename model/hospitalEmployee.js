@@ -23,7 +23,8 @@ var hospitalEmployeeSchema = mongoose.Schema({
         },
         department:{
             type: Schema.Types.ObjectId,
-            ref: 'Department'
+            ref: 'Department',
+            required : true
         },
         lastPage: String,
         userName:{

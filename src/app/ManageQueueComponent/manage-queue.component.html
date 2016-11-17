@@ -1,22 +1,38 @@
+
+<!--
+appointment status
+0 == created in website
+1 == ปรินท์ใบนัดแล้ว
+2 == ตรวจร่างกายแล้ว
+3 == ตรวจอยู่
+4 == ตรวจเสร็จ.
+-->
+        
+<!--
+roleID
+1 == hospitalStaff // muliple queue
+2 == doctor         // 1 queue
+3 == nurse          //merged queue
+4 == pharmacist
+-->
 <h3>รายชื่อผู้ป่วยวันนี้</h3>
 <hr>
 <p>roleID {{roleID}}</p>
 <p>department {{departmentID}}</p>
-<div class="horizontal-container">
-    <!--staff-->
+<!--staff-->
+<div class="horizontal-container" *ngIf="roleID==1">
+    
     <div *ngIf="roleID==1">        
-            <patient-list-c *ngFor="let x of [1,2,3,4,5]" [roomNo]="x"></patient-list-c>
-            <!--<patient-list-c style="height:85%" [roomNo]="2"></patient-list-c>
-            <patient-list-c style="height:85%" [roomNo]="3"></patient-list-c>
-            <patient-list-c style="height:85%" [roomNo]="4"></patient-list-c>-->
-
+            <patient-list-c *ngFor="let doctorSchedule of scheduleList" [queue]="doctorSchedule" [roleID] = "roleID">
+            </patient-list-c>
     </div>
+</div>
+<!--doctor-->
+<div *ngIf="roleID==2">
+    <patient-list-c *ngFor="let doctorSchedule of scheduleList" [queue]="doctorSchedule" [roleID] = "roleID">
+    </patient-list-c>
+</div>
 
-    <!--doctor-->
-    <div *ngIf="roleID==2">
-    </div>
-
-    <!--nurse-->
-    <div *ngIf="roleID==3">
-    </div>
+<!--nurse-->
+<div *ngIf="roleID==3">
 </div>
