@@ -58,7 +58,9 @@ module.exports = function(app) {
     var hospitalEmployeeController = require('../controllers/hospitalEmployeeController');
     app.post('/api/hospitalEmployee/isInSystem',  hospitalEmployeeController.isInSystem);
     app.post('/api/hospitalEmployee/add',  hospitalEmployeeController.add);
-    app.post('/api/hospitalEmployee/showDoctorFromDepartment', hospitalEmployeeController.showDoctorList)
+    app.post('/api/hospitalEmployee/showDoctorFromDepartment', hospitalEmployeeController.showDoctorList);
+    app.post('/api/timeperiodDoctor', hospitalEmployeeController.getDoctorInTime);
+    ///api/timeperiodDoctor
 
     var scheduleController = require('../controllers/scheduleController');
     app.post('/api/schedule/getTable',  scheduleController.getTable);
@@ -70,6 +72,7 @@ module.exports = function(app) {
     
     app.get('/api/employees',hospitalEmployeeController.getAllEmployee);
     app.get('/api/departments',hospitalEmployeeController.getAllDepartment);
+    app.get('/api/departmentsDoctors',hospitalEmployeeController.getAllDepartmentOfDoctor);
     app.post('/api/staff/changePassword',hospitalEmployeeController.changePassword);
     app.post('/api/staff/deleteStaff',hospitalEmployeeController.deleteStaff);
     app.post('/login', hospitalEmployeeController.login);

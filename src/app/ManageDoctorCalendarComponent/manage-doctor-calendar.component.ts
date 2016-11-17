@@ -1,7 +1,7 @@
 import {Component, Input} from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Router } from '@angular/router';
-import { DoctorCalendarComponent } from '../DoctorCalendarComponent/doctor-calendar.component';
+import { StaffCalendarComponent } from '../StaffCalendarComponent/staff-calendar.component';
 import { CalendarContainerComponent } from '../CalendarContainerComponent/calendar-container.component';
 import * as moment from 'moment';
 @Component({

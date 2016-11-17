@@ -16,4 +16,10 @@ a:hover {
     text-decoration: none;
     cursor: pointer;
 }
+.right {
+    text-align: right;
+}
 
+.contain{
+    margin: 0 3%;
+}

@@ -104,8 +104,28 @@ function getDateNow(){
     this_date = new Date(this_date.getFullYear()+'-'+(this_date.getMonth() + 1)+"-"+this_date.getDate());
     return this_date;
 }
+
 exports.allPrescription = function(reg, res){
-    Diagnosis.find({date: getDateNow() }, function(err, diagnosises){
-           res.send(diagnosises); 
+    Diagnosis.find({date: getDateNow()}).populate({
+        path: 'drugPrescription',
+        populate: {
+            path: 'prescriptions',
+            model: 'PrescriptionDrug',
+            populate: {
+                path: 'drug',
+                model: 'Drug'
+            }
+        }
+    }).populate({
+        path: 'patient',
+        populate: {
+            path: 'allegicDrugs'
+        }
+    }).populate({
+        path: 'doctor',
+        select: 'name'
+    }).exec( function(err, data){
+        res.send(data);
+        return;
     });
 }

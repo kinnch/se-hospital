@@ -163,7 +163,8 @@ exports.seed = function(req, res) {
                 text: "931278",
                 generatedDate: new Date()
             },
-            allegicDrugs: [drugs[0]._id]
+            allegicDrugs: [drugs[0]._id],
+            bloodType: "A"
         }),
         new Patient({
             name: {
@@ -189,7 +190,9 @@ exports.seed = function(req, res) {
                 text: "092201",
                 generatedDate: new Date()
             },
-            allegicDrugs: [drugs[0], drugs[4]]
+            allegicDrugs: [drugs[0], drugs[4]],
+            bloodType: "O"
+
         }),
         new Patient({
             name: {
@@ -215,7 +218,9 @@ exports.seed = function(req, res) {
                 text: "111112",
                 generatedDate: new Date()
             },
-            allegicDrugs: [drugs[0], drugs[1], drugs[2]]
+            allegicDrugs: [drugs[0], drugs[1], drugs[2]],
+            bloodType: "AB"
+
         }),
         new Patient({
             name: {
@@ -241,7 +246,9 @@ exports.seed = function(req, res) {
                 text: "111112",
                 generatedDate: new Date()
             },
-            allegicDrugs: []
+            allegicDrugs: [],
+            bloodType: "A"
+
         }),
         new Patient({
             name: {
@@ -267,7 +274,10 @@ exports.seed = function(req, res) {
                 text: "002020",
                 generatedDate: new Date()
             },
-            allegicDrugs: []
+            allegicDrugs: [],
+            bloodType: "A"
+
+
         }),
         new Patient({
             name: {
@@ -293,7 +303,9 @@ exports.seed = function(req, res) {
                 text: "999999",
                 generatedDate: new Date()
             },
-            allegicDrugs: []
+            allegicDrugs: [],
+            bloodType: "A"
+
         })
     ];
 
