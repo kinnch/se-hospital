@@ -66,8 +66,6 @@ export class ManageHospitalEmployeeComponent implements OnInit{
         this.getEachDepStaff(depId);
     }
     changePwd(staffId):void{
-        this.selectedPass = "";
-        this.selectedConfirmPass = "";
         this.employees.forEach((employee)=>{
             console.log(staffId)
             if(employee._id == staffId){
@@ -86,9 +84,17 @@ export class ManageHospitalEmployeeComponent implements OnInit{
         })
     }
     confirmChangePass():void{
-        console.log("confirm")
+        this.hospitalEmployeeService.changePassword(this.selectedStaffId,this.selectedPass).then((res)=>{
+            if(res == "success"){
+                this.selectedPass = "";
+                this.selectedConfirmPass = "";
+                console.log("confirm")
+            }
+        });
     }
     cancelChangePass():void{
+        this.selectedPass = "";
+        this.selectedConfirmPass = "";
         console.log("cancel")
     }
 }
