@@ -32,6 +32,7 @@ import { PatientPanelComponent } from './PatientPanelComponent/patient-panel.com
 
 //TODO: query state from user
 let redirectToPathLastPage: string = 'manage_patient';
+// redirectToPathLastPage = 'login';
 // let userService: UserService;
 // if(userService.isLoggedIn()){
 //   redirectToPathLastPage = 'manage_patient';
@@ -82,19 +83,23 @@ const appRoutes: Routes = [
       },
       {
         path: 'manage_patient',
-        component: ManagePatientComponent
+        component: ManagePatientComponent,
+        canActivate: [LoggedInGuard]
       },
       {
         path: 'manage_patient/register',
-        component: RegisterComponent
+        component: RegisterComponent,
+        canActivate: [LoggedInGuard]
       },
       {
         path: 'manage_patient/create_appointment',
-        component: MakeAppointComponent
+        component: MakeAppointComponent,
+        canActivate: [LoggedInGuard]
       },
       {
         path: 'manage_schedule',
-        component: ScheduleManageComponent
+        component: ScheduleManageComponent,
+        canActivate: [LoggedInGuard]
       },
       {
         path: 'manage_queue',
@@ -103,52 +108,64 @@ const appRoutes: Routes = [
       },
       {
         path: 'manage_staff',
-        component: ManageHospitalEmployeeComponent
+        component: ManageHospitalEmployeeComponent,
+        canActivate: [LoggedInGuard]
       },
       {
         path: 'add_staff',
-        component: AddHospitalEmployeeComponent
+        component: AddHospitalEmployeeComponent,
+        canActivate: [LoggedInGuard]
       },
       {
         path: 'manage_doctor_calendar',
-        component: ManageDoctorCalendarComponent
+        component: ManageDoctorCalendarComponent,
+        canActivate: [LoggedInGuard]
       },
       {
         path: 'doctor_calendar',
-        component: DoctorCalendarComponent
+        component: DoctorCalendarComponent,
+        canActivate: [LoggedInGuard]
       },
       {
         path: 'doctor_calendar/:hn',
-        component: DoctorCalendarComponent
+        component: DoctorCalendarComponent,
+        canActivate: [LoggedInGuard]
       },
      
       {
         path: 'patient',
-        component: PatientListComponent
+        component: PatientListComponent,
+        canActivate: [LoggedInGuard]
       },
       {
         path: 'patient/:hn',
-        component: PatientDetailComponent
+        component: PatientDetailComponent,
+        canActivate: [LoggedInGuard]
       },
       {
         path: 'prescription_request',
-        component: PrescriptionRequestComponent
+        component: PrescriptionRequestComponent,
+        canActivate: [LoggedInGuard]
       },
       {
         path: 'prescription_request/:hn',
-        component: PrescriptionHistoryComponent
+        component: PrescriptionHistoryComponent,
+        canActivate: [LoggedInGuard]
       },
       {
         path: 'edit_prescription_request',
-        component: EditPrescriptionRequestComponent
+        component: EditPrescriptionRequestComponent,
+        canActivate: [LoggedInGuard]
       },
       {
         path: 'patient/check/:hn',
-        component: PatientPhysicalCheckHistoryComponent
+        component: PatientPhysicalCheckHistoryComponent,
+        canActivate: [LoggedInGuard]
       },
       {
         path: 'diagnosis/:hn',
-        component: PatientDetailComponent
+        component: PatientDetailComponent,
+        canActivate: [LoggedInGuard]
       },
       {
         path: 'login',
@@ -157,19 +174,23 @@ const appRoutes: Routes = [
       
       {
         path: 'diagnosis/add/:hn',
-        component: AddDiagnosisComponent
+        component: AddDiagnosisComponent,
+        canActivate: [LoggedInGuard]
       },
       {
         path: 'edit_prescription/:obj',
-        component: EditPrescriptionComponent
+        component: EditPrescriptionComponent,
+        canActivate: [LoggedInGuard]
       },
       {
         path: 'diagnosis/:hn/:date',
-        component: DiagnosisDetailComponent
+        component: DiagnosisDetailComponent,
+        canActivate: [LoggedInGuard]
       },
       {
         path: 'create_appointment/:hn/:doctor_id/:department_id',
-        component: MakeAppointComponent
+        component: MakeAppointComponent,
+        canActivate: [LoggedInGuard]
       }
     ]
   }

@@ -96,41 +96,7 @@ exports.showSomeDoctors = function(reg, res){
     });
 }
 
-exports.showHistory = function(req, res){  //have to fix
-    /*
-    Drug.find({}, function(err, all_drug){
-    Patient.findOne({HN: reg.body.HN}, function(err, patient){
-        Diagnosis.find({patient: patient._id}, function(err, diagnosises){
-        }).populate('drugPrescription').exec( function(err, data){
-            var aligh_data = [];
-            for(var i = 0; i < data.length; i++){
-                var drug_list = [];
-                //res.send(data[i].drugPrescription.prescription);
-                //return;   
-                for(var j = 0; j < data[i].drugPrescription.prescription.length; j++){
-                    //return;
-                    var id = data[i].drugPrescription.prescription[j].drug;
-            
-                    for(var k = 0; k < all_drug.length; k++){
-                        //res.send(all_drug[k]._id);
-                        //return;
-                        if(all_drug[k]._id+'' == id+''){
-                            drug_list.push(all_drug[k]);
-                        }
-                    }
-                }
-                aligh_data.push({
-                    data: data[i],
-                    drug_list: drug_list
-                });
-                
-            }
-                res.send(aligh_data);
-                return;
-            });
-        });
-    });
-    */
+exports.showHistory = function(req, res){ 
     Patient.findOne({HN: req.body.HN}, function(err, patient){
             Diagnosis.find({patient: patient._id}).populate({
                 path: 'drugPrescription',
@@ -147,26 +113,6 @@ exports.showHistory = function(req, res){  //have to fix
                 return;
             });
     });
-    /*
-    Patient.findOne({HN: req.body.HN}, function(err, patient){
-        Diagnosis.find({patient: patient._id}, function(err, diagnosises){
-        }).populate('drugPrescription').exec( function(err, data){
-
-                var option = {
-                    path: 'drugPrescription.prescriptions'
-                };
-
-                Diagnosis.populate(data, option, function(last_data){
-                    res.send(last_data);
-                    return;
-                });
-                //prescriptionDrug
-                //res.send(data);
-                //return;
-            
-            });
-        });
-        */
 }
 
 exports.updateStatus = function(reg, res){
