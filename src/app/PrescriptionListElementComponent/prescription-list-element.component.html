@@ -38,7 +38,7 @@
         </section>
         <ng-content></ng-content>
         <hr>
-        <div id="preList">
+        <div class="preList">
             <prescription-table-c [prescriptionList]="data.drugPrescription.prescriptions">
                 <hr>
                 <div *ngIf="data.patient.allegicDrugs.length == 0">
@@ -67,7 +67,7 @@
             <br>
         </div>
 
-        <div *ngIf="data.drugPrescription.status==0">
+        <div class="preList" *ngIf="data.drugPrescription.status==0">
             <section>
                 <p><b>เหตุผลที่ขอแก้ไข :</b> {{data.drugPrescription.note}}</p>
             </section>

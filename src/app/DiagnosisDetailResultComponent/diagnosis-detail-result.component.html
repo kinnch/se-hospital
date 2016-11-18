@@ -6,7 +6,9 @@
 					<blockquote _ngcontent-bir-6="" class="card-blockquote">
 						<div class="row">
 							<div class="col-md-12">
-								<p>คุณเป็นไข้หวัดใหญ่สายพันธุ์ H1N1</p>
+								 <p><span *ngFor="let dis of disease; let i = index">
+                        {{i+1}})&nbsp;{{dis.name}}&nbsp;({{dis.icd10}})&nbsp;
+                        </span></p>
 							</div>
 						</div>
 					</blockquote>
@@ -19,7 +21,7 @@
 					<blockquote _ngcontent-bir-6="" class="card-blockquote">
 						<div class="row">
 							<div class="col-md-12">
-								<p>คุณเป็นไข้หวัดใหญ่สายพันธุ์ H1N1</p>
+								<p>{{detail}}</p>
 							</div>
 						</div>
 					</blockquote>
