@@ -15,6 +15,7 @@ export class PrescriptionRequestComponent{
     isReject : boolean = false;
     department: string = '1';
     data: any; 
+    selectedTab : string = '1';
     constructor(private router: Router, private prescriptionService: PrescriptionService) {
     //     this.data = prescriptionService.getPrescriptionRequestForPharmacist();
     //     //this.prescriptionService.getPrescriptionElements().then(data => this.data = data);

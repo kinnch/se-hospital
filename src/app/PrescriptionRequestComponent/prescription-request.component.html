@@ -4,10 +4,7 @@
     <h5>รอจ่ายยา</h5>
     <hr>
     <!--(0)หมอต้องแก้ Doctor needs to edit (1)หมอจ่ายมา Doctor prescipe, (2)เภสัชจ่ายแล้ว-->
-    <div *ngFor="let elem of data ; let i = index" >
-        <prescription-list-element-c [(data)]="data[i]" *ngIf="elem.drugPrescription.status==1" >
-        </prescription-list-element-c>
-    </div>
+    
      
       
     <h5>จ่ายยาแล้ว</h5>
@@ -17,4 +14,36 @@
         </prescription-list-element-c>
     </div>
     <br>
+</div>
+
+<div class="card text-xs-center">
+  <div class="card-header" style="padding-bottom: 0px;">
+    <ul class="nav nav-tabs card-header-tabs float-xs-left">
+      <li class="nav-item">
+        <a class="nav-link " [class.active]="selectedTab=='1'" (click)="selectedTab='1'" >รอตรวจสอบ</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link"   [class.active]="selectedTab=='2'" (click)="selectedTab='2'">รอจ่ายยา</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link "  [class.active]="selectedTab=='3'" (click)="selectedTab='3'">จ่ายยาแล้ว</a>
+      </li>
+    </ul>
+  </div>
+  <div class="card-block" *ngIf="selectedTab=='1'">
+    <div *ngFor="let elem of data ; let i = index" >
+        <prescription-list-element-c [(data)]="data[i]" *ngIf="elem.drugPrescription.status==1" >
+        </prescription-list-element-c>
+    </div>
+  </div>
+  <div class="card-block"  *ngIf="selectedTab=='2'">
+    <h4 class="card-title">Special2 title treatment</h4>
+    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+  <div class="card-block"  *ngIf="selectedTab=='3'">
+    <h4 class="card-title">Special3 title treatment</h4>
+    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
 </div>
