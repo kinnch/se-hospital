@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { PrescriptionService } from '../../services/prescription.service';
 import {Subscription } from 'rxjs';
 import {OnInit, OnDestroy} from '@angular/core';
+import * as moment_ from 'moment';
+
 
 @Component({
     selector: 'prescription-history-c',
@@ -12,42 +14,43 @@ import {OnInit, OnDestroy} from '@angular/core';
 })
 
 export class PrescriptionHistoryComponent{
-    data;
     dataPack = [];
-    HN = '12344321';
+    HN: string;
     private subscription: Subscription;
 
     constructor(private router: Router,private activatedRoute: ActivatedRoute, private prescriptionService: PrescriptionService) {
-        this.prescriptionService.getPrescriptionHistory(this.HN)
-        .then((data) => {
-            // this.data = data['history'];
-            var i;
-            var j;
-            var preDate;
-            for(i=0;i<data['history'].length;i++){
-                preDate = data['history'][0]['date'];
-                for(j=0;j<data['history'][i]['drugPrescription']['prescription'].length;j++){
-                    if(j==0){
-                        data['history'][i]['drugPrescription']['prescription'][j]['head']=true;
-                        data['history'][i]['drugPrescription']['prescription'][j]['date']=preDate;
-                    }
-                    else{
-                        data['history'][i]['drugPrescription']['prescription'][j]['head']=false;
-                    }
-                        this.dataPack.push(data['history'][i]['drugPrescription']['prescription'][j]);
-                }
-            }
-             console.log(this.dataPack);
-        });
     }
 
     ngOnInit() {
     // subscribe to router event
     this.subscription = this.activatedRoute.params.subscribe(
       (param: any) => {
-        let userId = param['hn'];
-        console.log("hn -->>>>>>>"+userId);
+        this.HN = param['hn'];
+        console.log(this.HN);
       });
+    
+    moment_.locale('th');
+
+    this.prescriptionService.getPrescriptionHistory(this.HN)
+        .then((data) => {
+            var i, j, date;
+            for(i = 0 ; i < data.length ; i++){
+                if(data[i].drugPrescription.status == 2){
+                   date = moment_(data[i]['date']).format('ll'); 
+                   for(j  = 0 ; j < data[i].drugPrescription.prescriptions.length; j++){
+                       if(j == 0){
+                           data[i]['drugPrescription']['prescriptions'][j]['head'] = true;
+                           data[i]['drugPrescription']['prescriptions'][j]['date'] = date;
+                           data[i]['drugPrescription']['prescriptions'][j]['no'] = data[i].drugPrescription.prescriptions.length;
+                       }
+                       else{
+                           data[i]['drugPrescription']['prescriptions'][j]['head'] = false;
+                       }
+                       this.dataPack.push(data[i]['drugPrescription']['prescriptions'][j]);
+                   }
+                }
+            }
+        });
   }
 
   ngOnDestroy() {
