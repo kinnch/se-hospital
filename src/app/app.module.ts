@@ -59,12 +59,16 @@ import { HospitalEmployeeService } from '../services/hospital-employee.service';
 import { DepartmentService } from '../services/department.service';
 import { DoctorDateElementService } from '../services/doctor-date-element.service';
 
+import {ToastyModule} from 'ng2-toasty';
+
+
 @NgModule({
     imports:        [
         BrowserModule,
         FormsModule,
         routing,
         HttpModule,
+        ToastyModule.forRoot()
         // RouterModule.forRoot(routing)
                     ],
     declarations:   [

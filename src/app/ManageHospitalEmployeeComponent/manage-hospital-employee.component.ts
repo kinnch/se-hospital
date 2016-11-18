@@ -5,6 +5,8 @@ import { ModalComponent } from '../ModalComponent/modal.component';
 import { HospitalEmployeeService } from '../../services/hospital-employee.service';
 import { DepartmentService } from '../../services/department.service';
 
+import {ToastyService, ToastyConfig, ToastOptions, ToastData} from 'ng2-toasty';
+
 
 @Component({
     selector: 'manage-hospital-employee-c',
@@ -28,7 +30,10 @@ export class ManageHospitalEmployeeComponent implements OnInit{
     selectedConfirmPass:string = ""; //selected
     constructor(private router: Router, 
                 private hospitalEmployeeService: HospitalEmployeeService,
-                private departmentService: DepartmentService) {
+                private departmentService: DepartmentService,
+                private toastyService:ToastyService, 
+                private toastyConfig: ToastyConfig) {
+                    this.toastyConfig.theme = 'bootstrap';
     }
     ngOnInit(): void {
         this.departmentService.getAllDepartments().then((departments)=>{
@@ -125,6 +130,7 @@ export class ManageHospitalEmployeeComponent implements OnInit{
                 this.selectedPass = "";
                 this.selectedConfirmPass = "";
                 console.log("confirm")
+                this.addToast();
             }
         });
     }
@@ -132,5 +138,28 @@ export class ManageHospitalEmployeeComponent implements OnInit{
         this.selectedPass = "";
         this.selectedConfirmPass = "";
         console.log("cancel")
+    }
+
+    addToast() {
+        // create the instance of ToastOptions 
+        var toastOptions:ToastOptions = {
+            title: "ยืนยันสำเร็จ",
+            msg: "ทำการบันทึกข้อมูลเรียบร้อยแล้ว",
+            showClose: true,
+            timeout: 3000,
+            theme: 'bootstrap',
+            onAdd: (toast:ToastData) => {
+                console.log('Toast ' + toast.id + ' has been added!');
+            },
+            onRemove: function(toast:ToastData) {
+                console.log('Toast ' + toast.id + ' has been removed!');
+            }
+        };
+        // Add see all possible types in one shot 
+        // this.toastyService.info(toastOptions);
+        this.toastyService.success(toastOptions);
+        // this.toastyService.wait(toastOptions);
+        // this.toastyService.error(toastOptions);
+        // this.toastyService.warning(toastOptions);
     }
 }
