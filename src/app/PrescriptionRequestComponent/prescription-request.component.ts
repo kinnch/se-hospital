@@ -32,9 +32,5 @@ export class PrescriptionRequestComponent{
         });
     }
 
-    approve($event) {
-        const index = this.data.indexOf($event);
-        this.data[index].drugPrescription.status=2;
-        console.log("spliced")
-    }
+    
 }

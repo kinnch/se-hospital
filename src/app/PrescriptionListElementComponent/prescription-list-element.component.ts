@@ -16,7 +16,7 @@ export class PrescriptionListElementComponent{
     year: number;
     month: number;
 
-     @Output() approve = new EventEmitter();
+     @Output() dataChange = new EventEmitter();
 
     constructor(private router: Router) {
     }
@@ -37,13 +37,13 @@ export class PrescriptionListElementComponent{
      }
      submit(diag , pres): void {
          console.log("diag :",diag , "pres :  " , pres);
-        //  this.data.drugPrescription.status =2;
+         this.data.drugPrescription.status =2;
         //  console.log(this.data);
          // update api 
 
          // update front end
         //  this.data = this.data.filter(x => x._id != diag);
-         this.approve.next(this.data);
+        //  this.dataChange.next(this.data);
      }
 
 }

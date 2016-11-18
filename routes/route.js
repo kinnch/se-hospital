@@ -58,6 +58,9 @@ module.exports = function(app) {
     app.post('/api/updateStatusPres', prescriptionController.updateStatus);
     app.post('/api/changeRequestPres', prescriptionController.changeRequest);
     app.post('/api/allPrescription', prescriptionController.allPrescription);
+    app.post('/api/pharma/prescription/requestDone', prescriptionController.requestDone);
+    app.post('/api/pharma/prescription/requestApprove', prescriptionController.requestApprove);
+
 
     var hospitalEmployeeController = require('../controllers/hospitalEmployeeController');
     app.post('/api/hospitalEmployee/isInSystem',  hospitalEmployeeController.isInSystem);
