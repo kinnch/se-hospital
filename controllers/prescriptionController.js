@@ -64,17 +64,19 @@ exports.showSomeDoctors = function(reg, res){
 
 exports.showHistory = function(req, res){ 
     Patient.findOne({HN: req.body.HN}, function(err, patient){
-            Diagnosis.find({patient: patient._id}).populate({
+            Diagnosis.find({patient: patient._id}, 'drugPrescription date').populate({
                 path: 'drugPrescription',
                 populate: {
                     path: 'prescriptions',
                     model: 'PrescriptionDrug',
                     populate: {
                         path: 'drug',
-                        model: 'Drug'
+                        model: 'Drug',
+                        select: 'name'
                     }
                 }
-            }).exec( function(err, data){
+            }) .sort({date: -1})
+            .exec( function(err, data){
                 res.send(data);
                 return;
             });
@@ -105,6 +107,7 @@ function getDateNow(){
     return this_date;
 }
 
+//done
 exports.allPrescription = function(reg, res){
     Diagnosis.find({date: getDateNow()}).populate({
         path: 'drugPrescription',
@@ -113,11 +116,13 @@ exports.allPrescription = function(reg, res){
             model: 'PrescriptionDrug',
             populate: {
                 path: 'drug',
-                model: 'Drug'
+                model: 'Drug',
+                select: 'name'
             }
         }
     }).populate({
         path: 'patient',
+        select: 'name sex birthDate allegicDrugs bloodType HN',
         populate: {
             path: 'allegicDrugs'
         }
