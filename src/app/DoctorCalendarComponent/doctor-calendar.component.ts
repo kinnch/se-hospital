@@ -30,14 +30,15 @@ export class DoctorCalendarComponent implements AfterViewInit, OnInit {
     }
     fetchAndAdaptData(){
         this.elementService.getDoctorDateElements().then((jsonObject) => {
-           jsonObject.forEach((e)=>{
-            //    (e["_id"]["period"] == "am")
+           jsonObject.table.forEach((e)=>{
+            var img = e["_id"]["period"] == "am" ? `<img src="/resources/images/sun-rise.png" width="70%" style="float: left;" >` : `<img src="/resources/images/noon.png" width="70%" style="float: left;" >`;
                 this.events.push(
                     {
-                        title  : `<i class="fa fa-circle-o left-event" aria-hidden="true"><span class="text-primary">      ${e.doctors}/5</span></i> <i class="fa fa-circle-o right-event" aria-hidden="true">      ${e.patients}/15</i>`,
+                        title  : `<div class="col-sm-1 padd-right-unset"><div class="row">${img}</div><div class="row" style="padding-right:10px; color: #ff9800;"><i class="fa fa-stethoscope"  ></i></div></div><i class="fa left-event" aria-hidden="true"><span class="doc-num-left"> ${e.doctors}/5</span></i> <i class="fa pull-right right-event" aria-hidden="true"><span class="doc-num-left" style="color:rgb(217, 83, 79)"> ${e.patients}/15</span></i>`,
                         start  : moment(e["_id"]["date"]).format(),
-                        color : e["_id"]["period"] == "am"? "rgba(98, 208, 233, 0.3)": "rgba(255, 255, 0, 0.3)",
                         allDay: true,
+                        backgroundColor : "rgba(171,71,188,0)",
+                        borderColor : e["_id"]["period"] == "am"? "rgba(113, 183, 85, 0.72)": "rgba(71, 164, 179, 0.58)",
                         // url : e,
                         id : e 
                     }
@@ -58,7 +59,7 @@ export class DoctorCalendarComponent implements AfterViewInit, OnInit {
                     self.selectedEvent = calEvent;
                     console.log( moment(new Date(calEvent.start)).format("ll"));
                     console.log(moment.locale());
-                    var period = data.peroid=='am' ? 'เช้า' : 'บ่าย';
+                    var period = data["_id"]["period"] == "am" ? 'เช้า' : 'บ่าย';
                     self.titleModal = "รายละเอียดของช่วง<span class='text-primary'>        "+ period +"       วันที่         "+ moment(new Date(calEvent.start)).format("ll")+"</span>";
                     self.modal1.modalOpen();
                 },
@@ -86,9 +87,9 @@ export class DoctorCalendarComponent implements AfterViewInit, OnInit {
     resizeData(){
         $('.fc-content').height( $('.fc-content').width()*0.350);
         $('.left-event').css('margin-top',$('.fc-content').height()*0.5);
-        $('.left-event').css('margin-left',$('.fc-content').width()*0.2);
+        // $('.left-event').css('margin-left',$('.fc-content').width()*0.2);
         $('.right-event').css('margin-top',$('.fc-content').height()*0.5);
-        $('.right-event').css('margin-right',$('.fc-content').width()*0.2);
+        // $('.right-event').css('margin-right',$('.fc-content').width()*0.2);
     }
     
 }

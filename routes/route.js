@@ -53,11 +53,14 @@ module.exports = function(app) {
     var appointmentController = require("../controllers/appointmentController");
     app.post('/api/departmentAppointment/byTime',  appointmentController.getAppointmentByTime);
     app.post('/api/appointment/showSomeDoctors',  prescriptionController.showSomeDoctors);
-    app.post('/api/presciption/History',  prescriptionController.showHistory);
+    app.post('/api/prescription/History',  prescriptionController.showHistory);
     
     app.post('/api/updateStatusPres', prescriptionController.updateStatus);
     app.post('/api/changeRequestPres', prescriptionController.changeRequest);
     app.post('/api/allPrescription', prescriptionController.allPrescription);
+    app.post('/api/pharma/prescription/requestDone', prescriptionController.requestDone);
+    app.post('/api/pharma/prescription/requestApprove', prescriptionController.requestApprove);
+
 
     var hospitalEmployeeController = require('../controllers/hospitalEmployeeController');
     app.post('/api/hospitalEmployee/isInSystem',  hospitalEmployeeController.isInSystem);

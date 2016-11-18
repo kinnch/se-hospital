@@ -15,12 +15,16 @@ export class SearchSelectDropdownComponent implements AfterViewInit, OnInit {
     @Input() id : string ;
     @Input() issues : Object[];
     @Output() onChange = new EventEmitter<string>();
+    @Input() placeholder: string = "";
     selectedIssue : string;
     ngOnInit(){
         jQuery('#stylehere').append("<style>" + require('./search-select-dropdown.component.css')+"</style>");
     }
     ngAfterViewInit(){
-        jQuery('#'+this.id).select2({minimumResultsForSearch: -1});
+        jQuery('#'+this.id).select2({
+            placeholder: this.placeholder,
+            allowClear: true
+        });
         jQuery('#'+this.id).on(
             'change',
             (e) =>{ 

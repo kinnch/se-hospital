@@ -9,7 +9,7 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class PrescriptionService {
     
-    private apiUrlAllPresciptions = 'api/prescriptions';
+    private apiUrlAllPresciptions = 'api/allPrescription';
     private headers = new Headers({'Content-Type': 'application/json'});
 
     constructor(private http: Http) { }
@@ -18,7 +18,7 @@ export class PrescriptionService {
         return Promise.reject(error.message || error);
     }
 
-    private apiUrlPresciptionsHistory = 'api/prescriptionHistory';
+    private apiUrlPresciptionsHistory = 'api/prescription/History';
     getPrescriptionHistory(HN:string): Promise<JSON>{
         return this.http
                     .post(this.apiUrlPresciptionsHistory, JSON.stringify({HN : HN}), {headers: this.headers})
@@ -29,14 +29,15 @@ export class PrescriptionService {
     }
 
     //For pharmacist
-    getPrescriptionRequestForPharmacist(department_name:string): Promise<JSON> {
+    getPrescriptionRequestForPharmacist(): Promise<JSON> {
     return this.http
-                    .post(this.apiUrlAllPresciptions, JSON.stringify({department: department_name}), {headers: this.headers})
+                    .post(this.apiUrlAllPresciptions, {headers: this.headers})
                     .toPromise()
                     .then(function(res){
                         return res.json();
                     });
     }
+    
     getPrescriptionElements() : PrescriptionListElement[] {
         return [
             {

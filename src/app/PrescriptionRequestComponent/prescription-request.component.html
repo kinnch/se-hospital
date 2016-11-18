@@ -1,19 +1,19 @@
 <div>
     <h3>รายการจ่ายยา</h3>
     <hr>
-    <h5>รอจ่าย</h5>
+    <h5>รอจ่ายยา</h5>
     <hr>
     <!--(0)หมอต้องแก้ Doctor needs to edit (1)หมอจ่ายมา Doctor prescipe, (2)เภสัชจ่ายแล้ว-->
-    <div *ngFor="let elem of data">
-        <prescription-list-element-c [data]="elem"  *ngIf="elem.status==1">
+    <div *ngFor="let elem of data ; let i = index" >
+        <prescription-list-element-c [(data)]="data[i]" *ngIf="elem.drugPrescription.status==1" >
         </prescription-list-element-c>
     </div>
      
       
-    <h5>จ่ายแล้ว</h5>
+    <h5>จ่ายยาแล้ว</h5>
     <hr>
-     <div *ngFor="let elem of data">
-        <prescription-list-element-c [data]="elem"  *ngIf="elem.status==2">
+    <div *ngFor="let elem of data ; let i = index" >
+        <prescription-list-element-c [(data)]="data[i]" *ngIf="elem.drugPrescription.status==2" >
         </prescription-list-element-c>
     </div>
     <br>

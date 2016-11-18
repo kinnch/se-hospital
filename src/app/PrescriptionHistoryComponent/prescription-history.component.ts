@@ -2,6 +2,9 @@ import {Component, Input} from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Router } from '@angular/router';
 import { PrescriptionService } from '../../services/prescription.service';
+import {Subscription } from 'rxjs';
+import {OnInit, OnDestroy} from '@angular/core';
+
 @Component({
     selector: 'prescription-history-c',
     template: require('./prescription-history.component.html'),
@@ -12,7 +15,9 @@ export class PrescriptionHistoryComponent{
     data;
     dataPack = [];
     HN = '12344321';
-    constructor(private router: Router, private prescriptionService: PrescriptionService) {
+    private subscription: Subscription;
+
+    constructor(private router: Router,private activatedRoute: ActivatedRoute, private prescriptionService: PrescriptionService) {
         this.prescriptionService.getPrescriptionHistory(this.HN)
         .then((data) => {
             // this.data = data['history'];
@@ -35,6 +40,20 @@ export class PrescriptionHistoryComponent{
              console.log(this.dataPack);
         });
     }
+
+    ngOnInit() {
+    // subscribe to router event
+    this.subscription = this.activatedRoute.params.subscribe(
+      (param: any) => {
+        let userId = param['hn'];
+        console.log("hn -->>>>>>>"+userId);
+      });
+  }
+
+  ngOnDestroy() {
+    // prevent memory leak by unsubscribing
+    this.subscription.unsubscribe();
+  }
     
 
     goBack():void{      

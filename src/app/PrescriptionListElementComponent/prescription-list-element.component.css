@@ -10,12 +10,12 @@
 
 .patient-img {
     width: 100px;
-    margin-left: 50px;
-    margin-top: 20px;
+    margin-left: 100px;
+    margin-top: 10px;
 }
 
-.prescription-detail, .reject-form {
-    padding: 0 50px;
+.prescription-detail, .reject-form , #preList{
+    padding: 0 5%;
 }
 
 .control-button{

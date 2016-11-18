@@ -906,7 +906,8 @@ function htmlEscape(s) {
 
 
 function stripHtmlEntities(text) {
-	return text.replace(/&.*?;/g, '');
+	return text;
+	// return text.replace(/&.*?;/g, '');
 }
 
 

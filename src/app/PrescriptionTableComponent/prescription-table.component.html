@@ -11,10 +11,10 @@
                     </thead>
                     <tbody>
                         <tr *ngFor="let pres of prescriptionList; let i = index">
-                        <th scope="row">{{i}}</th>
-                        <td>{{pres.drugName}}</td>
+                        <th scope="row">{{i+1}}</th>
+                        <td>{{pres.drug.name}}</td>
                         <td>{{pres.amount}}</td>
-                        <td>{{pres.manual}}</td>
+                        <td>{{pres.detail}}</td>
                         </tr>
                     </tbody>  
                 </table>
