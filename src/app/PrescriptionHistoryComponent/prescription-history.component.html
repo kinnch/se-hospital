@@ -5,7 +5,12 @@
     <div class="container">
         <br>
         <h4>ประวัติการได้รับยา</h4>
-        <div class="table-responsive">
+        <div *ngIf="dataPack.length == 0">
+            <br>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ผู้ป่วยยังไม่เคยมีประวัติการได้รับยา</p>
+            <br>
+        </div>
+        <div class="table-responsive" *ngIf="dataPack.length != 0">
                 <table class="table table-sm">
                       <thead class="thead-default">
                         <tr>
