@@ -41,7 +41,7 @@
 						<table class="table table-sm" [hidden]="doctors.length<=0">
 							<thead class="thead-default">
 								<tr>
-									<th style="width: 50px;">#</th>
+									<!--<th style="width: 50px;">#</th>-->
 									<th>ชื่อ</th>
 									<th>นามสกุล</th>
 									<th>username</th>
@@ -50,13 +50,13 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr *ngFor="let doc of doctors; let i = index;">
-									<th scope="row">{{i+1}}</th>
+								<tr *ngFor="let doc of doctors; let i = index;" [hidden]="doc.isShowed == false">
+									<!--<th scope="row">{{i+1}}</th>-->
 									<td>{{doc.name.fname}}</td>
 									<td>{{doc.name.lname}}</td>
 									<td>{{doc.userName}}</td>
 									<td><button type="button" (click)="changePwd(doc._id)" class="btn btn-sm btn-warning" style="width: 150px">เปลี่ยน Password</button></td>
-									<td><button type="button" (click)="removeStaff(doc._id)" class="btn btn-sm btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
+									<td><button type="button" (click)="removeStaff(doc.roleID,doc._id)" class="btn btn-sm btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
 								</tr>
 							</tbody>
 						</table>
@@ -71,7 +71,7 @@
 						<table class="table table-sm" [hidden]="nurses.length<=0">
 							<thead class="thead-default">
 								<tr>
-									<th style="width: 50px;">#</th>
+									<!--<th style="width: 50px;">#</th>-->
 									<th>ชื่อ</th>
 									<th>นามสกุล</th>
 									<th>username</th>
@@ -80,13 +80,13 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr *ngFor="let nurse of nurses; let i = index;">
-									<th scope="row">{{i+1}}</th>
+								<tr *ngFor="let nurse of nurses; let i = index;" [hidden]="nurse.isShowed == false">
+									<!--<th scope="row">{{i+1}}</th>-->
 									<td>{{nurse.name.fname}}</td>
 									<td>{{nurse.name.lname}}</td>
 									<td>{{nurse.userName}}</td>
 									<td><button type="button" (click)="changePwd(nurse._id)" class="btn btn-sm btn-warning" style="width: 150px">เปลี่ยน Password</button></td>
-									<td><button type="button" (click)="removeStaff(nurse._id)" class="btn btn-sm btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
+									<td><button type="button" (click)="removeStaff(nurse.roleID,nurse._id)" class="btn btn-sm btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
 								</tr>
 							</tbody>
 						</table>
@@ -101,7 +101,7 @@
 						<table class="table table-sm" [hidden]="pharmacists.length<=0">
 							<thead class="thead-default">
 								<tr>
-									<th style="width: 50px;">#</th>
+									<!--<th style="width: 50px;">#</th>-->
 									<th>ชื่อ</th>
 									<th>นามสกุล</th>
 									<th>username</th>
@@ -110,13 +110,13 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr *ngFor="let phar of pharmacists; let i = index;">
-									<th scope="row">{{i+1}}</th>
+								<tr *ngFor="let phar of pharmacists; let i = index;" [hidden]="phar.isShowed == false">
+									<!--<th scope="row">{{i+1}}</th>-->
 									<td>{{phar.name.fname}}</td>
 									<td>{{phar.name.lname}}</td>
 									<td>{{phar.userName}}</td>
 									<td><button type="button" (click)="changePwd(phar._id)" class="btn btn-sm btn-warning" style="width: 150px">เปลี่ยน Password</button></td>
-									<td><button type="button" (click)="removeStaff(phar._id)" class="btn btn-sm btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
+									<td><button type="button" (click)="removeStaff(phar.roleID,phar._id)" class="btn btn-sm btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
 								</tr>
 							</tbody>
 						</table>
@@ -131,7 +131,7 @@
 						<table class="table table-sm" [hidden]="staffs.length<=0">
 							<thead class="thead-default">
 								<tr>
-									<th style="width: 50px;">#</th>
+									<!--<th style="width: 50px;">#</th>-->
 									<th>ชื่อ</th>
 									<th>นามสกุล</th>
 									<th>username</th>
@@ -140,13 +140,13 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr *ngFor="let staff of staffs; let i = index;">
-									<th scope="row">{{i+1}}</th>
+								<tr *ngFor="let staff of staffs; let i = index;" [hidden]="staff.isShowed == false">
+									<!--<th scope="row">{{i+1}}</th>-->
 									<td>{{staff.name.fname}}</td>
 									<td>{{staff.name.lname}}</td>
 									<td>{{staff.userName}}</td>
 									<td><button type="button" (click)="changePwd(staff._id)" class="btn btn-sm btn-warning" style="width: 150px">เปลี่ยน Password</button></td>
-									<td><button type="button" (click)="removeStaff(staff._id)" class="btn btn-sm btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
+									<td><button type="button" (click)="removeStaff(staff.roleID,staff._id)" class="btn btn-sm btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
 								</tr>
 							</tbody>
 						</table>

@@ -46,11 +46,13 @@ export class ManageHospitalEmployeeComponent implements OnInit{
             this.employees = hospitalEmps['employees'];
             this.employees.forEach((employee)=>{
                 if(employee.department == depId){
+                    employee.isShowed = true;
                     if(employee.roleID === 1){
                         this.staffs.push(employee)                       
                     }
                     else if(employee.roleID === 2){
                         this.doctors.push(employee)   
+                        console.log(">>",this.doctors) 
                     }
                     else if(employee.roleID === 3){
                         this.nurses.push(employee)                       
@@ -60,6 +62,7 @@ export class ManageHospitalEmployeeComponent implements OnInit{
                     }
                 }
             });
+            
         });
     }
     onChangeDep(depId):void{
@@ -76,9 +79,42 @@ export class ManageHospitalEmployeeComponent implements OnInit{
             }
         });
     }
-    removeStaff(staffId):void{  
+    removeEmpRole(roleID,staffId):void{
+        if(roleID === 1){
+            this.staffs.forEach((staff)=>{
+                if(staff._id == staffId){
+                    staff.isShowed = false;
+                }
+            })
+        }
+        else if(roleID === 2){
+            this.doctors.forEach((doctor)=>{
+                if(doctor._id == staffId){
+                    doctor.isShowed = false;
+                    console.log(doctor);
+                }
+            })
+        }
+        else if(roleID === 3){
+            this.nurses.forEach((nurse)=>{
+                if(nurse._id == staffId){
+                    nurse.isShowed = false;
+                }    
+            })                   
+        }
+        else if(roleID === 4){
+            this.pharmacists.forEach((pharmacist)=>{
+                if(pharmacist._id == staffId){
+                    pharmacist.isShowed = false;
+                }  
+            })                            
+        }
+    }
+    removeStaff(roleID,staffId):void{  
         this.hospitalEmployeeService.removeStaff(staffId).then((res)=>{
             if(res == "success"){
+                this.removeEmpRole(roleID,staffId);
+                // this.getEachDepStaff(this.departmentId);
                 console.log("deleted");
             }
         })
