@@ -26,18 +26,21 @@ export class PatientListComponent implements OnInit {
     }
     ngOnInit() {
         if(this.roleID == 1){//staff header shows doctor name
+            this.queueHeader = 'ห้อง ';
             this.queueHeader = this.queueHeader.concat(this.queue.doctor.name.title);
             this.queueHeader = this.queueHeader.concat(this.queue.doctor.name.fname);
         }
         else if(this.roleID == 2){//doctor
-            this.queueHeader = 'ผู้ป่วยรอพบท่านแพทย์';
+            this.queueHeader = 'ผู้ป่วยรอพบ ';
+            this.queueHeader = this.queueHeader.concat(this.queue.doctor.name.title);
+            this.queueHeader = this.queueHeader.concat(this.queue.doctor.name.fname);
         }
         else if(this.roleID == 3){//nurse
             this.queueHeader = 'ผู้ป่วยรอตรวจร่างกาย';
         }
         
         console.log(this.queue);
-        var appointments = this.queue.appointments;
+        var appointments = this.queue['appointments'];
         for ( var i = 0 ; i < appointments.length ; i++){
 //             0 == created in website
 // 1 == ปรินท์ใบนัดแล้ว
