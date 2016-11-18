@@ -21,6 +21,11 @@ export class StaffComponent{
         router.events.subscribe((val) => {
         //Check loggin 
             this.loggedIn = this.userService.isLoggedIn();
+            this.userRoleId = localStorage.getItem('user_roleID');
+            this.userFname = localStorage.getItem('user_fname');
+            this.userLname = localStorage.getItem('user_lname');
+            this.userTitle = localStorage.getItem('user_title');
+
             this.userRole = (this.userRoleId == "1") ? "เจ้าหน้าที่ของโรงพยาบาล" : 
                         (this.userRoleId == "2") ? "แพทย์" : 
                         (this.userRoleId == "3") ? "พยาบาล" : 
@@ -42,10 +47,7 @@ export class StaffComponent{
                             (this.userRoleId == "4" && this.userSex == "male") ? 
                             "/resources/images/icon_people/fm_phar.png" : 
                             "/resources/images/icon_people/m_staff.png";
-            this.userRoleId = localStorage.getItem('user_roleID');
-            this.userFname = localStorage.getItem('user_fname');
-            this.userLname = localStorage.getItem('user_lname');
-            this.userTitle = localStorage.getItem('user_title');
+            
         });
         if(this.router.url === '/manage/manage_doctor_calendar'){
             this.activatedClass = 2;
@@ -79,7 +81,7 @@ export class StaffComponent{
         } else if(menu === 4){ // 4 Checkin เข้าห้อง
             link = ['manage','manage_queue'];
         } else if(menu===5){ // 5 ตรวจร่างกาย
-            link = ['manage','patient']
+            link = ['manage','manage_queue']
         } else if(menu===6){ // 6 รายการยา
             link = ['manage','prescription_request']
         } else if(menu===7){ // 6 แก้ไขรายการยา
