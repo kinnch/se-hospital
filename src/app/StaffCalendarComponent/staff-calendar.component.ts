@@ -57,15 +57,17 @@ export class StaffCalendarComponent implements AfterViewInit, OnInit {
     fetchAndAdaptData(){
         this.elementService.getDoctorDateElements().then((jsonObject) => {
            jsonObject.table.forEach((e)=>{
-            var pic =  e["_id"]["period"] == "am" ? `<img src="/resources/images/sun-rise.png" height="85%" style="float: left;" >` : `<img src="/resources/images/noon.png" height="85%" style="float: left;" >`;
+            var color =e["_id"]["period"] == "am" ? "rgba(113, 183, 85, 0.72)" : "rgba(71, 164, 179, 0.58)" ;
+            var pic =  e["_id"]["period"] == "am" ? `<img src="/resources/images/sun-rise.png" height="85%" style="float: left;" > <i class="fa fa-user-md" aria-hidden="true" style="color: rgba(113, 183, 85, 0.72);"></i>` : `<img src="/resources/images/noon.png" height="85%" style="float: left;" ><i class="fa fa-user-md" style="color:rgba(71, 164, 179, 0.58);" aria-hidden="true"></i>`;
                 this.events.push(
                     {
-                        title  : `${pic}<i class="fa fa-user-md left-event" aria-hidden="true"><span >      ${e.doctors}/5</span></i>
+                        title  : `${pic} <i class="fa left-event" aria-hidden="true"><span class="doc-num" style="color :${color};" >      ${e.doctors}/5</span></i>
                         <progress class="progress progress-info custom-progress" style=" margin-top: 8px;" value="50" max="100"></progress>
                         
                          `,
                         start  : moment(e["_id"]["date"]).format(),
-                        color : e["_id"]["period"] == "am"? "rgba(171,71,188,1)": "rgb(88, 171, 39)",
+                        backgroundColor : "rgba(171,71,188,0)",
+                        borderColor : e["_id"]["period"] == "am"? "rgba(113, 183, 85, 0.72)": "rgba(71, 164, 179, 0.58)",
                         allDay: true,
                         // url : e,
                         id : e 
@@ -104,7 +106,9 @@ export class StaffCalendarComponent implements AfterViewInit, OnInit {
                 if(self.isFirst){
                     self.isFirst = false;
                     $(".fc-prev-button").on("click", function(){ $(window).resize(); self.resizeData() });
-                    $(".fc-next-button").on("click", function(){ $(window).resize(); self.resizeData() });       
+                    $(".fc-next-button").on("click", function(){ $(window).resize(); self.resizeData() });
+                    $(".fc-today-button").on("click", function(){ $(window).resize(); self.resizeData() });
+                           
                 }
                 
             }).resize();
