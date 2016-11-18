@@ -1,43 +1,45 @@
 <div class = "row container mycon" [style.background]="roomNo%2==1 ?  '#f2f2f2' : 'white'">
     <h3 style="margin-top=1em;">{{queueHeader}}</h3>
-    <hr>
+    <hr class="style-one">
     <div class = "col-md-12">
-        <h5>กำลังพบแพทย์</h5>
+        <h5 style="text-align:center">กำลังพบแพทย์</h5>
+        <hr class="style-two">
         <span *ngIf="withDoctorApt">
             <patient-list-element-c (click)="goto(11)" *ngFor="let oneData of withDoctorApt" [oneData]="oneData"></patient-list-element-c>
         </span>
-        <hr>
+        
     </div>
     <div class = "col-md-12">
-        <h5>รอพบแพทย์</h5>
-        
+        <h5 style="text-align:center">รอพบแพทย์</h5>
+        <hr class="style-two">
         <span *ngIf="physicalCheckedApt">
             <patient-list-element-c (click)="goto(11)" *ngFor="let oneData of physicalCheckedApt" [oneData]="oneData"></patient-list-element-c>
         </span>
-        <hr>
+        
     </div>
     <div class = "col-md-12">
-        <h5>ยังไม่ได้ตรวจร่างกาย</h5>
-        
+        <h5 style="text-align:center">ยังไม่ได้ตรวจร่างกาย</h5>
+        <hr class="style-two">
         <span *ngIf="printedApt">
             <patient-list-element-c (click)="goto(11)" *ngFor="let oneData of printedApt" [oneData]="oneData"></patient-list-element-c>
         </span>
-        <hr>
-    </div>
-    <div class = "col-md-12">
-        <h5>ยังไม่มา(ไม่พิมพ์ใบนัด)</h5>
         
+    </div>
+    
+    <div class = "col-md-12">
+        <h5 style="text-align:center">ยังไม่มา(ไม่พิมพ์ใบนัด)</h5>
+        <hr class="style-two">
         <span *ngIf="notHereApt">
             <patient-list-element-c (click)="goto(11)" *ngFor="let oneData of notHereApt" [oneData]="oneData"></patient-list-element-c>
         </span>
-        <hr>
+          
     </div>
     <div class = "col-md-12">
-        <h5>พบแพทย์แล้ว</h5>
-        
+        <h5 style="text-align:center">พบแพทย์แล้ว</h5>
+        <hr class="style-two">
         <span *ngIf="doneApt">
             <patient-list-element-c (click)="goto(11)" *ngFor="let oneData of doneApt" [oneData]="oneData"></patient-list-element-c>
         </span>
-        <hr>
+        
     </div>
 </div>

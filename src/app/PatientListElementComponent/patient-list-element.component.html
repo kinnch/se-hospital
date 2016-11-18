@@ -1,4 +1,4 @@
-<div class="ui card patientlist">
+<!--<div class="ui card patientlist">
   <div class="content" styles = "font-size:120%;">
     <div *ngIf="enableCheckin" class="right floated ">
         <a href="#" class="card-link">Check in</a>
@@ -14,4 +14,14 @@
       <i class="fa fa-phone" aria-hidden="true"></i> {{oneData['patient']['tel']}}
     </span>
   </div>
+</div>-->
+<div class="card" >
+   <div class="card-block">
+    <h6 class="card-title">{{oneData['patient']['name']['title']}}{{oneData['patient']['name']['fname']}} {{oneData['patient']['name']['lname']}}</h6>
+    <p class="card-subtitle text-muted"><i class="fa fa-phone" aria-hidden="true"></i> {{oneData['patient']['tel']}} <span><a href="#" class="card-link pull-right">Another link</a></span></p>
+    
+  </div>
+     <!--<div class="card-block">
+    
+  </div>-->
 </div>

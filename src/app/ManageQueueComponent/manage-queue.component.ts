@@ -38,11 +38,11 @@ export class ManageQueueComponent{
             }
             
             //Retrive all appointment in queue (now)
-            this.departmentID = '';
+            this.departmentID = '';//TODO : remove this tester
             mid = 'pm';
             this.appointmentService.getTodayAppointments(this.departmentID,mid)
             .then((data) => {
-                this.roleID = 3;
+                // this.roleID = 3; //TODO : remove this tester
                 if(this.roleID == 1){//staff
                     this.scheduleList  = data['scheduleList'];
                 }
