@@ -4,8 +4,13 @@
     <hr>
     <div class="container">
         <br>
-        <h4>ประวัติการได้รับยา<span *ngIf="data">{{data[0].patient}} </span></h4>
-        <div class="table-responsive">
+        <h4>ประวัติการได้รับยา</h4>
+        <div *ngIf="dataPack.length == 0">
+            <br>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ผู้ป่วยยังไม่เคยมีประวัติการได้รับยา</p>
+            <br>
+        </div>
+        <div class="table-responsive" *ngIf="dataPack.length != 0">
                 <table class="table table-sm">
                       <thead class="thead-default">
                         <tr>
@@ -18,10 +23,10 @@
                     <tbody>
                         
                         <tr *ngFor = "let d of dataPack">
-                            <th rowspan=3 *ngIf ="d['head']==true">{{d['date']}}</th>
-                            <td>{{d['drug']}}</td>
-                            <td>{{d['amount']}}</td>
-                            <td>{{d['detail']}}</td>
+                            <th rowspan=d.no>{{d.date}}</th>
+                            <td>{{d.drug.name}}</td>
+                            <td>{{d.amount}}</td>
+                            <td>{{d.detail}}</td>
                         </tr>
                         
                         

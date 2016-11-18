@@ -15,13 +15,13 @@ roleID
 3 == nurse          //merged queue
 4 == pharmacist
 -->
-<h3>รายชื่อผู้ป่วยวันนี้</h3>
-<hr>
-<p>roleID {{roleID}}</p>
-<p>department {{departmentID}}</p>
+<div *ngIf="roleID==1">
+    <h3>รายชื่อผู้ป่วยวันนี้</h3>
+    <hr>
+</div>
+
 <!--staff-->
 <div class="horizontal-container" *ngIf="roleID==1">
-    
     <div *ngIf="roleID==1">        
             <patient-list-c *ngFor="let doctorSchedule of scheduleList" [queue]="doctorSchedule" [roleID] = "roleID">
             </patient-list-c>
@@ -29,10 +29,12 @@ roleID
 </div>
 <!--doctor-->
 <div *ngIf="roleID==2">
-    <patient-list-c *ngFor="let doctorSchedule of scheduleList" [queue]="doctorSchedule" [roleID] = "roleID">
+    <patient-list-c [queue]="scheduleList[0]" [roleID] = "roleID">
     </patient-list-c>
 </div>
 
 <!--nurse-->
 <div *ngIf="roleID==3">
+    <patient-list-c [queue]="scheduleList[0]" [roleID] = "roleID">
+    </patient-list-c>
 </div>
