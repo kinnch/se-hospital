@@ -134,6 +134,43 @@ exports.allPrescription = function(reg, res){
         return;
     });
 }
+
+exports.rejectedPrescription = function(req, res){
+    HospitalEmployee.findOne({_id: req.body.id}, function(err, doctor){
+         Diagnosis.find({doctor: doctor}).populate({
+             path: 'drugPrescription',
+             match: { status: {$in: 0}},
+             populate: {
+                path: 'prescriptions',
+                model: 'PrescriptionDrug',
+                populate: {
+                    path: 'drug',
+                    model: 'Drug',
+                    select: 'name'
+                }
+            }
+        }).populate({
+            path: 'patient',
+            select: 'name sex birthDate allegicDrugs bloodType HN',
+            populate: {
+                path: 'allegicDrugs'
+            }
+        }).populate({
+            path: 'doctor',
+            select: 'name'
+        })
+        .exec( function(err, data){
+            var item_list = [];
+            for(var i = 0; i < data.length; i++){
+                if(data[i].drugPrescription != null){
+                    item_list.push(data[i]);
+                }
+            }
+            res.send(item_list);
+            return;
+        })
+    });
+}
 // requestDone [Phar]
 // input : pharmacistID, prescriptionID
 // 2 -> 3
