@@ -1,8 +1,9 @@
-import {Component, Input } from '@angular/core';
+import {Component, Input , Output, EventEmitter} from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Router } from '@angular/router';
 import { PrescriptionListElement } from '../../models/prescription-list-element';
 import { PrescriptionTableComponent } from '../PrescriptionTableComponent/prescription-table.component';
+
 import * as moment_ from 'moment';
 @Component({
     selector: 'prescription-list-element-c',
@@ -14,10 +15,13 @@ export class PrescriptionListElementComponent{
     @Input() data ; //(0)หมอต้องแก้ Doctor needs to edit (1)หมอจ่ายมา Doctor prescipe, (2)เภสัชจ่ายแล้ว 
     year: number;
     month: number;
+
+     @Output() approve = new EventEmitter();
+
     constructor(private router: Router) {
     }
 
-    gotoPage(hn):void{      
+    seeHistory(hn):void{
         this.router.navigate(['manage','prescription_request',hn]);
     }
 
@@ -30,6 +34,16 @@ export class PrescriptionListElementComponent{
         this.year = diffDuration.years();
         this.month = diffDuration.months();
        
+     }
+     submit(diag , pres): void {
+         console.log("diag :",diag , "pres :  " , pres);
+        //  this.data.drugPrescription.status =2;
+        //  console.log(this.data);
+         // update api 
+
+         // update front end
+        //  this.data = this.data.filter(x => x._id != diag);
+         this.approve.next(this.data);
      }
 
 }
