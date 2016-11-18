@@ -130,7 +130,10 @@ export class ManageHospitalEmployeeComponent implements OnInit{
                 this.selectedPass = "";
                 this.selectedConfirmPass = "";
                 console.log("confirm")
-                this.addToast();
+                this.addToast("success");
+            }
+            else{
+                this.addToast("error");
             }
         });
     }
@@ -140,26 +143,27 @@ export class ManageHospitalEmployeeComponent implements OnInit{
         console.log("cancel")
     }
 
-    addToast() {
+    addToast(status) {
         // create the instance of ToastOptions 
-        var toastOptions:ToastOptions = {
+        var toastSuccess:ToastOptions = {
             title: "ยืนยันสำเร็จ",
             msg: "ทำการบันทึกข้อมูลเรียบร้อยแล้ว",
             showClose: true,
             timeout: 3000,
             theme: 'bootstrap',
-            onAdd: (toast:ToastData) => {
-                console.log('Toast ' + toast.id + ' has been added!');
-            },
-            onRemove: function(toast:ToastData) {
-                console.log('Toast ' + toast.id + ' has been removed!');
-            }
+        };
+        var toastError:ToastOptions = {
+            title: "เกิดข้อผิดพลาด",
+            msg: "กรุณาทำรายการใหม่อีกครั้ง",
+            showClose: true,
+            timeout: 3000,
+            theme: 'bootstrap',
         };
         // Add see all possible types in one shot 
+        if(status == "success") this.toastyService.success(toastSuccess);
+        else if(status == "error") this.toastyService.error(toastError);
         // this.toastyService.info(toastOptions);
-        this.toastyService.success(toastOptions);
         // this.toastyService.wait(toastOptions);
-        // this.toastyService.error(toastOptions);
         // this.toastyService.warning(toastOptions);
     }
 }
