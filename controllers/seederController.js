@@ -246,7 +246,7 @@ exports.seed = function(req, res) {
                 text: "111112",
                 generatedDate: new Date()
             },
-            allegicDrugs: [],
+            allegicDrugs: [drugs[0]._id],
             bloodType: "A"
 
         }),
@@ -260,7 +260,7 @@ exports.seed = function(req, res) {
             tel: "0818132200",
             nationalID: '0941327919461',
             sex: "female",
-            birthDate: new Date("1911-02-28"),
+            birthDate: new Date("1987-02-28"),
             HN: '123321',
             salt: '471e91c751f97efdfa7e6df71a497dd739564a3db679c8ab1564f92368a23d29',
             address: {
@@ -563,25 +563,25 @@ exports.seed = function(req, res) {
         })
     ];
 
-    // DrugPrescriptions  N=4
+    // DrugPrescriptions  N=9
     var drugPrescriptions = [
         new DrugPrescription({
-            status: 3,
-            inspectedBy: hospitalEmployees[3]._id,
-            note: "",
+            status: 2,
+            inspectedBy: null,
+            note: null,
             prescriptions: [prescriptionDrugs[0]._id, prescriptionDrugs[1]._id]
         }),
         new DrugPrescription({
-            status: 3,
-            inspectedBy: hospitalEmployees[3]._id,
-            note: "",
+            status: 2,
+            inspectedBy: null,
+            note: null,
             prescriptions: [prescriptionDrugs[2]._id]
         }),
         new DrugPrescription({
             status: 2, // pharmacist approved
-            inspectedBy: hospitalEmployees[3]._id,
-            note: "",
-            prescriptions: [prescriptionDrugs[3]._id]
+            inspectedBy: null,
+            note: null,
+            prescriptions: [prescriptionDrugs[3]._id, prescriptionDrugs[1]._id]
         }),
         new DrugPrescription({
             status: 0, // reject
@@ -592,9 +592,34 @@ exports.seed = function(req, res) {
         new DrugPrescription({
             status: 1, // doctor created
             inspectedBy: null,
-            note: "ผู้ป้วยแพ้ยาพาราเซตามอน",
-            prescriptions: [prescriptionDrugs[5]._id]
+            note: null,
+            prescriptions: [prescriptionDrugs[1]._id, prescriptionDrugs[3]._id]
+        }),
+        new DrugPrescription({
+            status: 1, // doctor created
+            inspectedBy: null,
+            note: null,
+            prescriptions: [prescriptionDrugs[5]._id, prescriptionDrugs[1]._id, prescriptionDrugs[2]._id]
+        }),
+        new DrugPrescription({
+            status: 1, // doctor created
+            inspectedBy: null,
+            note: null,
+            prescriptions: [prescriptionDrugs[4]._id, prescriptionDrugs[0]._id]
+        }),
+         new DrugPrescription({
+            status: 2, // pharmacist approved
+            inspectedBy: null,
+            note: null,
+            prescriptions: [prescriptionDrugs[4]._id, prescriptionDrugs[0]._id]
+        }),
+         new DrugPrescription({
+            status: 2, // pharmacist approved
+            inspectedBy: null,
+            note: null,
+            prescriptions: [prescriptionDrugs[1]._id, prescriptionDrugs[3]._id,prescriptionDrugs[0]._id,prescriptionDrugs[4]._id]
         })
+        
     ];
 
     //var this_date = new Date();
@@ -604,8 +629,17 @@ exports.seed = function(req, res) {
     // Diagnosises  N=4
     var diagnosises = [
         new Diagnosis({
+            drugPrescription: drugPrescriptions[8]._id,
+            patient: patients[2]._id,
+            doctor: hospitalEmployees[1]._id,
+            timePeriod: 'pm',
+            date: new Date("2016-06-25"),
+            detail: "ผู้ป่วยมีอาการคลื่นไส้",
+            disease: diseases[1]._id
+        }),
+        new Diagnosis({
             drugPrescription: drugPrescriptions[0]._id,
-            patient: patients[0]._id,
+            patient: patients[2]._id,
             doctor: hospitalEmployees[1]._id,
             timePeriod: 'am',
             date: getDateYesterday(),
@@ -637,7 +671,43 @@ exports.seed = function(req, res) {
             timePeriod: 'am',
             date: getDateNow(),
             detail: "ผู้ป่วยปวดตัวมาก",
-            disease: diseases[3]._id
+            disease: diseases[6]._id
+        }),
+        new Diagnosis({
+            drugPrescription: drugPrescriptions[4]._id,
+            patient: patients[2]._id,
+            doctor: hospitalEmployees[1]._id,
+            timePeriod: 'am',
+            date: getDateNow(),
+            detail: "ผู้ป่วยมีอาการตัวร้อน ไขขึ้นสูง",
+            disease: diseases[2]._id
+        }),
+        new Diagnosis({
+            drugPrescription: drugPrescriptions[5]._id,
+            patient: patients[3]._id,
+            doctor: hospitalEmployees[1]._id,
+            timePeriod: 'pm',
+            date: getDateNow(),
+            detail: "ผู้ป่วยมีอาการคลื่นไส้ อาเจียน",
+            disease: diseases[1]._id
+        }),
+        new Diagnosis({
+            drugPrescription: drugPrescriptions[6]._id,
+            patient: patients[4]._id,
+            doctor: hospitalEmployees[1]._id,
+            timePeriod: 'am',
+            date: getDateNow(),
+            detail: "ผู้ป่วยปวดหัวไมเกรน",
+            disease: diseases[0]._id
+        }),
+        new Diagnosis({
+            drugPrescription: drugPrescriptions[7]._id,
+            patient: patients[2]._id,
+            doctor: hospitalEmployees[1]._id,
+            timePeriod: 'am',
+            date: new Date("2016-10-19"),
+            detail: "ผู้ป่วยมีไข้มา 3 วันก่อนหน้านี้",
+            disease: diseases[0]._id
         })
     ];
 

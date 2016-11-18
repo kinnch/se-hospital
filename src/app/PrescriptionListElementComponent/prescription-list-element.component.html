@@ -7,35 +7,28 @@
                 </div>
                 <div class="col-md-9 col-sm-12" >
                     <div class="row">
-                        <div class="col-sm-4">
-                            <p><b>ชื่อ : </b>{{data.patient.name.title}}&nbsp;{{data.patient.name.fname}}  </p>
+                        <div class="col-sm-6">
+                            <p><b>ชื่อผู้ป่วย : </b>{{data.patient.name.title}}&nbsp;{{data.patient.name.fname}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{data.patient.name.lname}}</p>
                         </div>  
-                        <div class="col-sm-4">
-                            <p><b>นามสกุล : </b>{{data.patient.name.lname}}</p>    
-                        </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-6">
                             <p><b>HN : </b>{{data.patient.HN}}</p>    
                         </div> 
                     </div>
                     <div class="row">
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <p><b>เพศ : </b>{{data.patient.sex}}</p>
                         </div>  
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <p><b>อายุ : </b>{{year}}&nbsp;ปี&nbsp;{{month}}&nbsp;เดือน</p>    
                         </div> 
-                        <div class="col-sm-4">  
+                        <div class="col-sm-6">  
                             <p><b>กรุ๊ปเลือด : </b> {{data.patient.bloodType}}</p>
                         </div>
                     </div>
-                    <h5>แพทย์ผู้ตรวจ</h5>
                     <div class="row">
-                        <div class="col-sm-4">
-                            <p><b>ชื่อ : </b>{{data.doctor.name.title}}&nbsp;{{data.doctor.name.fname}}</p>
+                        <div class="col-sm-8">
+                            <p><b>แพทย์ผู้ตรวจ: </b>{{data.doctor.name.title}}&nbsp;{{data.doctor.name.fname}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{data.doctor.name.lname}}</p>
                         </div>  
-                        <div class="col-sm-4">
-                            <p><b>สกุล : </b>{{data.doctor.name.lname}}</p>    
-                        </div>
                         <div class="col-sm-4">
                             <button type="button" class="btn btn-success" (click)="gotoPage(5)">ดูประวัติการได้รับยา</button>
                         </div>  
