@@ -80,6 +80,7 @@ module.exports = function(app) {
     var prescriptionController = require("../controllers/prescriptionController");
     var appointmentController = require("../controllers/appointmentController");
     app.post('/api/departmentAppointment/byTime',  appointmentController.getAppointmentByTime);
+    app.post('/api/appointment/create',  appointmentController.create);
     app.post('/api/appointment/showSomeDoctors',  prescriptionController.showSomeDoctors);
     app.post('/api/prescription/History',  prescriptionController.showHistory);
     
