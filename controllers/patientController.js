@@ -41,14 +41,12 @@ exports.search = function(req, res){
         Patient.findOne({HN: data})
         .populate('allegicDrugs')
         .exec( function(err,patient_data){
-            if (err){
-                    return res.send({status : 'not found'});
-                };
+            if (err) return res.send({status : 'not found'});
+            if (!patient_data)return res.send({status : 'not found'});
             //res.send(patient_data._id);
             Schedule.find({appointments: {$gt: []}}, function(err, data){
-                if (err){
-                    return res.send({status : 'not found'});
-                };
+                if (err) return res.send({status : 'not found'});
+                if (!data)return res.send({status : 'not found'});
             }).populate({
                 path: 'appointments',
                 match: {patient: patient_data._id}
@@ -59,9 +57,8 @@ exports.search = function(req, res){
                 } 
             })
             .exec(function (err, data){
-                if (err){
-                    return res.send({status : 'not found'});
-                };
+                if (err) return res.send({status : 'not found'});
+                if (!data)return res.send({status : 'not found'});
                 data = data.filter(function(doc){
                     return doc.appointments.length
                 });
@@ -76,22 +73,12 @@ exports.search = function(req, res){
         Patient.findOne({nationalID: data})
         .populate('allegicDrugs')
         .exec( function(err,patient_data){
-            if (err){
-                    return res.send({status : 'not found'});
-                };
-            if (!patient_data){
-                    return res.send({status : 'not found'});
-                };
+            if (err) return res.send({status : 'not found'});
+            if (!patient_data)return res.send({status : 'not found'});
             //res.send(patient_data._id);
             Schedule.find({appointments: {$gt: []}}, function(err, data){
-                if (err){
-                    return res.send({status : 'not found'});
-                };
-                if (!data){
-                    res.send({
-                        patient_data
-                    });
-                };
+                if (err) return res.send({status : 'not found'});
+                if (!data)return res.send({status : 'not found'});
             }).populate({
                 path: 'appointments',
                 match: {patient: patient_data._id}
@@ -102,14 +89,8 @@ exports.search = function(req, res){
                 } 
             })
             .exec(function (err, data){
-                if (err){
-                    return res.send({status : 'not found'});
-                };
-                if (!data){
-                    res.send({
-                        patient_data
-                    });
-                };
+                if (err) return res.send({status : 'not found'});
+                if (!data)return res.send({status : 'not found'});
                 data = data.filter(function(doc){
                     return doc.appointments.length
                 });
