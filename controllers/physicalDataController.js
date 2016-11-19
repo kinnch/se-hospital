@@ -45,8 +45,20 @@ exports.add = function(req, res){
 
 exports.showHistory = function(req, res){
     Patient.findOne({HN: req.body.HN}, (err,patient)=>{
+        if(err || !patient){
+            return res.send({
+                status : "fail",
+                msg : "error : not found patient"
+            });
+        }
         PhysicalData.find({patient: patient._id})
                     .sort({date: -1}).exec((err,all_physical_check)=>{
+                        if(err || !all_physical_check){
+                            return res.send({
+                                status : "fail",
+                                msg : "error : not found physicalCheckData"
+                            });
+                        }
                         res.send({'physical_check':all_physical_check})
                         return;
                     });
@@ -58,28 +70,39 @@ exports.editPhysicalCheck = function(req, res){
     // TODO
     var nurse_id = "580bacaf7f4d291550f67adb",
         physical_id = data.physicalId;
-    PhysicalData.findOne({_id: data.physicalId},function(err,physical){
-        if(err){
+        hn = data.hn;
+    Patient.findOne({HN: hn},function(err,patient){
+        if(err || !patient){
             return res.send({
                 status : "fail",
-                msg : "error : not found physicalCheckData"
+                msg : "error : not found patient"
             });
         }
-        physical.bloodPresure.systolic = data.systolic;
-        physical.bloodPresure.diastolic = data.diastolic;
-        physical.heartRate = data.heartRate;
-        physical.weight = data.weight;
-        physical.height = data.height;
-        physical.temp = data.temp;
-        physical.patient = patient._id;
-        physical.nurse = nurse_id;
-        physical.date = new Date();
-        physical.save();
-        res.send({
-                status : "success",
-                msg : ""
-            });
-        return;
-    });
+        var patient_id = patient._id;
+        PhysicalData.find({patient: patient_id})
+                    .sort({date: -1}).exec((err,all_physical_check)=>{
+                        if(err || !all_physical_check){
+                            return res.send({
+                                status : "fail",
+                                msg : "error : not found physicalCheckData"
+                            });
+                        }
+             
+                        all_physical_check[0].bloodPresure.systolic = data.systolic;
+                        all_physical_check[0].bloodPresure.diastolic = data.diastolic;
+                        all_physical_check[0].heartRate = data.heartRate;
+                        all_physical_check[0].weight = data.weight;
+                        all_physical_check[0].height = data.height;
+                        all_physical_check[0].temp = data.temp;
+                        all_physical_check[0].nurse = nurse_id;
+                        all_physical_check[0].date = new Date();
+                        all_physical_check[0].save();
+                        res.send({
+                                status : "success",
+                                msg : ""
+                            });
+                        return;
+                    });
+    })
 }
 
