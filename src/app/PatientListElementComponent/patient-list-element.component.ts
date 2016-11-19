@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 
 export class PatientListElementComponent{
     @Input() oneData;
+    @Input() linkToWhere;
     constructor(private router: Router) {
     }
 }
