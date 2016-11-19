@@ -11,7 +11,33 @@ var Patient = require("../model/patient");
 var HospitalEmployee = require("../model/hospitalEmployee");
 var Drug = require("../model/drug");
 var Disease = require("../model/disease");
-
+exports.getPatientDiagnosisHistory = function(req,res){
+    Diagnosis.find({patient:req.body.id},function(err,data){
+        if(err){
+            res.send({status:"not found"});
+        }
+        // res.send({diagnosisHistory: data});
+    })
+    .populate('doctor')
+    .populate({ 
+        path: 'drugPrescription',
+        populate: {
+            path: 'prescriptions',
+            populate:{
+                path: 'drug'
+            }
+        } 
+    })
+    .populate({
+        path: 'disease'
+    })
+    .exec( function(err, data){
+        if(err){
+            res.send({status:"not found"});
+        }
+        res.send({diagnosisHistory: data});
+    });
+}
 // exports.add = function(req, res){
 //     //return req;
 //     var data = (req.body);
