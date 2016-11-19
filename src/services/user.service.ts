@@ -36,6 +36,7 @@ export class UserService {
       .map((res) => {
         if (res.success) {
           localStorage.setItem('auth_token', res.auth_token);
+          localStorage.setItem('user_id', res.user._id);
           localStorage.setItem('user_username', res.user.userName);
           localStorage.setItem('user_roleID', res.user.roleID);
           localStorage.setItem('user_title', res.user.name.title);

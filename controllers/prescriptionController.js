@@ -136,7 +136,7 @@ exports.allPrescription = function(reg, res){
 }
 
 exports.rejectedPrescription = function(req, res){
-    HospitalEmployee.findOne({_id: req.body.id}, function(err, doctor){
+    HospitalEmployee.findOne({_id: req.body.doctorID}, function(err, doctor){
          Diagnosis.find({doctor: doctor}).populate({
              path: 'drugPrescription',
              match: { status: {$in: 0}},
@@ -158,6 +158,8 @@ exports.rejectedPrescription = function(req, res){
         }).populate({
             path: 'doctor',
             select: 'name'
+        }).populate({
+            path: 'disease'
         })
         .exec( function(err, data){
             var item_list = [];

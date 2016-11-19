@@ -37,6 +37,17 @@ export class PrescriptionService {
                         return res.json();
                     });
     }
+
+    //For doctor
+    private apiUrlPrescriptionChangeRequest = 'api/doctor/prescriptionChangeRequest/list';
+    getPrescriptionChangeRequest(doctorID:string): Promise<JSON>{
+        return this.http
+                    .post(this.apiUrlPrescriptionChangeRequest, JSON.stringify({doctorID : doctorID}), {headers: this.headers})
+                    .toPromise()
+                    .then(function(res){
+                        return res.json();
+                    });
+    }
     
     getPrescriptionElements() : PrescriptionListElement[] {
         return [
