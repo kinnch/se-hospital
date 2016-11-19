@@ -9,6 +9,7 @@ import 'rxjs/add/operator/toPromise';
 export class PhysicalCheckService {
     private apiUrl = 'api/physicalData/add';  // URL to web api
     private apiHistoryUrl = 'api/physicalData/history';
+    private apiEditPhysicalUrl = 'api/patient/physicalCheck/edit';
     private headers = new Headers({'Content-Type': 'application/json'});
     constructor(private http: Http) { }
     private handleError(error: any): Promise<any> {
@@ -20,7 +21,8 @@ export class PhysicalCheckService {
                     .post(this.apiUrl, JSON.stringify({systolic: systolic,diastolic:diastolic,heartRate:heartRate,weight:weight,height:height,temp:temp,HN:HN}), {headers: this.headers})
                     .toPromise()
                     .then(res => {
-                        return "success";
+                        if(res.json().status == "success")
+                            return "success";
                     });
     }
     getPhysicalCheckHistory(HN:string):Promise<JSON>{
@@ -32,6 +34,12 @@ export class PhysicalCheckService {
                     });
     }
     editPhysicakCheck(systolic:number,diastolic:number,heartRate:number,weight:number,height:number,temp:number,HN:string) :Promise<string>{
-        
+        return this.http
+                    .post(this.apiEditPhysicalUrl, JSON.stringify({systolic: systolic,diastolic:diastolic,heartRate:heartRate,weight:weight,height:height,temp:temp,HN:HN}), {headers: this.headers})
+                    .toPromise()
+                    .then(res => {
+                        if(res.json().status == "success")
+                            return "success";
+                    });
     }
 }

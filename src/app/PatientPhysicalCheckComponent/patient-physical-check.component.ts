@@ -60,7 +60,21 @@ export class PatientPhysicalCheckComponent implements OnInit {
                 }
             });
         }
-        
+        else if(this.buttonName === "แก้ไข"){
+            this.isAdd = !this.isAdd;
+            this.buttonName = "บันทึก"
+        }
+        else if(this.buttonName === "บันทึก"){
+            this.physicalCheckService.editPhysicakCheck(this.systolic, this.diastolic, this.heartRate, this.weight, this.height, this.temp, this.HN)
+            .then((res) => {
+                if (res == "success") {
+                    this.isAdd = !this.isAdd;
+                    this.buttonName = 'แก้ไข'
+                }
+            });
+        }
+
+
     }
 
 }
