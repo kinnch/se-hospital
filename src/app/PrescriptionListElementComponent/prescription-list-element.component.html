@@ -64,11 +64,11 @@
             </section>
             <section class ="reject-form" [hidden]="!isReject">
                 <p><b>เหตุผลที่ขอแก้ไข :</b></p>
-                <textarea row="3" class="form-control"></textarea>
-                <div class="form-button">
+             <textarea row="3" class="form-control" [(ngModel)]="reason"></textarea>
+                               <div class="form-button">
                     <button type="button" class="btn btn-danger" (click)="isReject = !isReject" style="margin-right: 10px">ยกเลิก</button>
-                    <button type="button" class="btn btn-primary" >ส่งคำร้อง</button>
-                </div>
+                    <button type="button" class="btn btn-primary" (click)="rejected(data.drugPrescription._id)">ส่งคำร้อง</button>
+                               </div>
             </section>  
             <br>
         </div>
@@ -78,7 +78,7 @@
                 <p><b>เหตุผลที่ขอแก้ไข :</b> {{data.drugPrescription.note}}</p>
             </section>
             <section class="control-button">
-                <button type="button" class="btn btn-danger" style="width: 150px; margin-right: 50px" (click)="edit(1)">แก้ไขยา</button>                  
+            <button type="button" class="btn btn-danger" style="width: 150px; margin-right: 50px" (click)="edit(data.drugPrescription._id)">แก้ไขยา</button>                  
             </section>  
             <br>
         </div>

@@ -57,7 +57,7 @@ module.exports = function(app) {
     app.post('/api/prescription/History',  prescriptionController.showHistory);
     
     app.post('/api/updateStatusPres', prescriptionController.updateStatus);
-    app.post('/api/changeRequestPres', prescriptionController.changeRequest);
+    app.post('/api/pharma/prescription/requestChange', prescriptionController.requestChange);
     app.post('/api/allPrescription', prescriptionController.allPrescription);
     app.post('/api/pharma/prescription/requestDone', prescriptionController.requestDone);
     app.post('/api/pharma/prescription/requestApprove', prescriptionController.requestApprove);
