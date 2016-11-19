@@ -15,6 +15,7 @@ var Schedule = require("../model/schedule");
 var Diagnosis = require("../model/diagnosis");
 var Patient = require("../model/patient");
 var Drug = require("../model/drug");
+
 exports.getAppointmentByTime = function(req, res){
     if(req.body.departmentID != ''){
         Schedule.find({
@@ -32,6 +33,8 @@ exports.getAppointmentByTime = function(req, res){
             path: 'appointments'
         })
         .exec(function(error,data){
+            if (error) return res.send({status : 'not found'});
+            if (!data)return res.send({status : 'not found'});
             data = data.filter(function(doc){
                 return doc.doctor != null;
             });
@@ -54,6 +57,8 @@ exports.getAppointmentByTime = function(req, res){
             }
         })
         .exec(function(error,data){
+            if (error) return res.send({status : 'not found'});
+            if (!data)return res.send({status : 'not found'});
             res.send({scheduleList: data});
             return;
         });
