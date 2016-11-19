@@ -13,13 +13,40 @@ module.exports = function(app) {
     //initialize passport
     passport.use('staff',HospitalEmployee.createStrategy());
     // use static serialize and deserialize of model for passport session support
-    // passport.serializeUser(HospitalEmployee.serializeUser());
-    // passport.deserializeUser(HospitalEmployee.deserializeUser());
+    // passport.serializeUser(function(user, done) {
+    //     console.log("serialize");
+    //     done(null, user.get(options.usernameField));
+    //     // done(null, {
+    //     //     username : user.get(options.usernameField),
+    //     //     isHN : user.HN 
+    //     // });
+        
+    // });
+    // passport.deserializeUser(function(data, done) {
+    //     console.log("data isHn :" +data.isHN);
+    //     // if(data.isHN){
+    //     //     console.log("isHN")
+    //     //     Patient.findByUsername(data.username, function(err, user) {
+    //     //         done(err, user);
+    //     //     });
+    //     // }else{
+    //         console.log("no HN")
+    //         HospitalEmployee.findByUsername(data, function(err, user) {
+    //             done(err, user);
+    //         });
+    //     // }
+            
+    // });
 
-    passport.serializeUser(Patient.serializeUser());
-    passport.deserializeUser(Patient.deserializeUser());
+
+    passport.serializeUser(HospitalEmployee.serializeUser());
+    passport.deserializeUser(HospitalEmployee.deserializeUser());
+
+
     
     passport.use('patient',Patient.createStrategy());
+    // passport.serializeUser(Patient.serializeUser());
+    // passport.deserializeUser(Patient.deserializeUser());
     //need this according to passport guide
     app.use(cookieParser());
     app.use(session({
@@ -91,7 +118,8 @@ module.exports = function(app) {
     app.post('/api/staff/deleteStaff',hospitalEmployeeController.deleteStaff);
     app.post('/login', hospitalEmployeeController.login);
     app.post('/register', hospitalEmployeeController.register);
-    app.get('/login', hospitalEmployeeController.getLogin)
+    app.get('/login', hospitalEmployeeController.getLogin);
+    app.get('/logout', hospitalEmployeeController.logout);
 
     app.post('/loginPatient', patientController.login);
     app.post('/registerPatient', patientController.register);
