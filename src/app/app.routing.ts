@@ -183,7 +183,7 @@ const appRoutes: Routes = [
         canActivate: [LoggedInGuard]
       },
       {
-        path: 'diagnosis/:hn/:date',
+        path: 'diagnosis/details/:diagID',
         component: DiagnosisDetailComponent,
         canActivate: [LoggedInGuard]
       },

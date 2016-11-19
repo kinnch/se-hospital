@@ -11,7 +11,7 @@ export class DiagnosisHistoryComponent {
     constructor(private router: Router) {
     }
 
-    gotoDetail(hn, date):void{
-        this.router.navigate(['manage','diagnosis',hn,date]);
+    gotoDetail(diagID):void{
+        this.router.navigate(['manage','diagnosis','details',diagID]);
     }
 }

@@ -23,7 +23,18 @@ exports.getDiagnosisAndPhysicalCheck = function(req,res){
             res.send({status:"not found"});
         }
         // res.send({result:data});  
-    }).exec(function(err,data){
+    })
+    .populate({
+        path: 'drugPrescription',
+        populate:{
+            path: 'prescriptions',
+            populate:{
+                path:'drug'
+            }
+        }
+    })
+    .populate('disease')
+    .exec(function(err,data){
         if(err){
             res.send({status:"error"});
         }
