@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 @Component({
     selector: 'diagnosis-history-c',
@@ -7,10 +7,11 @@ import { Router } from '@angular/router';
 })
 
 export class DiagnosisHistoryComponent {
+    @Input() allDiagnosisHistory:JSON;
     constructor(private router: Router) {
     }
 
-    gotoDetail(hn, date):void{
-        this.router.navigate(['manage','diagnosis',hn,date]);
+    gotoDetail(diagID):void{
+        this.router.navigate(['manage','diagnosis','details',diagID]);
     }
 }

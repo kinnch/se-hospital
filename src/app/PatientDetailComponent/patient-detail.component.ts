@@ -16,6 +16,8 @@ export class PatientDetailComponent implements OnInit{
     found: boolean;
     year: number;
     month: number;
+    enablePhysicalDetail: boolean;
+    enableDiagnosisDetail: boolean;
     constructor(private router: Router, private activatedRoute: ActivatedRoute, private appointmentService: AppointmentService) {}
     goback(): void{
         window.history.back();
@@ -35,6 +37,14 @@ export class PatientDetailComponent implements OnInit{
                     this.month = diffDuration.months();
                 });
         });
+        if(this.router.url.slice(0,22) == "/manage/physical_check"){
+            this.enablePhysicalDetail = true;
+            this.enableDiagnosisDetail = false;            
+            
+        } else if(this.router.url.slice(0,17) == "/manage/diagnosis"){
+            this.enableDiagnosisDetail = true;
+            this.enablePhysicalDetail = false;            
+        }
         
         
     }

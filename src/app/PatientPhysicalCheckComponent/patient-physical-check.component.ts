@@ -93,8 +93,5 @@ export class PatientPhysicalCheckComponent implements OnInit {
                 }
             });
         }
-
-
     }
-
 }

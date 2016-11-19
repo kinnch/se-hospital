@@ -1,46 +1,46 @@
 <div class="add-physical-check">
     <div class="form-group row">
         <div class="col-xs-4">
-            <label for="example-text-input" class="col-xs-5 col-form-label right">น้ำหนัก (กก.)</label>
-            <div class="col-xs-7 space-top">
+            <label for="example-text-input" class="col-xs-7 col-form-label right">น้ำหนัก (กก.)</label>
+            <div class="col-xs-5 space-top">
                 <input class="form-control" type="text" name="weight" [(ngModel)]="weight" [disabled]="isAdd">
             </div>
         </div>
         <div class="col-xs-4">
-            <label for="example-text-input" class="col-xs-5 col-form-label right">ส่วนสูง (ซม.)</label>
-            <div class="col-xs-7 space-top">
+            <label for="example-text-input" class="col-xs-7 col-form-label right">ส่วนสูง (ซม.)</label>
+            <div class="col-xs-5 space-top">
                 <input class="form-control" type="text" name="height" [(ngModel)]="height" [disabled]="isAdd">
             </div>
         </div>
         <div class="col-xs-4">
-            <label for="example-text-input" class="col-xs-5 col-form-label right">อุณหภูมิ (องศา)</label>
-            <div class="col-xs-7 space-top">
+            <label for="example-text-input" class="col-xs-7 col-form-label right">อุณหภูมิ (องศา)</label>
+            <div class="col-xs-5 space-top">
                 <input class="form-control" type="text" name="temp" [(ngModel)]="temp" [disabled]="isAdd">
             </div>
         </div>
     </div>
     <div class="form-group row">
         <div class="col-xs-4">
-            <label for="example-text-input" class="col-xs-5 col-form-label right">อัตราการเต้นหัวใจ</label>
-            <div class="col-xs-7 space-top">
+            <label for="example-text-input" class="col-xs-7 col-form-label right">อัตราการเต้นหัวใจ</label>
+            <div class="col-xs-5 space-top">
                 <input class="form-control" type="text" name="heartRate" [(ngModel)]="heartRate" [disabled]="isAdd">
             </div>
         </div>
         <div class="col-xs-4">
-            <label for="example-text-input" class="col-xs-5 col-form-label right">ความดันช่วงบีบ</label>
-            <div class="col-xs-7 space-top">
+            <label for="example-text-input" class="col-xs-7 col-form-label right">ความดันช่วงบีบ</label>
+            <div class="col-xs-5 space-top">
                 <input class="form-control" type="text" name="systolic" [(ngModel)]="systolic" [disabled]="isAdd">
             </div>
         </div>
         <div class="col-xs-4">
-            <label for="example-text-input" class="col-xs-5 col-form-label right">ความดันช่วงคลาย</label>
-            <div class="col-xs-7 space-top">
+            <label for="example-text-input" class="col-xs-7 col-form-label right">ความดันช่วงคลาย</label>
+            <div class="col-xs-5 space-top">
                 <input class="form-control" type="text" name="diastolic" [(ngModel)]="diastolic" [disabled]="isAdd">
             </div>
         </div>
     </div>
     <div class="right">
-        <button type="button" class="btn btn-primary" (click)="addPhysicalCheck()" style="width: 150px">{{buttonName}}</button>
+        <button [class.btn-warning]="buttonName=='แก้ไข'" [class.btn-primary]="buttonName!='แก้ไข'" type="button" class="btn" (click)="addPhysicalCheck()" style="width: 150px">{{buttonName}}</button>
 
     </div>
     <hr>

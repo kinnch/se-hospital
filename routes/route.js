@@ -82,6 +82,7 @@ module.exports = function(app) {
     
     var appointmentController = require("../controllers/appointmentController");
     app.post('/api/departmentAppointment/byTime',  appointmentController.getAppointmentByTime);
+    app.post('/api/appointment/create',  appointmentController.create);
     app.post('/api/appointment/showSomeDoctors',  prescriptionController.showSomeDoctors);
     app.post('/api/prescription/History',  prescriptionController.showHistory);
     
@@ -113,6 +114,7 @@ module.exports = function(app) {
     // app.post('/api/diagnosisHistory', diagnosisDataController.diagnosisHistory); //TODO :REMOVE IF no one blame.
     app.post('/api/patient/diagnosisHistory',diagnosisDataController.getPatientDiagnosisHistory);
     app.post('/api/diagnosis/create', diagnosisDataController.create);
+    app.post('/api/getDiagnosisAndPhysicalCheck',diagnosisDataController.getDiagnosisAndPhysicalCheck);
 
     //patientController.setDBConnectionsFromApp(app);
     

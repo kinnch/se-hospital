@@ -8,13 +8,13 @@
         <patient-detail-element-c>
             
         </patient-detail-element-c>
-	    <button class="btn btn-success pull-right" role="button" (click) = "phyCheckHistory(5)">ดูข้อมูลการตรวจร่างกายทั้งหมด</button>
-
+	    <a routerLink="/manage/physical_check/{{HN}}"><button class="btn btn-success pull-right" role="button">ดูข้อมูลการตรวจร่างกายทั้งหมด</button>
+        </a>
         <br>
         <br>
         <br>
         <div id="dia-his">
-        <diagnosis-history-c></diagnosis-history-c>
+        <diagnosis-history-c [allDiagnosisHistory]="allDiagnosisHistory"></diagnosis-history-c>
         </div>
         <br>
     </div>

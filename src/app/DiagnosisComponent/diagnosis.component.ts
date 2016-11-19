@@ -12,6 +12,7 @@ import {Subscription } from 'rxjs';
 export class DiagnosisComponent {
     HN: string;
     private subscription: Subscription;
+    allDiagnosisHistory: JSON;
     constructor(private router: Router,
         private activatedRoute: ActivatedRoute,
         private appointmentService: AppointmentService,
@@ -20,14 +21,16 @@ export class DiagnosisComponent {
         this.subscription = this.activatedRoute.params.subscribe(
             (param: any) => {
                 this.HN = param['hn'];
-                console.log(this.HN);
+                // console.log(this.HN);
                 this.appointmentService.getPatientAndAppointment(this.HN)
                 .then((data) => {
                     var patient_id = data['patient_data']['_id'];
-                    console.log(patient_id);
+                    // console.log(patient_id);
                     this.diagnosisService.getAllDiagnosisHistory(patient_id)
                     .then((data) =>{
+                        console.log('diagnosis history all');
                         console.log(data);
+                        this.allDiagnosisHistory = data['diagnosisHistory'];
                     });
                     // this.found = true;
                     // var diffDuration = moment_.duration(moment_().diff(this.data['patient_data']['birthDate']));

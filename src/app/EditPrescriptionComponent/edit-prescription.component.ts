@@ -17,6 +17,7 @@ export class EditPrescriptionComponent{
     data: any;
     private subscription: Subscription;
   
+    newPres: string;
     constructor(private router: Router,private prescriptionService: PrescriptionService, private activatedRoute: ActivatedRoute) {
     }
 
@@ -25,16 +26,23 @@ export class EditPrescriptionComponent{
     }
 
      ngOnInit() {
-    // subscribe to router event
-    this.subscription = this.activatedRoute.params.subscribe(
-      (param: any) => {
-        this.presID = param['pres'];
-        console.log('get prescription list');
-        console.log(this.presID);
-      });
-        this.prescriptionService.getPrescription(this.presID).then((data) => {
-            this.data = data;
-            console.log(this.data);
+         this.newPres = 'xxx';
+        // subscribe to router event
+        this.subscription = this.activatedRoute.params.subscribe(
+        (param: any) => {
+            this.presID = param['pres'];
+            
+            this.prescriptionService.getPrescription(this.presID).then((data) => {
+                this.data = data;
+                console.log(this.data);
+                console.log(this.data["prescriptions"])
+            });
+
         });
+     }
+
+     confirm(){
+         console.log('--------');
+         console.log(this.newPres);
      }
 }
