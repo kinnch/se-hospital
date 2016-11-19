@@ -66,11 +66,11 @@ exports.showHistory = function(req, res){
 }
 
 exports.editPhysicalCheck = function(req, res){
-    var data = req.body;
+    var data = (req.body);
     // TODO
     var nurse_id = "580bacaf7f4d291550f67adb",
         physical_id = data.physicalId;
-        hn = data.hn;
+        hn = data.HN;
     Patient.findOne({HN: hn},function(err,patient){
         if(err || !patient){
             return res.send({
@@ -87,7 +87,6 @@ exports.editPhysicalCheck = function(req, res){
                                 msg : "error : not found physicalCheckData"
                             });
                         }
-             
                         all_physical_check[0].bloodPresure.systolic = data.systolic;
                         all_physical_check[0].bloodPresure.diastolic = data.diastolic;
                         all_physical_check[0].heartRate = data.heartRate;
