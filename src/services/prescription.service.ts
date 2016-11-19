@@ -68,6 +68,27 @@ export class PrescriptionService {
                         return res.json();
         });
     }
+
+    private apiUrlGetPrescription = 'api/doctor/getPrescription';
+    getPrescription(prescriptionID:string): Promise<JSON>{
+        return this.http
+                    .post(this.apiUrlGetPrescription, JSON.stringify({prescriptionID : prescriptionID}), {headers: this.headers})
+                    .toPromise()
+                    .then(function(res){
+                        return res.json();
+        });
+    }
+
+    private apiUrlGetAllDrugs = 'api/drugs';
+    getAllDrugs(): Promise<JSON>{
+        return this.http
+                    .post(this.apiUrlGetAllDrugs,  {headers: this.headers})
+                    .toPromise()
+                    .then(function(res){
+                        return res.json();
+        });
+    }
+
     
     getPrescriptionElements() : PrescriptionListElement[] {
         return [
