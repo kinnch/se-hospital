@@ -4,8 +4,7 @@ import { Router } from '@angular/router';
 import { PhysicalCheckService } from '../../services/physical-check.service';
 import * as moment_ from 'moment';
 import { ToastComponent } from '../ToastComponent/toast.component';
-
-const HN_NO: string = "12344321";
+import {Subscription } from 'rxjs';
 
 @Component({
     selector: 'patient-physical-check-c',
@@ -22,14 +21,21 @@ export class PatientPhysicalCheckComponent implements OnInit {
     weight: number;
     height: number;
     temp: number;
-    HN: string = HN_NO;
+    HN: string;
     isAdd: boolean = false;
     buttonName: string = 'เพิ่ม';
+    private subscription: Subscription;
     constructor(private router: Router, 
-                private physicalCheckService: PhysicalCheckService
+                private physicalCheckService: PhysicalCheckService,
+                private activatedRoute: ActivatedRoute,
                 ) { }
     ngOnInit(): void {
         moment_.locale('th');
+        this.subscription = this.activatedRoute.params.subscribe(
+            (param: any) => {
+                this.HN = param['hn'];
+                console.log(this.HN);
+         });
         this.physicalCheckService.getPhysicalCheckHistory(this.HN).then((physicalData)=>{
             let physicalArray = [];
             console.log(">>",physicalData)            

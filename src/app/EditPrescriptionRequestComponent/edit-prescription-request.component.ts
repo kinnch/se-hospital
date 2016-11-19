@@ -27,8 +27,4 @@ export class EditPrescriptionRequestComponent{
             this.data = rejectedData;
         });
     }
-
-    gotoPage(hn):void{      
-        this.router.navigate(['manage','prescription_request',hn]);
-    }
 }
