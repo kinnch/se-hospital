@@ -24,15 +24,25 @@ var hashWithSalt = function(otp,salt){
 
 exports.getAllEmployee = function(req, res){
     HospitalEmployee.find({},function(err,employees){
-        data = { 'employees':employees};
-        res.send(data);
+        if(err || !employees){
+            return res.send({
+                status : "fail",
+                msg : "error : not found employees"
+            });
+        }
+        res.send({ 'employees':employees});
         return;
     });
 }
 exports.getAllDepartment = function(req, res){
     Department.find({},function(err,departments){
-        data = { 'departments':departments};
-        res.send(data);
+        if(err || !departments){
+            return res.send({
+                status : "fail",
+                msg : "error : not found departments"
+            });
+        }
+        res.send({ 'departments':departments});
         return;
     });
 }

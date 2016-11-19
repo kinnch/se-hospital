@@ -59,6 +59,16 @@ export class PrescriptionService {
                     });
     }
 
+    private apiUrlPresRequestDone = 'api/pharma/prescription/requestDone';
+    setPrescriptionRequestDone(prescriptionID:string): Promise<JSON>{
+        return this.http
+                    .post(this.apiUrlPresRequestDone, JSON.stringify({prescriptionID : prescriptionID}), {headers: this.headers})
+                    .toPromise()
+                    .then(function(res){
+                        return res.json();
+                    });
+    }
+
     private apiUrlSendChangeRequest = '/api/pharma/prescription/requestChange';
     sendChangeRequest(prescriptionID:string, pharmaID:string, reason:string): Promise<JSON>{
         return this.http
