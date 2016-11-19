@@ -1,3 +1,5 @@
+'use strict'
+
 var dbConnection;
 
 exports.setDBConnectionsFromApp = function(app) {
@@ -40,14 +42,45 @@ exports.getTable = function(reg, res){
         });
     });
 };
+    
 
 exports.deleteAppointment = function(req, res){
-    //return res.send(req.body.appointmentID);
-    
-    Appointment.remove({_id: req.body.appointmentID})
-    .exec(function (err, data){
-        if(err) return res.send("Fail");
-        return res.send("Success");
-    });
-    
+     Appointment.remove({_id:req.body.appointmentID }, function(err,data){
+         if(err) return res.send("Fail");
+         Schedule.update( {appointments: req.body.appointmentID}, 
+         { $pullAll: {appointments: [req.body.appointmentID]}},
+         function(err,data){
+             if(err) return res.send("Fail");
+             return res.send("Success");
+         })
+     });
+};
+
+exports.changeAppointmentState = function(req, res){
+    //return res.send(req.body);
+    Appointment.update({_id:req.body.appointmentID},
+        {status: req.body.newState},
+        function(err,data){
+            if(err) return res.send("Fail");
+            return res.send("Success");
+        });
+};
+
+exports.getDoctorSchedule = function(req, res) {
+    let doctorID = req.body.doctor_id; 
+    Schedule.find({doctor:doctorID}).populate("doctor").exec(function(err, r) {
+		if(err) {
+			res.send({
+				'status': 'fail',
+				'msg': 'This doctor id is not exist.'
+			});
+			return;
+		}
+		res.send({
+			'status': 'success',
+			'msg': '',
+			'data': r
+		});
+		return;
+	});
 };

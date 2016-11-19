@@ -1,45 +1,104 @@
+<!--staff-->
+<div *ngIf="roleID==1">
 <div class = "row container mycon" [style.background]="roomNo%2==1 ?  '#f2f2f2' : 'white'">
     <h3 style="margin-top=1em;">{{queueHeader}}</h3>
     <hr class="style-one">
     <div class = "col-md-12">
         <h5 style="text-align:center">กำลังพบแพทย์</h5>
-        <hr class="style-two">
         <span *ngIf="withDoctorApt">
-            <patient-list-element-c (click)="goto(11)" *ngFor="let oneData of withDoctorApt" [oneData]="oneData"></patient-list-element-c>
+            <patient-list-element-c *ngFor="let oneData of withDoctorApt" [oneData]="oneData"></patient-list-element-c>
         </span>
-        
+        <hr class="style-two">
     </div>
     <div class = "col-md-12">
         <h5 style="text-align:center">รอพบแพทย์</h5>
-        <hr class="style-two">
         <span *ngIf="physicalCheckedApt">
-            <patient-list-element-c (click)="goto(11)" *ngFor="let oneData of physicalCheckedApt" [oneData]="oneData"></patient-list-element-c>
+            <patient-list-element-c  *ngFor="let oneData of physicalCheckedApt" [oneData]="oneData" [linkToWhere]="'ส่งเข้าพบแพทย์'"></patient-list-element-c>
         </span>
-        
+        <hr class="style-two">
     </div>
     <div class = "col-md-12">
         <h5 style="text-align:center">ยังไม่ได้ตรวจร่างกาย</h5>
-        <hr class="style-two">
         <span *ngIf="printedApt">
-            <patient-list-element-c (click)="goto(11)" *ngFor="let oneData of printedApt" [oneData]="oneData"></patient-list-element-c>
+            <patient-list-element-c *ngFor="let oneData of printedApt" [oneData]="oneData"></patient-list-element-c>
         </span>
-        
+        <hr class="style-two">
     </div>
     
     <div class = "col-md-12">
         <h5 style="text-align:center">ยังไม่มา(ไม่พิมพ์ใบนัด)</h5>
-        <hr class="style-two">
         <span *ngIf="notHereApt">
-            <patient-list-element-c (click)="goto(11)" *ngFor="let oneData of notHereApt" [oneData]="oneData"></patient-list-element-c>
+            <patient-list-element-c *ngFor="let oneData of notHereApt" [oneData]="oneData"></patient-list-element-c>
         </span>
-          
+        <hr class="style-two">  
     </div>
     <div class = "col-md-12">
         <h5 style="text-align:center">พบแพทย์แล้ว</h5>
-        <hr class="style-two">
-        <span *ngIf="doneApt">
-            <patient-list-element-c (click)="goto(11)" *ngFor="let oneData of doneApt" [oneData]="oneData"></patient-list-element-c>
-        </span>
         
+        <span *ngIf="doneApt">
+            <patient-list-element-c *ngFor="let oneData of doneApt" [oneData]="oneData"></patient-list-element-c>
+        </span>
+        <hr class="style-two">
     </div>
+</div>
+</div>
+
+<!--doctor-->
+<div *ngIf="roleID==2">
+<div class = "row container mycon" [style.background]="roomNo%2==1 ?  '#f2f2f2' : 'white'">
+    <h3 style="margin-top=1em;">{{queueHeader}}</h3>
+    <hr class="style-one">
+    <div class = "col-md-12">
+        <h5 style="text-align:center">กำลังพบแพทย์</h5>
+        <span *ngIf="withDoctorApt">
+            <patient-list-element-c *ngFor="let oneData of withDoctorApt" [oneData]="oneData"></patient-list-element-c>
+        </span>
+        <hr class="style-two">
+    </div>
+    <div class = "col-md-12">
+        <h5 style="text-align:center">รอพบแพทย์</h5>
+        
+        <span *ngIf="physicalCheckedApt">
+            <patient-list-element-c *ngFor="let oneData of physicalCheckedApt" [oneData]="oneData" [linkToWhere]="'เริ่มตรวจ'"></patient-list-element-c>
+        </span>
+        <hr class="style-two">
+    </div>
+    <div class = "col-md-12">
+        <h5 style="text-align:center">พบแพทย์แล้ว</h5>
+        
+        <span *ngIf="doneApt">
+            <patient-list-element-c *ngFor="let oneData of doneApt" [oneData]="oneData"></patient-list-element-c>
+        </span>
+        <hr class="style-two">
+    </div>
+</div>
+</div>
+<!--nurse-->
+<div *ngIf="roleID==3">
+<div class = "row container mycon" [style.background]="roomNo%2==1 ?  '#f2f2f2' : 'white'">
+    <h3 style="margin-top=1em;">{{queueHeader}}</h3>
+    <hr class="style-one">
+    <div class = "col-md-12">
+        <h5 style="text-align:center">ยังไม่ได้ตรวจร่างกาย</h5>
+        <span *ngIf="printedApt">
+            <patient-list-element-c *ngFor="let oneData of printedApt" [oneData]="oneData" [linkToWhere]="'ตรวจร่างกาย'"></patient-list-element-c>
+        </span>
+        <hr class="style-two">
+    </div>
+    <div class = "col-md-12">
+        <h5 style="text-align:center">รอพบแพทย์</h5>
+        
+        <span *ngIf="physicalCheckedApt">
+            <patient-list-element-c *ngFor="let oneData of physicalCheckedApt" [oneData]="oneData"></patient-list-element-c>
+        </span>
+        <hr class="style-two">    
+    </div>
+    <div class = "col-md-12">
+        <h5 style="text-align:center">กำลังพบแพทย์</h5>
+        <span *ngIf="withDoctorApt">
+            <patient-list-element-c *ngFor="let oneData of withDoctorApt" [oneData]="oneData"></patient-list-element-c>
+        </span>
+        <hr class="style-two">
+    </div>
+</div>
 </div>

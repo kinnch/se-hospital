@@ -1,8 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Router } from '@angular/router';
 import { PhysicalCheckService } from '../../services/physical-check.service';
 import * as moment_ from 'moment';
+import { ToastComponent } from '../ToastComponent/toast.component';
 
 const HN_NO: string = "12344321";
 
@@ -13,6 +14,7 @@ const HN_NO: string = "12344321";
 })
 
 export class PatientPhysicalCheckComponent implements OnInit {
+    @ViewChild(ToastComponent) toast: ToastComponent;
     physicalData = [];
     systolic: number;
     diastolic: number;
@@ -57,10 +59,32 @@ export class PatientPhysicalCheckComponent implements OnInit {
                 if (res == "success") {
                     this.isAdd = !this.isAdd;
                     this.buttonName = 'แก้ไข'
+                    this.toast.addToastSuccess();
+                }
+                else{
+                    this.toast.addToastError();                    
                 }
             });
         }
-        
+        else if(this.buttonName === "แก้ไข"){
+            this.isAdd = !this.isAdd;
+            this.buttonName = "บันทึก"        
+        }
+        else if(this.buttonName === "บันทึก"){
+            this.physicalCheckService.editPhysicakCheck(this.systolic, this.diastolic, this.heartRate, this.weight, this.height, this.temp, this.HN)
+            .then((res) => {
+                if (res == "success") {
+                    this.isAdd = !this.isAdd;
+                    this.buttonName = 'แก้ไข'
+                    this.toast.addToastSuccess();    
+                }
+                else{
+                    this.toast.addToastError();
+                }
+            });
+        }
+
+
     }
 
 }

@@ -1,4 +1,4 @@
-import {Component, Input, HostListener} from '@angular/core';
+import {Component, Input, HostListener, OnInit} from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Router } from '@angular/router';
 import { PatientListComponent } from '../PatientListComponent/patient-list.component';
@@ -11,13 +11,16 @@ import { AppointmentService } from '../../services/appointment.service';
     styles: [require('./manage-queue.component.css')]
 })
 
-export class ManageQueueComponent{ 
+export class ManageQueueComponent implements OnInit{ 
     roleID : number;
     departmentID : string;
     doctorList : any;
     scheduleList : any;
     constructor(private router: Router, private departmentService : DepartmentService, private appointmentService : AppointmentService ) {
-        /*
+                    
+    }
+    ngOnInit() {
+      /*
                 1 == hospitalStaff // muliple queue
                 2 == doctor         // 1 queue
                 3 == nurse          //merged queue
@@ -39,7 +42,6 @@ export class ManageQueueComponent{
             
             //Retrive all appointment in queue (now)
             this.departmentID = '';//TODO : remove this tester
-            mid = 'pm';
             this.appointmentService.getTodayAppointments(this.departmentID,mid)
             .then((data) => {
                 // this.roleID = 3; //TODO : remove this tester
@@ -264,7 +266,6 @@ export class ManageQueueComponent{
                     console.log(this.scheduleList);
                 }
             });
-                    
     }
     // @HostListener('window:resize', ['$event'])
     // contentHeight = window.innerHeight;
