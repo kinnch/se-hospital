@@ -31,7 +31,7 @@ import { EditPrescriptionComponent } from './EditPrescriptionComponent/edit-pres
 import { PatientPanelComponent } from './PatientPanelComponent/patient-panel.component';
 
 //TODO: query state from user
-let redirectToPathLastPage: string = 'manage_queue';
+let redirectToPathLastPage: string = 'manage_patient';
 // redirectToPathLastPage = 'login';
 // let userService: UserService;
 // if(userService.isLoggedIn()){

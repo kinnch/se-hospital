@@ -18,7 +18,7 @@
 <div class="card" >
    <div class="card-block">
     <h6 class="card-title">{{oneData['patient']['name']['title']}}{{oneData['patient']['name']['fname']}} {{oneData['patient']['name']['lname']}}</h6>
-    <p class="card-subtitle text-muted"><i class="fa fa-phone" aria-hidden="true"></i> {{oneData['patient']['tel']}} <span><a href="#" class="card-link pull-right">Another link</a></span></p>
+    <p class="card-subtitle text-muted"><i class="fa fa-phone" aria-hidden="true"></i> {{oneData['patient']['tel']}} <span *ngIf="linkToWhere"><a href="#" class="card-link pull-right">{{linkToWhere}}</a></span></p>
     
   </div>
      <!--<div class="card-block">
