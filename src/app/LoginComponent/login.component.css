@@ -36,3 +36,56 @@ a:hover {
     margin-left: auto;
     margin-right: auto;
 }
+
+/*
+grey:$grey;
+$fill:$primary;*/
+
+
+.hourglass{
+    display:block;
+    background:#ffffff;
+    margin:1em auto;
+    width:2em;
+    height:4em;
+    box-shadow:
+        inset #ffffff 0 0 0 0,
+        inset #ffffff#00B7C5 0 2em 0 0,
+        inset #ffffff 0 0 4em 0;
+    animation:hourglass 1s linear infinite;
+}
+
+.outer{
+    fill:#00B7C5;
+}
+
+.middle{
+    fill:#ffffff;
+}
+
+@keyframes hourglass{
+    0%{
+        transform:rotate(0deg);
+        box-shadow:
+            inset #ffffff 0 0 0 0,
+            inset #00B7C5 0 2em 0 0,
+            inset #ffffff 0 4em 0 0,
+            inset #00B7C5 0 4em 0 0;
+    }
+    80%{
+        transform:rotate(0deg);
+        box-shadow:
+            inset #ffffff 0 2em 0 0,
+            inset #00B7C5 0 2em 0 0,
+            inset #ffffff 0 2em 0 0,
+            inset #00B7C5 0 4em 0 0;
+    }
+    100%{
+        transform:rotate(180deg);
+        box-shadow:
+            inset #ffffff 0 2em 0 0,
+            inset #00B7C5 0 2em 0 0,
+            inset #ffffff 0 2em 0 0,
+            inset #00B7C5 0 4em 0 0;
+    }
+}

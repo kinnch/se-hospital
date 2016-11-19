@@ -58,4 +58,17 @@ export class UserService {
   isLoggedIn() {
     return this.loggedIn;
   }
+
+  search(idOrHN:string) : Promise<JSON> {
+          return new Promise<JSON>(resolve =>
+            setTimeout(resolve, 2000)) // delay 2 seconds
+            .then(() =>  JSON.parse(idOrHN) );
+        // return this.http
+        //             .post('api/patient/search', JSON.stringify({key: idOrHN}), {headers: this.headers})
+        //             .toPromise()
+        //             .then(function(res){
+        //                 return res.json();
+        //             });
+    }
+  
 }

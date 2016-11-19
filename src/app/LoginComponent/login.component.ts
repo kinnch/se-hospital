@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { UserService } from '../../services/user.service';
 
 @Component({
     selector: 'login-c',
@@ -16,7 +17,9 @@ export class LoginComponent {
     loginSuccess: boolean = false;
     sendOTPSuccess: boolean = true;
 
-    constructor(private router: Router, private location: Location) {
+    step : number = 1;
+    isLoading : boolean = false;
+    constructor(private userService: UserService, private router: Router, private location: Location) {
     }
 
     // Login NationalID (or) #HN
@@ -55,5 +58,15 @@ export class LoginComponent {
     }
     goBack(): void {
         this.location.back();
+    }
+
+    checkAndRequest() {
+        // search api and will get phone
+        this.isLoading = true;
+        this.userService.search(this.patientID).then( (data) => { 
+            alert(data);
+            this.step=2;
+            this.isLoading = false;
+        });
     }
 }
