@@ -6,11 +6,11 @@
         <br>
         <br>
             <div class="contain">
-                <prescription-form-c></prescription-form-c>
+                <prescription-form-c *ngIf="data" [data] = "data" [(myform)]="newPres"></prescription-form-c>
                 <hr>
                 <div class="row right">
                     <button routerLink="/manage/edit_prescription_request" type="button" class="btn btn-danger" style="width: 15%; min-width: 150px"> ยกเลิก </button>                  
-                    <button type="button" class="btn btn-primary" style="width: 15%; min-width: 150px"> ยืนยันการจ่ายยา </button>                  
+                    <button type="button" class="btn btn-primary" style="width: 15%; min-width: 150px" (click)="confirm()"> ยืนยันการจ่ายยา </button>                  
                 </div>   
             </div>
         <br>
