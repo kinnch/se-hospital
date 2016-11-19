@@ -92,7 +92,7 @@ module.exports = function(app) {
     app.post('/api/pharma/prescription/requestApprove', prescriptionController.requestApprove);
     app.post('/api/doctor/prescriptionChangeRequest/list', prescriptionController.rejectedPrescription);
     app.post('/api/doctor/getPrescription',prescriptionController.getPrescription);
-
+    app.get('/api/drugs', prescriptionController.getAllDrugs);
 
     var hospitalEmployeeController = require('../controllers/hospitalEmployeeController');
     app.post('/api/hospitalEmployee/isInSystem',  hospitalEmployeeController.isInSystem);
