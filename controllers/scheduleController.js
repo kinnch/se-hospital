@@ -43,12 +43,21 @@ exports.getTable = function(reg, res){
     });
 };
 
-exports.getStaffTable = function(req, res){
-    HospitalEmployee.find({department: req.body.departmentID}, function(err, staffs){
+exports.getTableStaff = function(req, res){
+   // return res.send(req.body.departmentID);
+    HospitalEmployee.find({roleID: 2, department: req.body.departmentID}, function(err, staffs){
         //Schedule.find({})
-        return res.send(staffs);
-    })
-}
+        var arr = [];
+        for(var i = 0; i < staffs.length; i++){
+            arr.push(staffs[i]._id);
+        }
+        Schedule.find({doctor: {$in:arr}}).populate('doctor')
+        .exec(function(err,data){
+            return res.send({table: data, limitDocs: 10});
+        });
+        //return res.send(arr);
+    }).select('_id');
+};
     
 
 exports.deleteAppointment = function(req, res){
