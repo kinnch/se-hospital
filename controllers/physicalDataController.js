@@ -15,6 +15,7 @@ exports.add = function(req, res){
     var data = (req.body);
     //res.send(data);
     //mock AUTH
+    //TODO
     var nurse_id = "580bacaf7f4d291550f67adb";
     HospitalEmployee.findOne({_id: nurse_id}, function (err, nurse){
         if (err) return console.error(err);
@@ -54,22 +55,31 @@ exports.showHistory = function(req, res){
 
 exports.editPhysicalCheck = function(req, res){
     var data = req.body;
+    // TODO
     var nurse_id = "580bacaf7f4d291550f67adb",
         physical_id = data.physicalId;
     PhysicalData.findOne({_id: data.physicalId},function(err,physical){
-            physical.bloodPresure.systolic = data.systolic;
-            physical.bloodPresure.diastolic = data.diastolic;
-            physical.heartRate = data.heartRate;
-            physical.weight = data.weight;
-            physical.height = data.height;
-            physical.temp = data.temp;
-            physical.patient = patient._id;
-            physical.nurse = nurse_id;
-            physical.date = new Date();
-            physical.save();
+        if(err){
+            return res.send({
+                status : "fail",
+                msg : "error : not found physicalCheckData"
+            });
+        }
+        physical.bloodPresure.systolic = data.systolic;
+        physical.bloodPresure.diastolic = data.diastolic;
+        physical.heartRate = data.heartRate;
+        physical.weight = data.weight;
+        physical.height = data.height;
+        physical.temp = data.temp;
+        physical.patient = patient._id;
+        physical.nurse = nurse_id;
+        physical.date = new Date();
+        physical.save();
+        res.send({
+                status : "success",
+                msg : ""
+            });
+        return;
     });
-
-                
-
 }
 
