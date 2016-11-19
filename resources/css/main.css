@@ -20,7 +20,7 @@ body {
   font-family: 'db_futhaira_body';
   src: url('/resources/fonts/db-futhaira-body-x-v322.woff2');
 }
-h1, h2, h3, h4, h5, h6, p, label, a, .btn, .navbar-nav a, .list-inline, small, #pricing {
+h1, h2, h3, h4, h5, h6, p, label, a, .btn, .navbar-nav a, .list-inline, small, table {
   font-family: 'db_futhaira_body', 'Montserrat', sans-serif;
 }
 .form-control, input {
@@ -59,6 +59,23 @@ p {
   /*font-size: 1.8em;*/
   line-height: 22px;
   font-weight: 400;
+}
+
+@media (min-width: 768px)
+.navbar-right {
+    float: right!important;
+    margin-right: -15px;
+}
+
+@media (min-width: 768px)
+.navbar-nav {
+    float: left;
+    margin: 0;
+}
+
+@media (min-width: 768px)
+.navbar-nav>li {
+    float: left;
 }
 
 /*------------------Utilities---------------------*/
@@ -401,8 +418,8 @@ footer {
 /*---------------Pricing Tables-------------------*/
 
 
-#pricing {
-  background: #1abc9c;
+#main-news {
+  background: #ffffff;
 }
 
 .pricing-container {

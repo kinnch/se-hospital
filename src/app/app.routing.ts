@@ -1,6 +1,11 @@
 import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoggedInGuard } from './logged-in.guard';
+import { DoctorGuard } from './doctor.guard';
+import { StaffGuard } from './staff.guard';
+import { NurseGuard } from './nurse.guard';
+import { PharmacistGuard } from './pharmacist.guard';
+import { ManageQueueGuard } from './manage-queue.guard';
 import { UserService } from '../services/user.service';
 
 import { PatientComponent } from './PatientComponent/patient.component';
@@ -31,7 +36,7 @@ import { EditPrescriptionComponent } from './EditPrescriptionComponent/edit-pres
 import { PatientPanelComponent } from './PatientPanelComponent/patient-panel.component';
 
 //TODO: query state from user
-let redirectToPathLastPage: string = 'manage_patient';
+let redirectToPathLastPage: string = 'login';
 // redirectToPathLastPage = 'login';
 // let userService: UserService;
 // if(userService.isLoggedIn()){
@@ -84,52 +89,52 @@ const appRoutes: Routes = [
       {
         path: 'manage_patient',
         component: ManagePatientComponent,
-        canActivate: [LoggedInGuard]
+        canActivate: [LoggedInGuard, StaffGuard]
       },
       {
         path: 'manage_patient/register',
         component: RegisterComponent,
-        canActivate: [LoggedInGuard]
+        canActivate: [LoggedInGuard, StaffGuard]
       },
       {
         path: 'manage_patient/create_appointment',
         component: MakeAppointComponent,
-        canActivate: [LoggedInGuard]
+        canActivate: [LoggedInGuard, StaffGuard]
       },
       {
         path: 'manage_schedule',
         component: ScheduleManageComponent,
-        canActivate: [LoggedInGuard]
+        canActivate: [LoggedInGuard, StaffGuard]
       },
       {
         path: 'manage_queue',
         component: ManageQueueComponent,
-        canActivate: [LoggedInGuard]
+        canActivate: [LoggedInGuard, ManageQueueGuard]
       },
       {
         path: 'manage_staff',
         component: ManageHospitalEmployeeComponent,
-        canActivate: [LoggedInGuard]
+        canActivate: [LoggedInGuard, StaffGuard]
       },
       {
         path: 'add_staff',
         component: AddHospitalEmployeeComponent,
-        canActivate: [LoggedInGuard]
+        canActivate: [LoggedInGuard, StaffGuard]
       },
       {
         path: 'manage_doctor_calendar',
         component: ManageDoctorCalendarComponent,
-        canActivate: [LoggedInGuard]
+        canActivate: [LoggedInGuard, StaffGuard]
       },
       {
         path: 'doctor_calendar',
         component: DoctorCalendarComponent,
-        canActivate: [LoggedInGuard]
+        canActivate: [LoggedInGuard, DoctorGuard]
       },
       {
         path: 'doctor_calendar/:hn',
         component: DoctorCalendarComponent,
-        canActivate: [LoggedInGuard]
+        canActivate: [LoggedInGuard,DoctorGuard]
       },
      
       {
@@ -140,32 +145,32 @@ const appRoutes: Routes = [
       {
         path: 'physical_check/:hn',
         component: PatientDetailComponent,
-        canActivate: [LoggedInGuard]
+        canActivate: [LoggedInGuard, NurseGuard]
       },
       {
         path: 'prescription_request',
         component: PrescriptionRequestComponent,
-        canActivate: [LoggedInGuard]
+        canActivate: [LoggedInGuard, PharmacistGuard]
       },
       {
         path: 'prescription_request/:hn',
         component: PrescriptionHistoryComponent,
-        canActivate: [LoggedInGuard]
+        canActivate: [LoggedInGuard, PharmacistGuard]
       },
       {
         path: 'edit_prescription_request',
         component: EditPrescriptionRequestComponent,
-        canActivate: [LoggedInGuard]
+        canActivate: [LoggedInGuard, DoctorGuard]
       },
-      {
-        path: 'patient/check/:hn',
-        component: PatientPhysicalCheckHistoryComponent,
-        canActivate: [LoggedInGuard]
-      },
+      // {
+      //   path: 'patient/check/:hn',
+      //   component: PatientPhysicalCheckHistoryComponent,
+      //   canActivate: [LoggedInGuard]
+      // },
       {
         path: 'diagnosis/:hn',
         component: PatientDetailComponent,
-        canActivate: [LoggedInGuard]
+        canActivate: [LoggedInGuard,DoctorGuard]
       },
       {
         path: 'login',
@@ -175,22 +180,22 @@ const appRoutes: Routes = [
       {
         path: 'diagnosis/add/:hn',
         component: AddDiagnosisComponent,
-        canActivate: [LoggedInGuard]
+        canActivate: [LoggedInGuard, DoctorGuard]
       },
       {
         path: 'edit_prescription/:pres',
         component: EditPrescriptionComponent,
-        canActivate: [LoggedInGuard]
+        canActivate: [LoggedInGuard, DoctorGuard]
       },
       {
         path: 'diagnosis/details/:diagID',
         component: DiagnosisDetailComponent,
-        canActivate: [LoggedInGuard]
+        canActivate: [LoggedInGuard, DoctorGuard]
       },
       {
         path: 'create_appointment/:hn/:doctor_id/:department_id',
         component: MakeAppointComponent,
-        canActivate: [LoggedInGuard]
+        canActivate: [LoggedInGuard, StaffGuard]
       }
     ]
   }

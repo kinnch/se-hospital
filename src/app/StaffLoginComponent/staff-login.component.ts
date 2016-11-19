@@ -13,9 +13,20 @@ export class StaffLoginComponent{
     password='';
     onSubmit() {
         this.userService.login(this.username, this.password).subscribe((result) => {
-        if (result) {
-            this.router.navigate(['manage']);
-        }
+            if (result) {
+                let userRoleId = localStorage.getItem('user_roleID');
+                let link = [];
+                if(userRoleId == "1"){
+                    link = ['manage','manage_patient'];
+                } else if(userRoleId == "2"){
+                    link = ['manage','manage_queue'];
+                } else if(userRoleId == "3"){
+                    link = ['manage','manage_queue'];
+                } else if(userRoleId == "4"){
+                    link = ['manage','prescription_request'];
+                }
+                this.router.navigate(link);  
+            }
         });
     }
 }
