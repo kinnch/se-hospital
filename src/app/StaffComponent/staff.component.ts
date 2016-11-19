@@ -13,7 +13,7 @@ export class StaffComponent{
     userFname = localStorage.getItem('user_fname');
     userLname = localStorage.getItem('user_lname');
     userTitle = localStorage.getItem('user_title');
-    userSex = "male";
+    userSex = localStorage.getItem('user_sex');
     userPic = "";
 
     loggedIn:boolean;
@@ -25,7 +25,7 @@ export class StaffComponent{
             this.userFname = localStorage.getItem('user_fname');
             this.userLname = localStorage.getItem('user_lname');
             this.userTitle = localStorage.getItem('user_title');
-
+            this.userSex = localStorage.getItem('user_sex');            
             this.userRole = (this.userRoleId == "1") ? "เจ้าหน้าที่ของโรงพยาบาล" : 
                         (this.userRoleId == "2") ? "แพทย์" : 
                         (this.userRoleId == "3") ? "พยาบาล" : 
@@ -47,6 +47,8 @@ export class StaffComponent{
                             (this.userRoleId == "4" && this.userSex == "male") ? 
                             "/resources/images/icon_people/fm_phar.png" : 
                             "/resources/images/icon_people/m_staff.png";
+            console.log("sex",this.userSex)
+            
             
         });
         //TODO
