@@ -18,11 +18,22 @@ exports.add = function(req, res){
     //TODO
     var nurse_id = "580bacaf7f4d291550f67adb";
     HospitalEmployee.findOne({_id: nurse_id}, function (err, nurse){
-        if (err) return console.error(err);
+        if(err || !nurse){
+            return res.send({
+                status : "fail",
+                msg : "error : not found nurse"
+            });
+        }
         return nurse;
     }).then(function (nurse){
         //res.send(nurse);
         Patient.findOne({HN: data.HN}, function(err, patient){
+            if(err || !patient){
+                return res.send({
+                    status : "fail",
+                    msg : "error : not found patient"
+                });
+            }
             var newData = new PhysicalData({
                 bloodPresure: {
                     systolic: data.systolic,
@@ -37,7 +48,10 @@ exports.add = function(req, res){
                 date: new Date()
             });
             newData.save();
-            res.send('done');
+            res.send({
+                status : "success",
+                msg : ""
+            });
             return;
         })
     });
