@@ -2,14 +2,49 @@
 		<hr>
 		<section class="container">
 			<br>
-			<h5>วันที่ 5/5/2016</h5>
+			<h5>วันที่ {{date}}</h5>
 			<hr>
-			<patient-detail-element-c></patient-detail-element-c>
-			<diagnosis-detail-result-c></diagnosis-detail-result-c>
+			<!--<patient-detail-element-c></patient-detail-element-c>-->
+			<div *ngIf="physicalCheck">
+				<section class="container">
+					<br>
+					<h5 _ngcontent-bir-6="">ข้อมูลการตรวจร่างกายประจำวัน</h5>
+							<div _ngcontent-bir-6="" class="card">
+								<div _ngcontent-bir-6="" class="card-block">
+									<blockquote _ngcontent-bir-6="" class="card-blockquote">
+										<div class="row">
+											<div class="col-md-4">
+												<p>น้ำหนัก (กก.) : {{physicalCheck['weight']}}</p>
+											</div>
+											<div class="col-md-4">
+												<p>ส่วนสูง (ซม.) : {{physicalCheck['height']}}</p>
+											</div>
+											<div class="col-md-4">
+												<p>อุณหภูมิ (องศา) : {{physicalCheck['temp']}}</p>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-md-4">
+												<p>อัตราการเต้นหัวใจ :  {{physicalCheck['heartRate']}}</p>
+											</div>
+											<div class="col-md-4">
+												<p>ความดันช่วงบีบ : {{physicalCheck['bloodPresure']['systolic']}}</p>
+											</div>
+											<div class="col-md-4">
+												<p>ความดันช่วงคลาย : {{physicalCheck['bloodPresure']['diastolic']}}</p>
+											</div>
+										</div>
+									</blockquote>
+								</div>
+							</div>
+					
+				</section>
+			</div>
+			<diagnosis-detail-result-c [detail]="detail" [disease]="disease"></diagnosis-detail-result-c>
 			<br>
 			<div id="drug">
 				<h5 _ngcontent-bir-6="">รายการจ่ายยา</h5>
-				<prescription-table-c></prescription-table-c>
+				<prescription-table-c [prescriptionList]="prescriptionList"></prescription-table-c>
 			</div>
 			<br>
     		
