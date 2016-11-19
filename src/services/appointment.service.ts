@@ -35,4 +35,22 @@ export class AppointmentService {
                         return res.json();
                     });
     }
+    /*  
+            0 == created in website
+            1 == ปรินท์ใบนัดแล้ว
+            2 == ตรวจร่างกายแล้ว
+            3 == ตรวจอยู่
+            4 == ตรวจเสร็จ
+        */
+    checkInAppointment(appoinmentID : string): Promise<JSON>{
+        return this.http
+                    .post('api/appoinment/changeState', JSON.stringify({
+                        appointmentID: appoinmentID,
+                        newState : 3
+                    }), {headers: this.headers})
+                    .toPromise()
+                    .then(function(res){
+                        return res.json();
+                    });
+    }
 }
