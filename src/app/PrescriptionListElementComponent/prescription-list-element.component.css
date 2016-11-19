@@ -3,19 +3,20 @@
     -webkit-border-radius: 2px;
     -moz-border-radius: 2px;
     border-radius: 2px;
-    -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2), 0 1px 1px rgba(0,0,0,0.1);
-    box-shadow: 0 1px 0 rgba(0,0,0,.2), 0 1px 1px rgba(0,0,0,.1);
+    /*-webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2), 0 1px 1px rgba(0,0,0,0.1);
+    box-shadow: 0 1px 0 rgba(0,0,0,.2), 0 1px 1px rgba(0,0,0,.1);*/
     margin-bottom: 50px;
 }
 
 .patient-img {
     width: 100px;
-    margin-left: 50px;
-    margin-top: 20px;
+    margin-left: 22px;
+    margin-right:8px;
+    /*margin-top: 10px;*/
 }
 
-.prescription-detail, .reject-form {
-    padding: 0 50px;
+.prescription-detail, .reject-form , .preList{
+    padding: 0 5%;
 }
 
 .control-button{
@@ -26,4 +27,18 @@
 .form-button {
     text-align: right;
     margin-top: 10px;
+}
+
+.card-container{
+    border: 1px solid;
+    border-color: rgba(50, 50, 50, 0.35);
+    border-radius: 5px;
+    border-left: 4px solid;
+    border-left-color: #FFC107;
+}
+
+.box-detail{
+  margin: 5px 15px;
+  width: 92px;
+  height: 64px;
 }

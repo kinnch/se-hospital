@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Router } from '@angular/router';
 import { PatientService } from '../../services/patient.service';
@@ -10,71 +10,63 @@ import * as moment from 'moment';
     styles: [require('./patient-list.component.css')]
 })
 
-export class PatientListComponent{
-    @Input() roomNo:string;
+export class PatientListComponent implements OnInit {
+    @Input() queue:JSON;
+    @Input() roleID:number;
     department: string = 'ศัลยกรรม';
     notHereApt = [];
     printedApt = [];
     physicalCheckedApt = [];
     withDoctorApt = [];
     doneApt = [];
+    queueHeader = '';
     constructor(private router: Router ,private patientService: PatientService,
     private appointmentService: AppointmentService) {
-        this.appointmentService.getTodayAppointments(this.department)
-        .then((data) => {
-            var i;
-            var j;
-            var status;
-            var tel;
-            var title;
-            var fname;
-            var lname;
-            var birthdate;
-            console.log('then');
-            console.log(data);
-            for(i=0;i<data['appointments'].length;i++){
-                for(j=0;j<data['appointments'][i]['Schedules']['appointments'].length;j++){
-                    status = data['appointments'][i]['Schedules']['appointments'][j]['status'];
-                    tel = data['appointments'][i]['patient_list'][j]['tel'];
-                    birthdate = data['appointments'][i]['patient_list'][j]['birthDate'];
-                    title = data['appointments'][i]['patient_list'][j]['name']['title'];
-                    fname = data['appointments'][i]['patient_list'][j]['name']['fname'];
-                    lname = data['appointments'][i]['patient_list'][j]['name']['lname'];
-                    var years = moment().diff(birthdate, 'years');
-                    // var months = moment().diff(birthdate, 'months');
-                    birthdate = ''+years+' ปี';
-                    var oneData = {
-                                    title: title,
-                                    fname: fname,
-                                    lname: lname,
-                                    tel: tel,
-                                    birthdate: birthdate
-                                    };
-                        oneData['enableCheckin'] = false;            
-                    if(status == 0){
-                        this.notHereApt.push(oneData);
-                    }
-                    else if(status == 1){
-                        //console.log('user_roleID');
-                        //console.log(localStorage.getItem('user_roleID'));
-                        if(localStorage.getItem('user_roleID') == '1'){
-                            oneData['enableCheckin'] = true;
-                        }
-                        this.printedApt.push(oneData);
-                    }
-                    else if(status == 2){
-                        this.physicalCheckedApt.push(oneData);
-                    }
-                    else if(status == 3){
-                        this.withDoctorApt.push(oneData);
-                    }
-                    else if(status == 4){
-                        this.doneApt.push(oneData);
-                    }
-                }   
+           
+    }
+    ngOnInit() {
+        if(this.roleID == 1){//staff header shows doctor name
+            this.queueHeader = 'ห้อง ';
+            this.queueHeader = this.queueHeader.concat(this.queue.doctor.name.title);
+            this.queueHeader = this.queueHeader.concat(this.queue.doctor.name.fname);
+        }
+        else if(this.roleID == 2){//doctor
+            this.queueHeader = 'ผู้ป่วยรอพบ ';
+            this.queueHeader = this.queueHeader.concat(this.queue.doctor.name.title);
+            this.queueHeader = this.queueHeader.concat(this.queue.doctor.name.fname);
+        }
+        else if(this.roleID == 3){//nurse
+            this.queueHeader = 'ผู้ป่วยรอตรวจร่างกาย';
+        }
+        
+        console.log(this.queue);
+        var appointments = this.queue['appointments'];
+        for ( var i = 0 ; i < appointments.length ; i++){
+//             0 == created in website
+// 1 == ปรินท์ใบนัดแล้ว
+// 2 == ตรวจร่างกายแล้ว
+// 3 == ตรวจอยู่
+// 4 == ตรวจเสร็จ.
+    console.log(appointments[i].status);
+            switch (appointments[i].status){
+                case 0:
+                    this.notHereApt.push(appointments[i]);
+                    break;
+                case 1:
+                    this.printedApt.push(appointments[i]);
+                    break;
+                case 2:
+                    this.physicalCheckedApt.push(appointments[i]);
+                    break;
+                case 3:
+                    this.withDoctorApt.push(appointments[i]);
+                    break;
+                case 4:
+                    this.doneApt.push(appointments[i]);
+                    break;
             }
-            console.log(this.withDoctorApt);
-        });
+            
+        }
     }
     goto(hn):void{
         this.router.navigate(['manage','patient',hn]);

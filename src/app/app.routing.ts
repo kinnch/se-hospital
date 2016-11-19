@@ -35,7 +35,7 @@ let redirectToPathLastPage: string = 'manage_patient';
 // redirectToPathLastPage = 'login';
 // let userService: UserService;
 // if(userService.isLoggedIn()){
-//   redirectToPathLastPage = 'manage_patient';
+//   redirectToPathLastPage = 'manage_queue';
 // }
 // else{
 //   redirectToPathLastPage = 'login';
@@ -138,7 +138,7 @@ const appRoutes: Routes = [
         canActivate: [LoggedInGuard]
       },
       {
-        path: 'patient/:hn',
+        path: 'physical_check/:hn',
         component: PatientDetailComponent,
         canActivate: [LoggedInGuard]
       },

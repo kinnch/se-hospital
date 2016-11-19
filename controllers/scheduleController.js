@@ -16,16 +16,12 @@ function getDateNow(){
 var Schedule = require("../model/schedule");
 var Department = require("../model/department");
 var HospitalEmployee = require("../model/hospitalEmployee");
+var Appointment = require("../model/appointment");
 
 exports.getTable = function(reg, res){
     //res.send(getDateNow());
-    Department.find({
-        name: reg.body.department
-    }, function(err, department){
-        HospitalEmployee.find({department: department._id}, function(err, doctors){
-            return doctors;
-        });
-    }).then(function (doctors){
+    //return res.send(reg.body.department);
+    Department.findOne({name: reg.body.department}, function(err, department){
         Schedule.aggregate([
         {
             $group: { 
@@ -36,15 +32,26 @@ exports.getTable = function(reg, res){
                 doctors: {$sum: 1},
                 patients: {$sum: { $size: "$appointments" }}
             }
-        }],
-        function(err,result) {
-            res.send(result)
-        // Result is an array of documents
+        }],function(err,result) {
+            Schedule.find({doctor: reg.body.doctorID}, function(err, data){
+                return res.send({
+                    table: result,
+                    thisdoctor: data
+                });
+            });
         });
-    })
-    //res.send(getDateNow());
-    return; 
-}
+
+exports.deleteAppointment = function(req, res){
+     Appointment.remove({_id:req.body.appointmentID }, function(err,data){
+         if(err) return res.send("Fail");
+         Schedule.update( {appointments: req.body.appointmentID}, 
+         { $pullAll: {appointments: [req.body.appointmentID]}},
+         function(err,data){
+             if(err) return res.send("Fail");
+             return res.send("Success");
+         })
+     });
+};
 
 exports.getDoctorSchedule = function(req, res) {
     let doctorID = req.body.doctor_id; 

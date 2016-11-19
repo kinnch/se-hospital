@@ -23,19 +23,6 @@ function getDateNow(){
     return this_date;
 }
 
-exports.showAll = function(req, res){
-    //have to fix '582d28d511121d002c9f34e1'
-    Schedule.find({})
-    .populate({
-        path: 'doctor',
-        match: { department: req.body.departmentID }
-    })
-    .populate('appointments')
-    .exec(function(error,data){
-        res.send({data: data});
-        return;
-    });
-}
 
 exports.showSomeDoctors = function(reg, res){
     //have to fix 
@@ -77,17 +64,19 @@ exports.showSomeDoctors = function(reg, res){
 
 exports.showHistory = function(req, res){ 
     Patient.findOne({HN: req.body.HN}, function(err, patient){
-            Diagnosis.find({patient: patient._id}).populate({
+            Diagnosis.find({patient: patient._id}, 'drugPrescription date').populate({
                 path: 'drugPrescription',
                 populate: {
                     path: 'prescriptions',
                     model: 'PrescriptionDrug',
                     populate: {
                         path: 'drug',
-                        model: 'Drug'
+                        model: 'Drug',
+                        select: 'name'
                     }
                 }
-            }).exec( function(err, data){
+            }) .sort({date: -1})
+            .exec( function(err, data){
                 res.send(data);
                 return;
             });
@@ -103,11 +92,22 @@ exports.updateStatus = function(reg, res){
     return;
 }
 
-exports.changeRequest = function(reg, res){
-    Prescription.findOne({_id: reg.body.id}, function(err, prescription){
-        prescription.note = reg.body.reason;
+exports.requestChange = function(req, res){
+    Prescription.findOne({_id: req.body.prescriptionID}, function(err, prescription){
+        if(prescription.status != 1){
+            return res.send({
+                status : "fail",
+                msg : "prescription status not equal to 1"
+            });
+        }
+        prescription.note = req.body.reason;
+        prescription.status = 0;
+        prescription.inspectedBy = req.body.pharmaID;
         prescription.save();
-        res.send('done');
+        res.send({
+                status : "success",
+                msg : ""
+            });
     });
     return;
 }
@@ -117,8 +117,109 @@ function getDateNow(){
     this_date = new Date(this_date.getFullYear()+'-'+(this_date.getMonth() + 1)+"-"+this_date.getDate());
     return this_date;
 }
+
+//done
 exports.allPrescription = function(reg, res){
-    Diagnosis.find({date: getDateNow() }, function(err, diagnosises){
-           res.send(diagnosises); 
+    Diagnosis.find({date: getDateNow()}).populate({
+        path: 'drugPrescription',
+        populate: {
+            path: 'prescriptions',
+            model: 'PrescriptionDrug',
+            populate: {
+                path: 'drug',
+                model: 'Drug',
+                select: 'name'
+            }
+        }
+    }).populate({
+        path: 'patient',
+        select: 'name sex birthDate allegicDrugs bloodType HN',
+        populate: {
+            path: 'allegicDrugs'
+        }
+    }).populate({
+        path: 'doctor',
+        select: 'name'
+    }).exec( function(err, data){
+        res.send(data);
+        return;
     });
 }
+
+exports.rejectedPrescription = function(req, res){
+    HospitalEmployee.findOne({_id: req.body.doctorID}, function(err, doctor){
+         Diagnosis.find({doctor: doctor}).populate({
+             path: 'drugPrescription',
+             match: { status: {$in: 0}},
+             populate: {
+                path: 'prescriptions',
+                model: 'PrescriptionDrug',
+                populate: {
+                    path: 'drug',
+                    model: 'Drug',
+                    select: 'name'
+                }
+            }
+        }).populate({
+            path: 'patient',
+            select: 'name sex birthDate allegicDrugs bloodType HN',
+            populate: {
+                path: 'allegicDrugs'
+            }
+        }).populate({
+            path: 'doctor',
+            select: 'name'
+        }).populate({
+            path: 'disease'
+        })
+        .exec( function(err, data){
+            var item_list = [];
+            for(var i = 0; i < data.length; i++){
+                if(data[i].drugPrescription != null){
+                    item_list.push(data[i]);
+                }
+            }
+            res.send(item_list);
+            return;
+        })
+    });
+}
+// requestDone [Phar]
+// input : pharmacistID, prescriptionID
+// 2 -> 3
+exports.requestDone = function(reg, res){
+    Prescription.findOne({_id: reg.body.prescriptionID}, function(err, prescription){
+        if(prescription.status != 2){
+            return res.send({
+                status : "fail",
+                msg : "prescription status not equal to 2. it must have been apporved by Phara"
+            });
+        }
+        prescription.status = 3;
+        prescription.save(); 
+        res.send({
+                status : "success",
+                msg : ""
+            });
+    });
+    return;
+}
+
+exports.requestApprove = function(reg, res){
+    Prescription.findOne({_id: reg.body.prescriptionID}, function(err, prescription){
+        if(prescription.status != 1){
+            return res.send({
+                status : "fail",
+                msg : "prescription status not equal to 1"
+            });
+        }
+        prescription.status = 2;
+        prescription.save(); 
+        res.send({
+                status : "success",
+                msg : ""
+            });
+    });
+    return;
+}
+

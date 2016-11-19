@@ -2,6 +2,11 @@ import {Component, Input} from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Router } from '@angular/router';
 import { PrescriptionService } from '../../services/prescription.service';
+import {Subscription } from 'rxjs';
+import {OnInit, OnDestroy} from '@angular/core';
+import * as moment_ from 'moment';
+
+
 @Component({
     selector: 'prescription-history-c',
     template: require('./prescription-history.component.html'),
@@ -9,32 +14,49 @@ import { PrescriptionService } from '../../services/prescription.service';
 })
 
 export class PrescriptionHistoryComponent{
-    data;
     dataPack = [];
-    HN = '12344321';
-    constructor(private router: Router, private prescriptionService: PrescriptionService) {
-        this.prescriptionService.getPrescriptionHistory(this.HN)
+    HN: string;
+    private subscription: Subscription;
+
+    constructor(private router: Router,private activatedRoute: ActivatedRoute, private prescriptionService: PrescriptionService) {
+    }
+
+    ngOnInit() {
+    // subscribe to router event
+    this.subscription = this.activatedRoute.params.subscribe(
+      (param: any) => {
+        this.HN = param['hn'];
+        console.log(this.HN);
+      });
+    
+    moment_.locale('th');
+
+    this.prescriptionService.getPrescriptionHistory(this.HN)
         .then((data) => {
-            // this.data = data['history'];
-            var i;
-            var j;
-            var preDate;
-            for(i=0;i<data['history'].length;i++){
-                preDate = data['history'][0]['date'];
-                for(j=0;j<data['history'][i]['drugPrescription']['prescription'].length;j++){
-                    if(j==0){
-                        data['history'][i]['drugPrescription']['prescription'][j]['head']=true;
-                        data['history'][i]['drugPrescription']['prescription'][j]['date']=preDate;
-                    }
-                    else{
-                        data['history'][i]['drugPrescription']['prescription'][j]['head']=false;
-                    }
-                        this.dataPack.push(data['history'][i]['drugPrescription']['prescription'][j]);
+            var i, j, date;
+            for(i = 0 ; i < data.length ; i++){
+                if(data[i].drugPrescription.status == 2){
+                   date = moment_(data[i]['date']).format('ll'); 
+                   for(j  = 0 ; j < data[i].drugPrescription.prescriptions.length; j++){
+                       if(j == 0){
+                           data[i]['drugPrescription']['prescriptions'][j]['head'] = true;
+                           data[i]['drugPrescription']['prescriptions'][j]['date'] = date;
+                           data[i]['drugPrescription']['prescriptions'][j]['no'] = data[i].drugPrescription.prescriptions.length;
+                       }
+                       else{
+                           data[i]['drugPrescription']['prescriptions'][j]['head'] = false;
+                       }
+                       this.dataPack.push(data[i]['drugPrescription']['prescriptions'][j]);
+                   }
                 }
             }
-             console.log(this.dataPack);
         });
-    }
+  }
+
+  ngOnDestroy() {
+    // prevent memory leak by unsubscribing
+    this.subscription.unsubscribe();
+  }
     
 
     goBack():void{      

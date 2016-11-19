@@ -1,25 +1,74 @@
-<div class = "upload-zone">
-    <div class = "row">
-        <div class="col-md-12">
-            <h5>แก้ไขตารางเวร</h5>
-        </div>
-        <div class="col-md-5">
-            <div class="form-group">
-                <label for="exampleSelect1">เลือกเดือนที่ต้องการแก้ไข</label>
-                <select class="form-control" id="exampleSelect1">
-                <option *ngFor = "let month of months">{{month}}</option>
-                </select>
+<!--<div class = "upload-zone row" style="margin-left:0px;">
+   
+
+                    <div class="card" style="width:70%; float: left;">
+                        <div class="card-header">
+                            <h5>แก้ไขตารางเวร</h5>
+                        </div>
+                        <div class="card-block">
+                            <div class="form-group">
+                            <label for="exampleSelect1">เลือกเดือนที่ต้องการแก้ไข</label>
+                                <select class="form-control" id="exampleSelect1">
+                                <option *ngFor = "let month of months">{{month}}</option>
+                                </select>
+                            </div>
+                            <input type="file" id="input">
+                            <button type="button" class="btn btn-primary">อัพโหลด</button>
+                        </div>
+                    </div>
+             
+                    <div class="card" style="width:25%; float: left; margin:0px 15px;">
+                    <div class="card-block" style="background-color:#d7524f; color: white;">
+                        <img src="/resources/images/pill.png" style="    height: 62px ;float: left;" >
+                        <h4 class="card-title " style="text-align: right;">อายุรกรรม</h4>
+                        <p class="card-text" style="text-align: right; ">โรคทั่วไปเป็นเรื่องของเรา มั่นใจอายุรกรรม</p>
+                    </div>
+                    <div class="card-footer text-muted">
+                        2 days ago
+                    </div>
+                    </div>
+             
+</div>-->
+<div class="card-deck-wrapper">
+    <div class="card-deck">
+        <div class="card" style="width:70%;">
+            <div class="card-header">
+                <h5>แก้ไขตารางเวร</h5>
             </div>
-            <input type="file" id="input">
-            <button type="button" class="btn btn-primary">อัพโหลด</button>
+            <div class="card-block">
+                <div class="form-group">
+                    <label for="exampleSelect1">เลือกเดือนที่ต้องการแก้ไข</label>
+                    <select class="form-control" id="exampleSelect1">
+                                <option *ngFor = "let month of months">{{month}}</option>
+                    </select>
+                </div>
+                <!--<div class="form-group">-->
+                    <label class="custom-file">
+                        <input type="file" id="file" class="custom-file-input">
+                        <span class="custom-file-control"></span>
+                    </label>
+                    <button type="button" class="btn btn-primary pull-right" style="margin-top: 3px; vertical-align: -webkit-baseline-middle; ">อัพโหลด</button>
+                <!--</div>-->
+            </div>
+        </div>
+        <div class="card" style="border-color: #d7524f;">
+            <div class="card-block" style="background-color:#d7524f; color: white;">
+                <img src="/resources/images/pill.png" style=" height: 140px ;float: left;">
+                <h4 class="card-title " style="text-align: right;">อายุรกรรม</h4>
+                <p class="card-text" style="text-align: right; ">โรคทั่วไปเป็นเรื่องของเรา มั่นใจอายุรกรรม</p>
+            </div>
+            <div class="card-footer text-muted" style="color :#d7524f!important; ">
+                Hospital Go <i class="fa fa-heartbeat pull-right" style="line-height: inherit;" aria-hidden="true"></i>
+            </div>
         </div>
     </div>
 </div>
+
 <hr>
-<div id = "calendar-zone">
+<div id="calendar-zone">
     <h5>ตารางเวร</h5>
     <calendar-container-c>
-        <full-calendar></full-calendar>
+        <staff-full-calendar></staff-full-calendar>
     </calendar-container-c>
-    
+
 </div>

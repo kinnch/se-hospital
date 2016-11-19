@@ -3,6 +3,8 @@
 		<hr>
 		<section class="container">
 			<br>
+			<h3>บันทึกการวินิจฉัย</h3>
+			<hr>
 			<div class="rows">
 				<div class="col-md-6">
 					<h5 _ngcontent-bir-6="">รายละเอียดการวินิจฉัย</h5>
@@ -36,14 +38,15 @@
 				</div>
 			</div>
 			<br>
-			<prescription-form-c></prescription-form-c>
-			<div class="rows">
-				<div class="col-md-12">
-					<button id="save" type="button" class="btn btn-success pull-right" (click)="goback()"><i class="fa fa-floppy-o" aria-hidden="true"></i> <span> บันทึก</span></button>
-					<button id="save" type="button" class="btn btn-danger pull-left" (click)="goback()"><i class="fa fa-times" aria-hidden="true"></i> <span> ยกเลิก</span></button>
-				</div>
-			
-			<br>
+			<div class="contain">
+				<prescription-form-c></prescription-form-c>
 			</div>
+			<br>
+				<div class="row right">
+                    <button (click)="goback()" type="button" class="btn btn-danger" style="width: 15%; min-width: 150px"><i class="fa fa-times" aria-hidden="true"></i> <span> ยกเลิก</span></button>                 
+                    <button type="button" class="btn btn-primary" style="width: 15%; min-width: 150px"><i class="fa fa-floppy-o" aria-hidden="true"></i> <span> บันทึก</span></button>               
+                </div>   
+			
+			
 			<br>
 		</section>

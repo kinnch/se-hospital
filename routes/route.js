@@ -29,7 +29,10 @@ module.exports = function(app) {
     }));
     app.use(passport.initialize());
     app.use(passport.session());
-
+    app.use(function (err, req, res, next) {
+    console.error(err.stack)
+    res.status(500).send('Something broke!')
+    });
     //patientController.setDBConnectionsFromApp(app);
 
    
@@ -37,6 +40,7 @@ module.exports = function(app) {
     var patientController = require('../controllers/patientController');
     app.get('/testing',  patientController.testing);
     app.post('/api/patient/search',  patientController.search);
+    app.post('api/patient/register', patientController.register);
 
     var seederController = require('../controllers/seederController');
     app.get('/seed',  seederController.seed);
@@ -44,29 +48,38 @@ module.exports = function(app) {
     var physicalDataController = require('../controllers/physicalDataController');
     app.post('/api/physicalData/add',  physicalDataController.add);
     app.post('/api/physicalData/history',  physicalDataController.showHistory);    
+    app.post('/api/patient/physicalCheck/edit',  physicalDataController.editPhysicalCheck);    
 
     var prescriptionController = require("../controllers/prescriptionController");
-    app.post('/api/appointment/all',  prescriptionController.showAll);
+    var appointmentController = require("../controllers/appointmentController");
+    app.post('/api/departmentAppointment/byTime',  appointmentController.getAppointmentByTime);
     app.post('/api/appointment/showSomeDoctors',  prescriptionController.showSomeDoctors);
-    app.post('/api/presciption/History',  prescriptionController.showHistory);
+    app.post('/api/prescription/History',  prescriptionController.showHistory);
     
     app.post('/api/updateStatusPres', prescriptionController.updateStatus);
-    app.post('/api/changeRequestPres', prescriptionController.changeRequest);
+    app.post('/api/pharma/prescription/requestChange', prescriptionController.requestChange);
     app.post('/api/allPrescription', prescriptionController.allPrescription);
+    app.post('/api/pharma/prescription/requestDone', prescriptionController.requestDone);
+    app.post('/api/pharma/prescription/requestApprove', prescriptionController.requestApprove);
+    app.post('/api/doctor/prescriptionChangeRequest/list', prescriptionController.rejectedPrescription);
+
 
     var hospitalEmployeeController = require('../controllers/hospitalEmployeeController');
     app.post('/api/hospitalEmployee/isInSystem',  hospitalEmployeeController.isInSystem);
     app.post('/api/hospitalEmployee/add',  hospitalEmployeeController.add);
-    app.post('/api/hospitalEmployee/showDoctorFromDepartment', hospitalEmployeeController.showDoctorList)
+    app.post('/api/hospitalEmployee/showDoctorFromDepartment', hospitalEmployeeController.showDoctorList);
+    app.post('/api/timeperiodDoctor', hospitalEmployeeController.getDoctorInTime);
+    ///api/timeperiodDoctor
 
     var scheduleController = require('../controllers/scheduleController');
     app.post('/api/schedule/getTable',  scheduleController.getTable);
+    app.post('/api/appointment/delete', scheduleController.deleteAppointment);
 
     var diagnosisDataController = require('../controllers/diagnosisDataController');
     app.post('/api/diagnosisHistory', diagnosisDataController.diagnosisHistory);
 
     //patientController.setDBConnectionsFromApp(app);
-    //-----bone not testing zone-----
+    
     app.get('/api/employees',hospitalEmployeeController.getAllEmployee);
     app.get('/api/departments',hospitalEmployeeController.getAllDepartment);
     app.get('/api/departmentsDoctors',hospitalEmployeeController.getAllDepartmentOfDoctor);

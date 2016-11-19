@@ -45,6 +45,12 @@ import { EditPrescriptionComponent } from './EditPrescriptionComponent/edit-pres
 import { PrescriptionFormComponent } from './PrescriptionFormComponent/prescription-form.component';
 import { PatientPanelComponent } from './PatientPanelComponent/patient-panel.component';
 import { DiagnosisComponent} from './DiagnosisComponent/diagnosis.component';
+import { StaffCalendarComponent } from './StaffCalendarComponent/staff-calendar.component';       
+import { SearchSelectDropdownComponent } from './SearchSelectDropdownComponent/search-select-dropdown.component';       
+import { ToastComponent } from './ToastComponent/toast.component';       
+
+
+
 
 import { PrescriptionService } from '../services/prescription.service';
 import { PatientService } from '../services/patient.service';
@@ -54,12 +60,16 @@ import { HospitalEmployeeService } from '../services/hospital-employee.service';
 import { DepartmentService } from '../services/department.service';
 import { DoctorDateElementService } from '../services/doctor-date-element.service';
 
+import {ToastyModule} from 'ng2-toasty';
+
+
 @NgModule({
     imports:        [
         BrowserModule,
         FormsModule,
         routing,
         HttpModule,
+        ToastyModule.forRoot()
         // RouterModule.forRoot(routing)
                     ],
     declarations:   [
@@ -101,7 +111,10 @@ import { DoctorDateElementService } from '../services/doctor-date-element.servic
         DoctorCalendarComponent,
         CalendarContainerComponent,
         PatientPanelComponent,
-        DiagnosisComponent
+        DiagnosisComponent,
+        StaffCalendarComponent,
+        SearchSelectDropdownComponent,
+        ToastComponent,
         ],
     providers:      [
         PrescriptionService,

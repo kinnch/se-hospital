@@ -1,0 +1,31 @@
+<modal #modal1 [id]="'modal'" [title]="titleModal" [callbackSuccess]="callback" [isShowFooter]="false" >
+    <div class="" style="margin-bottom: 4px;">เพิ่มแพทย์ที่จะออกตรวจ <small class="text-muted">กรุณาพิมพ์ชื่อแพทย์เพื่อค้นหส หรือ คลิกที่กล่องเพื่อนเลือกจากรายชื่อ</small></div>
+    <div class="row container" style="padding-bottom: 5px;">
+         <div class="col-sm-10" style="padding-left: 0px;"><search-select [id]="'kinnch12345'" [issues]=issues></search-select>   </div>
+         <div class="col-sm-2" style="padding:0px;">   
+             <button class="form-control btn btn-block " style="background-color:#28b779; color: white;"   (click)="isOperate = !isOperate"> เพิ่ม <i class="fa fa-user-plus" aria-hidden="true"></i> </button>
+        </div> 
+    </div>
+   
+    <hr>
+    <h6 style="text-align: center;"> รายชื่อแพทย์ที่ออกตรวจ </h6>
+    
+    <div class="table-responsive">
+    <table class="table">
+        <tbody>
+        <tr *ngFor="let x of numbers; let i = index;" >
+            <td>{{i}}</td>
+            <td>Anna</td>
+            <td>Pitt</td>
+            <td>35</td>
+            <td>New York</td>
+            <td>USA</td>
+        </tr>
+        </tbody>
+    </table>
+  </div>
+
+</modal>
+ <!--<button (click)="modal.modalOpen()">open</button>  -->
+<div id="calendar"></div>
+<div id="stylehere"></div>

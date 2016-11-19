@@ -1,10 +1,11 @@
 <div>
-    <h3>รายการจ่ายยาที่ต้องแก้ไข</h3>
+    <h3>รายการยาที่ต้องแก้ไข</h3>
     <hr>
-    <!--(0)หมอต้องแก้ Doctor needs to edit (1)หมอจ่ายมา Doctor prescipe, (2)เภสัชจ่ายแล้ว-->
     <div *ngFor="let elem of data">
-        <prescription-list-element-c [data]="elem"  *ngIf="elem.status==0">
-            <diagnosis-detail-result-c></diagnosis-detail-result-c>
+        <prescription-list-element-c [data]="elem">
+            <div class="detail">
+            <diagnosis-detail-result-c [detail]="elem.detail" [disease] = "elem.disease"></diagnosis-detail-result-c>
+            </div>
         </prescription-list-element-c>
     </div>
     <br>
