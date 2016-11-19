@@ -21,6 +21,10 @@ var hospitalEmployeeSchema = mongoose.Schema({
                 4 == pharmacist 
             */
         },
+        sex: {
+            type: String,
+            enum: ['male', 'female']
+        },
         department:{
             type: Schema.Types.ObjectId,
             ref: 'Department',

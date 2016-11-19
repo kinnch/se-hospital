@@ -42,6 +42,13 @@ exports.getTable = function(reg, res){
         });
     });
 };
+
+exports.getStaffTable = function(req, res){
+    HospitalEmployee.find({department: req.body.departmentID}, function(err, staffs){
+        //Schedule.find({})
+        return res.send(staffs);
+    })
+}
     
 
 exports.deleteAppointment = function(req, res){
