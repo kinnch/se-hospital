@@ -15,8 +15,15 @@ exports.add = function(req, res){
     var data = (req.body);
     //res.send(data);
     //mock AUTH
-    //TODO
-    var nurse_id = "580bacaf7f4d291550f67adb";
+    var nurse_id = req.user._id,
+        physical_id = data.physicalId;
+        hn = data.HN;
+    if(req.user.roleID != 3){
+        return res.send({
+                status : "fail",
+                msg : "error : user is not nurse"
+            });
+    }
     HospitalEmployee.findOne({_id: nurse_id}, function (err, nurse){
         if(err || !nurse){
             return res.send({
@@ -81,10 +88,15 @@ exports.showHistory = function(req, res){
 
 exports.editPhysicalCheck = function(req, res){
     var data = (req.body);
-    // TODO
-    var nurse_id = "580bacaf7f4d291550f67adb",
+    var nurse_id = req.user._id,
         physical_id = data.physicalId;
         hn = data.HN;
+    if(req.user.roleID != 3){
+        return res.send({
+                status : "fail",
+                msg : "error : user is not nurse"
+            });
+    }
     Patient.findOne({HN: hn},function(err,patient){
         if(err || !patient){
             return res.send({
