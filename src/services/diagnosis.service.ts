@@ -22,4 +22,13 @@ export class DiagnosisService {
                         return res.json();
                     });
     }
+    getDiagnosisAndPhysicalCheck(diagnosisID:string) : Promise<JSON> {
+            return this.http
+                    .post('/api/getDiagnosisAndPhysicalCheck', JSON.stringify({diagnosisID: diagnosisID})
+                    , {headers: this.headers})
+                    .toPromise()
+                    .then(function(res){
+                        return res.json();
+                    });
+    }
 }

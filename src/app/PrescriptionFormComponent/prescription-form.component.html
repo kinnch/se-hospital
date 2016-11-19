@@ -10,18 +10,18 @@
     </div>    
 </div>
 <br>
+
 <div class="row drug" *ngFor="let elem of prescriptionList; let i = index;">
     <div class="col-sm-3">
-        <select class="form-control" id="inputDepartment" type="text" [(ngModel)]="elem.drugName">
-            <option *ngFor="let department of departments">{{department}}</option>
+        <select class="form-control" type="text" [(ngModel)]="elem.drugName">
+            <option *ngFor="let drug of drugs" [selected]="drug.name == elem.drugName">{{drug.name}}</option>
         </select>
-        <!--<search-select [id]="'kinnch12345'" [departments]=departments></search-select>-->
     </div>
     <div class="col-sm-3">
-        <input class="form-control" type="text" [(ngModel)]="elem.amount" />
+        <input class="form-control" type="text" [(ngModel)]="elem.amount"/>
     </div>
     <div class="col-sm-6">
-        <input class="form-control" type="text" [(ngModel)]="elem.manual" />
+        <input class="form-control" type="text" [(ngModel)]="elem.detail" placeholder="คู่มือการใช้ยา" />
         <a (click)="deletePrescriptionField(i)" ><i  class="fa fa-trash pull-right icon" aria-hidden="true"></i></a>   
     </div>
 </div>

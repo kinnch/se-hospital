@@ -13,6 +13,7 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class UserService {
   private loggedIn = false;
+  private headers = new Headers({'Content-Type': 'application/json'});
 
   constructor(private http: Http) {
     this.loggedIn = !!localStorage.getItem('auth_token');
@@ -60,4 +61,67 @@ export class UserService {
   isLoggedIn() {
     return this.loggedIn;
   }
+
+  search(idOrHN:string) : Promise<JSON> {
+          // return new Promise<JSON>(resolve =>
+          //   setTimeout(resolve, 2000)) // delay 2 seconds
+          //   .then(() =>  JSON.parse(idOrHN) );
+        return this.http
+                    .post('api/patient/search', JSON.stringify({key: idOrHN}), {headers: this.headers})
+                    .toPromise()
+                    .then(function(res){
+                        return res.json();
+                    });
+    }
+
+    requestOTP(idOrHN:string) : Promise<JSON> {
+          // return new Promise<JSON>(resolve =>
+          //   setTimeout(resolve, 2000)) // delay 2 seconds
+          //   .then(() =>  JSON.parse(idOrHN) );
+        return this.http
+                    .post('requestOTP', JSON.stringify({key: idOrHN}), {headers: this.headers})
+                    .toPromise()
+                    .then(function(res){
+                        return res.json();
+                    }).catch(function(err){
+                       console.log(err);
+                       return {
+                         "success" : false
+                       };
+                    });
+    }
+    loginPatient(username, password) {
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    let dataToSend:any =  {
+            "username": username,
+            "password": password
+            };
+    console.log(dataToSend);
+    return this.http
+      .post(
+        '/loginPatient', 
+        JSON.stringify(dataToSend), 
+        { headers }
+      )
+      .map(res => res.json())
+      .map((res) => {
+        // if (res.success) {
+        //   console.log(res)
+        //   localStorage.setItem('auth_token', res.auth_token);
+        //   localStorage.setItem('user_id', res.user._id);
+        //   localStorage.setItem('user_username', res.user.userName);
+        //   localStorage.setItem('user_roleID', res.user.roleID);
+        //   localStorage.setItem('user_title', res.user.name.title);
+        //   localStorage.setItem('user_fname', res.user.name.fname);
+        //   localStorage.setItem('user_lname', res.user.name.lname);
+        //   localStorage.setItem('department_id', res.user.department);
+        //   localStorage.setItem('user_sex',res.user.sex);
+        //   this.loggedIn = true;
+        // }
+
+        return res.success;
+      });
+  }
+  
 }

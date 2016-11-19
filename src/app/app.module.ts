@@ -6,6 +6,11 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { routing } from './app.routing';
 import { LoggedInGuard } from './logged-in.guard';
+import { DoctorGuard } from './doctor.guard';
+import { NurseGuard } from './nurse.guard';
+import { StaffGuard } from './staff.guard';
+import { PharmacistGuard } from './pharmacist.guard';
+import { ManageQueueGuard } from './manage-queue.guard';
 import { UserService } from '../services/user.service';
 
 import {PatientComponent} from './PatientComponent/patient.component';
@@ -126,6 +131,11 @@ import {ToastyModule} from 'ng2-toasty';
         DepartmentService,
         UserService,
         LoggedInGuard,
+        DoctorGuard,
+        StaffGuard,
+        NurseGuard,
+        PharmacistGuard,
+        ManageQueueGuard,
         DoctorDateElementService,
         DiagnosisService
     ],

@@ -91,18 +91,18 @@ var updateHash = function(tel,hash,otp,req,res){
                             secret: 'KbQNLWCtL82qP0jP8HC1H0ZZM4R3slsv',
                             phone: tel,
                             sender: 'OTP',
-                            message: otp 
+                            message: "รหัส opt ของท่านคือ :"+otp 
                         } 
                     };
 
-                    // request(options, function (error, response, body) {
-                    //     if (!error) {
-                    //         console.log("return from gipsic");
-                    //         console.log(body);
-                    //         return;
-                    //     }
+                    request(options, function (error, response, body) {
+                        if (!error) {
+                            console.log("return from gipsic");
+                            console.log(body);
+                            return;
+                        }
                         
-                    // });
+                    });
                 }else{
                     res.send({
                         success: false,
