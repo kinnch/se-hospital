@@ -25,20 +25,38 @@ function getDateNow(){
 
 
 exports.showSomeDoctors = function(reg, res){
-    //have to fix 
+    //have to fix ***
+    //Patient
+    Schedule.find({
+        doctor: { $in: (reg.body.doctorList)},
+        date: getDateNow()
+    }).populate('doctor')
+    .populate({
+        path: 'appointments',
+        populate: {
+            path: 'patient'
+        }
+    }).exec(function (err, data){
+        if(err) return res.send({status: 'not found'});
+        if(!data) return res.send({status: 'not found'});
+        return res.send(data);
+    });
+    /*
     Patient.find({},function(err, all_patient){
         Schedule.find({
             doctor: { $in: (reg.body.doctorList)},
             date: getDateNow()
         }, function (err,result){
         }).populate('doctor').exec(function(err, data){
-            //res.send(result);
-            //return;
+            if (err) return res.send({status : 'not found'});
+            if (!data)return res.send({status : 'not found'});
             var options = {
                 path: 'doctor.department',
                 model: 'Department'
             };
             Schedule.populate(data, options, function(err, Schedules){
+                if (err) return res.send({status : 'not found'});
+                if (!Schedules)return res.send({status : 'not found'});
                 var formated_data = [];
                 for(var i = 0; i < Schedules.length; i++){
                     var patient_list = [];
@@ -60,6 +78,7 @@ exports.showSomeDoctors = function(reg, res){
             });
         });
     });
+    */
 }
 
 exports.showHistory = function(req, res){ 
