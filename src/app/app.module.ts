@@ -47,6 +47,7 @@ import { PatientPanelComponent } from './PatientPanelComponent/patient-panel.com
 import { DiagnosisComponent} from './DiagnosisComponent/diagnosis.component';
 import { StaffCalendarComponent } from './StaffCalendarComponent/staff-calendar.component';       
 import { SearchSelectDropdownComponent } from './SearchSelectDropdownComponent/search-select-dropdown.component';       
+import { ToastComponent } from './ToastComponent/toast.component';       
 
 
 
@@ -112,7 +113,8 @@ import {ToastyModule} from 'ng2-toasty';
         PatientPanelComponent,
         DiagnosisComponent,
         StaffCalendarComponent,
-        SearchSelectDropdownComponent
+        SearchSelectDropdownComponent,
+        ToastComponent,
         ],
     providers:      [
         PrescriptionService,
