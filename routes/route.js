@@ -111,6 +111,7 @@ module.exports = function(app) {
 
     var diagnosisDataController = require('../controllers/diagnosisDataController');
     app.post('/api/diagnosisHistory', diagnosisDataController.diagnosisHistory);
+    app.post('/api/diagnosis/create', diagnosisDataController.create);
 
     //patientController.setDBConnectionsFromApp(app);
     

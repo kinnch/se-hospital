@@ -11,6 +11,8 @@ var Patient = require("../model/patient");
 var HospitalEmployee = require("../model/hospitalEmployee");
 var Drug = require("../model/drug");
 var Disease = require("../model/disease");
+var Prescription = require("../model/drugPrescription");
+var PrescriptionDrug  = require("../model/prescriptionDrug");
 
 // exports.add = function(req, res){
 //     //return req;
@@ -73,6 +75,35 @@ var Disease = require("../model/disease");
 //         })
 //     });
 // }
+
+function createAll(k, ids){
+    if(k.length == 0) return ids;
+    var top = k.pop();
+    var item = new PrescriptionDrug(top);
+    item.save();
+    ids.push(item._id);
+    return createAll(k,ids);
+}
+
+exports.create = function(req, res){
+    //return res.send('Hello');
+    var prescription = new Prescription();
+    prescription.status = 1;
+    prescription.prescriptions = createAll(req.body.drugList, []);
+    prescription.save();
+    //return res.send(prescription);
+    var diagnose = new Diagnosis();
+    diagnose.drugPrescription = prescription._id;
+    diagnose.patient = req.body.patientID;
+    diagnose.doctor =  request.user._id; //mock
+    diagnose.timePeriod =  req.body.timePeriod;
+    diagnose.date = req.body.date;
+    diagnose.detail = req.body.detail;
+    diagnose.disease = req.body.diseaseIDs;
+    diagnose.save();
+
+    return res.send({status: 'Success'});
+};
 
 exports.diagnosisHistory = function(req, res){
     Drug.find({}, function(err, all_drug){
