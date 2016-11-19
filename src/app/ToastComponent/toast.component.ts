@@ -15,7 +15,7 @@ export class ToastComponent {
         }
     @Input() titleSuccess : string = "บันทึกสำเร็จ";
     @Input() messageSuccess : string = "ทำการบันทึกข้อมูลเรียบร้อยแล้ว";
-    @Input() timeoutSuccess = 3000;
+    @Input() timeoutSuccess = 5000;
     @Input() titleError : string = "เกิดข้อผิดพลาด";
     @Input() messageError : string = "กรุณาทำรายการใหม่อีกครั้งค่ะ";
     @Input() timeoutError = 10000;
@@ -45,7 +45,7 @@ export class ToastComponent {
                 title: this.titleError,
                 msg: this.messageError,
                 showClose: true,
-                timeout: 3000,
+                timeout: this.timeoutError,
                 theme: 'bootstrap',
             };
         this.toastyService.error(toastError);
