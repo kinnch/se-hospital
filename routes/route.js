@@ -114,6 +114,7 @@ module.exports = function(app) {
     // app.post('/api/diagnosisHistory', diagnosisDataController.diagnosisHistory); //TODO :REMOVE IF no one blame.
     app.post('/api/patient/diagnosisHistory',diagnosisDataController.getPatientDiagnosisHistory);
     app.post('/api/diagnosis/create', diagnosisDataController.create);
+    app.post('/api/getDiagnosisAndPhysicalCheck',diagnosisDataController.getDiagnosisAndPhysicalCheck);
 
     //patientController.setDBConnectionsFromApp(app);
     

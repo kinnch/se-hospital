@@ -28,7 +28,8 @@ export class DiagnosisComponent {
                     // console.log(patient_id);
                     this.diagnosisService.getAllDiagnosisHistory(patient_id)
                     .then((data) =>{
-                        //console.log(data);
+                        console.log('diagnosis history all');
+                        console.log(data);
                         this.allDiagnosisHistory = data['diagnosisHistory'];
                     });
                     // this.found = true;
