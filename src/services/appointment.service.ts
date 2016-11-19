@@ -8,7 +8,6 @@ import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class AppointmentService {
-    private apiUrl = 'api/patient/search';  // URL to web api
     private headers = new Headers({'Content-Type': 'application/json'});
     constructor(private http: Http) { }
     private handleError(error: any): Promise<any> {
@@ -17,7 +16,7 @@ export class AppointmentService {
     }
     getPatientAndAppointment(idOrHN:string) : Promise<JSON> {
         return this.http
-                    .post(this.apiUrl, JSON.stringify({key: idOrHN}), {headers: this.headers})
+                    .post('api/patient/search', JSON.stringify({key: idOrHN}), {headers: this.headers})
                     .toPromise()
                     .then(function(res){
                         return res.json();

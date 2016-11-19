@@ -3,16 +3,16 @@
         <h5>ทะเบียนผู้ป่วย</h5>
         <div class="card">
             <div class="card-header">
-                {{data['patientdata']['name']['title']}}{{data['patientdata']['name']['fname']}} {{data['patientdata']['name']['lname']}}
+                {{data['patient_data']['name']['title']}}{{data['patient_data']['name']['fname']}} {{data['patient_data']['name']['lname']}}
             </div>
         <div class="card-block">
             <blockquote class="card-blockquote">
-            <p><i class="fa fa-phone" aria-hidden="true"></i>  {{data['patientdata']['tel']}} </p>
-            <p><i class="fa fa-envelope" aria-hidden="true"></i>  <a href ="mailto:{{data['patientdata']['email']}}">{{data['patientdata']['email']}} </a></p>
+            <p><i class="fa fa-phone" aria-hidden="true"></i>  {{data['patient_data']['tel']}} </p>
+            <p><i class="fa fa-envelope" aria-hidden="true"></i>  <a href ="mailto:{{data['patient_data']['email']}}">{{data['patient_data']['email']}} </a></p>
             <hr>
-            <p>{{data['patientdata']['address']['detail']}}</p>
-            <p>{{data['patientdata']['address']['subDistrict']}} {{data['patientdata']['address']['distict']}}</p>
-            <p>{{data['patientdata']['address']['province']}} {{data['patientdata']['address']['postCode']}}</p>
+            <p>{{data['patient_data']['address']['detail']}}</p>
+            <p>{{data['patient_data']['address']['subDistrict']}} {{data['patient_data']['address']['distict']}}</p>
+            <p>{{data['patient_data']['address']['province']}} {{data['patient_data']['address']['postCode']}}</p>
             </blockquote>
         </div>
         </div>

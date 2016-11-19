@@ -46,6 +46,11 @@ exports.search = function(req, res){
             }).populate({
                 path: 'appointments',
                 match: {patient: patient_data._id}
+            }).populate({
+                path: 'doctor',
+                populate: {
+                    path: 'department'
+                } 
             })
             .exec(function (err, data){
                 data = data.filter(function(doc){
@@ -67,6 +72,11 @@ exports.search = function(req, res){
             }).populate({
                 path: 'appointments',
                 match: {patient: patient_data._id}
+            }).populate({
+                path: 'doctor',
+                populate: {
+                    path: 'department'
+                } 
             })
             .exec(function (err, data){
                 data = data.filter(function(doc){
