@@ -39,7 +39,7 @@ exports.getTable = function(reg, res){
                 populate: {
                     path: "patient"
                 }
-            }), function(err, data){
+            }).exec(function(err, data){
                 return res.send({
                     table: result,
                     thisdoctor: data

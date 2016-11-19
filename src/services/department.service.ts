@@ -41,7 +41,6 @@ export class DepartmentService {
             }), {headers: this.headers})
                     .toPromise()
                     .then(function(res){
-                        //console.log(res.json());
                         return res.json();
                     });
     }
