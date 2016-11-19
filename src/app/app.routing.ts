@@ -138,7 +138,7 @@ const appRoutes: Routes = [
         canActivate: [LoggedInGuard]
       },
       {
-        path: 'patient/:hn',
+        path: 'physical_check/:hn',
         component: PatientDetailComponent,
         canActivate: [LoggedInGuard]
       },
