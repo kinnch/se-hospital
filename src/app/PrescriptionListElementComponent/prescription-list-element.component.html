@@ -37,8 +37,8 @@
                     <div class="row">
                             <button type="button" class="btn btn-success" (click)="seeHistory(data.patient.HN)">ดูประวัติการได้รับยา</button>
                     </div>
-                    <div class="row" *ngIf="data.drugPrescription.status==2">
-                            <button type="button" class="btn btn-success" (click)="finalSubmit(data._id , data.drugPrescription._id)">ดูประวัติการได้รับยา</button>
+                    <div class="row" *ngIf="data.drugPrescription.status==2" style="padding-top: 10px;">
+                            <button type="button" class="btn btn-primary" (click)="finalSubmit(data._id , data.drugPrescription._id)">ยืนยันตรวจสอบ</button>
 
                     </div>    
                 </div>      
