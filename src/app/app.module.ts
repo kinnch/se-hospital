@@ -59,6 +59,7 @@ import { PhysicalCheckService } from '../services/physical-check.service';
 import { HospitalEmployeeService } from '../services/hospital-employee.service';
 import { DepartmentService } from '../services/department.service';
 import { DoctorDateElementService } from '../services/doctor-date-element.service';
+import { DiagnosisService } from '../services/diagnosis.service';
 
 import {ToastyModule} from 'ng2-toasty';
 
@@ -125,7 +126,8 @@ import {ToastyModule} from 'ng2-toasty';
         DepartmentService,
         UserService,
         LoggedInGuard,
-        DoctorDateElementService
+        DoctorDateElementService,
+        DiagnosisService
     ],
     bootstrap:      [
         AppComponent

@@ -1,11 +1,13 @@
-<div class="diagnosis" *ngIf="router.url == '/manage/diagnosis/11'">
+<div class="diagnosis">
     <div class="row" style="text-align: center">
         <button type="button" class="btn btn-primary" (click) = "addDia(5)">เพิ่มการวินิจฉัย</button>
     	<button type="button" class="btn btn-info" (click) = "addApp(1,1,1)">นัดหมายครั้งต่อไป</button>
     </div>
 
     <div class="container">
-        <patient-detail-element-c></patient-detail-element-c>
+        <patient-detail-element-c>
+            
+        </patient-detail-element-c>
 	    <button class="btn btn-success pull-right" role="button" (click) = "phyCheckHistory(5)">ดูข้อมูลการตรวจร่างกายทั้งหมด</button>
 
         <br>
