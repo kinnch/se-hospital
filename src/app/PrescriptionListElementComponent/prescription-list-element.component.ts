@@ -44,6 +44,7 @@ export class PrescriptionListElementComponent{
         this.month = diffDuration.months();
        
      }
+     //Approve 
      submit(diag , pres): void {
          console.log("diag :",diag , "pres :  " , pres);
          
@@ -55,6 +56,10 @@ export class PrescriptionListElementComponent{
                     this.data.drugPrescription.status =1;
                 }
             });
+     }
+     // submit
+     finalSubmit(diag , pres){
+         alert("finalSubmit");
      }
 
      rejected(pres){

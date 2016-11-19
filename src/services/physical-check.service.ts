@@ -21,7 +21,8 @@ export class PhysicalCheckService {
                     .post(this.apiUrl, JSON.stringify({systolic: systolic,diastolic:diastolic,heartRate:heartRate,weight:weight,height:height,temp:temp,HN:HN}), {headers: this.headers})
                     .toPromise()
                     .then(res => {
-                        return "success";
+                        if(res.json().status == "success")
+                            return "success";
                     });
     }
     getPhysicalCheckHistory(HN:string):Promise<JSON>{

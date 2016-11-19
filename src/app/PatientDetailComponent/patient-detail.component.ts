@@ -2,6 +2,7 @@ import { Component, OnInit} from '@angular/core';
 import { ActivatedRoute, Params ,Router } from '@angular/router';
 import { AppointmentService } from '../../services/appointment.service';
 import {Subscription } from 'rxjs';
+import * as moment_ from 'moment';
 @Component({
     selector: 'patient-detail-c',
     template: require('./patient-detail.component.html'),
@@ -13,6 +14,8 @@ export class PatientDetailComponent implements OnInit{
     private subscription: Subscription;
     data: JSON;
     found: boolean;
+    year: number;
+    month: number;
     constructor(private router: Router, private activatedRoute: ActivatedRoute, private appointmentService: AppointmentService) {}
     goback(): void{
         window.history.back();
@@ -27,8 +30,12 @@ export class PatientDetailComponent implements OnInit{
                     console.log(data);
                     this.data = data;
                     this.found = true;
+                    var diffDuration = moment_.duration(moment_().diff(this.data['patient_data']['birthDate']));
+                    this.year = diffDuration.years();
+                    this.month = diffDuration.months();
                 });
         });
+        
         
     }
 }
