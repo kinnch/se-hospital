@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 @Component({
     selector: 'diagnosis-history-c',
@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 })
 
 export class DiagnosisHistoryComponent {
+    @Input() allDiagnosisHistory:JSON;
     constructor(private router: Router) {
     }
 

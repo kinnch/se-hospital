@@ -35,9 +35,9 @@
     <hr>
     <br>
 
-    <!--<patient-physical-check-c>
-    </patient-physical-check-c>-->
+    <patient-physical-check-c *ngIf="enablePhysicalDetail">
+    </patient-physical-check-c>
     
-    <diagnosis-c>
+    <diagnosis-c *ngIf="enableDiagnosisDetail">
     </diagnosis-c>
 </section>
