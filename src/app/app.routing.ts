@@ -120,7 +120,7 @@ const appRoutes: Routes = [
         path: 'add_staff',
         component: AddHospitalEmployeeComponent,
         canActivate: [LoggedInGuard, StaffGuard]
-      },
+      }, //TODO : calendar
       {
         path: 'manage_doctor_calendar',
         component: ManageDoctorCalendarComponent,
