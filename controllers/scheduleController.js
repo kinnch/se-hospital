@@ -1,3 +1,5 @@
+'use strict'
+
 var dbConnection;
 
 exports.setDBConnectionsFromApp = function(app) {
@@ -40,6 +42,7 @@ exports.getTable = function(reg, res){
         });
     });
 };
+    
 
 exports.deleteAppointment = function(req, res){
      Appointment.remove({_id:req.body.appointmentID }, function(err,data){
@@ -61,4 +64,12 @@ exports.changeAppointmentState = function(req, res){
             if(err) return res.send("Fail");
             return res.send("Success");
         });
+};
+
+exports.getDoctorSchedule = function(req, res) {
+    let doctorID = req.body.doctor_id; 
+    Schedule.find({doctor:doctorID}).populate("doctor").exec(function(err, r) {
+		res.send(r);
+		return;
+    });
 };
