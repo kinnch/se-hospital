@@ -31,4 +31,7 @@ export class PhysicalCheckService {
                         return data.json();
                     });
     }
+    editPhysicakCheck(systolic:number,diastolic:number,heartRate:number,weight:number,height:number,temp:number,HN:string) :Promise<string>{
+        
+    }
 }
