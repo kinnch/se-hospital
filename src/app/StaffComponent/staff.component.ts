@@ -52,23 +52,38 @@ export class StaffComponent{
             
         });
         //TODO
-        if(this.router.url === '/manage/manage_doctor_calendar'){
+        if(this.userRoleId == "1" && this.router.url === '/manage/manage_patient'){
+            this.activatedClass = 1;            
+        } else if(this.userRoleId == "2" && this.router.url === '/manage/manage_doctor_calendar'){
             this.activatedClass = 2;
-        }
-        if(this.router.url === '/manage/manage_queue'){
+        } else if(this.userRoleId == "1" && this.router.url === '/manage/manage_staff'){
+            this.activatedClass = 3;
+        } else if(this.userRoleId == "1" && this.router.url === '/manage/manage_queue'){
             this.activatedClass = 4;
-        }
-        if(this.router.url === '/manage/manage_queue'){
+        } else if(this.userRoleId == "3" && this.router.url === '/manage/manage_queue'){
             this.activatedClass = 5;
-        }
-        if(this.router.url === '/manage/prescription_request'){
+        } else if(this.userRoleId == "4" && this.router.url === '/manage/prescription_request'){
             this.activatedClass = 6;
-        }
-        if(this.router.url === '/manage/edit_prescription_request'){
+        } else if(this.userRoleId == "2" && this.router.url === '/manage/edit_prescription_request'){
             this.activatedClass = 7;
-        }
-        if(this.router.url === '/manage/manage_queue'){
+        } else if(this.userRoleId == "2" && this.router.url === '/manage/manage_queue'){
             this.activatedClass = 8;
+        } else{
+            let link = [];
+            if(this.userRoleId == "1"){
+                link = ['manage','manage_patient'];
+                this.activatedClass = 1;
+            } else if(this.userRoleId == "2"){
+                link = ['manage','manage_queue'];
+                this.activatedClass = 8;
+            } else if(this.userRoleId == "3"){
+                link = ['manage','manage_queue'];
+                this.activatedClass = 5;
+            } else if(this.userRoleId == "4"){
+                link = ['manage','prescription_request'];
+                this.activatedClass = 6;   
+            }
+            this.router.navigate(link);  
         }
     }
     
