@@ -42,12 +42,13 @@ exports.getTable = function(reg, res){
 };
 
 exports.deleteAppointment = function(req, res){
-    //return res.send(req.body.appointmentID);
-    
-    Appointment.remove({_id: req.body.appointmentID})
-    .exec(function (err, data){
-        if(err) return res.send("Fail");
-        return res.send("Success");
-    });
-    
+     Appointment.remove({_id:req.body.appointmentID }, function(err,data){
+         if(err) return res.send("Fail");
+         Schedule.update( {appointments: req.body.appointmentID}, 
+         { $pullAll: {appointments: [req.body.appointmentID]}},
+         function(err,data){
+             if(err) return res.send("Fail");
+             return res.send("Success");
+         })
+     });
 };
