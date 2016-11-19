@@ -20,7 +20,7 @@ export class ManagePatientComponent{
         this.appointmentService.getPatientAndAppointment(this.hnOrIDinput)
         .then((data) => {
             // console.log('then');
-            // console.log(data);
+            console.log(data);
             this.data = data;
             this.found = true;
         });
