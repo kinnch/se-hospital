@@ -61,6 +61,23 @@ p {
   font-weight: 400;
 }
 
+@media (min-width: 768px)
+.navbar-right {
+    float: right!important;
+    margin-right: -15px;
+}
+
+@media (min-width: 768px)
+.navbar-nav {
+    float: left;
+    margin: 0;
+}
+
+@media (min-width: 768px)
+.navbar-nav>li {
+    float: left;
+}
+
 /*------------------Utilities---------------------*/
 a {
   /*font-size: 1.8em;*/
@@ -401,8 +418,8 @@ footer {
 /*---------------Pricing Tables-------------------*/
 
 
-#pricing {
-  background: #1abc9c;
+#main-news {
+  background: #ffffff;
 }
 
 .pricing-container {
