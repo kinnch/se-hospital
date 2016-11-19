@@ -211,3 +211,10 @@ exports.showDoctorList = function (req, res){
         });
     });
 }
+
+exports.logout = function (req, res, next) {
+ 
+   req.logout();
+   res.send(req.user);
+ 
+};
