@@ -105,6 +105,7 @@ module.exports = function(app) {
     app.post('/api/appointment/delete', scheduleController.deleteAppointment);
     app.post('/api/appointment/changeState', scheduleController.changeAppointmentState);
     app.post('/api/doctorAvailable',  scheduleController.getDoctorSchedule);
+    //app.post('/api/schedule/getTable',  scheduleController.getTable);
     ///api/appointment/changeState
     
 
