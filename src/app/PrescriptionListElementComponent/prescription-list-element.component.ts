@@ -1,10 +1,11 @@
-import {Component, Input , Output, EventEmitter} from '@angular/core';
+import {Component, Input , Output, EventEmitter, ViewChild} from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Router } from '@angular/router';
 import { PrescriptionListElement } from '../../models/prescription-list-element';
 import { PrescriptionTableComponent } from '../PrescriptionTableComponent/prescription-table.component';
 import { PrescriptionService } from '../../services/prescription.service';
 import { UserService } from '../../services/user.service';
+import { ToastComponent } from '../ToastComponent/toast.component';
 
 
 import * as moment_ from 'moment';
@@ -22,7 +23,8 @@ export class PrescriptionListElementComponent{
     reason: string;
     pharmaID = localStorage.getItem('user_id');
 
-     @Output() dataChange = new EventEmitter();
+    @Output() dataChange = new EventEmitter();
+    @ViewChild( ToastComponent ) toast: ToastComponent;
 
     constructor(private router: Router, private prescriptionService: PrescriptionService) {
         router.events.subscribe((val) => {
@@ -54,8 +56,12 @@ export class PrescriptionListElementComponent{
           .then((res) => {
                if (res.status == "success") {
                     this.data.drugPrescription.status =2;
+                    this.toast.titleSuccess="อนุมัติการจ่ายยาสำเร็จ";
+                    this.toast.messageSuccess="";
+                    this.toast.addToastSuccess();
                 } else{
                     this.data.drugPrescription.status =1;
+                    this.toast.addToastError();
                 }
             });
      }
@@ -65,8 +71,12 @@ export class PrescriptionListElementComponent{
         .then((res) => {
                if (res.status == "success") {
                     this.data.drugPrescription.status =3;
+                    this.toast.titleSuccess="การจ่ายยาสำเร็จ";
+                    this.toast.messageSuccess="";
+                    this.toast.addToastSuccess();
                 } else{
                     this.data.drugPrescription.status =2;
+                    this.toast.addToastError();
                 }
             });
      }
@@ -76,7 +86,13 @@ export class PrescriptionListElementComponent{
         then((res) => {
             if (res.status == "success") {
                     this.data.drugPrescription.status =0;
-                } 
+                    this.toast.titleSuccess="ส่งคำร้องสำเร็จ";
+                    this.toast.messageSuccess="";
+                    this.toast.addToastSuccess();
+                } else{
+                    this.toast.messageError = "กรุณาส่งคำร้องใหม่อีกครั้ง";
+                    this.toast.addToastError();
+                }
         })
      }
 
