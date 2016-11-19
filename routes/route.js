@@ -91,6 +91,7 @@ module.exports = function(app) {
     app.post('/api/pharma/prescription/requestDone', prescriptionController.requestDone);
     app.post('/api/pharma/prescription/requestApprove', prescriptionController.requestApprove);
     app.post('/api/doctor/prescriptionChangeRequest/list', prescriptionController.rejectedPrescription);
+    app.post('/api/doctor/getPrescription',prescriptionController.getPrescription);
 
 
     var hospitalEmployeeController = require('../controllers/hospitalEmployeeController');
