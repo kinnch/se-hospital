@@ -13,6 +13,7 @@ export class LoginComponent {
     patientID: string;
     phoneNo: string;
     OTPCode: string;
+    username: string;
 
     loginSuccess: boolean = false;
     sendOTPSuccess: boolean = true;
@@ -23,27 +24,25 @@ export class LoginComponent {
     constructor(private userService: UserService, private router: Router, private location: Location) {
     }
 
-    // Login NationalID (or) #HN
-    auth(patientID: string): boolean {
-        return patientID == "1234";
-    }
-    login(): void {
-        var link = [''];
-        if (this.auth(this.patientID)) { // success
-            this.loginSuccess = true;
-        } else {
-            alert("Login Failed!");
-        }
 
-    }
+    
 
-    // OTP Auth
+    // Login
     sendOTP(): void {
-        // Send OTP via SMS API
-        // var sendSuccess = sendOTP_SMS(this.phoneNo);
-
-        // if(sendSuccess)
-            this.sendOTPSuccess = true;
+        this.isLoading = true;
+       this.userService.loginPatient(this.username , this.OTPCode ).subscribe((result) => {
+            if (result) {
+                this.isLoading = false;
+                this.step = 3;
+                var i = 400;
+                while(i>0){
+                    i--;
+                    // console.log(i);
+                }
+                this.router.navigate(['patient']);
+              
+            }
+        });
     }
     OTPauth(OTP: string): boolean {
         return OTP == "999999";
@@ -67,11 +66,16 @@ export class LoginComponent {
         this.loadingMSG = "กำลังติดต่อระบบ.." 
         this.userService.search(this.patientID).then( (data) => { 
             // alert(data);
-            if(true){
+            console.log(data["status"]== null);
+            if(data["status"]== null ){
                 //success
-                this.loadingMSG = "สวัสดีคุณ xxxx xxxxxxx, กำลังขอ OTP"
+                this.loadingMSG = "สวัสดีคุณ "+data['patient_data']["name"]["fname"]+" "+data['patient_data']["name"]["lname"]+", กำลังขอ OTP"
+                var str = ''+data['patient_data']["tel"];
+                this.phoneNo = str.substring(0,3)+" - "+ str.substring(3,6)+ " - xxxx";
+                this.username = str;
                 this.userService.requestOTP(this.patientID).then((data) => {
-                    if(false){
+
+                    if(data["success"]){
                         //success
                         this.step=2;
                         this.isLoading = false;
