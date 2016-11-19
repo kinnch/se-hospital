@@ -88,7 +88,9 @@ exports.search = function(req, res){
                     return res.send({status : 'not found'});
                 };
                 if (!data){
-                    return res.send({status : 'not found'});
+                    res.send({
+                        patient_data
+                    });
                 };
             }).populate({
                 path: 'appointments',
@@ -104,7 +106,9 @@ exports.search = function(req, res){
                     return res.send({status : 'not found'});
                 };
                 if (!data){
-                    return res.send({status : 'not found'});
+                    res.send({
+                        patient_data
+                    });
                 };
                 data = data.filter(function(doc){
                     return doc.appointments.length
