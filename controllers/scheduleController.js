@@ -33,7 +33,13 @@ exports.getTable = function(reg, res){
                 patients: {$sum: { $size: "$appointments" }}
             }
         }],function(err,result) {
-            Schedule.find({doctor: reg.body.doctorID}, function(err, data){
+            Schedule.find({doctor: reg.body.doctorID}).
+            populate({
+                path: "appointments", 
+                populate: {
+                    path: "patient"
+                }
+            }).exec(function(err, data){
                 return res.send({
                     table: result,
                     thisdoctor: data
@@ -81,6 +87,17 @@ exports.changeAppointmentState = function(req, res){
             return res.send({status : "success"});
         });
 };
+
+
+exports.listAll = function(req, res){
+    Schedule.find({}).populate({path:'doctor', match: {department: req.body.departmentID}})
+    .exec(function(err,result){
+        if(err) return res.send({status: 'Fail'});
+        if(!result) return res.send({status: 'Fail'});
+        return res.send({status: 'Success', data: result});
+    });
+}
+
 
 exports.getDoctorSchedule = function(req, res) {
     let doctorID = req.body.doctor_id; 

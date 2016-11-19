@@ -61,21 +61,24 @@ p {
   font-weight: 400;
 }
 
-@media (min-width: 768px)
-.navbar-right {
-    float: right!important;
-    margin-right: -15px;
+@media (min-width: 768px){
+  .navbar-right {
+      float: right!important;
+      margin-right: -15px;
+  }
 }
 
-@media (min-width: 768px)
-.navbar-nav {
-    float: left;
-    margin: 0;
+@media (min-width: 768px){
+  .navbar-nav {
+      float: left;
+      margin: 0;
+  }
 }
 
-@media (min-width: 768px)
-.navbar-nav>li {
-    float: left;
+@media (min-width: 768px){
+  .navbar-nav>li {
+      float: left;
+  }
 }
 
 /*------------------Utilities---------------------*/
@@ -526,8 +529,6 @@ footer {
 
 #be-the-first { 
       background-attachment: scroll;
-  }
-
 }
 
 

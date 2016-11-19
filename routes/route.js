@@ -99,6 +99,7 @@ module.exports = function(app) {
     app.post('/api/hospitalEmployee/isInSystem',  hospitalEmployeeController.isInSystem);
     app.post('/api/hospitalEmployee/add',  hospitalEmployeeController.add);
     app.post('/api/hospitalEmployee/showDoctorFromDepartment', hospitalEmployeeController.showDoctorList);
+    app.post('/api/hospitalEmployee/getAllDoctorInDepartment', hospitalEmployeeController.getAllDoctorInDepartment);
     app.post('/api/timeperiodDoctor', hospitalEmployeeController.getDoctorInTime);
     ///api/timeperiodDoctor
 
@@ -108,7 +109,7 @@ module.exports = function(app) {
     app.post('/api/appointment/changeState', scheduleController.changeAppointmentState);
     app.post('/api/doctorAvailable',  scheduleController.getDoctorSchedule);
     app.post('/api/schedule/getTableStaff', scheduleController.getTableStaff);
-    
+    app.post('/api/schedule/all', scheduleController.listAll);
 
     var diagnosisDataController = require('../controllers/diagnosisDataController');
     // app.post('/api/diagnosisHistory', diagnosisDataController.diagnosisHistory); //TODO :REMOVE IF no one blame.
