@@ -223,3 +223,25 @@ exports.requestApprove = function(reg, res){
     return;
 }
 
+function createAll(k, ids){
+    if(k.length == 0) return ids;
+    var top = k.pop();
+    var item = new PrescriptionDrug(top);
+    item.save();
+    ids.push(item._id);
+    return createAll(k,ids);
+}
+
+exports.makeChange = function(req, res){
+    Prescription.findOne({_id: req.body.prescriptionID}, function(err,prescrition){
+        PrescriptionDrug.remove({_id: {$in:prescrition.prescriptions} }, function(err,data){
+            Prescription.update({_id: req.body.prescriptionID},
+            {status: 1, prescriptions: createAll(req.body.newPrescription,[])},
+            function(err,data){
+                if(err) return res.send({status: "Fail"});
+                return res.send({status: "Success"});
+            });
+        });
+    });
+}
+

@@ -51,6 +51,8 @@ module.exports = function(app) {
     app.post('/api/patient/physicalCheck/edit',  physicalDataController.editPhysicalCheck);    
 
     var prescriptionController = require("../controllers/prescriptionController");
+    app.post('/api/doctor/prescriptionChangeRequest/makeChange', prescriptionController.makeChange);
+    
     var appointmentController = require("../controllers/appointmentController");
     app.post('/api/departmentAppointment/byTime',  appointmentController.getAppointmentByTime);
     app.post('/api/appointment/showSomeDoctors',  prescriptionController.showSomeDoctors);
