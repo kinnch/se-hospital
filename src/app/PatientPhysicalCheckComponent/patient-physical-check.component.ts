@@ -65,6 +65,8 @@ export class PatientPhysicalCheckComponent implements OnInit {
                 if (res == "success") {
                     this.isAdd = !this.isAdd;
                     this.buttonName = 'แก้ไข'
+                    this.toast.titleSuccess = "บันทึกสำเร็จ"
+                    this.toast.messageSuccess = "ทำการบันทึกข้อมูลเรียบร้อยแล้ว";
                     this.toast.addToastSuccess();
                 }
                 else{
@@ -82,6 +84,8 @@ export class PatientPhysicalCheckComponent implements OnInit {
                 if (res == "success") {
                     this.isAdd = !this.isAdd;
                     this.buttonName = 'แก้ไข'
+                    this.toast.titleSuccess = "บันทึกสำเร็จ"
+                    this.toast.messageSuccess = "ทำการบันทึกข้อมูลเรียบร้อยแล้ว";
                     this.toast.addToastSuccess();    
                 }
                 else{

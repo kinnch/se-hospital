@@ -61,7 +61,14 @@ export class PrescriptionListElementComponent{
      }
      // submit
      finalSubmit(diag , pres){
-         alert("finalSubmit");
+         this.prescriptionService.setPrescriptionRequestDone(pres)
+        .then((res) => {
+               if (res.status == "success") {
+                    this.data.drugPrescription.status =3;
+                } else{
+                    this.data.drugPrescription.status =2;
+                }
+            });
      }
 
      rejected(pres){

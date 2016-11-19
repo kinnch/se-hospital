@@ -12,7 +12,10 @@
 <br>
 <div class="row drug" *ngFor="let elem of prescriptionList; let i = index;">
     <div class="col-sm-3">
-        <input class="form-control" type="text" [(ngModel)]="elem.drugName" />
+        <select class="form-control" id="inputDepartment" type="text" [(ngModel)]="elem.drugName">
+            <option *ngFor="let department of departments">{{department}}</option>
+        </select>
+        <!--<search-select [id]="'kinnch12345'" [departments]=departments></search-select>-->
     </div>
     <div class="col-sm-3">
         <input class="form-control" type="text" [(ngModel)]="elem.amount" />
