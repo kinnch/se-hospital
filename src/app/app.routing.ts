@@ -178,7 +178,7 @@ const appRoutes: Routes = [
         canActivate: [LoggedInGuard]
       },
       {
-        path: 'edit_prescription/:obj',
+        path: 'edit_prescription/:pres',
         component: EditPrescriptionComponent,
         canActivate: [LoggedInGuard]
       },

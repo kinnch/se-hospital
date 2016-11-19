@@ -91,7 +91,8 @@ module.exports = function(app) {
     app.post('/api/pharma/prescription/requestDone', prescriptionController.requestDone);
     app.post('/api/pharma/prescription/requestApprove', prescriptionController.requestApprove);
     app.post('/api/doctor/prescriptionChangeRequest/list', prescriptionController.rejectedPrescription);
-
+    app.post('/api/doctor/getPrescription',prescriptionController.getPrescription);
+    app.get('/api/drugs', prescriptionController.getAllDrugs);
 
     var hospitalEmployeeController = require('../controllers/hospitalEmployeeController');
     app.post('/api/hospitalEmployee/isInSystem',  hospitalEmployeeController.isInSystem);
@@ -105,6 +106,7 @@ module.exports = function(app) {
     app.post('/api/appointment/delete', scheduleController.deleteAppointment);
     app.post('/api/appointment/changeState', scheduleController.changeAppointmentState);
     app.post('/api/doctorAvailable',  scheduleController.getDoctorSchedule);
+    //app.post('/api/schedule/getTable',  scheduleController.getTable);
     ///api/appointment/changeState
     
 

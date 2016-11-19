@@ -245,3 +245,27 @@ exports.makeChange = function(req, res){
     });
 }
 
+
+exports.getPrescription = function(req, res){
+    Prescription.findOne({_id: req.body.prescriptionID}).populate({
+        path: 'prescriptions',
+        populate: {
+            path: 'drug',
+            model: 'Drug',
+            select: 'name'
+        }
+    }).exec( function(err, data){
+           res.send(data);
+            return;
+        })
+}
+
+exports.getAllDrugs = function(req, res){
+    Drug.find({},function(err,drugs){
+        res.send({
+            status: 'success',
+            msg: drugs
+        });
+        return;
+    });
+}
