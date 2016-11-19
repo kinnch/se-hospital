@@ -35,6 +35,7 @@ export class UserService {
       .map(res => res.json())
       .map((res) => {
         if (res.success) {
+          console.log(res)
           localStorage.setItem('auth_token', res.auth_token);
           localStorage.setItem('user_id', res.user._id);
           localStorage.setItem('user_username', res.user.userName);
@@ -43,6 +44,7 @@ export class UserService {
           localStorage.setItem('user_fname', res.user.name.fname);
           localStorage.setItem('user_lname', res.user.name.lname);
           localStorage.setItem('department_id', res.user.department);
+          localStorage.setItem('user_sex',res.user.sex);
           this.loggedIn = true;
         }
 

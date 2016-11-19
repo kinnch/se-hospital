@@ -78,6 +78,8 @@ module.exports = function(app) {
     app.post('/api/patient/physicalCheck/edit',  physicalDataController.editPhysicalCheck);    
 
     var prescriptionController = require("../controllers/prescriptionController");
+    app.post('/api/doctor/prescriptionChangeRequest/makeChange', prescriptionController.makeChange);
+    
     var appointmentController = require("../controllers/appointmentController");
     app.post('/api/departmentAppointment/byTime',  appointmentController.getAppointmentByTime);
     app.post('/api/appointment/create',  appointmentController.create);
@@ -90,7 +92,8 @@ module.exports = function(app) {
     app.post('/api/pharma/prescription/requestDone', prescriptionController.requestDone);
     app.post('/api/pharma/prescription/requestApprove', prescriptionController.requestApprove);
     app.post('/api/doctor/prescriptionChangeRequest/list', prescriptionController.rejectedPrescription);
-
+    app.post('/api/doctor/getPrescription',prescriptionController.getPrescription);
+    app.get('/api/drugs', prescriptionController.getAllDrugs);
 
     var hospitalEmployeeController = require('../controllers/hospitalEmployeeController');
     app.post('/api/hospitalEmployee/isInSystem',  hospitalEmployeeController.isInSystem);
@@ -104,11 +107,13 @@ module.exports = function(app) {
     app.post('/api/appointment/delete', scheduleController.deleteAppointment);
     app.post('/api/appointment/changeState', scheduleController.changeAppointmentState);
     app.post('/api/doctorAvailable',  scheduleController.getDoctorSchedule);
-    ///api/appointment/changeState
+    app.post('/api/schedule/getTableStaff', scheduleController.getTableStaff);
     
 
     var diagnosisDataController = require('../controllers/diagnosisDataController');
-    app.post('/api/diagnosisHistory', diagnosisDataController.diagnosisHistory);
+    // app.post('/api/diagnosisHistory', diagnosisDataController.diagnosisHistory); //TODO :REMOVE IF no one blame.
+    app.post('/api/patient/diagnosisHistory',diagnosisDataController.getPatientDiagnosisHistory);
+    app.post('/api/diagnosis/create', diagnosisDataController.create);
 
     //patientController.setDBConnectionsFromApp(app);
     

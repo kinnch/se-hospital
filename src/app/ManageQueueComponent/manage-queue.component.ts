@@ -42,6 +42,7 @@ export class ManageQueueComponent implements OnInit{
             
             //Retrive all appointment in queue (now)
             this.departmentID = '';//TODO : remove this tester
+            mid = 'am';
             this.appointmentService.getTodayAppointments(this.departmentID,mid)
             .then((data) => {
                 // this.roleID = 3; //TODO : remove this tester

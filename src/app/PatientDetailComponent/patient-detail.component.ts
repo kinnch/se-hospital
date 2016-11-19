@@ -2,6 +2,7 @@ import { Component, OnInit} from '@angular/core';
 import { ActivatedRoute, Params ,Router } from '@angular/router';
 import { AppointmentService } from '../../services/appointment.service';
 import {Subscription } from 'rxjs';
+import * as moment_ from 'moment';
 @Component({
     selector: 'patient-detail-c',
     template: require('./patient-detail.component.html'),
@@ -13,6 +14,10 @@ export class PatientDetailComponent implements OnInit{
     private subscription: Subscription;
     data: JSON;
     found: boolean;
+    year: number;
+    month: number;
+    enablePhysicalDetail: boolean;
+    enableDiagnosisDetail: boolean;
     constructor(private router: Router, private activatedRoute: ActivatedRoute, private appointmentService: AppointmentService) {}
     goback(): void{
         window.history.back();
@@ -27,8 +32,20 @@ export class PatientDetailComponent implements OnInit{
                     console.log(data);
                     this.data = data;
                     this.found = true;
+                    var diffDuration = moment_.duration(moment_().diff(this.data['patient_data']['birthDate']));
+                    this.year = diffDuration.years();
+                    this.month = diffDuration.months();
                 });
         });
+        if(this.router.url.slice(0,22) == "/manage/physical_check"){
+            this.enablePhysicalDetail = true;
+            this.enableDiagnosisDetail = false;            
+            
+        } else if(this.router.url.slice(0,17) == "/manage/diagnosis"){
+            this.enableDiagnosisDetail = true;
+            this.enablePhysicalDetail = false;            
+        }
+        
         
     }
 }

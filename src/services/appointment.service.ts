@@ -42,14 +42,15 @@ export class AppointmentService {
             3 == ตรวจอยู่
             4 == ตรวจเสร็จ
         */
-    checkInAppointment(appoinmentID : string): Promise<JSON>{
+    checkInAppointment(appointmentID : string): Promise<JSON>{
         return this.http
-                    .post('api/appoinment/changeState', JSON.stringify({
-                        appointmentID: appoinmentID,
+                    .post('api/appointment/changeState', JSON.stringify({
+                        appointmentID: appointmentID,
                         newState : 3
                     }), {headers: this.headers})
                     .toPromise()
                     .then(function(res){
+                        console.log(res.json());
                         return res.json();
                     });
     }

@@ -26,7 +26,7 @@ export class PrescriptionListElementComponent{
 
     constructor(private router: Router, private prescriptionService: PrescriptionService) {
         router.events.subscribe((val) => {
-            this.prescriptionID = localStorage.getItem('user_id');
+            this.pharmaID = localStorage.getItem('user_id');
         });    
     }
 
@@ -35,6 +35,8 @@ export class PrescriptionListElementComponent{
     }
 
     edit(pres):void{
+        console.log('click edit prescription');
+        console.log(pres);
         this.router.navigate(['manage','edit_prescription', pres]);
     }
 
@@ -59,7 +61,14 @@ export class PrescriptionListElementComponent{
      }
      // submit
      finalSubmit(diag , pres){
-         alert("finalSubmit");
+         this.prescriptionService.setPrescriptionRequestDone(pres)
+        .then((res) => {
+               if (res.status == "success") {
+                    this.data.drugPrescription.status =3;
+                } else{
+                    this.data.drugPrescription.status =2;
+                }
+            });
      }
 
      rejected(pres){

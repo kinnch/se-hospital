@@ -42,6 +42,22 @@ exports.getTable = function(reg, res){
         });
     });
 };
+
+exports.getTableStaff = function(req, res){
+   // return res.send(req.body.departmentID);
+    HospitalEmployee.find({roleID: 2, department: req.body.departmentID}, function(err, staffs){
+        //Schedule.find({})
+        var arr = [];
+        for(var i = 0; i < staffs.length; i++){
+            arr.push(staffs[i]._id);
+        }
+        Schedule.find({doctor: {$in:arr}}).populate('doctor')
+        .exec(function(err,data){
+            return res.send({table: data, limitDocs: 10});
+        });
+        //return res.send(arr);
+    }).select('_id');
+};
     
 
 exports.deleteAppointment = function(req, res){
@@ -61,15 +77,15 @@ exports.changeAppointmentState = function(req, res){
     Appointment.update({_id:req.body.appointmentID},
         {status: req.body.newState},
         function(err,data){
-            if(err) return res.send("Fail");
-            return res.send("Success");
+            if(err) return res.send({status : "fail"});
+            return res.send({status : "success"});
         });
 };
 
 exports.getDoctorSchedule = function(req, res) {
     let doctorID = req.body.doctor_id; 
     Schedule.find({doctor:doctorID}).populate("doctor").exec(function(err, r) {
-		if(err) {
+		if(err || !r) {
 			res.send({
 				'status': 'fail',
 				'msg': 'This doctor id is not exist.'

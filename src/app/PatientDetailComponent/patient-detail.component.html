@@ -24,7 +24,7 @@
                     <p><b>เพศ : </b> {{data['patient_data']['sex']}}</p>
                 </div>  
                 <div class="col-md-4">
-                    <p><b>อายุ : </b> {{data['patient_data']['birthDate']}}</p>    
+                    <p><b>อายุ : </b> {{year}} ปี {{month}} เดือน</p>    
                 </div> 
                 <div class="col-md-4"> 
                     <p><b>กรุ๊ปเลือด : </b> {{data['patient_data']['bloodType']}} </p> 
@@ -35,9 +35,9 @@
     <hr>
     <br>
 
-    <patient-physical-check-c>
+    <patient-physical-check-c *ngIf="enablePhysicalDetail">
     </patient-physical-check-c>
     
-    <diagnosis-c>
+    <diagnosis-c *ngIf="enableDiagnosisDetail">
     </diagnosis-c>
 </section>
