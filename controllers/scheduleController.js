@@ -61,8 +61,10 @@ exports.changeAppointmentState = function(req, res){
     Appointment.update({_id:req.body.appointmentID},
         {status: req.body.newState},
         function(err,data){
-            if(err) return res.send("Fail");
-            return res.send("Success");
+            if(err){
+                return res.send({status : "fail"});
+            } 
+            return res.send({status : "success"});
         });
 };
 

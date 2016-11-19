@@ -4,9 +4,15 @@
     <h3 style="margin-top=1em;">{{queueHeader}}</h3>
     <hr class="style-one">
     <div class = "col-md-12">
-        <h5 style="text-align:center">กำลังพบแพทย์</h5>
+        <h5 style="text-align:center">กำลังจะพบแพทย์</h5>
         <span *ngIf="withDoctorApt">
-            <patient-list-element-c *ngFor="let oneData of withDoctorApt" [oneData]="oneData"></patient-list-element-c>
+            <div  *ngFor="let oneData of withDoctorApt" >
+                <patient-list-element-c [oneData]="oneData" (checkinSuccess)="handle(xxx)">
+
+                </patient-list-element-c>
+            </div>
+            
+
         </span>
         <hr class="style-two">
     </div>
