@@ -42,22 +42,25 @@ exports.getAllDepartmentOfDoctor = function(req, res){
         {  $group: {_id: '$department', doctors: {$push: {_id:"$_id",name:"$name"}}}  }
     ]).exec(function(err, populatedDepartment) {
         var departmentIds=[];
-	for(let dep of populatedDepartment){
-	    departmentIds.push(dep._id);
-	}
+		for(let dep of populatedDepartment){
+		    departmentIds.push(dep._id);
+		}
         Department.find({_id: {'$in':departmentIds}}, function(err, x) {
-	    var depMap = {};
-	    for(let dep of x) {
-	        depMap[dep._id] = dep.name;
-	    }
-	    for(let index in populatedDepartment) { 
-		populatedDepartment[index].dep_name = depMap[populatedDepartment[index]._id];
-	    }
-    	    res.send(populatedDepartment);
-	    return;
+		    var depMap = {};
+		    for(let dep of x) {
+		        depMap[dep._id] = dep.name;
+		    }
+		    for(let index in populatedDepartment) { 
+				populatedDepartment[index].dep_name = depMap[populatedDepartment[index]._id];
+		    }
+    	    res.send({
+				'status' : 'success',
+				'msg' : '',
+				'data': populatedDepartment
+			});
+		    return;
         });
     });
-     
 }
 
 exports.changePassword = function(req,res){
