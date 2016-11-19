@@ -80,7 +80,8 @@ module.exports = function(app) {
     app.post('/registerPatient', patientController.register);
     app.get('/loginPatient', patientController.getLogin);
 
-    
+    app.post('/api/doctorAvailable',  scheduleController.getDoctorSchedule);
+   
 
     var otpController = require('../controllers/otpController');
     app.post('/requestOTP', otpController.requestOTP);
