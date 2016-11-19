@@ -27,13 +27,13 @@ export class PatientListComponent implements OnInit {
     ngOnInit() {
         if(this.roleID == 1){//staff header shows doctor name
             this.queueHeader = 'ห้อง ';
-            this.queueHeader = this.queueHeader.concat(this.queue.doctor.name.title);
-            this.queueHeader = this.queueHeader.concat(this.queue.doctor.name.fname);
+            this.queueHeader = this.queueHeader.concat(this.queue['doctor']['name']['title']);
+            this.queueHeader = this.queueHeader.concat(this.queue['doctor']['name']['fname']);
         }
         else if(this.roleID == 2){//doctor
             this.queueHeader = 'ผู้ป่วยรอพบ ';
-            this.queueHeader = this.queueHeader.concat(this.queue.doctor.name.title);
-            this.queueHeader = this.queueHeader.concat(this.queue.doctor.name.fname);
+            this.queueHeader = this.queueHeader.concat(this.queue['doctor']['name']['title']);
+            this.queueHeader = this.queueHeader.concat(this.queue['doctor']['name']['fname']);
         }
         else if(this.roleID == 3){//nurse
             this.queueHeader = 'ผู้ป่วยรอตรวจร่างกาย';
@@ -71,8 +71,12 @@ export class PatientListComponent implements OnInit {
     goto(hn):void{
         this.router.navigate(['manage','patient',hn]);
     }
+    handle(event):void{
+        console.log('handler');
+        console.log(event);
+    }
     dataAllPatientToday;
-    // getPatientTodayState(){
+    // getPatientTodayState(){                  
     //     this.patientService.getPatientTodayState(this.department)
     //     .then((data) => {
     //         console.log('then');
