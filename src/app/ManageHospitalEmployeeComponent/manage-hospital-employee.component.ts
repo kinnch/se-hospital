@@ -2,11 +2,9 @@ import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Router } from '@angular/router';
 import { ModalComponent } from '../ModalComponent/modal.component';
+import { ToastComponent } from '../ToastComponent/toast.component';
 import { HospitalEmployeeService } from '../../services/hospital-employee.service';
 import { DepartmentService } from '../../services/department.service';
-
-import {ToastyService, ToastyConfig, ToastOptions, ToastData} from 'ng2-toasty';
-
 
 @Component({
     selector: 'manage-hospital-employee-c',
@@ -16,6 +14,7 @@ import {ToastyService, ToastyConfig, ToastOptions, ToastData} from 'ng2-toasty';
 
 export class ManageHospitalEmployeeComponent implements OnInit{
     @ViewChild( ModalComponent ) modal: ModalComponent; 
+    @ViewChild( ToastComponent ) toast: ToastComponent;
     employees = [];
     departments = [];
     doctors = [];
@@ -30,10 +29,7 @@ export class ManageHospitalEmployeeComponent implements OnInit{
     selectedConfirmPass:string = ""; //selected
     constructor(private router: Router, 
                 private hospitalEmployeeService: HospitalEmployeeService,
-                private departmentService: DepartmentService,
-                private toastyService:ToastyService, 
-                private toastyConfig: ToastyConfig) {
-                    this.toastyConfig.theme = 'bootstrap';
+                private departmentService: DepartmentService) {
     }
     ngOnInit(): void {
         this.departmentService.getAllDepartments().then((departments)=>{
@@ -130,10 +126,10 @@ export class ManageHospitalEmployeeComponent implements OnInit{
                 this.selectedPass = "";
                 this.selectedConfirmPass = "";
                 console.log("confirm")
-                this.addToast("success");
+                this.toast.addToastSuccess();
             }
             else{
-                this.addToast("error");
+                this.toast.addToastError();
             }
         });
     }
@@ -141,29 +137,5 @@ export class ManageHospitalEmployeeComponent implements OnInit{
         this.selectedPass = "";
         this.selectedConfirmPass = "";
         console.log("cancel")
-    }
-
-    addToast(status) {
-        // create the instance of ToastOptions 
-        var toastSuccess:ToastOptions = {
-            title: "ยืนยันสำเร็จ",
-            msg: "ทำการบันทึกข้อมูลเรียบร้อยแล้ว",
-            showClose: true,
-            timeout: 3000,
-            theme: 'bootstrap',
-        };
-        var toastError:ToastOptions = {
-            title: "เกิดข้อผิดพลาด",
-            msg: "กรุณาทำรายการใหม่อีกครั้ง",
-            showClose: true,
-            timeout: 3000,
-            theme: 'bootstrap',
-        };
-        // Add see all possible types in one shot 
-        if(status == "success") this.toastyService.success(toastSuccess);
-        else if(status == "error") this.toastyService.error(toastError);
-        // this.toastyService.info(toastOptions);
-        // this.toastyService.wait(toastOptions);
-        // this.toastyService.warning(toastOptions);
     }
 }

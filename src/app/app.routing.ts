@@ -31,11 +31,11 @@ import { EditPrescriptionComponent } from './EditPrescriptionComponent/edit-pres
 import { PatientPanelComponent } from './PatientPanelComponent/patient-panel.component';
 
 //TODO: query state from user
-let redirectToPathLastPage: string = 'manage_patient';
+let redirectToPathLastPage: string = 'manage_queue';
 // redirectToPathLastPage = 'login';
 // let userService: UserService;
 // if(userService.isLoggedIn()){
-//   redirectToPathLastPage = 'manage_patient';
+//   redirectToPathLastPage = 'manage_queue';
 // }
 // else{
 //   redirectToPathLastPage = 'login';
