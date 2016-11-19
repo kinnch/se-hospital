@@ -1,3 +1,5 @@
+'use strict'
+
 var dbConnection;
 
 exports.setDBConnectionsFromApp = function(app) {
@@ -35,14 +37,27 @@ exports.getAllDepartment = function(req, res){
     });
 }
 exports.getAllDepartmentOfDoctor = function(req, res){
-    HospitalEmployee.find({roleID: 2})
-        .distinct("department", function(error,depIDs) {
-            Department.find({'_id': {$in: depIDs}}, 'name', function(err,depNames) {
-                res.send(depNames);
-                return;
-            });
-            return;
+    HospitalEmployee.aggregate([
+        {  $match: {roleID: 2}  },
+        {  $group: {_id: '$department', doctors: {$push: {_id:"$_id",name:"$name"}}}  }
+    ]).exec(function(err, populatedDepartment) {
+        var departmentIds=[];
+	for(let dep of populatedDepartment){
+	    departmentIds.push(dep._id);
+	}
+        Department.find({_id: {'$in':departmentIds}}, function(err, x) {
+	    var depMap = {};
+	    for(let dep of x) {
+	        depMap[dep._id] = dep.name;
+	    }
+	    for(let index in populatedDepartment) { 
+		populatedDepartment[index].dep_name = depMap[populatedDepartment[index]._id];
+	    }
+    	    res.send(populatedDepartment);
+	    return;
         });
+    });
+     
 }
 
 exports.changePassword = function(req,res){
