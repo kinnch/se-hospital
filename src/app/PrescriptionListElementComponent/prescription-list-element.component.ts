@@ -3,6 +3,8 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { Router } from '@angular/router';
 import { PrescriptionListElement } from '../../models/prescription-list-element';
 import { PrescriptionTableComponent } from '../PrescriptionTableComponent/prescription-table.component';
+import { PrescriptionService } from '../../services/prescription.service';
+
 
 import * as moment_ from 'moment';
 @Component({
@@ -18,7 +20,7 @@ export class PrescriptionListElementComponent{
 
      @Output() dataChange = new EventEmitter();
 
-    constructor(private router: Router) {
+    constructor(private router: Router, private prescriptionService: PrescriptionService) {
     }
 
     seeHistory(hn):void{
@@ -38,12 +40,12 @@ export class PrescriptionListElementComponent{
      submit(diag , pres): void {
          console.log("diag :",diag , "pres :  " , pres);
          this.data.drugPrescription.status =2;
-        //  console.log(this.data);
-         // update api 
-
-         // update front end
-        //  this.data = this.data.filter(x => x._id != diag);
-        //  this.dataChange.next(this.data);
+         
+          this.prescriptionService.setPrescriptionRequestApprove(pres)
+          .then((res) => {
+               //TODO:
+            });
+        
      }
 
 }

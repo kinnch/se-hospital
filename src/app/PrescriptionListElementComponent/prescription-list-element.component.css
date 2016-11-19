@@ -15,7 +15,7 @@
     /*margin-top: 10px;*/
 }
 
-.prescription-detail, .reject-form , #preList{
+.prescription-detail, .reject-form , .preList{
     padding: 0 5%;
 }
 

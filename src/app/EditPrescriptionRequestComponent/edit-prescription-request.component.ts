@@ -2,7 +2,8 @@ import {Component, Input} from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Router } from '@angular/router';
 import { PrescriptionService } from '../../services/prescription.service';
-import { PrescriptionListElement } from '../../models/prescription-list-element';
+import { UserService } from '../../services/user.service';
+
 @Component({
     selector: 'edit-prescription-request-c',
     template: require('./edit-prescription-request.component.html'),
@@ -11,11 +12,20 @@ import { PrescriptionListElement } from '../../models/prescription-list-element'
 
 export class EditPrescriptionRequestComponent{    
     role: string = 'doctor';
-    data: PrescriptionListElement[]; 
+    data: any;
+    doctorID = localStorage.getItem('user_id');
+
     constructor(private router: Router, private prescriptionService: PrescriptionService) {
-        this.data=prescriptionService.getPrescriptionElements();
-        //this.prescriptionService.getPrescriptionElements().then(data => this.data = data);
-        console.log(this.data);
+        router.events.subscribe((val) => {
+            this.doctorID = localStorage.getItem('user_id');
+        });
+    }
+
+    ngOnInit() {
+         this.prescriptionService.getPrescriptionChangeRequest(this.doctorID)
+        .then((rejectedData)=>{
+            this.data = rejectedData;
+        });
     }
 
     gotoPage(hn):void{      

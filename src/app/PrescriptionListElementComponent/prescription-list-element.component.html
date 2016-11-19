@@ -38,7 +38,7 @@
         </section>
         <ng-content></ng-content>
         <hr>
-        <div id="preList">
+        <div class="preList">
             <prescription-table-c [prescriptionList]="data.drugPrescription.prescriptions">
                 <hr>
                 <div *ngIf="data.patient.allegicDrugs.length == 0">
@@ -54,7 +54,7 @@
         <div *ngIf="data.drugPrescription.status==1">
             <section class="control-button" [hidden]="isReject">
                 <button type="button" class="btn btn-danger" style="width: 150px; margin-right: 50px" (click)="isReject = !isReject">ขอแก้ไขยา</button>
-                <button type="button" class="btn btn-primary" style="width: 150px;" (click)="submit(data._id , data.drugPrescription._id)">จ่ายยา</button>                  
+                <button type="button" class="btn btn-primary" style="width: 150px;" (click)="submit(data._id , data.drugPrescription._id)">อนุมัติการจ่ายยา</button>                  
             </section>
             <section class ="reject-form" [hidden]="!isReject">
                 <p><b>เหตุผลที่ขอแก้ไข :</b></p>
@@ -67,7 +67,7 @@
             <br>
         </div>
 
-        <div *ngIf="data.drugPrescription.status==0">
+        <div class="preList" *ngIf="data.drugPrescription.status==0">
             <section>
                 <p><b>เหตุผลที่ขอแก้ไข :</b> {{data.drugPrescription.note}}</p>
             </section>
