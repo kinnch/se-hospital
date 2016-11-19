@@ -5,35 +5,41 @@
                 <div class="col-md-3 col-sm-12" >
                     <img src="/resources/images/icon_people/fm_adult.png" class="patient-img">
                 </div>
-                <div class="col-md-9 col-sm-12" >
+                <div class="col-md-6 col-sm-12" >
                     <div class="row">
-                        <div class="col-sm-6">
-                            <p><b>ชื่อผู้ป่วย : </b>{{data.patient.name.title}}&nbsp;{{data.patient.name.fname}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{data.patient.name.lname}}</p>
+                        <div class="col-sm-12">
+                            <p><b>ชื่อผู้ป่วย : </b><br>{{data.patient.name.title}}&nbsp;{{data.patient.name.fname}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{data.patient.name.lname}}</p>
                         </div>  
-                        <div class="col-sm-6">
-                            <p><b>HN : </b>{{data.patient.HN}}</p>    
-                        </div> 
+                        
                     </div>
                     <div class="row">
                         <div class="col-sm-3">
-                            <p><b>เพศ : </b>{{data.patient.sex}}</p>
+                            <p><b>เพศ : </b><br>{{data.patient.sex}}</p>
                         </div>  
                         <div class="col-sm-3">
-                            <p><b>อายุ : </b>{{year}}&nbsp;ปี&nbsp;{{month}}&nbsp;เดือน</p>    
+                            <p><b>อายุ : </b><br>{{year}}&nbsp;ปี&nbsp;{{month}}&nbsp;เดือน</p>    
                         </div> 
-                        <div class="col-sm-6">  
-                            <p><b>กรุ๊ปเลือด : </b> {{data.patient.bloodType}}</p>
+                        <div class="col-sm-3">  
+                            <p><b>กรุ๊ปเลือด : </b><br> {{data.patient.bloodType}}</p>
                         </div>
+                        <div class="col-sm-3">
+                            <p><b>HN : </b><br>{{data.patient.HN}}</p>    
+                        </div> 
                     </div>
                     <div class="row">
-                        <div class="col-sm-8">
-                            <p><b>แพทย์ผู้ตรวจ: </b>{{data.doctor.name.title}}&nbsp;{{data.doctor.name.fname}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{data.doctor.name.lname}}</p>
+                        <div class="col-sm-12">
+                            <p><b>แพทย์ผู้ตรวจ: </b><br>{{data.doctor.name.title}}&nbsp;{{data.doctor.name.fname}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{data.doctor.name.lname}}</p>
                         </div>  
-                        <div class="col-sm-4">
-                            <button type="button" class="btn btn-success" (click)="seeHistory(data.patient.HN)">ดูประวัติการได้รับยา</button>
-                        </div>  
+                        
                     </div>       
-                </div>    
+                </div>
+                <div class="col-md-3 col-sm-12">
+                    <div class="row">
+                            <button type="button" class="btn btn-success" (click)="seeHistory(data.patient.HN)">ดูประวัติการได้รับยา</button>
+                    </div>
+                    <div class="row">
+                    </div>    
+                </div>      
             </div>    
         </section>
         <ng-content></ng-content>
