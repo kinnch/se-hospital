@@ -15,21 +15,27 @@ export class ToastComponent {
         }
     @Input() titleSuccess : string = "บันทึกสำเร็จ";
     @Input() messageSuccess : string = "ทำการบันทึกข้อมูลเรียบร้อยแล้ว";
+    @Input() timeoutSuccess = 3000;
     @Input() titleError : string = "เกิดข้อผิดพลาด";
     @Input() messageError : string = "กรุณาทำรายการใหม่อีกครั้งค่ะ";
+    @Input() timeoutError = 10000;
     @Input() titleWarning : string = "";
     @Input() messageWarning : string = "";
+    @Input() timeoutWarning = 10000;
     @Input() titleWait : string = "";
     @Input() messageWait : string = "";
+    @Input() timeoutWait = 10000;
     @Input() titleInfo : string = "";
     @Input() messageInfo : string = "";
+    @Input() timeoutInfo = 10000;
+    
 
     addToastSuccess(){
         var toastSuccess:ToastOptions = {
                 title: this.titleSuccess,
                 msg: this.messageSuccess,
                 showClose: true,
-                timeout: 3000,
+                timeout: this.timeoutSuccess,
                 theme: 'bootstrap',
             };
         this.toastyService.success(toastSuccess);
@@ -49,7 +55,7 @@ export class ToastComponent {
                 title: this.titleError,
                 msg: this.messageError,
                 showClose: true,
-                timeout: 3000,
+                timeout: this.timeoutError,
                 theme: 'bootstrap',
             };
         this.toastyService.warning(toastWarning);
@@ -59,7 +65,7 @@ export class ToastComponent {
                 title: this.titleError,
                 msg: this.messageError,
                 showClose: true,
-                timeout: 3000,
+                timeout: this.timeoutInfo,
                 theme: 'bootstrap',
             };
         this.toastyService.info(toastInfo);
@@ -69,7 +75,7 @@ export class ToastComponent {
                 title: this.titleError,
                 msg: this.messageError,
                 showClose: true,
-                timeout: 3000,
+                timeout: this.timeoutWait,
                 theme: 'bootstrap',
             };
         this.toastyService.wait(toastWait);
