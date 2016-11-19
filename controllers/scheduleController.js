@@ -40,6 +40,9 @@ exports.getTable = function(reg, res){
                 });
             });
         });
+    });
+};
+    
 
 exports.deleteAppointment = function(req, res){
      Appointment.remove({_id:req.body.appointmentID }, function(err,data){
@@ -59,4 +62,4 @@ exports.getDoctorSchedule = function(req, res) {
 		res.send(r);
 		return;
     });
-}
+};

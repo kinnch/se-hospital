@@ -177,7 +177,7 @@ exports.seed = function(req, res) {
             nationalID: '31013300020937',
             sex: "male",
             birthDate: new Date("1994-08-06"),
-            HN: '100001',
+            HN: '10000111',
             salt: '471e91c751f97efdfa7e6df71a497dd739564a3db679c8ab1564f92368a23d29',
             address: {
                 detail: "622/100 ม.พฤกษ์ภิรมย์",
@@ -205,7 +205,7 @@ exports.seed = function(req, res) {
             nationalID: '1100100011231',
             sex: "male",
             birthDate: new Date("1994-08-06"),
-            HN: '100005',
+            HN: '10000512',
             salt: '471e91c751f97efdfa7e6df71a497dd739564a3db679c8ab1564f92368a23d29',
             address: {
                 detail: "622/100 ม.พฤกษ์ภิรมย์",
@@ -233,7 +233,7 @@ exports.seed = function(req, res) {
             nationalID: '4908921116081',
             sex: "female",
             birthDate: new Date("1960-01-02"),
-            HN: '200009',
+            HN: '20000913',
             salt: '471e91c751f97efdfa7e6df71a497dd739564a3db679c8ab1564f92368a23d29',
             address: {
                 detail: "17/4 หมู่ 5 ถนนบำรุงราษฎร์",
@@ -261,7 +261,7 @@ exports.seed = function(req, res) {
             nationalID: '0941327919461',
             sex: "female",
             birthDate: new Date("1987-02-28"),
-            HN: '123321',
+            HN: '12332114',
             salt: '471e91c751f97efdfa7e6df71a497dd739564a3db679c8ab1564f92368a23d29',
             address: {
                 detail: "197 ถนนเจริญราษฎร์",
@@ -290,7 +290,7 @@ exports.seed = function(req, res) {
             nationalID: '2749477015164',
             sex: "male",
             birthDate: new Date("1990-01-06"),
-            HN: '200000',
+            HN: '20000015',
             salt: '471e91c751f97efdfa7e6df71a497dd739564a3db679c8ab1564f92368a23d29',
             address: {
                 detail: "1873 ถนนพระราม 4 ",
