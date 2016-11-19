@@ -13,7 +13,33 @@ var Drug = require("../model/drug");
 var Disease = require("../model/disease");
 var Prescription = require("../model/drugPrescription");
 var PrescriptionDrug  = require("../model/prescriptionDrug");
-
+var PhysicalData = require("../model/physicalChecking");
+exports.getDiagnosisAndPhysicalCheck = function(req,res){
+    Diagnosis.findOne({_id:req.body.diagnosisID},function(err,data){
+        if(err){
+            res.send({status:"error"});
+        }
+        if(!data){
+            res.send({status:"not found"});
+        }
+        // res.send({result:data});  
+    }).exec(function(err,data){
+        if(err){
+            res.send({status:"error"});
+        }
+        if(!data){
+            res.send({status:"not found"});
+        }
+        PhysicalData.findOne({
+            patient:data.patient,
+            timePeriod: data.timePeriod,
+            date: {"$gte": new Date(data.date),
+                $lt:new Date(new Date(data.date).getTime() + 24 * 3600 * 1000)},
+            },function(err,data2){
+                res.send({diagnosis:data,physical:data2});
+            })
+    });
+}
 exports.getPatientDiagnosisHistory = function(req,res){
     Diagnosis.find({patient:req.body.id},function(err,data){
         if(err){
