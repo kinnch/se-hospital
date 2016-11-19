@@ -89,3 +89,9 @@ $fill:$primary;*/
             inset #00B7C5 0 4em 0 0;
     }
 }
+
+.krit-king-of-front{
+    position: relative;
+    left: 0px;
+    top: -45px;
+}

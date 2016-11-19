@@ -16,7 +16,8 @@ export class LoginComponent {
 
     loginSuccess: boolean = false;
     sendOTPSuccess: boolean = true;
-
+    loadingMSG: string ="";
+    errorMSG: string = "";
     step : number = 1;
     isLoading : boolean = false;
     constructor(private userService: UserService, private router: Router, private location: Location) {
@@ -63,10 +64,31 @@ export class LoginComponent {
     checkAndRequest() {
         // search api and will get phone
         this.isLoading = true;
+        this.loadingMSG = "กำลังติดต่อระบบ.." 
         this.userService.search(this.patientID).then( (data) => { 
-            alert(data);
-            this.step=2;
-            this.isLoading = false;
+            // alert(data);
+            if(true){
+                //success
+                this.loadingMSG = "สวัสดีคุณ xxxx xxxxxxx, กำลังขอ OTP"
+                this.userService.requestOTP(this.patientID).then((data) => {
+                    if(false){
+                        //success
+                        this.step=2;
+                        this.isLoading = false;
+                    }else{
+                        this.errorMSG = " ระบบ OTP ไม่พร้อมใช้งาน กรุณารอสักครู่";
+                        this.isLoading = false;
+                    }
+                    
+                });
+            }else{
+                this.errorMSG = " ไม่พบชื่อผู้ใช้งาน";
+                this.isLoading = false;
+            }
+           
+            
+             
+            
         });
     }
 }
