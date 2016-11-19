@@ -61,15 +61,28 @@ exports.changeAppointmentState = function(req, res){
     Appointment.update({_id:req.body.appointmentID},
         {status: req.body.newState},
         function(err,data){
-            if(err) return res.send("Fail");
-            return res.send("Success");
+            if(err){
+                return res.send({status : "fail"});
+            } 
+            return res.send({status : "success"});
         });
 };
 
 exports.getDoctorSchedule = function(req, res) {
     let doctorID = req.body.doctor_id; 
     Schedule.find({doctor:doctorID}).populate("doctor").exec(function(err, r) {
-		res.send(r);
+		if(err) {
+			res.send({
+				'status': 'fail',
+				'msg': 'This doctor id is not exist.'
+			});
+			return;
+		}
+		res.send({
+			'status': 'success',
+			'msg': '',
+			'data': r
+		});
 		return;
-    });
+	});
 };

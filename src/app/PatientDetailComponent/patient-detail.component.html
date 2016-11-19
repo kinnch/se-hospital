@@ -1,6 +1,6 @@
 <a class="back" (click)="goback()">< ย้อนกลับ</a>
 <hr>
-<section class = "container">
+<section class = "container" *ngIf="data && found">
     <br>
     <div class="row"> 
         <div class="col-sm-3">
@@ -10,30 +10,34 @@
             <br>
             <div class="row">
                 <div class="col-md-4">
-                    <p><b>ชื่อ : </b>นางสาว กรชนก</p>
+                    <p><b>ชื่อ : </b>{{data['patient_data']['name']['title']}}{{data['patient_data']['name']['fname']}}</p>
                 </div>  
                 <div class="col-md-4">
-                    <p><b>นามสกุล : </b>จิรเวศยกุล</p>    
+                    <p><b>นามสกุล : </b>{{data['patient_data']['name']['lname']}}</p>    
                 </div>
                 <div class="col-md-4">
-                    <p><b>HN : </b>XXXXXXXX</p>    
+                    <p><b>HN : </b> {{data['patient_data']['HN']}}</p>    
                 </div> 
             </div>
             <div class="row">
                 <div class="col-md-4">
-                    <p><b>เพศ : </b>หญิง</p>
+                    <p><b>เพศ : </b> {{data['patient_data']['sex']}}</p>
                 </div>  
                 <div class="col-md-4">
-                    <p><b>อายุ : </b>21 ปี 10 เดือน</p>    
+                    <p><b>อายุ : </b> {{year}} ปี {{month}} เดือน</p>    
                 </div> 
                 <div class="col-md-4"> 
-                    <p><b>กรุ๊ปเลือด : </b> A </p> 
+                    <p><b>กรุ๊ปเลือด : </b> {{data['patient_data']['bloodType']}} </p> 
                 </div>
             </div>
         </div>    
     </div>
     <hr>
     <br>
-    <patient-physical-check-c *ngIf="router.url == '/manage/physical_check/11'"></patient-physical-check-c>
-    <diagnosis-c *ngIf="router.url == '/manage/diagnosis/11'"></diagnosis-c>
+
+    <patient-physical-check-c>
+    </patient-physical-check-c>
+    
+    <diagnosis-c>
+    </diagnosis-c>
 </section>
