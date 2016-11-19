@@ -32,13 +32,20 @@ export class PrescriptionFormComponent implements OnInit{
         console.log('=========');
         console.log(this.data);
         //this.newPres = [];
-        
-        this.data['prescriptions'].forEach((d)=>{
+        var ok =true;
+        try {
+           this.data['prescriptions']; 
+        } catch (error) {
+            ok = false;
+        }
+        if(ok){
+            this.data['prescriptions'].forEach((d)=>{
             this.prescriptionList.push({id: this.currentId, drugName: d.drug.name, amount: d.amount, detail: d.detail });
             //this.newPres.push({id: this.currentId, drugName: d.drug.name, amount: d.amount, detail: d.detail });
             this.currentId++;
-            
-        })
+            })
+        }
+        
         // this.newPres = this.prescriptionList;
     }
     ngAfterViewInit(){
