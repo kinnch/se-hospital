@@ -11,7 +11,7 @@ import { AppointmentService } from '../../services/appointment.service';
 export class PatientListElementComponent implements OnInit{
     @Input() oneData;
     @Input() linkToWhere;
-    @Output() checkinSuccess = new EventEmitter();
+    @Output() checkinSuccess : EventEmitter<JSON> = new EventEmitter<JSON>();//: EventEmitter<JSON> = new EventEmitter<JSON>();// = new EventEmitter();
     constructor(private router: Router, private appointmentService : AppointmentService ) {
     }
     ngOnInit() {
@@ -19,19 +19,20 @@ export class PatientListElementComponent implements OnInit{
     checkIn(id:string){
         console.log(id);
         var self = this;
-        console.log("emitttttt");
-        this.checkinSuccess.emit('test');
-        console.log("emitttttted");
-        // this.appointmentService.checkInAppointment(id)
-        // .then((data)=>{
-        //     console.log(data);
-        //     if(data['status']=='success'){
-        //         console.log('checkin passed');
-        //         console.log(this.oneData);
-        //         self.checkinSuccess.emit("xxxx");
-        //         console.log("patient-list-element : emitted");
-        //     }
-        // });
+        // console.log("emitttttt");
+        // this.checkinSuccess.emit('test');
+        // console.log("emitttttted");
+        this.appointmentService.checkInAppointment(id)
+        .then((data)=>{
+            console.log(data);
+            if(data['status']=='success'){
+                console.log('checkin passed');
+                console.log(this.oneData);
+                var toBeSend = this.oneData;
+                self.checkinSuccess.emit(toBeSend);
+                
+            }
+        });
 
     }
 }

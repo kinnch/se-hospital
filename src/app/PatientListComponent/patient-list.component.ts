@@ -71,9 +71,17 @@ export class PatientListComponent implements OnInit {
     goto(hn):void{
         this.router.navigate(['manage','patient',hn]);
     }
-    handle(event):void{
+    handle(message:JSON):void{
         console.log('handler');
-        console.log(event);
+        console.log(message);
+        this.withDoctorApt.push(message);
+        var newPhysicalCheckedApt = [];
+        for(var i = 0; i<this.physicalCheckedApt.length; i++){
+            if(this.physicalCheckedApt[i]['_id']!=message['_id']){
+                newPhysicalCheckedApt.push(this.physicalCheckedApt[i]);
+            }
+        }
+        this.physicalCheckedApt = newPhysicalCheckedApt;
     }
     dataAllPatientToday;
     // getPatientTodayState(){                  

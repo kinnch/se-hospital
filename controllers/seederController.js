@@ -583,13 +583,13 @@ exports.seed = function(req, res) {
     // DrugPrescriptions  N=9
     var drugPrescriptions = [
         new DrugPrescription({
-            status: 2,
+            status: 3,
             inspectedBy: null,
             note: null,
             prescriptions: [prescriptionDrugs[0]._id, prescriptionDrugs[1]._id]
         }),
         new DrugPrescription({
-            status: 2,
+            status: 3,
             inspectedBy: null,
             note: null,
             prescriptions: [prescriptionDrugs[2]._id]
@@ -625,13 +625,13 @@ exports.seed = function(req, res) {
             prescriptions: [prescriptionDrugs[4]._id, prescriptionDrugs[0]._id]
         }),
          new DrugPrescription({
-            status: 2, // pharmacist approved
+            status: 3, // pharmacist approved
             inspectedBy: null,
             note: null,
             prescriptions: [prescriptionDrugs[4]._id, prescriptionDrugs[0]._id]
         }),
          new DrugPrescription({
-            status: 2, // pharmacist approved
+            status: 3, // pharmacist approved
             inspectedBy: null,
             note: null,
             prescriptions: [prescriptionDrugs[1]._id, prescriptionDrugs[3]._id,prescriptionDrugs[0]._id,prescriptionDrugs[4]._id]

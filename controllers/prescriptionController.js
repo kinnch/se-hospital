@@ -259,3 +259,13 @@ exports.getPrescription = function(req, res){
             return;
         })
 }
+
+exports.getAllDrugs = function(req, res){
+    Drug.find({},function(err,drugs){
+        res.send({
+            status: 'success',
+            msg: drugs
+        });
+        return;
+    });
+}

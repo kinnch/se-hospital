@@ -35,7 +35,7 @@ export class PrescriptionHistoryComponent{
         .then((data) => {
             var i, j, date;
             for(i = 0 ; i < data.length ; i++){
-                if(data[i].drugPrescription.status == 2){
+                   if(data[i].drugPrescription.status == 3 && moment_(data[i].date).format('ll') != moment_().format('ll')){
                    date = moment_(data[i]['date']).format('ll'); 
                    for(j  = 0 ; j < data[i].drugPrescription.prescriptions.length; j++){
                        if(j == 0){
@@ -49,6 +49,7 @@ export class PrescriptionHistoryComponent{
                        this.dataPack.push(data[i]['drugPrescription']['prescriptions'][j]);
                    }
                 }
+                
             }
         });
   }
