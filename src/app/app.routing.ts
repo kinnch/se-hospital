@@ -124,17 +124,17 @@ const appRoutes: Routes = [
       {
         path: 'manage_doctor_calendar',
         component: ManageDoctorCalendarComponent,
-        canActivate: [LoggedInGuard, StaffGuard]
+        canActivate: [LoggedInGuard]
       },
       {
         path: 'doctor_calendar',
         component: DoctorCalendarComponent,
-        canActivate: [LoggedInGuard, DoctorGuard]
+        canActivate: [LoggedInGuard]
       },
       {
         path: 'doctor_calendar/:hn',
         component: DoctorCalendarComponent,
-        canActivate: [LoggedInGuard,DoctorGuard]
+        canActivate: [LoggedInGuard]
       },
      
       {

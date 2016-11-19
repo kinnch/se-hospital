@@ -62,7 +62,7 @@ module.exports = function(app) {
     });
     //patientController.setDBConnectionsFromApp(app);
 
-   
+    var notificationController = require('../controllers/notificationController');
 
     var patientController = require('../controllers/patientController');
     app.get('/testing',  patientController.testing);
