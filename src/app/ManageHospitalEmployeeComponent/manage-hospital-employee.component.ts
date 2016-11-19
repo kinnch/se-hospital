@@ -116,7 +116,13 @@ export class ManageHospitalEmployeeComponent implements OnInit{
             if(res == "success"){
                 this.removeEmpRole(roleID,staffId);
                 // this.getEachDepStaff(this.departmentId);
+                this.toast.titleSuccess = "ลบสำเร็จ"
+                this.toast.messageSuccess = "";
+                this.toast.addToastSuccess();
                 console.log("deleted");
+            }
+            else{
+                this.toast.addToastError();
             }
         })
     }
@@ -126,6 +132,8 @@ export class ManageHospitalEmployeeComponent implements OnInit{
                 this.selectedPass = "";
                 this.selectedConfirmPass = "";
                 console.log("confirm")
+                this.toast.titleSuccess = "บันทึกสำเร็จ"
+                this.toast.messageSuccess = "ทำการบันทึกข้อมูลเรียบร้อยแล้ว";
                 this.toast.addToastSuccess();
             }
             else{

@@ -1,7 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild} from '@angular/core';
 import { Router } from '@angular/router';
 import { HospitalEmployeeService } from '../../services/hospital-employee.service';
 import { DepartmentService } from '../../services/department.service';
+import { ToastComponent } from '../ToastComponent/toast.component';
 
 @Component({
     selector: 'add-hospital-employee-c',
@@ -10,6 +11,7 @@ import { DepartmentService } from '../../services/department.service';
 })
 
 export class AddHospitalEmployeeComponent implements OnInit {
+    @ViewChild( ToastComponent ) toast :ToastComponent;
     title:string;
     fname:string;
     lname:string;
@@ -36,6 +38,8 @@ export class AddHospitalEmployeeComponent implements OnInit {
         .then((res)=>{
                         if (res == "success") {
                             this.router.navigate(['manage','manage_staff']);
+                        } else{
+                            this.toast.addToastError();
                         }
         });
     }
