@@ -52,3 +52,24 @@ exports.showHistory = function(req, res){
     });
 }
 
+exports.editPhysicalCheck = function(req, res){
+    var data = req.body;
+    var nurse_id = "580bacaf7f4d291550f67adb",
+        physical_id = data.physicalId;
+    PhysicalData.findOne({_id: data.physicalId},function(err,physical){
+            physical.bloodPresure.systolic = data.systolic;
+            physical.bloodPresure.diastolic = data.diastolic;
+            physical.heartRate = data.heartRate;
+            physical.weight = data.weight;
+            physical.height = data.height;
+            physical.temp = data.temp;
+            physical.patient = patient._id;
+            physical.nurse = nurse_id;
+            physical.date = new Date();
+            physical.save();
+    });
+
+                
+
+}
+
