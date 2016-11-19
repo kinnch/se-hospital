@@ -7,9 +7,8 @@
 [timeoutError] = fill duration before toast error disappear: miliseconds 
 
 How to Use
-
-Success : use addToastSuccess()
-Error : use addToastError()
-
+- add <toast></toast> somewhere
+- Success : use addToastSuccess()
+- Error : use addToastError()
 
 and others : see on toast.component.ts

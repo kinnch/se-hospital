@@ -48,6 +48,26 @@ export class PrescriptionService {
                         return res.json();
                     });
     }
+
+    private apiUrlPresRequestApprove = 'api/pharma/prescription/requestApprove';
+     setPrescriptionRequestApprove(prescriptionID:string): Promise<JSON>{
+        return this.http
+                    .post(this.apiUrlPresRequestApprove, JSON.stringify({prescriptionID : prescriptionID}), {headers: this.headers})
+                    .toPromise()
+                    .then(function(res){
+                        return res.json();
+                    });
+    }
+
+    private apiUrlSendChangeRequest = '/api/pharma/prescription/requestChange';
+    sendChangeRequest(prescriptionID:string, pharmaID:string, reason:string): Promise<JSON>{
+        return this.http
+                    .post(this.apiUrlSendChangeRequest, JSON.stringify({prescriptionID : prescriptionID, pharmaID:pharmaID, reason:reason}), {headers: this.headers})
+                    .toPromise()
+                    .then(function(res){
+                        return res.json();
+        });
+    }
     
     getPrescriptionElements() : PrescriptionListElement[] {
         return [

@@ -49,16 +49,24 @@ export class StaffComponent{
                             "/resources/images/icon_people/m_staff.png";
             
         });
+        //TODO
         if(this.router.url === '/manage/manage_doctor_calendar'){
             this.activatedClass = 2;
-        } else if(this.router.url === '/manage/manage_queue'){
+        }
+        if(this.router.url === '/manage/manage_queue'){
             this.activatedClass = 4;
-        } else if(this.router.url === '/manage/patient'){
+        }
+        if(this.router.url === '/manage/manage_queue'){
             this.activatedClass = 5;
-        } else if(this.router.url === '/manage/prescription_request'){
+        }
+        if(this.router.url === '/manage/prescription_request'){
             this.activatedClass = 6;
-        } else if(this.router.url === '/manage/edit_prescription_request'){
+        }
+        if(this.router.url === '/manage/edit_prescription_request'){
             this.activatedClass = 7;
+        }
+        if(this.router.url === '/manage/manage_queue'){
+            this.activatedClass = 8;
         }
     }
     
@@ -84,8 +92,10 @@ export class StaffComponent{
             link = ['manage','manage_queue']
         } else if(menu===6){ // 6 รายการยา
             link = ['manage','prescription_request']
-        } else if(menu===7){ // 6 แก้ไขรายการยา
+        } else if(menu===7){ // 7 แก้ไขรายการยา
             link = ['manage','edit_prescription_request']
+        } else if(menu===8){ // 8 บันทึกการวินิจฉัย
+            link = ['manage','manage_queue'];
         }
         this.router.navigate(link);
     }

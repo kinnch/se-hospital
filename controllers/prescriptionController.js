@@ -92,11 +92,22 @@ exports.updateStatus = function(reg, res){
     return;
 }
 
-exports.changeRequest = function(reg, res){
-    Prescription.findOne({_id: reg.body.id}, function(err, prescription){
-        prescription.note = reg.body.reason;
+exports.requestChange = function(req, res){
+    Prescription.findOne({_id: req.body.prescriptionID}, function(err, prescription){
+        if(prescription.status != 1){
+            return res.send({
+                status : "fail",
+                msg : "prescription status not equal to 1"
+            });
+        }
+        prescription.note = req.body.reason;
+        prescription.status = 0;
+        prescription.inspectedBy = req.body.pharmaID;
         prescription.save();
-        res.send('done');
+        res.send({
+                status : "success",
+                msg : ""
+            });
     });
     return;
 }
