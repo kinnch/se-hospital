@@ -52,3 +52,13 @@ exports.deleteAppointment = function(req, res){
          })
      });
 };
+
+exports.changeAppointmentState = function(req, res){
+    //return res.send(req.body);
+    Appointment.update({_id:req.body.appointmentID},
+        {status: req.body.newState},
+        function(err,data){
+            if(err) return res.send("Fail");
+            return res.send("Success");
+        });
+};

@@ -74,6 +74,9 @@ module.exports = function(app) {
     var scheduleController = require('../controllers/scheduleController');
     app.post('/api/schedule/getTable',  scheduleController.getTable);
     app.post('/api/appointment/delete', scheduleController.deleteAppointment);
+    app.post('/api/appointment/changeState', scheduleController.changeAppointmentState);
+    ///api/appointment/changeState
+    
 
     var diagnosisDataController = require('../controllers/diagnosisDataController');
     app.post('/api/diagnosisHistory', diagnosisDataController.diagnosisHistory);
@@ -92,8 +95,6 @@ module.exports = function(app) {
     app.post('/loginPatient', patientController.login);
     app.post('/registerPatient', patientController.register);
     app.get('/loginPatient', patientController.getLogin);
-
-    
 
     var otpController = require('../controllers/otpController');
     app.post('/requestOTP', otpController.requestOTP);
