@@ -171,6 +171,7 @@ exports.create = function(req, res){
 };
 
 exports.diagnosisHistory = function(req, res){
+    //TODO have to fix ?
     Drug.find({}, function(err, all_drug){
     Patient.findOne({HN: req.body.HN}, function(err, patient){
         Diagnosis.find({}, function(err, diagnosises){
