@@ -1,8 +1,9 @@
-import {Component, Input, onInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Router } from '@angular/router';
 
 import { PatientService } from '../../services/patient.service';
+import { AppointmentService } from '../../services/appointment.service';
 import * as moment_ from 'moment';
 
 @Component({
@@ -32,8 +33,11 @@ export class PatientPanelComponent implements OnInit {
 
 	patient_data: any;
 
+	appointments: any[];
+
     constructor(private router: Router,
-                private PatientService:PatientService) {
+                private PatientService: PatientService,
+				private AppointmentService: AppointmentService) {
     }
 
     ngOnInit():void{
@@ -85,10 +89,11 @@ export class PatientPanelComponent implements OnInit {
 
 		this.patient_sex = localStorage.getItem('patient_sex');
 
-		this.AppointmentService.getPatientAndAppointment(this.patient_id).then((p_data)=>{
+		this.AppointmentService.getPatientAndAppointment(this.patient_nationalID).then((p_data)=>{
 			this.patient_data = p_data;
+			this.appointments = p_data['appoint'];
 			console.log(this.patient_data);
-		}
+		});
 
     }
 }
