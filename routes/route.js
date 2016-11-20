@@ -69,7 +69,7 @@ module.exports = function(app) {
     var patientController = require('../controllers/patientController');
     app.get('/testing',  patientController.testing);
     app.post('/api/patient/search',  patientController.search);
-    app.post('api/patient/register', patientController.register);
+    app.post('/api/patient/register', patientController.register);
 
     var seederController = require('../controllers/seederController');
     app.get('/seed',  seederController.seed);
@@ -118,7 +118,7 @@ module.exports = function(app) {
     app.post('/api/patient/diagnosisHistory',diagnosisDataController.getPatientDiagnosisHistory);
     app.post('/api/diagnosis/create', diagnosisDataController.create);
     app.post('/api/getDiagnosisAndPhysicalCheck',diagnosisDataController.getDiagnosisAndPhysicalCheck);
-
+    app.get('/api/diseases',diagnosisDataController.getAllDiseases);
     //patientController.setDBConnectionsFromApp(app);
     
     app.get('/api/employees',hospitalEmployeeController.getAllEmployee);

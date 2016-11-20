@@ -31,4 +31,21 @@ export class DiagnosisService {
                         return res.json();
                     });
     }
+    getAllDisease() : Promise<JSON> {
+        return this.http
+                    .get('/api/diseases')
+                    .toPromise()
+                    .then(data => {
+                        return data.json();
+                    });
+    }
+    addDiagnosis(data:any) : Promise<JSON> {
+        return this.http
+                    .post('/api/diagnosis/create', JSON.stringify(data)
+                    , {headers: this.headers})
+                    .toPromise()
+                    .then(function(res){
+                        return res.json();
+                    });
+    }
 }
