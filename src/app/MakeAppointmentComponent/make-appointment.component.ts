@@ -3,6 +3,9 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { DepartmentService } from '../../services/department.service';
+import {Subscription } from 'rxjs';
+
+
 import * as moment_ from 'moment';
 // departments: string[] = [];
 
@@ -13,6 +16,7 @@ import * as moment_ from 'moment';
 })
 
 export class MakeAppointComponent implements OnInit{
+    private subscription: Subscription;
 
     departments = [];
     doctors = [];
@@ -34,9 +38,12 @@ export class MakeAppointComponent implements OnInit{
 
     isWalkIn:boolean = false;
 
+    patientID: string;
+
     constructor(private router: Router,
                 private location: Location,
-                private DepartmentService: DepartmentService) {
+                private DepartmentService: DepartmentService,
+                private activatedRoute: ActivatedRoute) {
     }
 
     ngOnInit():void{
@@ -45,7 +52,20 @@ export class MakeAppointComponent implements OnInit{
             this.departments = departments['departments'];
             console.log(this.departments)
         });
+
+    // subscribe to router event
+    this.subscription = this.activatedRoute.params.subscribe(
+      (param: any) => {
+        this.patientID = param['paID'];
+        console.log('----->');
+        console.log(this.patientID);
+      });
     }
+
+      ngOnDestroy() {
+    // prevent memory leak by unsubscribing
+    this.subscription.unsubscribe();
+  }
 
     getAllList():void{
         console.log(this.isWalkIn);

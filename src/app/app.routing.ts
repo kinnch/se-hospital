@@ -70,7 +70,7 @@ const appRoutes: Routes = [
         component: PatientPanelComponent
       },
       {
-        path: 'patient/create_appointment',
+        path: 'patient/create_appointment/:paID',
         component: MakeAppointComponent
       }
     ]

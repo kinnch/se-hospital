@@ -189,3 +189,11 @@ exports.getDoctorSchedule = function(req, res) {
 		return;
 	});
 };
+
+//peak
+exports.delete = function(req, res){
+    //return res.send(req.body);
+    Schedule.findOne({_id: req.body.scheduleID}, function(err,data){
+        return res.send(data.appointments);
+    });
+}
