@@ -48,4 +48,9 @@ export class AddHospitalEmployeeComponent implements OnInit {
                         }
         });
     }
+    validate():void{
+        if(/^[0E00-0E7F|a-z|A-Z|\.]+$/.test(this.title)){
+
+        }
+    }
 }
