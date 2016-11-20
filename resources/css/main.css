@@ -531,14 +531,32 @@ footer {
       background-attachment: scroll;
 }
 
-@media (max-width: 991px){
-  .navbar-header-snow {
-    float:left;
-  }
+
+
+@media (min-width: 768px)
+.navbar-collapse.collapse {
+    display: block!important;
+    height: auto!important;
+    padding-bottom: 0;
+    overflow: visible!important;
 }
-@media (min-width: 992px){
+@media (min-width: 768px)
+.navbar-collapse {
+    width: auto;
+    border-top: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+
+@media (max-width: 768px){
   .navbar-header-snow {
     float:none;
+  }
+}
+@media (min-width: 768px){
+  .navbar-header-snow {
+    float:left;
   }
 }
 
