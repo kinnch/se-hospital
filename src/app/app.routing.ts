@@ -6,6 +6,7 @@ import { StaffGuard } from './staff.guard';
 import { NurseGuard } from './nurse.guard';
 import { PharmacistGuard } from './pharmacist.guard';
 import { ManageQueueGuard } from './manage-queue.guard';
+import { PrescriptionHistoryGuard } from './prescription-history.guard';
 import { UserService } from '../services/user.service';
 
 import { PatientComponent } from './PatientComponent/patient.component';
@@ -120,21 +121,21 @@ const appRoutes: Routes = [
         path: 'add_staff',
         component: AddHospitalEmployeeComponent,
         canActivate: [LoggedInGuard, StaffGuard]
-      }, //TODO : calendar
+      },
       {
         path: 'manage_doctor_calendar',
         component: ManageDoctorCalendarComponent,
-        canActivate: [LoggedInGuard]
+        canActivate: [LoggedInGuard, StaffGuard]
       },
       {
         path: 'doctor_calendar',
         component: DoctorCalendarComponent,
-        canActivate: [LoggedInGuard]
+        canActivate: [LoggedInGuard, DoctorGuard]
       },
       {
         path: 'doctor_calendar/:hn',
         component: DoctorCalendarComponent,
-        canActivate: [LoggedInGuard]
+        canActivate: [LoggedInGuard, DoctorGuard]
       },
      
       {
@@ -155,7 +156,7 @@ const appRoutes: Routes = [
       {
         path: 'prescription_request/:hn',
         component: PrescriptionHistoryComponent,
-        canActivate: [LoggedInGuard, PharmacistGuard]
+        canActivate: [LoggedInGuard, PrescriptionHistoryGuard]
       },
       {
         path: 'edit_prescription_request',
