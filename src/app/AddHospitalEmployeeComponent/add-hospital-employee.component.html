@@ -9,18 +9,21 @@
             <label class="col-xs-4 col-form-label right">คำนำหน้าชื่อ</label>
             <div class="col-xs-6">
                 <input class="form-control" type="text" [(ngModel)]="title">
+                <small class="text-danger">{{errorTitle}}</small>
             </div>
         </div> 
         <div class="form-group row">
             <label class="col-xs-4 col-form-label right">ชื่อ</label>
             <div class="col-xs-6">
                 <input class="form-control" type="text" [(ngModel)]="fname">
+                <small class="text-danger">{{errorFname}}</small>                
             </div>
         </div> 
         <div class="form-group row">
             <label class="col-xs-4 col-form-label right">นามสกุล</label>
             <div class="col-xs-6">
                 <input class="form-control" type="text" [(ngModel)]="lname">
+                <small class="text-danger">{{errorLname}}</small>                
             </div>                
         </div>
         <!--<div class="form-group row">
@@ -37,18 +40,21 @@
             <label class="col-xs-4 col-form-label right">Username</label>
             <div class="col-xs-6">
                 <input class="form-control" type="text" [(ngModel)]="username">
+                <small class="text-danger">{{errorUsername}}</small>                                
             </div>                
         </div> 
         <div class="form-group row">
             <label class="col-xs-4 col-form-label right">Password</label>
             <div class="col-xs-6">
                 <input class="form-control" type="password" [(ngModel)]="password">
+                <small class="text-danger">{{errorPassword}}</small>                                
             </div>                
         </div> 
         <div class="form-group row"> 
             <label class="col-xs-4 col-form-label right">Confirm Password</label>
             <div class="col-xs-6">
                 <input class="form-control" type="password" [(ngModel)]="confirmPassword">
+                <small class="text-danger">{{errorConfirmPassword}}</small>                                
             </div>                
         </div> 
         <div class="form-group row">
@@ -61,6 +67,7 @@
                     <option value=4>เภสัชกร</option>
                     <option value=1>เจ้าหน้าที่ของโรงพยาบาล</option>
                 </select>
+                <small class="text-danger">{{errorRole}}</small>                                                
             </div>                          
         </div>
         <div class="form-group row">
@@ -68,8 +75,9 @@
             <div class="col-xs-6">
                 <select class="form-control" [(ngModel)]="department">
                     <option value="0" selected disabled>กรุณาเลือกแผนก</option>
-                    <option value="{{dep.name}}" *ngFor="let dep of departments" >{{dep.name}}</option>
+                    <option value="{{dep.name}}" *ngFor="let dep of departments" >{{dep.name}}</option>                               
                 </select>
+                <small class="text-danger">{{errorDepartment}}</small> 
             </div>                
         </div> 
     </div>

@@ -40,7 +40,7 @@ exports.sendSMS = function(req,res){
     // });
     return res.send({
                 status : "success",
-                msg : "test : it's ok"
+                msg : message
             })
 }
 
