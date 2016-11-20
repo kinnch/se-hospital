@@ -81,7 +81,7 @@ export class PatientPhysicalCheckComponent implements OnInit {
                         hours=hours%12;
                         mid='pm';
                     }
-                    this.appointmentService.getTodayAppointments(this.departmentId,'am').then((data)=>{
+                    this.appointmentService.getTodayAppointments(this.departmentId,mid).then((data)=>{
                         console.log("data",data)
                         var appointmentId = "";
                         var scheduleList = data['scheduleList'];
