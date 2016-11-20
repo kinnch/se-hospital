@@ -78,6 +78,7 @@ exports.getPatientDiagnosisHistory = function(req,res){
         res.send({diagnosisHistory: data});
     });
 }
+
 // exports.add = function(req, res){
 //     //return req;
 //     var data = (req.body);

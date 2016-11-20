@@ -22,6 +22,40 @@ export class DepartmentService {
                         return data.json();
                     });
     }
+    getAllDoctor(departmentID : string): Promise<JSON>{
+        return this.http
+        .post('api/hospitalEmployee/getAllDoctorInDepartment', JSON.stringify({
+            departmentID: departmentID
+            }), {headers: this.headers})
+                    .toPromise()
+                    .then(function(res){
+                        console.log(res.json());
+                        return res.json();
+                    });
+    }
+
+    getDoctorSchedule(doctorID : string): Promise<JSON>{
+        return this.http
+        .post('api/doctorAvailable', JSON.stringify({
+            doctor_id: doctorID
+            }), {headers: this.headers})
+                    .toPromise()
+                    .then(function(res){
+                        return res.json();
+                    });
+    }
+
+    getAllSchedule(departmentID : string):  Promise<JSON>{
+        return this.http
+        .post('/api/schedule/all', JSON.stringify({
+            departmentID: departmentID
+            }), {headers: this.headers})
+                    .toPromise()
+                    .then(function(res){
+                        return res.json();
+                    });
+    }
+    /*
     getAllDoctor(departmentID : string ,timePeriod : string): Promise<JSON>{
         return this.http
         .post('api/timeperiodDoctor', JSON.stringify({
@@ -34,4 +68,5 @@ export class DepartmentService {
                         return res.json();
                     });
     }
+    */
 }

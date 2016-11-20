@@ -68,6 +68,8 @@ export class StaffComponent{
             this.activatedClass = 7;
         } else if(this.userRoleId == "2" && this.router.url === '/manage/manage_queue'){
             this.activatedClass = 8;
+        } else if(this.userRoleId == "2" && this.router.url === '/manage/doctor_calendar'){
+            this.activatedClass = 9;
         } else{
             let link = [];
             if(this.userRoleId == "1"){
@@ -113,6 +115,8 @@ export class StaffComponent{
             link = ['manage','edit_prescription_request']
         } else if(menu===8){ // 8 บันทึกการวินิจฉัย
             link = ['manage','manage_queue'];
+        } else if(menu===9){ // 9 จัดการตารางออกตรวจ
+            link = ['manage','doctor_calendar'];
         }
         this.router.navigate(link);
     }

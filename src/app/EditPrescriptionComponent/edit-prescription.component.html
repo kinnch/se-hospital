@@ -6,7 +6,7 @@
         <br>
         <br>
             <div class="contain">
-                <prescription-form-c *ngIf="data" [data] = "data" [(myform)]="newPres"></prescription-form-c>
+                <prescription-form-c *ngIf="data" [data] = "data" (myformChange)="handle($event)"></prescription-form-c>
                 <hr>
                 <div class="row right">
                     <button routerLink="/manage/edit_prescription_request" type="button" class="btn btn-danger" style="width: 15%; min-width: 150px"> ยกเลิก </button>                  

@@ -34,6 +34,15 @@ exports.getAllEmployee = function(req, res){
         return;
     });
 }
+
+exports.getAllDoctorInDepartment = function(req, res){
+    HospitalEmployee.find({roleID: 2, department: req.body.departmentID}, function(err,data){
+        if(err) return res.send({status: "fail"});
+        if(!data) return res.send({status: "fail"});
+        return res.send(data);
+    });
+}
+
 exports.getAllDepartment = function(req, res){
     Department.find({},function(err,departments){
         if(err || !departments){

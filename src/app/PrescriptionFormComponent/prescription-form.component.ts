@@ -13,7 +13,7 @@ import { PrescriptionService } from '../../services/prescription.service';
 export class PrescriptionFormComponent implements OnInit{
     @Input() data;
     @Input() myform : string;
-    @Output() myformChange = new EventEmitter<string>();
+    @Output() myformChange : EventEmitter<string> = new EventEmitter<string>();//: EventEmitter<JSON> = new EventEmitter<JSON>();// = new EventEmitter();
         drugs: any;
 
     prescriptionList : Prescription[] = [];
@@ -32,19 +32,39 @@ export class PrescriptionFormComponent implements OnInit{
         console.log('=========');
         console.log(this.data);
         //this.newPres = [];
-        
-        this.data['prescriptions'].forEach((d)=>{
+        var ok =true;
+        try {
+           this.data['prescriptions']; 
+        } catch (error) {
+            ok = false;
+        }
+        if(ok){
+            this.data['prescriptions'].forEach((d)=>{
             this.prescriptionList.push({id: this.currentId, drugName: d.drug.name, amount: d.amount, detail: d.detail });
             //this.newPres.push({id: this.currentId, drugName: d.drug.name, amount: d.amount, detail: d.detail });
             this.currentId++;
-            
-        })
+            })
+        }
+        
         // this.newPres = this.prescriptionList;
     }
     ngAfterViewInit(){
         
     }
-
+    bindsBack(newValue,i,mode){
+        console.log('myFormChange');
+        if(mode == 1 ){//drugName
+            this.prescriptionList[i]['drugName'] = newValue;
+        }
+        else if(mode == 2){//amount
+            this.prescriptionList[i]['amount'] = newValue;
+        }
+        else if (mode == 3){//detail
+            this.prescriptionList[i]['detail'] = newValue;
+        }
+        console.log(this.prescriptionList);
+        this.myformChange.emit(JSON.stringify(this.prescriptionList));
+    }
     addPrescriptionField() {
         this.myform = 'hello';
         this.prescriptionList.push({id:this.currentId, drugName:"", amount:0, detail:""});
