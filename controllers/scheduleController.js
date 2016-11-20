@@ -52,7 +52,6 @@ exports.getTable = function(reg, res){
 exports.getTableStaff = function(req, res){
    // return res.send(req.body.departmentID);
     HospitalEmployee.find({roleID: 2, department: req.body.departmentID}, function(err, staffs){
-        //Schedule.find({})
         var arr = [];
         for(var i = 0; i < staffs.length; i++){
             arr.push(staffs[i]._id);
@@ -90,10 +89,14 @@ exports.changeAppointmentState = function(req, res){
 
 
 exports.listAll = function(req, res){
-    Schedule.find({}).populate({path:'doctor', match: {department: req.body.departmentID}})
+    Schedule.find({}).sort({date: 1, timePeriod: 1}).populate({path:'doctor', match: {department: req.body.departmentID}})
     .exec(function(err,result){
         if(err) return res.send({status: 'Fail'});
         if(!result) return res.send({status: 'Fail'});
+        result = result.filter(function(doc){
+            if(res.user != null && req.body.isWalkIn) return doc.appointments.length < 20;
+            return doc.appointments.length < 15;
+        });
         return res.send({status: 'Success', data: result});
     });
 }
@@ -101,18 +104,17 @@ exports.listAll = function(req, res){
 
 exports.getDoctorSchedule = function(req, res) {
     let doctorID = req.body.doctor_id; 
-    Schedule.find({doctor:doctorID}).populate("doctor").exec(function(err, r) {
-		if(err || !r) {
-			res.send({
-				'status': 'fail',
-				'msg': 'This doctor id is not exist.'
-			});
-			return;
-		}
+    Schedule.find({doctor:doctorID}).sort({date: 1, timePeriod: 1}).populate("doctor").exec(function(err, result) {
+		if(err) return res.send({status: 'Fail'});
+        if(!result) return res.send({status: 'Fail'});
+        result = result.filter(function(doc){
+            if(res.user != null && req.body.isWalkIn) return doc.appointments.length < 20;
+            return doc.appointments.length < 15;
+        });
 		res.send({
-			'status': 'success',
+			'status': 'Success',
 			'msg': '',
-			'data': r
+			'data': result
 		});
 		return;
 	});

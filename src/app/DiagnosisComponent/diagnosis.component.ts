@@ -43,8 +43,8 @@ export class DiagnosisComponent {
         this.router.navigate(['manage','patient','check',hn]);
     }
 
-    addDia(hn):void{
-        this.router.navigate(['manage', 'diagnosis', 'add', hn]);
+    addDiagnosis():void{
+        this.router.navigate(['manage', 'diagnosis', 'add', this.HN]);
     }
     
     addApp(hn, doctor_id, department_id): void{
