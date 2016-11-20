@@ -98,12 +98,100 @@ export class DoctorCalendarComponent implements AfterViewInit, OnInit {
 
     getData(){
         this.elementService.getDoctorDateElements().then((data) => {
-             this.selectedEvent = data["table"];
+             this.schedule = data["table"];
              this.doctor = data["thisdoctor"];
-             this.selectedEvent.forEach((e) => {
-                 console.log(e);
+             this.schedule.forEach((e) => {
+                //  console.log(e);
+                 e["isOperate"] = false;
+                this.doctor.forEach((d) => {
+                    if(e["_id"]["date"] == d["date"] && e["_id"]["period"] == d["timePeriod"]){
+                        e["isOperate"] = true;
+                        var tmp_patient = [];
+                        d["appointments"].forEach((p) => {
+                            tmp_patient.push({
+                                name : p["patient"]["name"]["title"]+" "+p["patient"]["name"]["fname"]+" "+p["patient"]["name"]["lname"],
+                                reason : p["reason"],
+                                status : p["status"]
+                            });
+                        });
+                        e["patientsNameList"] = tmp_patient; 
+                        // console.log(e);
+                    }
+                });
              });
+             // find sort and insert between
+            //  var maxDate =moment(this.schedule[0]["_id"]["date"]);
+            //  var minDate =moment(this.schedule[0]["_id"]["date"]);
+            //  this.schedule.forEach((e) => {
+            //      var tmp_date = moment(e["_id"]["date"]);
+            //      if( maxDate.isBefore(tmp_date)  ){
+            //          maxDate = tmp_date;
+            //      }
+            //      else if(minDate.isAfter(tmp_date)){
+            //          minDate = tmp_date;
+            //      }
+            //  });
+            this.schedule.sort(function (a ,b){
+                if(new Date(a['_id']['date'])>new Date(b['_id']['date'])){
+                    // console.log("1");
+                    return 1;
+                }else if( new Date(a['_id']['date'])==new Date(b['_id']['date']) ){
+                    if(( a['_id']['period'] == "am" && b['_id']['period'] == "am" )||( a['_id']['period'] == "pm" && b['_id']['period'] == "pm" ) ){
+                        // console.log("2");
+                        return 0;
+                    }else if(  a['_id']['period'] == "pm" && b['_id']['period'] == "am" ){
+                        // console.log("3");
+                        return 1;
+                    }else{
+                        // console.log("4");
+                        return -1;
+                    }
+                }else{
+                    // console.log("5");
+                    return -1;
+                }
+            });
+            // add missing Date
+                var tmp = [];
+             
+            for(var i = 0; i < this.schedule.length ; i++){
+
+            }
+
+            console.log("++++++++++++++++++");
+            // for(var i=0;i<tmp.length;i++){
+            //     console.log(tmp[i]["_id"]["date"], " ", tmp[i]["_id"]["period"] );
+            // }
+            
+
         });
+    }
+
+    compare (a ,b){
+        if(new Date(a['_id']['date'])>new Date(b['_id']['date'])){
+            // console.log("1");
+            return 1;
+        }else if( new Date(a['_id']['date'])==new Date(b['_id']['date']) ){
+            if(( a['_id']['period'] == "am" && b['_id']['period'] == "am" )||( a['_id']['period'] == "pm" && b['_id']['period'] == "pm" ) ){
+                // console.log("2");
+                return 0;
+            }else if(  a['_id']['period'] == "pm" && b['_id']['period'] == "am" ){
+                // console.log("3");
+                return 1;
+            }else{
+                // console.log("4");
+                return -1;
+            }
+        }else{
+            // console.log("5");
+            return -1;
+        }
+    }
+    addDays(date,days)
+    {
+        var dat = date;
+        dat.setDate(dat.getDate() + days);
+        return dat;
     }
     
 }

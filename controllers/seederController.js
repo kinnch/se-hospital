@@ -30,6 +30,12 @@ function getDateYesterday(){
     return this_date;
 }
 
+function getDateSomeday(){
+    var this_date = new Date(new Date().getTime() - 24 * 3 * 3600 * 1000 + 7 * 3600 * 1000);
+    this_date = new Date(this_date.getFullYear()+'-'+(this_date.getMonth() + 1)+"-"+this_date.getDate());
+    return this_date;
+}
+
 
 exports.seed = function(req, res) {
     //Drugs N=7
@@ -448,13 +454,25 @@ exports.seed = function(req, res) {
             timePeriod: 'am',
             date: getDateNow(),
             doctor: hospitalEmployees[1]._id,
-            appointments: [appointments[7]._id, appointments[2]._id, appointments[4]._id, appointments[5]._id, appointments[8]._id]
+            appointments: [appointments[7]._id,  appointments[4]._id, appointments[5]._id, appointments[8]._id]
         }),
         new Schedule({
             timePeriod: 'pm',
             date: getDateNow(),
             doctor: hospitalEmployees[1]._id,
-            appointments: [appointments[1]._id,appointments[3]._id]
+            appointments: [appointments[1]._id]
+        }),
+        new Schedule({
+            timePeriod: 'pm',
+            date: getDateSomeday(),
+            doctor: hospitalEmployees[1]._id,
+            appointments: [appointments[2]._id]
+        }),
+        new Schedule({
+            timePeriod: 'am',
+            date: getDateSomeday(),
+            doctor: hospitalEmployees[0]._id,
+            appointments: [appointments[3]._id]
         })
     ];
 
