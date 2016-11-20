@@ -24,12 +24,14 @@ export class PatientPhysicalCheckComponent implements OnInit {
     HN: string;
     isAdd: boolean = false;
     buttonName: string = 'บันทึก';
+    userRoleId = "";
     private subscription: Subscription;
     constructor(private router: Router, 
                 private physicalCheckService: PhysicalCheckService,
                 private activatedRoute: ActivatedRoute,
                 ) { }
     ngOnInit(): void {
+        this.userRoleId = localStorage.getItem('user_roleID');
         moment_.locale('th');
         this.subscription = this.activatedRoute.params.subscribe(
             (param: any) => {
