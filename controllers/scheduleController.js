@@ -89,8 +89,6 @@ exports.importCSV = function(req,res){
         });
 }
 exports.getTable = function(reg, res){
-    //res.send(getDateNow());
-    //return res.send(reg.body.department);
     Department.findOne({name: reg.body.department}, function(err, department){
         Schedule.aggregate([
         {
@@ -159,10 +157,15 @@ exports.changeAppointmentState = function(req, res){
 
 
 exports.listAll = function(req, res){
-    Schedule.find({}).sort({date: 1, timePeriod: 1}).populate({path:'doctor', match: {department: req.body.departmentID}})
-    .exec(function(err,result){
+    Schedule.find({}).sort({date: 1, timePeriod: 1}).populate({
+        path:'doctor',
+        match: {department: req.body.departmentID}
+    }).exec(function(err,result){
         if(err) return res.send({status: 'Fail'});
         if(!result) return res.send({status: 'Fail'});
+        result = result.filter(function(doc){
+            return doc.doctor != null
+        });
         result = result.filter(function(doc){
             if(res.user != null && req.body.isWalkIn) return doc.appointments.length < 20;
             return doc.appointments.length < 15;
@@ -189,6 +192,8 @@ exports.getDoctorSchedule = function(req, res) {
 		return;
 	});
 };
+
+
 
 //peak
 exports.delete = function(req, res){
