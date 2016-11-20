@@ -13,8 +13,8 @@
 
 <div class="row drug" *ngFor="let elem of prescriptionList; let i = index;">
     <div class="col-sm-3">
-        <select class="form-control" type="text" [ngModel]="elem.drugID" (ngModelChange)="bindsBack($event,i,1)">
-            <option *ngFor="let drug of drugs" [ngValue]="drug._id" [selected]="drug._id == elem.drugID" >{{drug.name}}</option>
+        <select class="form-control" type="text" [ngModel]="elem.drug" (ngModelChange)="bindsBack($event,i,1)">
+            <option *ngFor="let drug of drugs" [ngValue]="drug._id" [selected]="drug._id == elem.drug" >{{drug.name}}</option>
         </select>
     </div>
     <div class="col-sm-3">
