@@ -131,67 +131,99 @@ export class DoctorCalendarComponent implements AfterViewInit, OnInit {
             //          minDate = tmp_date;
             //      }
             //  });
-            this.schedule.sort(function (a ,b){
-                if(new Date(a['_id']['date'])>new Date(b['_id']['date'])){
-                    // console.log("1");
-                    return 1;
-                }else if( new Date(a['_id']['date'])==new Date(b['_id']['date']) ){
-                    if(( a['_id']['period'] == "am" && b['_id']['period'] == "am" )||( a['_id']['period'] == "pm" && b['_id']['period'] == "pm" ) ){
-                        // console.log("2");
-                        return 0;
-                    }else if(  a['_id']['period'] == "pm" && b['_id']['period'] == "am" ){
-                        // console.log("3");
-                        return 1;
-                    }else{
-                        // console.log("4");
-                        return -1;
-                    }
-                }else{
-                    // console.log("5");
-                    return -1;
-                }
-            });
+            this.schedule.sort(this.compare);
             // add missing Date
                 var tmp = [];
-             
-            for(var i = 0; i < this.schedule.length ; i++){
+            
+            var temp = {
+                date: new Date(this.schedule[0]._id.date),
+                period: this.schedule[0]._id.period
+            };
+            var new_list = [];
+            console.log(temp);
+            console.log("============");
+            //console.log(this.incDate(temp));
 
+            console.log(temp);
+            new_list.push({
+                    _id: temp,
+                    isOperate: this.schedule[0].isOperate,
+                    patients: this.schedule[0].patients,
+                    patientsNameList: this.schedule[0].patientsNameList
+                });
+            console.log(new_list[0]._id);
+            
+            var map = {};
+            
+            for(var i = 1; i < this.schedule.length ; i++){
+                var dest = {
+                    date: new Date(this.schedule[i]._id.date),
+                    period: this.schedule[i]._id.period
+                };
+                while(temp.date < dest.date ||( temp.date == dest.date && temp.period == 'am' && dest.period == 'pm')){
+                    if(!map[temp.date+temp.period]){
+                        new_list.push({
+                            _id: {
+                                'date': temp.date,
+                                'period': temp.period
+                            },
+                            isOperate: false,
+                            patients: 0,
+                            patientsNameList: []
+                        });
+                        map[temp.date+temp.period] = true;
+                    }
+                    console.log("now >> ");
+                    console.log(temp);
+                    temp = this.incDate(temp.date, temp.period);
+                }
+                temp = {
+                    date: new Date(this.schedule[i]._id.date),
+                    period: this.schedule[i]._id.period
+                };
+                if(!map[temp.date+temp.period]){
+                    new_list.push({
+                        _id: dest,
+                        isOperate: this.schedule[i].isOperate,
+                        patients: this.schedule[i].patients,
+                        patientsNameList: []
+                    });
+                    map[temp.date+temp.period] = true;
+                }
             }
+            this.schedule = new_list;
+            console.log(this.schedule);
 
             console.log("++++++++++++++++++");
-            // for(var i=0;i<tmp.length;i++){
-            //     console.log(tmp[i]["_id"]["date"], " ", tmp[i]["_id"]["period"] );
-            // }
+            // for(var i=0;i<new 
             
 
         });
     }
 
     compare (a ,b){
-        if(new Date(a['_id']['date'])>new Date(b['_id']['date'])){
-            // console.log("1");
-            return 1;
-        }else if( new Date(a['_id']['date'])==new Date(b['_id']['date']) ){
-            if(( a['_id']['period'] == "am" && b['_id']['period'] == "am" )||( a['_id']['period'] == "pm" && b['_id']['period'] == "pm" ) ){
-                // console.log("2");
-                return 0;
-            }else if(  a['_id']['period'] == "pm" && b['_id']['period'] == "am" ){
-                // console.log("3");
-                return 1;
-            }else{
-                // console.log("4");
-                return -1;
-            }
-        }else{
-            // console.log("5");
-            return -1;
-        }
+        if(new Date(a['_id']['date'])>new Date(b['_id']['date'])) return 1;
+        if(new Date(a['_id']['date'])<new Date(b['_id']['date'])) return -1;
+        return (a['_id']['period'] == "am")? -1:1;
     }
+
     addDays(date,days)
     {
-        var dat = date;
+        var dat = new Date(date);
         dat.setDate(dat.getDate() + days);
         return dat;
+    }
+
+    incDate(date, period){
+        if(period == "am") period = "pm";
+        else{
+            date = this.addDays(date,1);
+            period = "am";
+        }
+        return {
+            date: date,
+            period: period
+        }
     }
     
 }
