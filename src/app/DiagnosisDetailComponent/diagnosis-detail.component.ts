@@ -37,8 +37,8 @@ export class DiagnosisDetailComponent {
                     var thaiPeriod = '';
                     
                     this.date = moment_(data['diagnosis']['date']).format('ll');
-                    console.log('physical check data');
-                    console.log(this.physicalCheck);
+                    // console.log('physical check data');
+                    // console.log(this.physicalCheck);
                 });
         });
     }

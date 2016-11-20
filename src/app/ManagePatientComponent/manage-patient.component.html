@@ -7,7 +7,7 @@
     <input type="text" class="form-control" id="hnOrIDinput" name="hnOrIDinput" placeholder="กรอก HN หรือ รหัสประจำตัวประชาชน" [(ngModel)]="hnOrIDinput">
   </div>
   <button type="submit" class="btn btn-primary" (click)="getPatientAndAppointment()">ค้นหา</button>
-  <a routerLink="register"><button type="submit" class="btn btn-success">+ เพิ่มนัดหมายสำหรับผู้ป่วยใหม่</button></a>
+  <a routerLink="register"><button type="submit" class="btn btn-success">+ สมัครผู้ป่วยใหม่</button></a>
 </form>
 <hr>
 <patient-appointment-c [found]="found" [data]="data" ></patient-appointment-c>
