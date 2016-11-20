@@ -1,8 +1,9 @@
-import { Component , OnInit} from '@angular/core';
+import { Component , OnInit, ViewChild} from '@angular/core';
 import { ActivatedRoute, Params ,Router } from '@angular/router';
 import { DiagnosisService } from '../../services/diagnosis.service';
 import { AppointmentService } from '../../services/appointment.service';
 import {Subscription } from 'rxjs';
+import { ToastComponent } from '../ToastComponent/toast.component';
 @Component({
     selector: 'add-diagnosis-c',
     template: require('./add-diagnosis.component.html'),
@@ -10,6 +11,7 @@ import {Subscription } from 'rxjs';
 })
 
 export class AddDiagnosisComponent implements OnInit {
+    @ViewChild( ToastComponent ) toast: ToastComponent;
     data : any;
     enable = true;
     prescriptionToBeSave = [];
@@ -96,11 +98,26 @@ export class AddDiagnosisComponent implements OnInit {
         this.diagnosisService.addDiagnosis(dataToSend)
             .then((data)=>{
                 console.log(data);
+                if(data['status']=='Success'){
+                    this.appointmentService.diagnosisDoneAppointment(this.currentAppointmentID)
+                        .then((data)=>{
+                            if(data['status']=='success'){
+                                // console.log("YEAH");
+                                this.toast.titleSuccess = "บันทึกสำเร็จ"
+                                this.toast.messageSuccess = "";
+                                this.toast.addToastSuccess();
+                                setTimeout(()=>{
+                                    this.goback();
+                                }, 3000);
+                                
+                            }
+                            else{
+                                this.toast.addToastError();
+                            }
+                        });
+                }
             });
-        // this.appointmentService.diagnosisDoneAppointment(this.currentAppointmentID)
-        //     .then((data)=>{
-
-        //     });
+        
         
         
     }
