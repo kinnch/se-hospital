@@ -44,14 +44,14 @@ export class RegisterComponent implements OnInit{
                 console.log(this.drugs);
         });
     }
-    addPrescriptionField() {
+    addAllegicDrugField() {
         // this.myform = 'hello';
         this.allegicDrugsList.push({id:this.currentDrugId, drugName:""});
         this.currentDrugId++;
         console.log('add');
         console.log(this.allegicDrugsList);
     }
-    deletePrescriptionField(index) {
+    deleteAllegicDrugField(index) {
         console.log("delete");
         this.allegicDrugsList.splice(index, 1);
     }
