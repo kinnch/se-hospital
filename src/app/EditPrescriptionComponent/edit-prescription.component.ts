@@ -16,7 +16,7 @@ export class EditPrescriptionComponent{
     presID: string;
     data: any;
     private subscription: Subscription;
-  
+    prescriptionToBeSave = [];
     newPres: string;
     constructor(private router: Router,private prescriptionService: PrescriptionService, private activatedRoute: ActivatedRoute) {
     }
@@ -40,9 +40,19 @@ export class EditPrescriptionComponent{
 
         });
      }
+     handle(receivedData){
+        var parsed = JSON.parse(receivedData);
 
+        var arr = [];
+
+        for(var x in parsed){
+        arr.push(parsed[x]);
+        }
+        console.log('handle');
+        this.prescriptionToBeSave = arr;
+     }
      confirm(){
-         console.log('--------');
-         console.log(this.newPres);
+         console.log('----Confirm----');
+         console.log(this.prescriptionToBeSave);
      }
 }

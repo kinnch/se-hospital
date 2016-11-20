@@ -1,6 +1,6 @@
 export class Prescription {
   id: number;
-  drugName: string;
+  drugID: string;
   amount: number;
   detail: string;
 }

@@ -17,7 +17,7 @@ export class ToastComponent {
     @Input() messageSuccess : string = "ทำการบันทึกข้อมูลเรียบร้อยแล้ว";
     @Input() timeoutSuccess = 5000;
     @Input() titleError : string = "เกิดข้อผิดพลาด";
-    @Input() messageError : string = "กรุณาทำรายการใหม่อีกครั้งค่ะ";
+    @Input() messageError : string = "กรุณาทำรายการใหม่อีกครั้ง";
     @Input() timeoutError = 10000;
     @Input() titleWarning : string = "";
     @Input() messageWarning : string = "";

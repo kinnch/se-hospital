@@ -59,7 +59,7 @@
     <div class = "col-md-12">
         <h5 style="text-align:center">กำลังพบแพทย์</h5>
         <span *ngIf="withDoctorApt">
-            <patient-list-element-c *ngFor="let oneData of withDoctorApt" [oneData]="oneData"></patient-list-element-c>
+            <patient-list-element-c *ngFor="let oneData of withDoctorApt" [oneData]="oneData" [linkToWhere]="'เริ่มตรวจ'"></patient-list-element-c>
         </span>
         <hr class="style-two">
     </div>
@@ -67,7 +67,7 @@
         <h5 style="text-align:center">รอพบแพทย์</h5>
         
         <span *ngIf="physicalCheckedApt">
-            <patient-list-element-c *ngFor="let oneData of physicalCheckedApt" [oneData]="oneData" [linkToWhere]="'เริ่มตรวจ'"></patient-list-element-c>
+            <patient-list-element-c *ngFor="let oneData of physicalCheckedApt" [oneData]="oneData" ></patient-list-element-c>
         </span>
         <hr class="style-two">
     </div>

@@ -14,7 +14,7 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-3">
-                            <p><b>เพศ : </b><br>{{data.patient.sex}}</p>
+                            <p><b>เพศ : </b><br>{{data.patient.sex=='male' ? "ชาย" : "หญิง"}}</p>
                         </div>  
                         <div class="col-sm-3">
                             <p><b>อายุ : </b><br>{{year}}&nbsp;ปี&nbsp;{{month}}&nbsp;เดือน</p>    
@@ -38,7 +38,7 @@
                             <button type="button" class="btn btn-success" (click)="seeHistory(data.patient.HN)">ดูประวัติการได้รับยา</button>
                     </div>
                     <div class="row" *ngIf="data.drugPrescription.status==2" style="padding-top: 10px;">
-                            <button type="button" class="btn btn-primary" (click)="finalSubmit(data._id , data.drugPrescription._id)">ยืนยันตรวจสอบ</button>
+                            <button type="button" class="btn btn-primary" style="width: 160px;" (click)="finalSubmit(data._id , data.drugPrescription._id)">จ่ายยา</button>
 
                     </div>    
                 </div>      
@@ -60,17 +60,18 @@
             </prescription-table-c>
         </div>
         <div *ngIf="data.drugPrescription.status==1">
-            <section class="control-button" [hidden]="isReject">
-                <button type="button" class="btn btn-danger" style="width: 150px; margin-right: 50px" (click)="isReject = !isReject">ขอแก้ไขยา</button>
-                <button type="button" class="btn btn-primary" style="width: 150px;" (click)="submit(data._id , data.drugPrescription._id)">อนุมัติการจ่ายยา</button>                  
-            </section>
-            <section class ="reject-form" [hidden]="!isReject">
+                <section class="control-button" [hidden]="isReject">
+                    <button type="button" class="btn btn-danger" style="width: 150px; margin-right: 50px" (click)="isReject = !isReject">ขอแก้ไขยา</button>
+                    <button type="button" class="btn btn-primary" style="width: 150px;" (click)="submit(data._id , data.drugPrescription._id)">อนุมัติการจ่ายยา</button>                  
+                </section>
+                <section class ="reject-form" [hidden]="!isReject">
                 <p><b>เหตุผลที่ขอแก้ไข :</b></p>
-             <textarea row="3" class="form-control" [(ngModel)]="reason"></textarea>
-                               <div class="form-button">
+                <textarea  row="3" class="form-control" [(ngModel)]="reason"></textarea>
+                
+                <div class="form-button">
                     <button type="button" class="btn btn-danger" (click)="isReject = !isReject" style="margin-right: 10px">ยกเลิก</button>
                     <button type="button" class="btn btn-primary" (click)="rejected(data.drugPrescription._id)">ส่งคำร้อง</button>
-                               </div>
+                 </div>
             </section>  
             <br>
         </div>
@@ -86,3 +87,4 @@
         </div>
               
     </div>
+    <toast></toast>
