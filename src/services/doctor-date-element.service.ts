@@ -20,10 +20,34 @@ export class DoctorDateElementService {
 
     getDoctorDateElements() : Promise<any> {
          return this.http
-                    .post(this.apiUrl, {headers: this.headers})
+                    .post('api/schedule/getTable', JSON.stringify({departmentID: localStorage.getItem('department_id'), doctorID:localStorage.getItem('user_id')}), {headers: this.headers})
                     .toPromise()
                     .then(function(res){
                         return res.json();
+                    }).catch(function(err){
+                       console.log(err);
+                       return {
+                         
+                       };
                     });
     }
+
+    //  requestOTP(idOrHN:string) : Promise<JSON> {
+    //       // return new Promise<JSON>(resolve =>
+    //       //   setTimeout(resolve, 2000)) // delay 2 seconds
+    //       //   .then(() =>  JSON.parse(idOrHN) );
+    //     return this.http
+    //                 .post('requestOTP', JSON.stringify({key: idOrHN}), {headers: this.headers})
+    //                 .toPromise()
+    //                 .then(function(res){
+    //                     return res.json();
+    //                 }).catch(function(err){
+    //                    console.log(err);
+    //                    return {
+    //                      "success" : false
+    //                    };
+    //                 });
+    // }
+
+
 }

@@ -106,19 +106,27 @@ export class UserService {
       )
       .map(res => res.json())
       .map((res) => {
-        // if (res.success) {
-        //   console.log(res)
-        //   localStorage.setItem('auth_token', res.auth_token);
-        //   localStorage.setItem('user_id', res.user._id);
-        //   localStorage.setItem('user_username', res.user.userName);
-        //   localStorage.setItem('user_roleID', res.user.roleID);
-        //   localStorage.setItem('user_title', res.user.name.title);
-        //   localStorage.setItem('user_fname', res.user.name.fname);
-        //   localStorage.setItem('user_lname', res.user.name.lname);
-        //   localStorage.setItem('department_id', res.user.department);
-        //   localStorage.setItem('user_sex',res.user.sex);
-        //   this.loggedIn = true;
-        // }
+        localStorage.setItem
+        if (res.success) {
+          console.log(res)
+          localStorage.setItem('auth_token', res.auth_token);
+          localStorage.setItem('patient_id', res.user._id);
+          localStorage.setItem('patient_title', res.user.name.title);
+          localStorage.setItem('patient_fname', res.user.name.fname);
+          localStorage.setItem('patient_lname', res.user.name.lname);
+          localStorage.setItem('department_id', res.user.department);
+
+          localStorage.setItem('patient_email', res.user.email);
+          localStorage.setItem('patient_tel', res.user.tel);
+          localStorage.setItem('patient_nationalID', res.user.nationalID);
+          localStorage.setItem('patient_birthDate', res.user.birthDate);
+          localStorage.setItem('patient_HN', res.user.HN);
+
+          localStorage.setItem('patient_bloodType', res.user.bloodType);
+          localStorage.setItem('patient_address', res.user.address);
+          localStorage.setItem('patient_sex',res.user.sex);
+          this.loggedIn = true;
+        }
 
         return res.success;
       });
