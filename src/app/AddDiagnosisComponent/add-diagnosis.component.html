@@ -1,48 +1,53 @@
 <a class="back" (click)="goback()">
 	< ย้อนกลับ</a>
 		<hr>
-		<section class="container">
+		<section class="container card-container">
 			<br>
 			<h3>บันทึกการวินิจฉัย</h3>
 			<hr>
-			<div class="rows">
-				<div class="col-md-12">
-					<h5 _ngcontent-bir-6="">รายละเอียดการวินิจฉัย</h5>
-					<form>
-						<div class="form-group">
-							<!--<label for="comment">Comment:</label>-->
-							<textarea  #ta (blur)="detail=ta.value" [value]="detail" class="form-control" rows="15" id="comment" >
+			<br>
+			<div class="data">
+				<div class="rows">
+					<div class="col-md-12">
+						<h5 _ngcontent-bir-6="">รายละเอียดการวินิจฉัย</h5>
+						<form>
+							<div class="form-group">
+								<!--<label for="comment">Comment:</label>-->
+								<textarea  #ta (blur)="detail=ta.value" [value]="detail" class="form-control" rows="5" id="comment" >
 
-							</textarea>
-						</div>
-					</form>
-				</div>
-				<div class="col-md-12" *ngIf="diseasesSelectorReady">
-					<br>
-					<h5 _ngcontent-bir-6="">โรคที่พบ</h5>
-					<search-select [id]="'searchbarID'" [issues]="diseasesSelector" [placeholder]="'กรุณากรอกรหัสโรค'" (onChange)="selectedOption = $event"> </search-select>
-					<br>
-				</div>
-				<!--{{selectedOption}}-->
-				<div class="col-md-12">
-					<br>
-					<h5 _ngcontent-bir-6="">จ่ายยา</h5>
-					<div style="padding-left:2% !important;padding-right:2% !important;">
-						<prescription-form-c *ngIf="enable" [data] = "data" (myformChange)="handle($event)"></prescription-form-c>
+								</textarea>
+							</div>
+						</form>
 					</div>
-					
+					<div class="col-md-12" *ngIf="diseasesSelectorReady">
+						<br>
+						<h5 _ngcontent-bir-6="">โรคที่พบ</h5>
+						<search-select [id]="'searchbarID'" [issues]="diseasesSelector" [placeholder]="'กรุณากรอกรหัสโรค'" (onChange)="selectedOption = $event"> </search-select>
+						<br>
+					</div>
+					<!--{{selectedOption}}-->
+					<div class="col-md-12">
+						<br>
+						<br>
+						<h5 _ngcontent-bir-6="">จ่ายยา</h5>
+						<div style="padding-left:2% !important;padding-right:2% !important; margin-top: 20px">
+							<prescription-form-c *ngIf="enable" [data] = "data" (myformChange)="handle($event)"></prescription-form-c>
+						</div>
+						
+					</div>
 				</div>
+				<br>
+				<br>
+				
+				<br>
+					<div class="row right">
+						<button (click)="goback()" type="button" class="btn btn-danger" style="width: 15%; min-width: 150px">ยกเลิก</button>                 
+						<button (click)="saveDiagnosis()" type="button" class="btn btn-primary" style="width: 15%; min-width: 150px"> บันทึก</button>               
+					</div>   
+				
+				
+				<br>
 			</div>
-			<br>
-			<br>
-			
-			<br>
-				<div class="row right">
-                    <button (click)="goback()" type="button" class="btn btn-danger" style="width: 15%; min-width: 150px"><i class="fa fa-times" aria-hidden="true"></i> <span> ยกเลิก</span></button>                 
-                    <button (click)="saveDiagnosis()" type="button" class="btn btn-primary" style="width: 15%; min-width: 150px"><i class="fa fa-floppy-o" aria-hidden="true"></i> <span> บันทึก</span></button>               
-                </div>   
-			
-			
 			<br>
 		</section>
 		<toast></toast>
