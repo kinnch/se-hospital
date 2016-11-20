@@ -14,6 +14,19 @@ var Disease = require("../model/disease");
 var Prescription = require("../model/drugPrescription");
 var PrescriptionDrug  = require("../model/prescriptionDrug");
 var PhysicalData = require("../model/physicalChecking");
+var Disease = require("../model/disease");
+exports.getAllDiseases = function(req,res){
+    Disease.find({},function(err,data){
+        if(err){
+            return res.send({status:"error"});
+        }
+        if(!data){
+            return res.send({status:"not found"});
+        }
+        return res.send({diseases:data});
+    });
+    return ;
+}
 exports.getDiagnosisAndPhysicalCheck = function(req,res){
     Diagnosis.findOne({_id:req.body.diagnosisID},function(err,data){
         if(err){
