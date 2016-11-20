@@ -25,7 +25,6 @@ export class RegisterComponent implements OnInit{
     email: string;
     sex: string;
     birthDate: string;
-    allegicDrugs: string;
     bloodType: string;
 
     drugs: any; 
@@ -67,7 +66,7 @@ export class RegisterComponent implements OnInit{
     }
     register(): void {
         let sendAllegicDrugsList = [];
-        for(let drug of this.allegicDrugs) {
+        for(let drug of this.allegicDrugsList) {
             if(drug.drugName)
                 sendAllegicDrugsList.push(drug.drugName);
         }
