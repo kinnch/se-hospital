@@ -24,6 +24,7 @@ export class AddDiagnosisComponent implements OnInit {
     // currentAppointment : any;
     currentDate :string;
     currentPeriod : string;
+    currentAppointmentID : string;
     patientID : string;
     constructor(private router: Router,
                 private activatedRoute: ActivatedRoute,
@@ -46,6 +47,7 @@ export class AddDiagnosisComponent implements OnInit {
                         if(this.patientAppointments[i]['appointments'][0]['status']==3){//currently diagnosing
                             this.currentDate =this.patientAppointments[i]['date'];
                             this.currentPeriod =this.patientAppointments[i]['timePeriod'];
+                            this.currentAppointmentID = this.patientAppointments[i]['appointments'][0]['_id'];
                         }
                     }
                     this.diagnosisService.getAllDisease()
@@ -91,7 +93,11 @@ export class AddDiagnosisComponent implements OnInit {
             patientID : this.patientID
         }
         console.log(dataToSend);
-        // this.diagnosisService.addDiagnosis(dataToSend)
+        this.diagnosisService.addDiagnosis(dataToSend)
+            .then((data)=>{
+                console.log(data);
+            });
+        // this.appointmentService.diagnosisDoneAppointment(this.currentAppointmentID)
         //     .then((data)=>{
 
         //     });
