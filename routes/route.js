@@ -64,6 +64,7 @@ module.exports = function(app) {
 
     var notificationController = require('../controllers/notificationController');
     app.post('/api/sendSMS',notificationController.sendSMS);
+    app.post('/api/sendEmail',notificationController.sendEmail);
 
     var patientController = require('../controllers/patientController');
     app.get('/testing',  patientController.testing);

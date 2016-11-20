@@ -12,6 +12,7 @@ export class PatientService {
     //     return {id: 1, name:"kinnch"};
     // }
     private apiUrl = 'api/patient/search';  // URL to web api
+    private apiCreatePatient = 'api/patient/register'
     private headers = new Headers({'Content-Type': 'application/json'});
     constructor(private http: Http) { }
     private handleError(error: any): Promise<any> {
@@ -25,6 +26,30 @@ export class PatientService {
                     .toPromise()
                     .then(function(res){
                         return res.json();
+                    });
+    }
+    createPatient(email, title, fname, lname, sex, birthDate, tel, nationalID, detail, subDistrict, district, province, postCode, allegicDrugs, bloodType) : Promise<string> {
+        return this.http
+                    .post(this.apiCreatePatient, JSON.stringify({
+                        email: email,
+                        title: title,
+                        fname: fname,
+                        lname: lname,
+                        sex: sex,
+                        birthDate: birthDate,
+                        tel: tel,
+                        nationalID: nationalID,
+                        detail: detail,
+                        subDistrict: subDistrict,
+                        district: district,
+                        province: province,
+                        postCode: postCode,
+                        allegicDrugs: allegicDrugs,
+                        bloodType: bloodType
+                    }), {headers: this.headers})
+                    .toPromise()
+                    .then(res =>{
+                        return "success";
                     });
     }
 }
