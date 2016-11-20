@@ -25,12 +25,13 @@ export class RegisterComponent implements OnInit{
     email: string;
     sex: string;
     birthDate: string;
-    allegicDrugs: string;
     bloodType: string;
 
     drugs: any; 
     currentDrugId: number = 1;
     allegicDrugsList : any[] = [];
+    allegicDrugs: string[] = [];
+
     constructor(private router: Router, 
                 private location: Location,
                 private patientService: PatientService, 
@@ -41,24 +42,23 @@ export class RegisterComponent implements OnInit{
         this.prescriptionService.getAllDrugs()
             .then((res) => {
                 this.drugs = res['msg'];
-                console.log(this.drugs);
+                // console.log(this.drugs);
         });
     }
     addAllegicDrugField() {
         // this.myform = 'hello';
         this.allegicDrugsList.push({id:this.currentDrugId, drugName:""});
         this.currentDrugId++;
-        console.log('add');
-        console.log(this.allegicDrugsList);
+        // console.log(this.allegicDrugsList);
     }
     deleteAllegicDrugField(index) {
-        console.log("delete");
+        // console.log("delete");
         this.allegicDrugsList.splice(index, 1);
     }
     bindsBack(selectedValue,i){
-        console.log('myFormChange');
+        // console.log('myFormChange');
         this.allegicDrugsList[i].drugName = selectedValue;
-        console.log(this.allegicDrugsList[i]);
+        // console.log(this.allegicDrugsList[i]);
     }
 
 
@@ -66,12 +66,11 @@ export class RegisterComponent implements OnInit{
         this.location.back();
     }
     register(): void {
-        let sendAllegicDrugsList = [];
-        for(let drug of this.allegicDrugs) {
-            if(drug.drugName)
-                sendAllegicDrugsList.push(drug.drugName);
+        for(let drug of this.allegicDrugsList) {
+            if(drug['drugName'])
+                this.allegicDrugs.push(drug['drugName']);
         }
-        this.patientService.createPatient(this.email, this.title, this.firstName, this.lastName, this.sex, this.birthDate, this.tel, this.nationalID, this.address, this.subdistrict, this.district, this.province, this.postCode, sendAllegicDrugsList, this.bloodType)
+        this.patientService.createPatient(this.email, this.title, this.firstName, this.lastName, this.sex, this.birthDate, this.tel, this.nationalID, this.address, this.subdistrict, this.district, this.province, this.postCode, this.allegicDrugs, this.bloodType)
         .then((res)=>{
             if(res == "success") {
                 console.log("register success!")
