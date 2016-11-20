@@ -52,11 +52,13 @@
         <label for="inputAllegicDrugs" class="col-sm-2 col-form-label">ยาที่แพ้</label>
         <div class="col-sm-10">
             <div class="row drug" *ngFor="let elem of allegicDrugsList; let i = index;">
-                <select class="form-control" type="text" [ngModel]="elem.drugName" (ngModelChange)="">
-                    <option *ngFor="let drug of drugs" [selected]="drug.name == elem.drugName">{{drug.name}}</option>
-                </select>
-            </div>
-            <a (click)="deleteAllegicDrugField(i)" ><i  class="fa fa-trash pull-right icon" aria-hidden="true"></i></a>
+		<div class="col-sm-12">
+	                <select class="form-control" type="text" [ngModel]="elem.drugName">
+	                    <option *ngFor="let drug of drugs" [selected]="drug.name == elem.drugName">{{drug.name}}</option>
+	                </select>
+	           	<a (click)="deleteAllegicDrugField(i)" ><i  class="fa fa-trash pull-right icon" aria-hidden="true"></i></a>
+	           </div>
+		</div>
             <div class="row center">
                 <button (click)="addAllegicDrugField()" type="button" class="btn btn-info" style="width: 30%; min-width: 100px"><i class="fa fa-plus" aria-hidden="true"></i> <span> เพิ่มรายการยาที่แพ้</span></button>                  
             </div>
