@@ -33,10 +33,13 @@ export class MakeAppointComponent implements OnInit{
     isTimeRangeChecked = [true, true, true];
 
     isWalkIn:boolean = false;
-    enableWalkIn = false;
-    mode = '';
+    //----Var to use----
+    enableGod = false;//staff 15-20 is OK
+    mode = '';//create_appointment_s.edit_appointment_s,create_appointment,edit_appointment
     patientID = '';
-    aptID = '';
+    aptID = '';//appointmentID in case edit
+    //--------
+    cannotBook = true;
     constructor(private router: Router,
                 private location: Location,
                 private activatedRoute: ActivatedRoute,
@@ -55,13 +58,14 @@ export class MakeAppointComponent implements OnInit{
                 this.patientID = param['id'];
                 this.aptID = param['aptID'];
                 if(this.mode=='create_appointment_s' || this.mode == 'edit_appointment_s'){
-                    this.enableWalkIn = true;
+                    this.enableGod = true;
                 }
                 
         });
     }
 
     getAllList():void{
+        console.log('getAllList');
         console.log(this.isWalkIn);
         console.log(this.selectedDepartment);
         this.DepartmentService.getAllSchedule(this.selectedDepartment, this.isWalkIn).then((data)=>{
@@ -71,6 +75,7 @@ export class MakeAppointComponent implements OnInit{
     }
 
     getDoctorList():void{
+        console.log('getDoctorList');
         this.DepartmentService.getAllDoctor(this.selectedDepartment).then((doctors)=>{
             this.doctors = doctors;
             this.doctors.splice(0,0,{
@@ -86,6 +91,7 @@ export class MakeAppointComponent implements OnInit{
     }
 
     setTimeTable():void{
+        console.log('setTimeTable');
         this.timeTable = [];
         var mem = {};
                    
@@ -116,6 +122,7 @@ export class MakeAppointComponent implements OnInit{
     }
 
     getTimeTable():void{
+        console.log('getTimeTable');
         if(this.selectedDoctor == 'non'){
             this.getAllList();
             return;
@@ -128,6 +135,7 @@ export class MakeAppointComponent implements OnInit{
         })
     }
     save(): void{
+        console.log('save');
         //this.DepartmentService.saveData(this.selectTime, localStorage.getItem('patient_id'), this.reason);
         this.DepartmentService.saveData(this.selectTime,this.patientID,this.reason)
         .then((data)=>{
