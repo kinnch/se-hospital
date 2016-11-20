@@ -1,8 +1,9 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { PatientService } from '../../services/patient.service';
+import { PrescriptionService } from '../../services/prescription.service';
 
 @Component({
     selector: 'register-c',
@@ -10,7 +11,7 @@ import { PatientService } from '../../services/patient.service';
     styles: [require('./register.component.css')]
 })
 
-export class RegisterComponent{
+export class RegisterComponent implements OnInit{
     title: string;
     firstName: string;
     lastName: string;
@@ -26,10 +27,36 @@ export class RegisterComponent{
     birthDate: string;
     allegicDrugs: string;
     bloodType: string;
+
+    drugs: any; 
+    currentDrugId: number = 1;
+    allegicDrugsList : any[] = [];
     constructor(private router: Router, 
                 private location: Location,
-                private patientService: PatientService
+                private patientService: PatientService, 
+                private prescriptionService: PrescriptionService
                 ) {}
+    
+    ngOnInit() {
+        this.prescriptionService.getAllDrugs()
+            .then((res) => {
+                this.drugs = res['msg'];
+                console.log(this.drugs);
+        });
+    }
+    addPrescriptionField() {
+        // this.myform = 'hello';
+        this.allegicDrugsList.push({id:this.currentDrugId, drugName:""});
+        this.currentDrugId++;
+        console.log('add');
+        console.log(this.allegicDrugsList);
+    }
+    deletePrescriptionField(index) {
+        console.log("delete");
+        this.allegicDrugsList.splice(index, 1);
+    }
+
+
     goBack(): void {
         this.location.back();
     }
