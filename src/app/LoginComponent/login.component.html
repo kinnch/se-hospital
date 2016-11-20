@@ -1,10 +1,14 @@
 <div class="container" style="padding-top: 70px;">
 	<div class="col-sm-12 patient-login-area">
-		<div class="form-signin center-block clearfix" >
+		<div class="form-signin center-block clearfix" style="    padding-bottom: 20px; padding-top: 40px;" >
 			<div class="row">
-				<h2 class="card-title text-center" [hidden]="step!=1" >เข้าสู่ระบบ <i class="fa fa-users" style="    font-size: x-large;"></i>  </h2>
+				<h2 class="card-title text-center" [hidden]="!(step==1 || step==4) " >เข้าสู่ระบบ <i class="fa fa-users" style="    font-size: x-large;"></i>  </h2>
 				<h2 class="card-title text-center" [hidden]="step!=3 " > Hospital GO </h2>
 				<h3 class="card-title text-center" [hidden]="step!=2" style="font-size: xx-large;">ยืนยันตัวตนผ่านโทรศัพท์มือถือ</h3>
+			</div>
+			<div class="row text-center" style="padding-bottom: 15px;" [hidden]="!(!isLoading && (step==1 || step==4))">
+				<i class="fa fa-ambulance fa-4x" aria-hidden="true"></i>
+				<p [hidden]="!(step==4)"> ท่านได้เคยได้รับรหัส OTP แล้ว <br>กรอกรหัส HN หรือรหัสบัตรประชาชน </p>
 			</div>
 			<div class="wrapper" [hidden]="!isLoading || step==3" >
 				<svg class="hourglass" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 206" preserveAspectRatio="none">
@@ -24,24 +28,28 @@
 					<i class="fa fa-commenting text-success fa-2x krit-king-of-front"></i>
 				</div>
 			</div>	
-			<div  class="row text-center" [hidden]="!isLoading || step!=3" >{{ loadingMSG }} </div>
+			<div  class="row text-center" [hidden]="!isLoading " >{{ loadingMSG }} </div>
 			<div class=""  [hidden]="isLoading" >
-				<div class="form-group" [hidden]="step!=1" >
+				
+				<div class="form-group" [hidden]="step!=2">
+					<p class="text-center">
+						{{greetingMSG}} , 
+						รหัสผ่านส่งไปยังเบอร์  {{ phoneNo }}
+					</p>
+				</div>
+				<div class="form-group" [hidden]="!(step==1 || step==4 )" >
 					<input type="text" [(ngModel)]="patientID" class="form-control" id="inputPatientIdentifier" placeholder="กรอกรหัส HN หรือรหัสบัตรประชาชน"
 						style="margin-bottom: 10px important!;" >
-				</div>
-				<div class="form-group" [hidden]="step!=2">
-					<h4 class="text-center">
-						รหัสผ่านส่งไปยังเบอร์<br> {{ phoneNo }}
-					</h4>
+						<small class="text-danger"> {{ errorMSG }} </small>
 				</div>
 				<div class="form-group" [hidden]="step!=2" >
 					<input type="text" [(ngModel)]="OTPCode" class="form-control" id="" placeholder="กรอกรหัส OTP"
 						style="margin-bottom: 10px important!;" >
+						<small class="text-danger"> {{ errorMSG }} </small>
 				</div>
-				<div class="form-group"  [hidden]="step!=1" >
-					<button (click)="checkAndRequest()" class="form-control btn btn-primary btn-block">เข้าสู่ระบบ</button>
-					<small class="text-danger"> {{ errorMSG }} </small>
+				<div class="form-group"  [hidden]="!(step==1 || step==4)" >
+					<button (click)="step==1 ? checkAndRequest() : checkOnly()" class="form-control btn btn-primary btn-block">เข้าสู่ระบบ</button>
+					
 				</div>
 				<div class="form-group"  [hidden]="step!=2" >
 					<button (click)="sendOTP()" class="form-control btn btn-primary btn-block"> ยืนยันรหัส OTP </button>
@@ -50,11 +58,12 @@
 
 			<hr style="margin: 20px auto;" >
 
-			<div class="form-inline" [hidden]="step!=1 || isLoading" >
-				<p class="pull-left">กรณีเป็นผู้ป่วยใหม่</p>
-				<a routerLink="/p_register" class="btn btn-primary pull-right">ลงทะเบียนใหม่</a>
+			<div class="form-inline" [hidden]="! ((step==1 || step==4) && !isLoading) " >
+				<a routerLink="/p_register" class="btn btn-primary pull-left">ผู้ป่วยใหม่</a>
+				<a [hidden]="!( step !=4 )" class="btn btn-warning pull-right" style="color: white;" (click)="step=4">ได้รับ OTP แล้ว</a>				
 			</div>
-			<p [hidden]="step!=2 || isLoading" >หากไม่ได้รับรหัส OTP กด <a (click)="sendOTPSuccess=!sendOTPSuccess;">ที่นี่</a> เพื่อส่งรหัส OTP อีกครั้ง</p>
+			<p [hidden]="step!=2 || isLoading" >หากไม่ได้รับรหัส OTP กด <a style="color : red;" (click)=" checkAndRequest();">ที่นี่</a> เพื่อส่งรหัส OTP อีกครั้ง</p>
+			<p [hidden]="step!=2 || isLoading" class="text-center" ><a style="" (click)="step=1; errorMSG='';">-นี่ไม่ใช่คุณ-</a> </p>
 
 		</div>
 	</div>

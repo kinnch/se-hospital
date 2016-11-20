@@ -23,13 +23,15 @@ export class PatientPhysicalCheckComponent implements OnInit {
     temp: number;
     HN: string;
     isAdd: boolean = false;
-    buttonName: string = 'เพิ่ม';
+    buttonName: string = 'บันทึก';
+    userRoleId = "";
     private subscription: Subscription;
     constructor(private router: Router, 
                 private physicalCheckService: PhysicalCheckService,
                 private activatedRoute: ActivatedRoute,
                 ) { }
     ngOnInit(): void {
+        this.userRoleId = localStorage.getItem('user_roleID');
         moment_.locale('th');
         this.subscription = this.activatedRoute.params.subscribe(
             (param: any) => {
@@ -59,7 +61,7 @@ export class PatientPhysicalCheckComponent implements OnInit {
         });
     }
     addPhysicalCheck() {
-        if(this.buttonName === "เพิ่ม"){
+        if(this.buttonName === "บันทึก"){
             this.physicalCheckService.addPhysicalCheck(this.systolic, this.diastolic, this.heartRate, this.weight, this.height, this.temp, this.HN)
             .then((res) => {
                 if (res == "success") {
@@ -76,9 +78,9 @@ export class PatientPhysicalCheckComponent implements OnInit {
         }
         else if(this.buttonName === "แก้ไข"){
             this.isAdd = !this.isAdd;
-            this.buttonName = "บันทึก"        
+            this.buttonName = "บันทึกการแก้ไข"        
         }
-        else if(this.buttonName === "บันทึก"){
+        else if(this.buttonName === "บันทึกการแก้ไข"){
             this.physicalCheckService.editPhysicakCheck(this.systolic, this.diastolic, this.heartRate, this.weight, this.height, this.temp, this.HN)
             .then((res) => {
                 if (res == "success") {

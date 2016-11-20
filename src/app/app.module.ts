@@ -12,6 +12,7 @@ import { StaffGuard } from './staff.guard';
 import { PharmacistGuard } from './pharmacist.guard';
 import { ManageQueueGuard } from './manage-queue.guard';
 import { PrescriptionHistoryGuard } from './prescription-history.guard';
+import { PhysicalCheckGuard } from './physical-check.guard';
 import { UserService } from '../services/user.service';
 
 import {PatientComponent} from './PatientComponent/patient.component';
@@ -138,6 +139,7 @@ import {ToastyModule} from 'ng2-toasty';
         PharmacistGuard,
         ManageQueueGuard,
         PrescriptionHistoryGuard,
+        PhysicalCheckGuard,
         DoctorDateElementService,
         DiagnosisService
     ],

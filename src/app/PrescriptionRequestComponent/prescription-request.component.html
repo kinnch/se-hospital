@@ -15,18 +15,33 @@
     </ul>
   </div>
   <div class="card-block" *ngIf="selectedTab=='1'">
+    <div class="test">
+        <br>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ไม่มีรายการยารอตรวจสอบ</p>
+        <br>    
+    </div>
     <div *ngFor="let elem of data ; let i = index" >
         <prescription-list-element-c [(data)]="data[i]" *ngIf="elem.drugPrescription.status==1" >
         </prescription-list-element-c>
     </div>
   </div>
   <div class="card-block"  *ngIf="selectedTab=='2'">
+    <div *ngIf="!status2">
+        <br>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ไม่มีรายการรอจ่ายยา</p>
+        <br>    
+    </div>
     <div *ngFor="let elem of data ; let i = index" >
         <prescription-list-element-c [(data)]="data[i]" *ngIf="elem.drugPrescription.status==2" >
         </prescription-list-element-c>
     </div>
   </div>
   <div class="card-block"  *ngIf="selectedTab=='3'">
+    <div *ngIf="!status3">
+        <br>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ไม่มีรายการจ่ายยา</p>
+        <br>    
+    </div>
     <div *ngFor="let elem of data ; let i = index" >
         <prescription-list-element-c [(data)]="data[i]" *ngIf="elem.drugPrescription.status==3" >
         </prescription-list-element-c>

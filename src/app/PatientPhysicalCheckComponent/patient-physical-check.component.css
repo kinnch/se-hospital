@@ -16,3 +16,11 @@
 .table,th{
     text-align: center;
 }
+
+.add-physical-check{
+    margin-right: 60px;
+}
+
+.history{
+    margin: 0 50px;
+}

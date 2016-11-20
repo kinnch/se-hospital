@@ -1,6 +1,7 @@
 import {Component,OnInit, AfterViewInit} from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
+import { PrescriptionService } from '../../services/prescription.service';
 @Component({
     selector: 'staff-c',
     template: require('./staff.component.html'),
@@ -14,10 +15,14 @@ export class StaffComponent{
     userLname = localStorage.getItem('user_lname');
     userTitle = localStorage.getItem('user_title');
     userSex = localStorage.getItem('user_sex');
+    userId = localStorage.getItem('user_id')
     userPic = "";
-
+    prescriptionRequest:number = 0;
+    
     loggedIn:boolean;
-    constructor(private userService: UserService, private router: Router) {
+    constructor(private userService: UserService, 
+                private router: Router,
+                private prescriptionService: PrescriptionService) {
         router.events.subscribe((val) => {
         //Check loggin 
             this.loggedIn = this.userService.isLoggedIn();
@@ -49,7 +54,7 @@ export class StaffComponent{
                             "/resources/images/icon_people/m_staff.png";
             if(this.userRoleId == "1" && this.router.url === '/manage/manage_patient'){
                 this.activatedClass = 1;            
-            } else if(this.userRoleId == "2" && this.router.url === '/manage/manage_doctor_calendar'){
+            } else if(this.userRoleId == "1" && this.router.url === '/manage/manage_doctor_calendar'){
                 this.activatedClass = 2;
             } else if(this.userRoleId == "1" && this.router.url === '/manage/manage_staff'){
                 this.activatedClass = 3;
@@ -66,6 +71,8 @@ export class StaffComponent{
             } else if(this.userRoleId == "2" && this.router.url === '/manage/doctor_calendar'){
                 this.activatedClass = 9;
             }
+            if(this.userRoleId == "2")
+                this.getPrescriptionRequest(this.userId);
         });
         //TODO
         // if(this.userRoleId == "1" && this.router.url === '/manage/manage_patient'){
@@ -104,7 +111,13 @@ export class StaffComponent{
         //     this.router.navigate(link);  
         // }
     }
-    
+    getPrescriptionRequest(doctor_id):void{
+        this.prescriptionService.getPrescriptionChangeRequest(doctor_id).then((pres)=>{
+            if(pres) this.prescriptionRequest = pres.length;
+            else this.prescriptionRequest = 0;
+        })
+    }
+
     ngOnInit(): void {
         // this.loggedIn = this.userService.isLoggedIn();
     }

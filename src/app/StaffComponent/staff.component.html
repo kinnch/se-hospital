@@ -33,8 +33,10 @@
       <li *ngIf="userRoleId == '3'" [class.active]="(activatedClass===5)" [class.selected]="(activatedClass===5)"><a (click)="gotoPage(5)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> <span class="menu-item">ตรวจร่างกาย</span></a></li>      
       <li *ngIf="userRoleId == '4'" [class.active]="(activatedClass===6)" [class.selected]="(activatedClass===6)"><a (click)="gotoPage(6)"><i class="fa fa-list-alt" aria-hidden="true"></i> <span class="menu-item">รายการยา</span></a></li>            
       <li *ngIf="userRoleId == '2'" [class.active]="(activatedClass===8)" [class.selected]="(activatedClass===8)"><a (click)="gotoPage(8)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> <span class="menu-item">บันทึกการวินิจฉัย</span></a></li>            
-      <li *ngIf="userRoleId == '2'" [class.active]="(activatedClass===7)" [class.selected]="(activatedClass===7)"><a (click)="gotoPage(7)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> <span class="menu-item">รายการยาที่ต้องแก้ไข</span></a></li>            
-      <li *ngIf="userRoleId == '2'" [class.active]="(activatedClass===9)" [class.selected]="(activatedClass===9)"><a (click)="gotoPage(9)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> <span class="menu-item">จัดการตารางออกตรวจ</span></a></li>            
+      <li *ngIf="userRoleId == '2'" [class.active]="(activatedClass===7)" [class.selected]="(activatedClass===7)"><a (click)="gotoPage(7)"><i class="fa fa-reply" aria-hidden="true"></i> <span class="menu-item">รายการยาที่ต้องแก้ไข</span></a>
+        <span class="info-label red-bg" *ngIf="prescriptionRequest!=0">{{prescriptionRequest}}</span>
+      </li>            
+      <li *ngIf="userRoleId == '2'" [class.active]="(activatedClass===9)" [class.selected]="(activatedClass===9)"><a (click)="gotoPage(9)"><i class="fa fa-calendar" aria-hidden="true"></i> <span class="menu-item">จัดการตารางออกตรวจ</span></a></li>            
    </ul>
 </div>
 <div [class.dashboard-wrapper-sm]="isExpandedNav == false" [class.dashboard-wrapper-lg]="router.url!='/manage/login'" [class.dashboard-wrapper]="router.url!='/manage/login'" class="dashboard-wrapper dashboard-wrapper-lg">

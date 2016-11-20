@@ -1,3 +1,8 @@
+<style>
+	.drug {
+		margin-bottom: 15px;
+	}
+</style>
 <a class="back" (click)="goBack()">< ย้อนกลับ</a>
 <hr>
 <div class="container">
@@ -25,7 +30,7 @@
     <div class="form-group row">
         <label for="inputSex" class="col-sm-2 col-form-label">เพศ</label>
         <div class="col-sm-10">
-            <select name="sexSelect" id="sexSelect" [(ngModel)]="sex" required>
+            <select class="form-control" name="sexSelect" id="sexSelect" [(ngModel)]="sex" required>
                 <option value="male">ชาย</option>
                 <option value="female">หญิง</option>
             </select>
@@ -34,7 +39,7 @@
     <div class="form-group row">
         <label for="inputBloodType" class="col-sm-2 col-form-label">หมู่เลือด</label>
         <div class="col-sm-10">
-            <select name="bloodTypeSelect" id="bloodTypeSelect" [(ngModel)]="bloodType" required>
+            <select class="form-control" name="bloodTypeSelect" id="bloodTypeSelect" [(ngModel)]="bloodType" required>
                 <option value="A">A</option>
                 <option value="B">B</option>
                 <option value="AB">AB</option>
@@ -45,19 +50,25 @@
     <div class="form-group row">
         <label for="inputBirthDate" class="col-sm-2 col-form-label">วันเกิด</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="inputBirthDate" [(ngModel)]="birthDate" placeholder="กรุณากรอกวันเกิด ปี-เดือน-วัน">
+            <input type="date" class="form-control" id="inputBirthDate" [(ngModel)]="birthDate" placeholder="กรุณากรอกวันเกิด วัน-เดือน-ปี">
         </div>
     </div>
     <div class="form-group row">
         <label for="inputAllegicDrugs" class="col-sm-2 col-form-label">ยาที่แพ้</label>
         <div class="col-sm-10">
-            <span class="drug" *ngFor="let elem of allegicDrugsList; let i = index;">
-                <select class="form-control" type="text" [ngModel]="elem.drugName" (ngModelChange)="bindsBack($event,i,1)">
-                    <option *ngFor="let drug of drugs" [selected]="drug.name == elem.drugName">{{drug.name}}</option>
-                </select>
-            </span>
-            <a (click)="deletePrescriptionField(i)" ><i  class="fa fa-trash pull-right icon" aria-hidden="true"></i></a>
-            <input type="text" class="form-control" id="inputAllegicDrugs" [(ngModel)]="allegicDrugs" placeholder="กรุณากรอกชื่อยาที่แพ้">
+            <div class="row drug" *ngFor="let elem of allegicDrugsList; let i = index;">
+				<div class="col-xs-10">
+	                <select class="form-control" type="text" [ngModel]="elem.drugID" (ngModelChange)="bindsBack($event,i)">
+	        			<option *ngFor="let drug of drugs" [selected]="drug.name == elem.drugName" [value]="drug._id">{{drug.name}}</option>
+			    	</select>
+				</div>
+				<div class="coll-xs-2">
+					<a (click)="deleteAllegicDrugField(i)" ><i  class="fa fa-trash" style="color: #e84234; margin-top: 10px;" aria-hidden="true"></i></a>				
+				</div>
+			</div>
+            <div class="row center">
+                <button (click)="addAllegicDrugField()" type="button" class="btn btn-info" style="width: 30%; min-width: 200px"><i class="fa fa-plus" aria-hidden="true"></i> <span> เพิ่มรายการยาที่แพ้</span></button>                  
+            </div>
         </div>
     </div>
     <div class="form-group row">
