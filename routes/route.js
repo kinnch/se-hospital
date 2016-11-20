@@ -118,7 +118,7 @@ module.exports = function(app) {
     app.post('/api/patient/diagnosisHistory',diagnosisDataController.getPatientDiagnosisHistory);
     app.post('/api/diagnosis/create', diagnosisDataController.create);
     app.post('/api/getDiagnosisAndPhysicalCheck',diagnosisDataController.getDiagnosisAndPhysicalCheck);
-
+    app.get('/api/diseases',diagnosisDataController.getAllDiseases);
     //patientController.setDBConnectionsFromApp(app);
     
     app.get('/api/employees',hospitalEmployeeController.getAllEmployee);
