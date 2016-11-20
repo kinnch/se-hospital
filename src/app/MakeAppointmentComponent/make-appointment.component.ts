@@ -58,7 +58,7 @@ export class MakeAppointComponent implements OnInit{
             if(!this.isAm && this.rawSchedule.data[i].timePeriod == 'am') continue;
             if(!this.isPm && this.rawSchedule.data[i].timePeriod == 'pm') continue;
 
-            if(!this.isDateChecked[((new Date(this.rawSchedule.data[i].date)).getDay()]) continue;
+            if(!this.isDateChecked[(new Date(this.rawSchedule.data[i].date)).getDay()]) continue;
 
             this.timeTable.push({
                 text: moment(this.rawSchedule.data[i].date).format('DD-MM-YYYY') + ' - ' + ((this.rawSchedule.data[i].timePeriod == 'am')? 'ช่วงเช้า':'ช่วงบ่าย'),
