@@ -1,6 +1,10 @@
 import {Component, Input} from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Router } from '@angular/router';
+
+import { PatientService } from '../../services/patient.service';
+import * as moment_ from 'moment';
+
 @Component({
     selector: 'patient-panel-c',
     template: require('./patient-panel.component.html'),
@@ -8,8 +12,12 @@ import { Router } from '@angular/router';
 })
 
 export class PatientPanelComponent{
-    constructor(private router: Router) {
+    constructor(private router: Router,
+                private PatientService:PatientService) {
     }
 
-    addAppo
+    ngOnInit():void{
+        moment_.locale('th');
+        console.log(localStorage.getItem('patient_id'));
+    }
 }

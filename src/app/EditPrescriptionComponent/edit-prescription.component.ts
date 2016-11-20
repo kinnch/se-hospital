@@ -64,8 +64,10 @@ export class EditPrescriptionComponent{
                     this.toast.titleSuccess="ยืนยันการจ่ายยาสำเร็จ";
                     this.toast.messageSuccess="";
                     this.toast.addToastSuccess();
-                    this.router.navigate(['manage','edit_prescription_request']);
-
+                    setTimeout(()=>{
+                         this.router.navigate(['manage','edit_prescription_request']);
+                    }, 3000);
+                   
                 } else{
                     this.toast.addToastError();
                 }

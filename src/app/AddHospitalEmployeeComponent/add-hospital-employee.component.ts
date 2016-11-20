@@ -37,7 +37,12 @@ export class AddHospitalEmployeeComponent implements OnInit {
         this.hospitalEmployeeService.addHospitalEmployee(this.username,this.password,this.roleId,this.department,this.title,this.fname,this.lname)
         .then((res)=>{
                         if (res == "success") {
-                            this.router.navigate(['manage','manage_staff']);
+                            this.toast.titleSuccess = "เพิ่มสำเร็จ"
+                            this.toast.messageSuccess = "ทำการเพิ่มบุคลากรสำเร็จ"
+                            this.toast.addToastSuccess();                            
+                            setTimeout(()=>
+                                { this.router.navigate(['manage','manage_staff']); }
+                            , 3000);
                         } else{
                             this.toast.addToastError();
                         }

@@ -25,7 +25,6 @@ export class RegisterComponent implements OnInit{
     email: string;
     sex: string;
     birthDate: string;
-    allegicDrugs: string;
     bloodType: string;
 
     drugs: any; 
@@ -44,16 +43,21 @@ export class RegisterComponent implements OnInit{
                 console.log(this.drugs);
         });
     }
-    addPrescriptionField() {
+    addAllegicDrugField() {
         // this.myform = 'hello';
         this.allegicDrugsList.push({id:this.currentDrugId, drugName:""});
         this.currentDrugId++;
         console.log('add');
         console.log(this.allegicDrugsList);
     }
-    deletePrescriptionField(index) {
+    deleteAllegicDrugField(index) {
         console.log("delete");
         this.allegicDrugsList.splice(index, 1);
+    }
+    bindsBack(selectedValue,i){
+        console.log('myFormChange');
+        this.allegicDrugsList[i].drugName = selectedValue;
+        console.log(this.allegicDrugsList[i]);
     }
 
 
@@ -61,14 +65,17 @@ export class RegisterComponent implements OnInit{
         this.location.back();
     }
     register(): void {
-        this.birthDate;
-        this.allegicDrugs;
-        this.patientService.createPatient(this.email, this.title, this.firstName, this.lastName, this.sex, this.birthDate, this.tel, this.nationalID, this.address, this.subdistrict, this.district, this.province, this.postCode, this.allegicDrugs, this.bloodType)
+        let sendAllegicDrugsList = [];
+        for(let drug of this.allegicDrugsList) {
+            if(drug.drugName)
+                sendAllegicDrugsList.push(drug.drugName);
+        }
+        this.patientService.createPatient(this.email, this.title, this.firstName, this.lastName, this.sex, this.birthDate, this.tel, this.nationalID, this.address, this.subdistrict, this.district, this.province, this.postCode, sendAllegicDrugsList, this.bloodType)
         .then((res)=>{
             if(res == "success") {
-
+                console.log("register success!")
             } else {
-
+                console.log("register fail!")
             }
         });
     }
