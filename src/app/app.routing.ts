@@ -99,7 +99,12 @@ const appRoutes: Routes = [
         canActivate: [LoggedInGuard, StaffGuard]
       },
       {
-        path: 'manage_patient/create_appointment',
+        path: 'manage_patient/:mode/:id',
+        component: MakeAppointComponent,
+        canActivate: [LoggedInGuard, StaffGuard]
+      },
+      {
+        path: 'manage_patient/:mode/:id/:aptID',
         component: MakeAppointComponent,
         canActivate: [LoggedInGuard, StaffGuard]
       },

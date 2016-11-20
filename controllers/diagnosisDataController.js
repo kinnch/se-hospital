@@ -83,7 +83,7 @@ exports.getPatientDiagnosisHistory = function(req,res){
     })
     .populate({
         path: 'disease'
-    })
+    }).sort({date: -1})
     .exec( function(err, data){
         if(err){
             res.send({status:"not found"});

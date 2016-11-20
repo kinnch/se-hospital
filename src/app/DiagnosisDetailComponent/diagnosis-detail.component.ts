@@ -35,13 +35,8 @@ export class DiagnosisDetailComponent {
                     this.prescriptionList = data['diagnosis']['drugPrescription']['prescriptions'];
                     this.physicalCheck = data['physical'];
                     var thaiPeriod = '';
-                    if(data['diagnosis']['timePeriod']=='pm'){
-                        thaiPeriod = 'ช่วงบ่าย';
-                    }
-                    else if(data['diagnosis']['timePeriod']=='am'){
-                        thaiPeriod = 'ช่วงเช้า';
-                    }
-                    this.date = moment_(data['diagnosis']['date']).format('ll')+' '+thaiPeriod;
+                    
+                    this.date = moment_(data['diagnosis']['date']).format('ll');
                     console.log('physical check data');
                     console.log(this.physicalCheck);
                 });

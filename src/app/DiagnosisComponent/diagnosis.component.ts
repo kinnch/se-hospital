@@ -3,6 +3,10 @@ import { ActivatedRoute, Params ,Router } from '@angular/router';
 import { AppointmentService } from '../../services/appointment.service';
 import { DiagnosisService } from '../../services/diagnosis.service';
 import {Subscription } from 'rxjs';
+import * as moment_ from 'moment';
+import { UserService } from '../../services/user.service';
+
+
 @Component({
     selector: 'diagnosis-c',
     template: require('./diagnosis.component.html'),
@@ -11,12 +15,19 @@ import {Subscription } from 'rxjs';
 
 export class DiagnosisComponent {
     HN: string;
+    doctorID = localStorage.getItem('user_id');
+    doctorDepartment = localStorage.getItem('department_id');
+
     private subscription: Subscription;
     allDiagnosisHistory: JSON;
     constructor(private router: Router,
         private activatedRoute: ActivatedRoute,
         private appointmentService: AppointmentService,
-        private diagnosisService: DiagnosisService) { }
+        private diagnosisService: DiagnosisService) { 
+            router.events.subscribe((val) => {
+                this.doctorID = localStorage.getItem('user_id');
+            });
+        }
     ngOnInit(){
         this.subscription = this.activatedRoute.params.subscribe(
             (param: any) => {
@@ -28,8 +39,17 @@ export class DiagnosisComponent {
                     // console.log(patient_id);
                     this.diagnosisService.getAllDiagnosisHistory(patient_id)
                     .then((data) =>{
-                        console.log('diagnosis history all');
-                        console.log(data);
+                        // console.log('diagnosis history all');
+                        // console.log(data);
+                        
+                        moment_.locale('th');
+
+                        for(var i=0 ; i < data['diagnosisHistory'].length ; i++){
+                            data['diagnosisHistory'][i]['date'] = moment_(data['diagnosisHistory'][i]['date']).format('ll');
+                        }
+
+                        // console.log('diagnosis -------');
+                        // console.log(data);
                         this.allDiagnosisHistory = data['diagnosisHistory'];
                     });
                     // this.found = true;
@@ -47,7 +67,7 @@ export class DiagnosisComponent {
         this.router.navigate(['manage', 'diagnosis', 'add', this.HN]);
     }
     
-    addApp(hn, doctor_id, department_id): void{
-        this.router.navigate(['manage', 'create_appointment',hn,doctor_id,department_id]);
+    addApp(): void{
+        this.router.navigate(['manage', 'create_appointment',this.HN,this.doctorID,this.doctorDepartment]);
     }
 }

@@ -31,7 +31,7 @@ function getDateYesterday(){
 }
 
 function getDateSomeday(){
-    var this_date = new Date(new Date().getTime() - 24 * 3 * 3600 * 1000 + 7 * 3600 * 1000);
+    var this_date = new Date(new Date().getTime() - 24 * 8 * 3600 * 1000 + 7 * 3600 * 1000);
     this_date = new Date(this_date.getFullYear()+'-'+(this_date.getMonth() + 1)+"-"+this_date.getDate());
     return this_date;
 }
