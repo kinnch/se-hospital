@@ -1,8 +1,9 @@
-import {Component, Input, onInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Router } from '@angular/router';
 
 import { PatientService } from '../../services/patient.service';
+import { AppointmentService } from '../../services/appointment.service';
 import * as moment_ from 'moment';
 
 @Component({
@@ -30,8 +31,13 @@ export class PatientPanelComponent implements OnInit {
     patient_address_postCode: string;
 	patient_sex: string;
 
+	patient_data: any;
+
+	appointments: any[];
+
     constructor(private router: Router,
-                private PatientService:PatientService) {
+                private PatientService: PatientService,
+				private AppointmentService: AppointmentService) {
     }
 
     ngOnInit():void{
@@ -61,26 +67,36 @@ export class PatientPanelComponent implements OnInit {
 
 
 
-this.patient_id = localStorage.getItem('patient_id');
+		this.patient_id = localStorage.getItem('patient_id');
 
-this.patient_title = localStorage.getItem('patient_title');
-this.patient_fname = localStorage.getItem('patient_fname');
-this.patient_lname = localStorage.getItem('patient_lname');
+		this.patient_title = localStorage.getItem('patient_title');
+		this.patient_fname = localStorage.getItem('patient_fname');
+		this.patient_lname = localStorage.getItem('patient_lname');
+		
+		this.patient_email = localStorage.getItem('patient_email');
+		this.patient_tel = localStorage.getItem('patient_tel');
+		this.patient_nationalID = localStorage.getItem('patient_nationalID');
+		this.patient_birthDate = localStorage.getItem('patient_birthDate');
+		this.patient_HN = localStorage.getItem('patient_HN');
 
-this.patient_email = localStorage.getItem('patient_email');
-this.patient_tel = localStorage.getItem('patient_tel');
-this.patient_nationalID = localStorage.getItem('patient_nationalID');
-this.patient_birthDate = localStorage.getItem('patient_birthDate');
-this.patient_HN = localStorage.getItem('patient_HN');
+		this.patient_bloodType = localStorage.getItem('patient_bloodType');
 
-this.patient_bloodType = localStorage.getItem('patient_bloodType');
+		this.patient_address_detail = localStorage.getItem('patient_address_detail');
+		this.patient_address_subDistrict = localStorage.getItem('patient_address_subDistrict');
+		this.patient_address_distict = localStorage.getItem('patient_address_distict');
+		this.patient_address_province = localStorage.getItem('patient_address_province');
+		this.patient_address_postCode = localStorage.getItem('patient_address_postCode');
 
-this.patient_address_detail = localStorage.getItem('patient_address_detail');
-this.patient_address_subDistrict = localStorage.getItem('patient_address_subDistrict');
-this.patient_address_distict = localStorage.getItem('patient_address_distict');
-this.patient_address_province = localStorage.getItem('patient_address_province');
-this.patient_address_postCode = localStorage.getItem('patient_address_postCode');
+		this.patient_sex = localStorage.getItem('patient_sex');
 
-this.patient_sex = localStorage.getItem('patient_sex');
+
+		this.AppointmentService.getPatientAndAppointment(this.patient_nationalID).then((p_data)=>{
+			this.patient_data = p_data;
+			this.appointments = p_data['appoint'];
+			//moment_(appt.date>format('ll'))
+
+			console.log(this.patient_data);
+		});
+
     }
 }

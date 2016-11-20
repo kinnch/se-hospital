@@ -4,120 +4,124 @@
     <br>
     <h3 class = "center">เพิ่มนัดหมายใหม่</h3>
     <hr>
-    <div class = "row">
-        <div class = "col-md-12">
-            <div class="form-group row">
-                <label for="inputDepartment" class="col-sm-2 col-form-label">แผนก</label>
-                <div class="col-sm-10">
-                    <select class="form-control" id="inputDepartment" [(ngModel)]="selectedDepartment" (ngModelChange)="getDoctorList()">
-                        <option *ngFor="let department of departments" value={{department._id}}>{{department.name}}</option>
-                    </select>
-                </div> 
+    <br>
+    <div class="container2">
+        <div class = "row">
+            <div class = "col-md-12">
+                <div class="form-group row">
+                    <label for="inputDepartment" class="col-sm-2 col-form-label">แผนก</label>
+                    <div class="col-sm-10">
+                        <select class="form-control" id="inputDepartment" [(ngModel)]="selectedDepartment" (ngModelChange)="getDoctorList()">
+                            <option *ngFor="let department of departments" value={{department._id}}>{{department.name}}</option>
+                        </select>
+                    </div> 
+                </div>
             </div>
-        </div>
-        <div class = "col-md-12">
-            <div class="form-group row">
-                <label for="inputDoctor" class="col-sm-2 col-form-label">แพทย์</label>
-                <div class="col-sm-10">
-                    <select class="form-control" id="inputDoctor" [(ngModel)]="selectedDoctor" (ngModelChange)="getTimeTable()">
-                        <option *ngFor="let doctor of doctors" value={{doctor._id}}>{{doctor.name.title}} {{doctor.name.fname}} {{doctor.name.lname}}</option>
-                    </select>
-                </div> 
+            <div class = "col-md-12">
+                <div class="form-group row">
+                    <label for="inputDoctor" class="col-sm-2 col-form-label">แพทย์</label>
+                    <div class="col-sm-10">
+                        <select class="form-control" id="inputDoctor" [(ngModel)]="selectedDoctor" (ngModelChange)="getTimeTable()">
+                            <option *ngFor="let doctor of doctors" value={{doctor._id}}>{{doctor.name.title}} {{doctor.name.fname}} {{doctor.name.lname}}</option>
+                        </select>
+                    </div> 
+                </div>
             </div>
-        </div>
-        <div class = "col-md-12" *ngIf="enableGod">
-            <div class="form-group row">
-                <label for="inputDoctor" class="col-sm-2 col-form-label"></label>
-                <div class="col-sm-10">
-                    <label class="form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="checkboxWalkIn" [(ngModel)]="isWalkIn" (ngModelChange)="getTimeTable()"> walk in
-                    </label>
-                </div> 
+            <div class = "col-md-12" *ngIf="enableGod">
+                <div class="form-group row">
+                    <label for="inputDoctor" class="col-sm-2 col-form-label"></label>
+                    <div class="col-sm-10">
+                        <label class="form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="checkboxWalkIn" [(ngModel)]="isWalkIn" (ngModelChange)="getTimeTable()"> walk in
+                        </label>
+                    </div> 
+                </div>
             </div>
-        </div>
-        <div class = "col-md-12">
-            <div class="form-group row">
-                <label for="inputDoctor" class="col-sm-2 col-form-label">ช่วงเวลาที่ต้องการ</label>
-                <div class="col-sm-10">
-                    <label class="form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="checkboxRange0" [(ngModel)]="isTimeRangeChecked[0]" (ngModelChange)="setTimeTable()" checked> ภายใน 1 สัปดาห์
-                    </label>
-                    <label class="form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="checkboxRange1" [(ngModel)]="isTimeRangeChecked[1]" (ngModelChange)="setTimeTable()" checked> ระหว่าง 1 - 2 สัปดาห์
-                    </label>
-                    <label class="form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="checkboxRange2" [(ngModel)]="isTimeRangeChecked[2]" (ngModelChange)="setTimeTable()" checked> 2 สัปดาห์ขึ้นไป
-                    </label>
-                </div> 
+            <div class = "col-md-12">
+                <div class="form-group row">
+                    <label for="inputDoctor" class="col-sm-2 col-form-label">ช่วงเวลาที่ต้องการ</label>
+                    <div class="col-sm-10">
+                        <label class="form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="checkboxRange0" [(ngModel)]="isTimeRangeChecked[0]" (ngModelChange)="setTimeTable()" checked> ภายใน 1 สัปดาห์
+                        </label>
+                        <label class="form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="checkboxRange1" [(ngModel)]="isTimeRangeChecked[1]" (ngModelChange)="setTimeTable()" checked> ระหว่าง 1 - 2 สัปดาห์
+                        </label>
+                        <label class="form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="checkboxRange2" [(ngModel)]="isTimeRangeChecked[2]" (ngModelChange)="setTimeTable()" checked> 2 สัปดาห์ขึ้นไป
+                        </label>
+                    </div> 
+                </div>
             </div>
-        </div>
-        <div class ="col-md-12">
-            <div class="form-group row">
-                <label class="col-sm-2 col-form-label">เลือกวัน</label>
-                <div class="col-sm-10">
-                    <label class="form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1"  [(ngModel)]="isDateChecked[1]" (ngModelChange)="setTimeTable()" checked> จ.
-                    </label>
-                    <label class="form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2"  [(ngModel)]="isDateChecked[2]" (ngModelChange)="setTimeTable()" checked> อ.
-                    </label>
-                    <label class="form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3"  [(ngModel)]="isDateChecked[3]" (ngModelChange)="setTimeTable()" checked> พ.
-                    </label>
-                    <label class="form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="option4"  [(ngModel)]="isDateChecked[4]" (ngModelChange)="setTimeTable()" checked> พฤ.
-                    </label>
-                    <label class="form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox5" value="option5"  [(ngModel)]="isDateChecked[5]" (ngModelChange)="setTimeTable()" checked> ศ.
-                    </label>
-                    <label class="form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox6" value="option6"  [(ngModel)]="isDateChecked[6]" (ngModelChange)="setTimeTable()" checked> ส.
-                    </label>
-                    <label class="form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox7" value="option7"  [(ngModel)]="isDateChecked[0]" (ngModelChange)="setTimeTable()" checked> อา.
-                    </label>
+            <div class ="col-md-12">
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">เลือกวัน</label>
+                    <div class="col-sm-10">
+                        <label class="form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1"  [(ngModel)]="isDateChecked[1]" (ngModelChange)="setTimeTable()" checked> จ.
+                        </label>
+                        <label class="form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2"  [(ngModel)]="isDateChecked[2]" (ngModelChange)="setTimeTable()" checked> อ.
+                        </label>
+                        <label class="form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3"  [(ngModel)]="isDateChecked[3]" (ngModelChange)="setTimeTable()" checked> พ.
+                        </label>
+                        <label class="form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="option4"  [(ngModel)]="isDateChecked[4]" (ngModelChange)="setTimeTable()" checked> พฤ.
+                        </label>
+                        <label class="form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox5" value="option5"  [(ngModel)]="isDateChecked[5]" (ngModelChange)="setTimeTable()" checked> ศ.
+                        </label>
+                        <label class="form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox6" value="option6"  [(ngModel)]="isDateChecked[6]" (ngModelChange)="setTimeTable()" checked> ส.
+                        </label>
+                        <label class="form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox7" value="option7"  [(ngModel)]="isDateChecked[0]" (ngModelChange)="setTimeTable()" checked> อา.
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class ="col-md-12">
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">ช่วงเวลา</label>
+                    <div class="col-sm-10">
+                        <label class="form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="checkboxAM" value="AM" [(ngModel)]="isAm" (ngModelChange)="setTimeTable()" checked> เช้า (9.00-11.30)
+                        </label>
+                        <label class="form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="checkboxPM" value="PM" [(ngModel)]="isPm" (ngModelChange)="setTimeTable()" checked> บ่าย (13.00-15.30)
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class = "col-md-12">
+                <div class="form-group row">
+                    <label for="inputDoctor" class="col-sm-2 col-form-label">เวลาที่จะนัดหมาย</label>
+                    <div class="col-sm-10">
+                        <select class="form-control" id="inputDoctor" [(ngModel)]="selectTime">
+                            <option *ngFor="let item of timeTable" value={{item._id}}>{{item.text}}</option>
+                        </select>
+                    </div> 
+                </div>
+            </div>
+            <div class = "col-md-12">
+                <div class="form-group row">
+                    <label for="inputNote" class="col-sm-2 col-form-label">อาการ(Optional)</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" id="inputNote" rows="3" [(ngModel)]="reason"></textarea>
+                    </div> 
                 </div>
             </div>
         </div>
-        <div class ="col-md-12">
-            <div class="form-group row">
-                <label class="col-sm-2 col-form-label">ช่วงเวลา</label>
-                <div class="col-sm-10">
-                    <label class="form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="checkboxAM" value="AM" [(ngModel)]="isAm" (ngModelChange)="setTimeTable()" checked> เช้า (9.00-11.30)
-                    </label>
-                    <label class="form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="checkboxPM" value="PM" [(ngModel)]="isPm" (ngModelChange)="setTimeTable()" checked> บ่าย (13.00-15.30)
-                    </label>
-                </div>
-            </div>
-        </div>
-        <div class = "col-md-12">
-            <div class="form-group row">
-                <label for="inputDoctor" class="col-sm-2 col-form-label">เวลาที่จะนัดหมาย</label>
-                <div class="col-sm-10">
-                    <select class="form-control" id="inputDoctor" [(ngModel)]="selectTime">
-                        <option *ngFor="let item of timeTable" value={{item._id}}>{{item.text}}</option>
-                    </select>
-                </div> 
-            </div>
-        </div>
-        <div class = "col-md-12">
-            <div class="form-group row">
-                <label for="inputNote" class="col-sm-2 col-form-label">อาการ(Optional)</label>
-                <div class="col-sm-10">
-                    <textarea class="form-control" id="inputNote" rows="3" [(ngModel)]="reason"></textarea>
-                </div> 
-            </div>
-        </div>
+        
         <div class="col-md-12">
             <div class="center">
                 <button type="button" class="btn btn-danger center" (click)="goBack()">ยกเลิก</button>
-                <button [disabled]="cannotBook" type="button" class="btn btn-primary center" (click)="save()">บันทึก</button>
+                <button [disabled]="!selectTime" type="button" class="btn btn-primary center" (click)="save()">บันทึก</button>
                 <br><br>
             </div>
-        </div>
-    
+        <br>
+        <br>
     </div>
     
 </div>

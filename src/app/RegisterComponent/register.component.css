@@ -1,6 +1,8 @@
 .container{
     background-color: #FFFFFF;
     background-repeat: repeat-y;
+            margin-bottom: 30px;
+
 }
 .center{
     text-align: center !important;
@@ -12,4 +14,12 @@
 a:hover {
     text-decoration: none;
     cursor: pointer;
+}
+
+.container2{
+    margin: 0 5%;
+}
+
+.title{
+    margin-bottom: 20px;
 }
