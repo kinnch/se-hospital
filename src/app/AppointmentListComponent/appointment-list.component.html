@@ -1,12 +1,13 @@
-<div *ngFor = "let apt of data['appoint']">
+<div *ngFor = "let apt of data['appoint'] | reverse">
   <div class="card card-block">
     <h5 class="card-title">[{{apt['timePeriod2']}}] {{apt['date2']}}</h5>
+    
     <div class = "right-btn">
       <a routerLink="/manage/manage_patient/edit_appointment_s/{{data['patient_data']['_id']}}/{{apt['_id']}}">
-        <button type="button" class="btn btn-primary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+        <button *ngIf="apt['appointments'][0]['status'] == 0"type="button" class="btn btn-primary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
       </a>
-      <button type="button" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button>
-      <button type="button" class="btn btn-success"><i class="fa fa-print" aria-hidden="true"></i></button>
+      <button *ngIf="apt['appointments'][0]['status'] == 0" type="button" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button>
+      <button *ngIf="apt['appointments'][0]['status'] == 0" type="button" class="btn btn-success"><i class="fa fa-print" aria-hidden="true"></i></button>
     </div>
     <p class="card-text"><b>แผนก</b> : {{apt['doctor']['department']['name']}} <br> <b>แพทย์ : </b> {{apt['doctor']['name']['title']}}{{apt['doctor']['name']['fname']}} {{apt['doctor']['name']['lname']}}</p>
   </div>
