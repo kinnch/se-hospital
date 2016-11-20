@@ -1,8 +1,11 @@
 import {Component, Input, OnInit} from '@angular/core';
-import { ActivatedRoute, Params ,Router } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
+import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { DepartmentService } from '../../services/department.service';
 import {Subscription } from 'rxjs';
+
+
 import * as moment_ from 'moment';
 // departments: string[] = [];
 
@@ -14,6 +17,7 @@ import * as moment_ from 'moment';
 
 export class MakeAppointComponent implements OnInit{
     private subscription: Subscription;
+
     departments = [];
     doctors = [];
     timeTable = [];
@@ -33,6 +37,7 @@ export class MakeAppointComponent implements OnInit{
     isTimeRangeChecked = [true, true, true];
 
     isWalkIn:boolean = false;
+
     //----Var to use----
     enableGod = false;//staff 15-20 is OK
     mode = '';//create_appointment_s.edit_appointment_s,create_appointment,edit_appointment
@@ -42,8 +47,8 @@ export class MakeAppointComponent implements OnInit{
     cannotBook = true;
     constructor(private router: Router,
                 private location: Location,
-                private activatedRoute: ActivatedRoute,
-                private DepartmentService: DepartmentService) {
+                private DepartmentService: DepartmentService,
+                private activatedRoute: ActivatedRoute) {
     }
 
     ngOnInit():void{
@@ -63,6 +68,11 @@ export class MakeAppointComponent implements OnInit{
                 
         });
     }
+
+      ngOnDestroy() {
+    // prevent memory leak by unsubscribing
+    this.subscription.unsubscribe();
+  }
 
     getAllList():void{
         console.log('getAllList');
@@ -134,23 +144,10 @@ export class MakeAppointComponent implements OnInit{
             this.setTimeTable();
         })
     }
+    
     save(): void{
         console.log('save');
         //this.DepartmentService.saveData(this.selectTime, localStorage.getItem('patient_id'), this.reason);
-        this.DepartmentService.saveData(this.selectTime,this.patientID,this.reason)
-        .then((data)=>{
-            console.log('----save----');
-            console.log(data);
-            //TODO: toast
-            if(data['status']=='success'){
-                if(this.mode=='edit'){
-                    //TODO delete
-                }
-            }
-            // else{
-
-            // }
-        });
     }
 
     goBack(): void {

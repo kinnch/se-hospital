@@ -28,3 +28,10 @@ a:hover {
 .center{
     text-align: center;
 }
+
+.has-error .form-control {
+    border-color: #E84234;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    color: #E84234;
+}

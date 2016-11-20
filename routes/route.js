@@ -70,6 +70,7 @@ module.exports = function(app) {
     app.get('/testing',  patientController.testing);
     app.post('/api/patient/search',  patientController.search);
     app.post('/api/patient/register', patientController.register);
+    app.post('/api/patient/getObjIdFromHN', patientController.getObjIdFromHN);
 
     var seederController = require('../controllers/seederController');
     app.get('/seed',  seederController.seed);
@@ -112,6 +113,7 @@ module.exports = function(app) {
     app.post('/api/doctorAvailable',  scheduleController.getDoctorSchedule);
     app.post('/api/schedule/getTableStaff', scheduleController.getTableStaff);
     app.post('/api/schedule/all', scheduleController.listAll);
+    app.post('/api/schedule/delete', scheduleController.delete);
     app.post('/api/importCSV',scheduleController.importCSV);
     var diagnosisDataController = require('../controllers/diagnosisDataController');
     // app.post('/api/diagnosisHistory', diagnosisDataController.diagnosisHistory); //TODO :REMOVE IF no one blame.

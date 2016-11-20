@@ -119,12 +119,19 @@ export class UserService {
           localStorage.setItem('patient_email', res.user.email);
           localStorage.setItem('patient_tel', res.user.tel);
           localStorage.setItem('patient_nationalID', res.user.nationalID);
+
           localStorage.setItem('patient_birthDate', res.user.birthDate);
           localStorage.setItem('patient_HN', res.user.HN);
-
           localStorage.setItem('patient_bloodType', res.user.bloodType);
-          localStorage.setItem('patient_address', res.user.address);
+
           localStorage.setItem('patient_sex',res.user.sex);
+          
+          localStorage.setItem('patient_address_detail', res.user.address.detail);
+          localStorage.setItem('patient_address_subDistrict', res.user.address.subDistrict);
+          localStorage.setItem('patient_address_distict', res.user.address.distict);
+          localStorage.setItem('patient_address_province', res.user.address.province);
+          localStorage.setItem('patient_address_postCode', res.user.address.postCode);
+
           this.loggedIn = true;
         }
 

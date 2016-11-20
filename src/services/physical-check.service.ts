@@ -33,13 +33,43 @@ export class PhysicalCheckService {
                         return data.json();
                     });
     }
-    editPhysicakCheck(systolic:number,diastolic:number,heartRate:number,weight:number,height:number,temp:number,HN:string) :Promise<string>{
+    editPhysicalCheck(systolic:number,diastolic:number,heartRate:number,weight:number,height:number,temp:number,HN:string) :Promise<string>{
         return this.http
                     .post(this.apiEditPhysicalUrl, JSON.stringify({systolic: systolic,diastolic:diastolic,heartRate:heartRate,weight:weight,height:height,temp:temp,HN:HN}), {headers: this.headers})
                     .toPromise()
                     .then(res => {
                         if(res.json().status == "success")
                             return "success";
+                    });
+    }
+     /*  
+            0 == created in website
+            1 == ปรินท์ใบนัดแล้ว
+            2 == ตรวจร่างกายแล้ว
+            3 == ตรวจอยู่
+            4 == ตรวจเสร็จ
+        */
+    changeAppointmentStatus(appointmentID : string): Promise<JSON>{
+        return this.http
+                    .post('api/appointment/changeState', JSON.stringify({
+                        appointmentID: appointmentID,
+                        newState : 2
+                    }), {headers: this.headers})
+                    .toPromise()
+                    .then(function(res){
+                        console.log(res.json());
+                        return res.json();
+                    });
+    }
+    getPatientIdFromHN(hn:string): Promise<string>{
+        return this.http
+                    .post('api/patient/getObjIdFromHN', JSON.stringify({
+                        hn:hn
+                    }), {headers: this.headers})
+                    .toPromise()
+                    .then(function(res){
+                        console.log(res.json());
+                        return res.json().patientId;
                     });
     }
 }

@@ -11,21 +11,21 @@
                     <br>
                     <div class="row">
                         <div class="col-sm-4">
-                            <p><b>ชื่อ : </b>aaaaaaaa </p>
+                            <p><b>ชื่อ : </b>{{patient_title}}{{patient_fname}}</p>
                         </div>  
                         <div class="col-sm-4">
-                            <p><b>นามสกุล : </b>aaaaaaa</p>    
+                            <p><b>นามสกุล : </b>{{patient_lname}}</p>    
                         </div>
                         <div class="col-sm-4">
-                            <p><b>HN : </b>xxxxxxxx</p>    
+                            <p><b>HN : </b>{{patient_HN}}</p>    
                         </div> 
                     </div>
                     <div class="row">
                         <div class="col-sm-4">
-                            <p><b>เพศ : </b>aaa</p>
+                            <p><b>เพศ : </b>{{patient_sex}}</p>
                         </div>  
                         <div class="col-sm-4">
-                            <p><b>อายุ : </b>aaaaaa</p>    
+                            <p><b>อายุ : </b>{{patient_birthDate}}</p>    
                         </div> 
                         <div class="col-sm-4">  
                         </div>
@@ -35,7 +35,7 @@
     </section>
     <hr>
     <h4>รายการนัดทั้งหมด 
-        <a routerLink="create_appointment"><button type="submit" style="margin-right: 5%" class="btn btn-success pull-right">+เพิ่มนัดหมายใหม่</button></a>
+        <a routerLink="create_appointment/123"><button type="submit" style="margin-right: 5%" class="btn btn-success pull-right">+เพิ่มนัดหมายใหม่</button></a>
     </h4>
     <br>
     <div class="appointment-list">

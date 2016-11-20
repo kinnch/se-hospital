@@ -2,6 +2,7 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Router } from '@angular/router';
 import { PhysicalCheckService } from '../../services/physical-check.service';
+import { AppointmentService } from '../../services/appointment.service';
 import * as moment_ from 'moment';
 import { ToastComponent } from '../ToastComponent/toast.component';
 import {Subscription } from 'rxjs';
@@ -25,12 +26,17 @@ export class PatientPhysicalCheckComponent implements OnInit {
     isAdd: boolean = false;
     buttonName: string = 'บันทึก';
     userRoleId = "";
+    departmentId = "";
     private subscription: Subscription;
     constructor(private router: Router, 
                 private physicalCheckService: PhysicalCheckService,
+                private appointmentService: AppointmentService,
                 private activatedRoute: ActivatedRoute,
                 ) { }
     ngOnInit(): void {
+        this.departmentId = localStorage.getItem('department_id')
+            //TODO : departmentId
+            this.departmentId = '';
         this.userRoleId = localStorage.getItem('user_roleID');
         moment_.locale('th');
         this.subscription = this.activatedRoute.params.subscribe(
@@ -65,6 +71,39 @@ export class PatientPhysicalCheckComponent implements OnInit {
             this.physicalCheckService.addPhysicalCheck(this.systolic, this.diastolic, this.heartRate, this.weight, this.height, this.temp, this.HN)
             .then((res) => {
                 if (res == "success") {
+                    var hours = new Date().getHours();
+                    var hours = (hours+24-2)%24; 
+                    var mid='am';
+                    if(hours==0){ //At 00 hours we need to show 12 am
+                        hours=12;
+                    }
+                    else if(hours>12){
+                        hours=hours%12;
+                        mid='pm';
+                    }
+                    this.appointmentService.getTodayAppointments(this.departmentId,'am').then((data)=>{
+                        console.log("data",data)
+                        var appointmentId = "";
+                        var scheduleList = data['scheduleList'];
+                        if(scheduleList){
+                            scheduleList.forEach((schedule)=>{
+                                if(schedule.appointments[0]){
+                                    var appointments = schedule.appointments;
+                                    appointments.forEach((appointment)=>{
+                                        if(appointment.patient.HN == this.HN){
+                                            appointmentId = appointment._id;
+                                        }
+                                    })
+                                }
+                            });
+                        }
+                        this.physicalCheckService.changeAppointmentStatus(appointmentId).then((res)=>{
+                            if(res['status'] != "success"){
+                                this.toast.addToastError(); 
+                                console.log("ไม่สามารถเปลี่ยน state ได้")                            
+                            }
+                        })
+                    });
                     this.isAdd = !this.isAdd;
                     this.buttonName = 'แก้ไข'
                     this.toast.titleSuccess = "บันทึกสำเร็จ"
@@ -81,7 +120,7 @@ export class PatientPhysicalCheckComponent implements OnInit {
             this.buttonName = "บันทึกการแก้ไข"        
         }
         else if(this.buttonName === "บันทึกการแก้ไข"){
-            this.physicalCheckService.editPhysicakCheck(this.systolic, this.diastolic, this.heartRate, this.weight, this.height, this.temp, this.HN)
+            this.physicalCheckService.editPhysicalCheck(this.systolic, this.diastolic, this.heartRate, this.weight, this.height, this.temp, this.HN)
             .then((res) => {
                 if (res == "success") {
                     this.isAdd = !this.isAdd;
