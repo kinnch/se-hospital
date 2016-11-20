@@ -30,6 +30,8 @@ export class PatientPanelComponent implements OnInit {
     patient_address_postCode: string;
 	patient_sex: string;
 
+	patient_data: any;
+
     constructor(private router: Router,
                 private PatientService:PatientService) {
     }
@@ -82,5 +84,11 @@ export class PatientPanelComponent implements OnInit {
 		this.patient_address_postCode = localStorage.getItem('patient_address_postCode');
 
 		this.patient_sex = localStorage.getItem('patient_sex');
+
+		this.AppointmentService.getPatientAndAppointment(this.patient_id).then((p_data)=>{
+			this.patient_data = p_data;
+			console.log(this.patient_data);
+		}
+
     }
 }
