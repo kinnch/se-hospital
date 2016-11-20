@@ -47,46 +47,62 @@ export class StaffComponent{
                             (this.userRoleId == "4" && this.userSex == "male") ? 
                             "/resources/images/icon_people/fm_phar.png" : 
                             "/resources/images/icon_people/m_staff.png";
-            console.log("sex",this.userSex)
-            
-            
+            if(this.userRoleId == "1" && this.router.url === '/manage/manage_patient'){
+                this.activatedClass = 1;            
+            } else if(this.userRoleId == "2" && this.router.url === '/manage/manage_doctor_calendar'){
+                this.activatedClass = 2;
+            } else if(this.userRoleId == "1" && this.router.url === '/manage/manage_staff'){
+                this.activatedClass = 3;
+            } else if(this.userRoleId == "1" && this.router.url === '/manage/manage_queue'){
+                this.activatedClass = 4;
+            } else if(this.userRoleId == "3" && this.router.url === '/manage/manage_queue'){
+                this.activatedClass = 5;
+            } else if(this.userRoleId == "4" && this.router.url === '/manage/prescription_request'){
+                this.activatedClass = 6;
+            } else if(this.userRoleId == "2" && this.router.url === '/manage/edit_prescription_request'){
+                this.activatedClass = 7;
+            } else if(this.userRoleId == "2" && this.router.url === '/manage/manage_queue'){
+                this.activatedClass = 8;
+            } else if(this.userRoleId == "2" && this.router.url === '/manage/doctor_calendar'){
+                this.activatedClass = 9;
+            }
         });
         //TODO
-        if(this.userRoleId == "1" && this.router.url === '/manage/manage_patient'){
-            this.activatedClass = 1;            
-        } else if(this.userRoleId == "2" && this.router.url === '/manage/manage_doctor_calendar'){
-            this.activatedClass = 2;
-        } else if(this.userRoleId == "1" && this.router.url === '/manage/manage_staff'){
-            this.activatedClass = 3;
-        } else if(this.userRoleId == "1" && this.router.url === '/manage/manage_queue'){
-            this.activatedClass = 4;
-        } else if(this.userRoleId == "3" && this.router.url === '/manage/manage_queue'){
-            this.activatedClass = 5;
-        } else if(this.userRoleId == "4" && this.router.url === '/manage/prescription_request'){
-            this.activatedClass = 6;
-        } else if(this.userRoleId == "2" && this.router.url === '/manage/edit_prescription_request'){
-            this.activatedClass = 7;
-        } else if(this.userRoleId == "2" && this.router.url === '/manage/manage_queue'){
-            this.activatedClass = 8;
-        } else if(this.userRoleId == "2" && this.router.url === '/manage/doctor_calendar'){
-            this.activatedClass = 9;
-        } else{
-            let link = [];
-            if(this.userRoleId == "1"){
-                link = ['manage','manage_patient'];
-                this.activatedClass = 1;
-            } else if(this.userRoleId == "2"){
-                link = ['manage','manage_queue'];
-                this.activatedClass = 8;
-            } else if(this.userRoleId == "3"){
-                link = ['manage','manage_queue'];
-                this.activatedClass = 5;
-            } else if(this.userRoleId == "4"){
-                link = ['manage','prescription_request'];
-                this.activatedClass = 6;   
-            }
-            this.router.navigate(link);  
-        }
+        // if(this.userRoleId == "1" && this.router.url === '/manage/manage_patient'){
+        //     this.activatedClass = 1;            
+        // } else if(this.userRoleId == "2" && this.router.url === '/manage/manage_doctor_calendar'){
+        //     this.activatedClass = 2;
+        // } else if(this.userRoleId == "1" && this.router.url === '/manage/manage_staff'){
+        //     this.activatedClass = 3;
+        // } else if(this.userRoleId == "1" && this.router.url === '/manage/manage_queue'){
+        //     this.activatedClass = 4;
+        // } else if(this.userRoleId == "3" && this.router.url === '/manage/manage_queue'){
+        //     this.activatedClass = 5;
+        // } else if(this.userRoleId == "4" && this.router.url === '/manage/prescription_request'){
+        //     this.activatedClass = 6;
+        // } else if(this.userRoleId == "2" && this.router.url === '/manage/edit_prescription_request'){
+        //     this.activatedClass = 7;
+        // } else if(this.userRoleId == "2" && this.router.url === '/manage/manage_queue'){
+        //     this.activatedClass = 8;
+        // } else if(this.userRoleId == "2" && this.router.url === '/manage/doctor_calendar'){
+        //     this.activatedClass = 9;
+        // } else{
+        //     let link = [];
+        //     if(this.userRoleId == "1"){
+        //         link = ['manage','manage_patient'];
+        //         this.activatedClass = 1;
+        //     } else if(this.userRoleId == "2"){
+        //         link = ['manage','manage_queue'];
+        //         this.activatedClass = 8;
+        //     } else if(this.userRoleId == "3"){
+        //         link = ['manage','manage_queue'];
+        //         this.activatedClass = 5;
+        //     } else if(this.userRoleId == "4"){
+        //         link = ['manage','prescription_request'];
+        //         this.activatedClass = 6;   
+        //     }
+        //     this.router.navigate(link);  
+        // }
     }
     
     ngOnInit(): void {
