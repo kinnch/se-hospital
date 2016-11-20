@@ -45,32 +45,40 @@
     </div>
     <hr>
 </div>
-<div class="physical-check-history">
-    <div class="table-responsive">
-        <table class="table table-sm">
-            <thead class="thead-default">
-                <tr>
-                    <th>วันที่</th>
-                    <th>น้ำหนัก (กก.)</th>
-                    <th>ส่วนสูง (ซม.)</th>
-                    <th>อุณหภูมิ (องศา)</th>
-                    <th>อัตราการเต้นหัวใจ</th>                
-                    <th>ความดันช่วงบีบ</th>
-                    <th>ความดันช่วงคลาย</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let phy of physicalData">
-                    <th scope="row">{{phy.date}}</th>
-                    <td>{{phy.weight}}</td>
-                    <td>{{phy.height}}</td>
-                    <td>{{phy.temp}}</td>
-                    <td>{{phy.heartRate}}</td>
-                    <td>{{phy.bloodPresure.systolic}}</td>
-                    <td>{{phy.bloodPresure.diastolic}}</td>                
-                </tr>
-            </tbody>  
-        </table>
+<div class="history">
+    <h5>ประวัติการตรวจร่างกายเบื้องต้น</h5>
+    <div class="physical-check-history">
+        <div class="container" *ngIf="physicalData.length == 0">
+            <br>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ผู้ป่วยยังไม่มีประวัติการตรวจร่างกาย</p>
+            <br>
+        </div>
+        <div *ngIf="physicalData.length != 0" class="table-responsive">
+            <table class="table table-sm">
+                <thead class="thead-default">
+                    <tr>
+                        <th>วันที่</th>
+                        <th>น้ำหนัก (กก.)</th>
+                        <th>ส่วนสูง (ซม.)</th>
+                        <th>อุณหภูมิ (องศา)</th>
+                        <th>อัตราการเต้นหัวใจ</th>                
+                        <th>ความดันช่วงบีบ</th>
+                        <th>ความดันช่วงคลาย</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let phy of physicalData">
+                        <th scope="row">{{phy.date}}</th>
+                        <td>{{phy.weight}}</td>
+                        <td>{{phy.height}}</td>
+                        <td>{{phy.temp}}</td>
+                        <td>{{phy.heartRate}}</td>
+                        <td>{{phy.bloodPresure.systolic}}</td>
+                        <td>{{phy.bloodPresure.diastolic}}</td>                
+                    </tr>
+                </tbody>  
+            </table>
+        </div>
     </div>
 </div>
 <toast></toast>

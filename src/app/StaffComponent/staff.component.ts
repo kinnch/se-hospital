@@ -49,7 +49,7 @@ export class StaffComponent{
                             "/resources/images/icon_people/m_staff.png";
             if(this.userRoleId == "1" && this.router.url === '/manage/manage_patient'){
                 this.activatedClass = 1;            
-            } else if(this.userRoleId == "2" && this.router.url === '/manage/manage_doctor_calendar'){
+            } else if(this.userRoleId == "1" && this.router.url === '/manage/manage_doctor_calendar'){
                 this.activatedClass = 2;
             } else if(this.userRoleId == "1" && this.router.url === '/manage/manage_staff'){
                 this.activatedClass = 3;

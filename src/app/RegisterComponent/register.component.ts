@@ -55,20 +55,28 @@ export class RegisterComponent implements OnInit{
         console.log("delete");
         this.allegicDrugsList.splice(index, 1);
     }
+    bindsBack(selectedValue,i){
+        console.log('myFormChange');
+        this.allegicDrugsList[i].drugName = selectedValue;
+        console.log(this.allegicDrugsList[i]);
+    }
 
 
     goBack(): void {
         this.location.back();
     }
     register(): void {
-        this.birthDate;
-        this.allegicDrugs;
-        this.patientService.createPatient(this.email, this.title, this.firstName, this.lastName, this.sex, this.birthDate, this.tel, this.nationalID, this.address, this.subdistrict, this.district, this.province, this.postCode, this.allegicDrugs, this.bloodType)
+        let sendAllegicDrugsList = [];
+        for(let drug of this.allegicDrugs) {
+            if(drug.drugName)
+                sendAllegicDrugsList.push(drug.drugName);
+        }
+        this.patientService.createPatient(this.email, this.title, this.firstName, this.lastName, this.sex, this.birthDate, this.tel, this.nationalID, this.address, this.subdistrict, this.district, this.province, this.postCode, sendAllegicDrugsList, this.bloodType)
         .then((res)=>{
             if(res == "success") {
-
+                console.log("register success!")
             } else {
-
+                console.log("register fail!")
             }
         });
     }

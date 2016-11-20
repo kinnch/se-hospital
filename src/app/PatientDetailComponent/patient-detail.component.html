@@ -1,6 +1,6 @@
 <a class="back" (click)="goback()">< ย้อนกลับ</a>
 <hr>
-<section class = "container" *ngIf="data && found">
+<section class = "container card-container" *ngIf="data && found">
     <br>
     <div class="row"> 
         <div class="col-sm-3">
@@ -8,27 +8,24 @@
         </div>
         <div class="col-sm-9">
             <br>
-            <div class="row">
-                <div class="col-md-4">
-                    <p><b>ชื่อ : </b>{{data['patient_data']['name']['title']}}{{data['patient_data']['name']['fname']}}</p>
+             <div class="row">
+                <div class="col-sm-12">
+                    <p><b>ชื่อผู้ป่วย : </b> {{data.patient_data.name.title}}&nbsp;{{data.patient_data.name.fname}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{data.patient_data.name.lname}}</p>
                 </div>  
-                <div class="col-md-4">
-                    <p><b>นามสกุล : </b>{{data['patient_data']['name']['lname']}}</p>    
-                </div>
-                <div class="col-md-4">
-                    <p><b>HN : </b> {{data['patient_data']['HN']}}</p>    
-                </div> 
             </div>
             <div class="row">
-                <div class="col-md-4">
-                    <p><b>เพศ : </b> {{data['patient_data']['sex']}}</p>
+                <div class="col-sm-3">
+                    <p><b>เพศ : </b> {{data.patient_data.sex=='male' ? "ชาย" : "หญิง"}}</p>
                 </div>  
-                <div class="col-md-4">
-                    <p><b>อายุ : </b> {{year}} ปี {{month}} เดือน</p>    
+                <div class="col-sm-3">
+                    <p><b>อายุ : </b>{{year}}&nbsp;ปี&nbsp;{{month}}&nbsp;เดือน</p>    
                 </div> 
-                <div class="col-md-4"> 
-                    <p><b>กรุ๊ปเลือด : </b> {{data['patient_data']['bloodType']}} </p> 
+                <div class="col-sm-3">  
+                     <p><b>กรุ๊ปเลือด : </b>{{data.patient_data.bloodType}}</p>
                 </div>
+                <div class="col-sm-3">
+                    <p><b>HN : </b>{{data.patient_data.HN}}</p>    
+                </div> 
             </div>
         </div>    
     </div>
