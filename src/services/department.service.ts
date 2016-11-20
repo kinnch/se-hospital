@@ -34,10 +34,11 @@ export class DepartmentService {
                     });
     }
 
-    getDoctorSchedule(doctorID : string): Promise<JSON>{
+    getDoctorSchedule(doctorID : string, isWalkIn: boolean): Promise<JSON>{
         return this.http
         .post('api/doctorAvailable', JSON.stringify({
-            doctor_id: doctorID
+            doctor_id: doctorID,
+            isWalkIn: isWalkIn
             }), {headers: this.headers})
                     .toPromise()
                     .then(function(res){
@@ -45,10 +46,24 @@ export class DepartmentService {
                     });
     }
 
-    getAllSchedule(departmentID : string):  Promise<JSON>{
+    getAllSchedule(departmentID : string, isWalkIn: boolean):  Promise<JSON>{
         return this.http
         .post('/api/schedule/all', JSON.stringify({
-            departmentID: departmentID
+            departmentID: departmentID,
+            isWalkIn: isWalkIn
+            }), {headers: this.headers})
+                    .toPromise()
+                    .then(function(res){
+                        return res.json();
+                    });
+    }
+
+    saveData(schedule_id: string, patient_id: string, reason: string):Promise<JSON>{
+        return this.http
+        .post('/api/schedule/all', JSON.stringify({
+            schedule_id: schedule_id,
+            patient_id: patient_id,
+            reason: reason
             }), {headers: this.headers})
                     .toPromise()
                     .then(function(res){
