@@ -41,7 +41,6 @@ export class PrescriptionFormComponent implements OnInit{
         if(ok){
             this.data['prescriptions'].forEach((d)=>{
             this.prescriptionList.push({id: this.currentId, drugID: d.drug._id, amount: d.amount, detail: d.detail });
-            //this.newPres.push({id: this.currentId, drugName: d.drug.name, amount: d.amount, detail: d.detail });
             this.currentId++;
             })
         }
@@ -53,8 +52,8 @@ export class PrescriptionFormComponent implements OnInit{
     }
     bindsBack(newValue,i,mode){
         console.log('myFormChange');
-        if(mode == 1 ){//drugName
-            this.prescriptionList[i]['drugName'] = newValue;
+        if(mode == 1 ){//drugID
+            this.prescriptionList[i]['drugID'] = newValue;
         }
         else if(mode == 2){//amount
             this.prescriptionList[i]['amount'] = newValue;
