@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, onInit} from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Router } from '@angular/router';
 
@@ -11,7 +11,21 @@ import * as moment_ from 'moment';
     styles: [require('./patient-panel.component.css')]
 })
 
-export class PatientPanelComponent{
+export class PatientPanelComponent implements OnInit {
+	patient_id: string;
+	patient_title: string;
+	patient_fname: string;
+	patient_lname: string;
+	department_id: string;
+	patient_email: string;
+	patient_tel: string;
+	patient_nationalID: string;
+	patient_birthDate: string;
+	patient_HN: string;
+	patient_bloodType: string;
+	patient_address: string;
+	patient_sex: string;
+
     constructor(private router: Router,
                 private PatientService:PatientService) {
     }

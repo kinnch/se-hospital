@@ -531,6 +531,16 @@ footer {
       background-attachment: scroll;
 }
 
+@media (max-width: 991px){
+  .navbar-header-snow {
+    float:left;
+  }
+}
+@media (min-width: 992px){
+  .navbar-header-snow {
+    float:none;
+  }
+}
 
 /* Landscape phone to portrait tablet */
 @media (min-width: 481px) and (max-width: 767px) { 
