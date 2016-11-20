@@ -63,13 +63,13 @@ exports.importCSV = function(req,res){
             'name.fname': req.body.data.doctor_fname, 
             'name.lname': req.body.data.doctor_lname
             }, function (err,dr){
-            if(err) return {status: 'fail'};
-            if(dr == null) return {status: 'fail'};
+            if(err) return res.send({status: 'fail1'});
+            if(dr == null) return res.send({status: 'fail2'});
             Schedule.findOne({doctor: dr._id, 
                 date: {"$gte": new Date(req.body.data.date),
                 $lt:new Date(new Date(req.body.data.date).getTime() + 24 * 3600 * 1000)},
                 timePeriod: req.body.data.timePeriod}, function(err,schedule){
-                if(err) return {status: 'fail'};
+                if(err) return res.send({status: 'fail3'});
                 //return res.send(schedule);
                 if(schedule == null){
                     var sche = new Schedule({

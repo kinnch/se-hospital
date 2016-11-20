@@ -48,4 +48,16 @@ export class DiagnosisService {
                         return res.json();
                     });
     }
+    addSchedule(data:any): Promise<JSON>{
+        console.log('in service');
+        console.log(data);
+        return this.http
+                    .post('/api/importCSV', JSON.stringify({data : data})
+                    , {headers: this.headers})
+                    .toPromise()
+                    .then(function(res){
+                        console.log('responded');
+                        return res.json();
+                    });
+    }
 }
