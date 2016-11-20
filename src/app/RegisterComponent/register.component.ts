@@ -25,12 +25,13 @@ export class RegisterComponent implements OnInit{
     email: string;
     sex: string;
     birthDate: string;
-    allegicDrugs: string;
     bloodType: string;
 
     drugs: any; 
     currentDrugId: number = 1;
     allegicDrugsList : any[] = [];
+    allegicDrugs: string[] = [];
+
     constructor(private router: Router, 
                 private location: Location,
                 private patientService: PatientService, 
@@ -41,19 +42,23 @@ export class RegisterComponent implements OnInit{
         this.prescriptionService.getAllDrugs()
             .then((res) => {
                 this.drugs = res['msg'];
-                console.log(this.drugs);
+                // console.log(this.drugs);
         });
     }
-    addPrescriptionField() {
+    addAllegicDrugField() {
         // this.myform = 'hello';
-        this.allegicDrugsList.push({id:this.currentDrugId, drugName:""});
+        this.allegicDrugsList.push({id:this.currentDrugId, drugID:""});
         this.currentDrugId++;
-        console.log('add');
-        console.log(this.allegicDrugsList);
+        // console.log(this.allegicDrugsList);
     }
-    deletePrescriptionField(index) {
-        console.log("delete");
+    deleteAllegicDrugField(index) {
+        // console.log("delete");
         this.allegicDrugsList.splice(index, 1);
+    }
+    bindsBack(selectedValue,i){
+        // console.log('myFormChange');
+		this.allegicDrugsList[i].drugID = selectedValue;
+        // console.log(this.allegicDrugsList[i]);
     }
 
 
@@ -61,14 +66,16 @@ export class RegisterComponent implements OnInit{
         this.location.back();
     }
     register(): void {
-        this.birthDate;
-        this.allegicDrugs;
+        for(let drug of this.allegicDrugsList) {
+            if(drug['drugID'])
+                this.allegicDrugs.push(drug['drugID']);
+        }
         this.patientService.createPatient(this.email, this.title, this.firstName, this.lastName, this.sex, this.birthDate, this.tel, this.nationalID, this.address, this.subdistrict, this.district, this.province, this.postCode, this.allegicDrugs, this.bloodType)
         .then((res)=>{
             if(res == "success") {
-
+                console.log("register success!")
             } else {
-
+                console.log("register fail!")
             }
         });
     }

@@ -21,6 +21,8 @@ export class LoginComponent {
     errorMSG: string = "";
     step : number = 1;
     isLoading : boolean = false;
+    greetingMSG : string ="";
+
     constructor(private userService: UserService, private router: Router, private location: Location) {
     }
 
@@ -30,19 +32,30 @@ export class LoginComponent {
     // Login
     sendOTP(): void {
         this.isLoading = true;
-       this.userService.loginPatient(this.username , this.OTPCode ).subscribe((result) => {
-            if (result) {
-                this.isLoading = false;
-                this.step = 3;
-                var i = 400;
-                while(i>0){
-                    i--;
-                    // console.log(i);
+        this.loadingMSG = "กำลังตรวจสอบรหัส OTP";
+        this.errorMSG = "";
+        if ( !/^[0-9]{6}$/g.test(this.OTPCode)) {
+            this.errorMSG = "รูปแบบรหัส OTP ไม่ถูกต้องกรุณากรอกใหม่อีกครั้ง";
+            this.isLoading = false;
+        }else{
+            this.userService.loginPatient(this.username , this.OTPCode ).subscribe((result) => {
+                if (result) {
+                    this.isLoading = false;
+                    this.step = 3;
+                    var i = 400;
+                    while(i>0){
+                        i--;
+                        // console.log(i);
+                    }
+                    this.router.navigate(['patient']);
+                
+                }else{
+                    this.isLoading = false;
+                    this.errorMSG =  "รหัส OTP ไม่ถูกต้องกรูณากรอกใหม่อกครั้ง"
                 }
-                this.router.navigate(['patient']);
-              
-            }
-        });
+            });
+        }
+
     }
     OTPauth(OTP: string): boolean {
         return OTP == "999999";
@@ -60,31 +73,68 @@ export class LoginComponent {
         this.location.back();
     }
 
-    checkAndRequest() {
+    checkAndRequest() : void {
         // search api and will get phone
+        this.step =1;
+        this.errorMSG = "";
         this.isLoading = true;
-        this.loadingMSG = "กำลังติดต่อระบบ.." 
+        this.loadingMSG = "กำลังติดต่อระบบ..";
+        var reg = new RegExp('/^[0-9]*$/g');
+        if(this.patientID.length != 8 && this.patientID.length!=13 ){
+            console.log(this.patientID.length);
+            this.errorMSG = "ความยาวเลขบัตรประชาชน(13)หรือเลขHN(8) ไม่ถูกต้อง";
+            this.isLoading = false;
+        }else if ( !/^[0-9]*$/g.test(this.patientID)) {
+            this.errorMSG = "รูปแบบเลขบัตรประชาชนหรือเลขHN ไม่ถูกต้อง";
+            this.isLoading = false;
+        }
+        else{
+            this.userService.search(this.patientID).then( (data) => { 
+                // alert(data);
+                console.log(data["status"]== null);
+                if(data["status"]== null ){
+                    //success
+                    this.loadingMSG = "สวัสดีคุณ "+data['patient_data']["name"]["fname"]+" "+data['patient_data']["name"]["lname"]+", กำลังขอ OTP"
+                    var str = ''+data['patient_data']["tel"];
+                    this.phoneNo = str.substring(0,3)+" - "+ str.substring(3,6)+ " - xxxx";
+                    this.username = str;
+                    this.greetingMSG= "สวัสดีคุณ "+data['patient_data']["name"]["fname"]+" "+data['patient_data']["name"]["lname"];
+                    this.userService.requestOTP(this.patientID).then((data) => {
+                        if(data["success"]){
+                            //success
+                            this.step=2;
+                            this.isLoading = false;
+                            this.errorMSG = "";
+                        }else{
+                            this.errorMSG = " ระบบ OTP ไม่พร้อมใช้งาน กรุณารอสักครู่";
+                            this.isLoading = false;
+                        }                        
+                    });
+                }else{
+                    this.errorMSG = " ไม่พบชื่อผู้ใช้งาน";
+                    this.isLoading = false;
+                }
+            });            
+        } 
+
+    }
+    checkOnly() : void{
+        alert("checkOnly");
+        this.errorMSG = "";
+        this.isLoading = true;
+        this.loadingMSG = "กำลังติดต่อระบบ..";
         this.userService.search(this.patientID).then( (data) => { 
-            // alert(data);
-            console.log(data["status"]== null);
             if(data["status"]== null ){
                 //success
                 this.loadingMSG = "สวัสดีคุณ "+data['patient_data']["name"]["fname"]+" "+data['patient_data']["name"]["lname"]+", กำลังขอ OTP"
                 var str = ''+data['patient_data']["tel"];
                 this.phoneNo = str.substring(0,3)+" - "+ str.substring(3,6)+ " - xxxx";
                 this.username = str;
-                this.userService.requestOTP(this.patientID).then((data) => {
+                 this.step=2;
+                this.isLoading = false;
+                this.errorMSG = "";
+                this.greetingMSG= "สวัสดีคุณ "+data['patient_data']["name"]["fname"]+" "+data['patient_data']["name"]["lname"];
 
-                    if(data["success"]){
-                        //success
-                        this.step=2;
-                        this.isLoading = false;
-                    }else{
-                        this.errorMSG = " ระบบ OTP ไม่พร้อมใช้งาน กรุณารอสักครู่";
-                        this.isLoading = false;
-                    }
-                    
-                });
             }else{
                 this.errorMSG = " ไม่พบชื่อผู้ใช้งาน";
                 this.isLoading = false;
@@ -93,6 +143,6 @@ export class LoginComponent {
             
              
             
-        });
-    }
+        }
+    )}
 }

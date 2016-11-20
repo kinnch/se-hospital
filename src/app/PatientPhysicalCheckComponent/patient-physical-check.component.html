@@ -3,19 +3,19 @@
         <div class="col-xs-4">
             <label for="example-text-input" class="col-xs-7 col-form-label right">น้ำหนัก (กก.)</label>
             <div class="col-xs-5 space-top">
-                <input class="form-control" type="text" name="weight" [(ngModel)]="weight" [disabled]="isAdd">
+                <input class="form-control" type="text" name="weight" [(ngModel)]="weight" [disabled]="isAdd || userRoleId!=3">
             </div>
         </div>
         <div class="col-xs-4">
             <label for="example-text-input" class="col-xs-7 col-form-label right">ส่วนสูง (ซม.)</label>
             <div class="col-xs-5 space-top">
-                <input class="form-control" type="text" name="height" [(ngModel)]="height" [disabled]="isAdd">
+                <input class="form-control" type="text" name="height" [(ngModel)]="height" [disabled]="isAdd || userRoleId!=3">
             </div>
         </div>
         <div class="col-xs-4">
             <label for="example-text-input" class="col-xs-7 col-form-label right">อุณหภูมิ (องศา)</label>
             <div class="col-xs-5 space-top">
-                <input class="form-control" type="text" name="temp" [(ngModel)]="temp" [disabled]="isAdd">
+                <input class="form-control" type="text" name="temp" [(ngModel)]="temp" [disabled]="isAdd || userRoleId!=3">
             </div>
         </div>
     </div>
@@ -23,54 +23,62 @@
         <div class="col-xs-4">
             <label for="example-text-input" class="col-xs-7 col-form-label right">อัตราการเต้นหัวใจ</label>
             <div class="col-xs-5 space-top">
-                <input class="form-control" type="text" name="heartRate" [(ngModel)]="heartRate" [disabled]="isAdd">
+                <input class="form-control" type="text" name="heartRate" [(ngModel)]="heartRate" [disabled]="isAdd || userRoleId!=3">
             </div>
         </div>
         <div class="col-xs-4">
             <label for="example-text-input" class="col-xs-7 col-form-label right">ความดันช่วงบีบ</label>
             <div class="col-xs-5 space-top">
-                <input class="form-control" type="text" name="systolic" [(ngModel)]="systolic" [disabled]="isAdd">
+                <input class="form-control" type="text" name="systolic" [(ngModel)]="systolic" [disabled]="isAdd || userRoleId!=3">
             </div>
         </div>
         <div class="col-xs-4">
             <label for="example-text-input" class="col-xs-7 col-form-label right">ความดันช่วงคลาย</label>
             <div class="col-xs-5 space-top">
-                <input class="form-control" type="text" name="diastolic" [(ngModel)]="diastolic" [disabled]="isAdd">
+                <input class="form-control" type="text" name="diastolic" [(ngModel)]="diastolic" [disabled]="isAdd || userRoleId!=3">
             </div>
         </div>
     </div>
-    <div class="right">
+    <div class="right" *ngIf="userRoleId=='3'">
         <button [class.btn-warning]="buttonName=='แก้ไข'" [class.btn-primary]="buttonName!='แก้ไข'" type="button" class="btn" (click)="addPhysicalCheck()" style="width: 150px">{{buttonName}}</button>
 
     </div>
     <hr>
 </div>
-<div class="physical-check-history">
-    <div class="table-responsive">
-        <table class="table table-sm">
-            <thead class="thead-default">
-                <tr>
-                    <th>วันที่</th>
-                    <th>น้ำหนัก (กก.)</th>
-                    <th>ส่วนสูง (ซม.)</th>
-                    <th>อุณหภูมิ (องศา)</th>
-                    <th>อัตราการเต้นหัวใจ</th>                
-                    <th>ความดันช่วงบีบ</th>
-                    <th>ความดันช่วงคลาย</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let phy of physicalData">
-                    <th scope="row">{{phy.date}}</th>
-                    <td>{{phy.weight}}</td>
-                    <td>{{phy.height}}</td>
-                    <td>{{phy.temp}}</td>
-                    <td>{{phy.heartRate}}</td>
-                    <td>{{phy.bloodPresure.systolic}}</td>
-                    <td>{{phy.bloodPresure.diastolic}}</td>                
-                </tr>
-            </tbody>  
-        </table>
+<div class="history">
+    <h5>ประวัติการตรวจร่างกายเบื้องต้น</h5>
+    <div class="physical-check-history">
+        <div class="container" *ngIf="physicalData.length == 0">
+            <br>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ผู้ป่วยยังไม่มีประวัติการตรวจร่างกาย</p>
+            <br>
+        </div>
+        <div *ngIf="physicalData.length != 0" class="table-responsive">
+            <table class="table table-sm">
+                <thead class="thead-default">
+                    <tr>
+                        <th>วันที่</th>
+                        <th>น้ำหนัก (กก.)</th>
+                        <th>ส่วนสูง (ซม.)</th>
+                        <th>อุณหภูมิ (องศา)</th>
+                        <th>อัตราการเต้นหัวใจ</th>                
+                        <th>ความดันช่วงบีบ</th>
+                        <th>ความดันช่วงคลาย</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let phy of physicalData">
+                        <th scope="row">{{phy.date}}</th>
+                        <td>{{phy.weight}}</td>
+                        <td>{{phy.height}}</td>
+                        <td>{{phy.temp}}</td>
+                        <td>{{phy.heartRate}}</td>
+                        <td>{{phy.bloodPresure.systolic}}</td>
+                        <td>{{phy.bloodPresure.diastolic}}</td>                
+                    </tr>
+                </tbody>  
+            </table>
+        </div>
     </div>
 </div>
 <toast></toast>
