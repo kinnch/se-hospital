@@ -34,7 +34,10 @@ exports.getAppointmentByTime = function(req, res){
             }
         })
         .populate({
-            path: 'appointments'
+            path: 'appointments',
+			populate: {
+                path: 'patient',
+            }
         })
         .exec(function(error,data){
             if (error) return res.send({status : 'not found'});
@@ -42,7 +45,7 @@ exports.getAppointmentByTime = function(req, res){
             data = data.filter(function(doc){
                 return doc.doctor != null;
             });
-            res.send({data: data});
+            res.send({scheduleList: data});
             return;
         });
     }else{
