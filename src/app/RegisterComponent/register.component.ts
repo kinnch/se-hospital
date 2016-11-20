@@ -1,17 +1,75 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Router } from '@angular/router';
-import { Location } from '@angular/common'; 
+import { Location } from '@angular/common';
+import { PatientService } from '../../services/patient.service';
+import { PrescriptionService } from '../../services/prescription.service';
+
 @Component({
     selector: 'register-c',
     template: require('./register.component.html'),
     styles: [require('./register.component.css')]
 })
 
-export class RegisterComponent{
-    constructor(private router: Router,private location: Location) {
+export class RegisterComponent implements OnInit{
+    title: string;
+    firstName: string;
+    lastName: string;
+    nationalID: string;
+    address: string;
+    province: string;
+    district: string;
+    subdistrict: string;
+    postCode: string;
+    tel: string;
+    email: string;
+    sex: string;
+    birthDate: string;
+    allegicDrugs: string;
+    bloodType: string;
+
+    drugs: any; 
+    currentDrugId: number = 1;
+    allegicDrugsList : any[] = [];
+    constructor(private router: Router, 
+                private location: Location,
+                private patientService: PatientService, 
+                private prescriptionService: PrescriptionService
+                ) {}
+    
+    ngOnInit() {
+        this.prescriptionService.getAllDrugs()
+            .then((res) => {
+                this.drugs = res['msg'];
+                console.log(this.drugs);
+        });
     }
+    addPrescriptionField() {
+        // this.myform = 'hello';
+        this.allegicDrugsList.push({id:this.currentDrugId, drugName:""});
+        this.currentDrugId++;
+        console.log('add');
+        console.log(this.allegicDrugsList);
+    }
+    deletePrescriptionField(index) {
+        console.log("delete");
+        this.allegicDrugsList.splice(index, 1);
+    }
+
+
     goBack(): void {
         this.location.back();
+    }
+    register(): void {
+        this.birthDate;
+        this.allegicDrugs;
+        this.patientService.createPatient(this.email, this.title, this.firstName, this.lastName, this.sex, this.birthDate, this.tel, this.nationalID, this.address, this.subdistrict, this.district, this.province, this.postCode, this.allegicDrugs, this.bloodType)
+        .then((res)=>{
+            if(res == "success") {
+
+            } else {
+
+            }
+        });
     }
 }

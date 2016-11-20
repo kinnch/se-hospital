@@ -54,4 +54,16 @@ export class AppointmentService {
                         return res.json();
                     });
     }
+    diagnosisDoneAppointment(appointmentID : string): Promise<JSON>{
+        return this.http
+                    .post('api/appointment/changeState', JSON.stringify({
+                        appointmentID: appointmentID,
+                        newState : 4
+                    }), {headers: this.headers})
+                    .toPromise()
+                    .then(function(res){
+                        console.log(res.json());
+                        return res.json();
+                    });
+    }
 }

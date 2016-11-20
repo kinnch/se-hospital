@@ -5,70 +5,114 @@
     <h3 class ="center">ลงทะเบียนผู้ป่วยใหม่</h3>
     <hr>
     <div class="form-group row">
+        <label for="inputTitle" class="col-sm-2 col-form-label">คำนำหน้าชื่อ</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="inputTitle" [(ngModel)]="title" placeholder="กรุณากรอกคำนำหน้าชื่อ">
+        </div>
+    </div>
+    <div class="form-group row">
         <label for="inputFirstName" class="col-sm-2 col-form-label">ชื่อ</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="inputFirstName" placeholder="กรุณากรอกชื่อจริง">
+            <input type="text" class="form-control" id="inputFirstName" [(ngModel)]="firstName" placeholder="กรุณากรอกชื่อจริง">
         </div>
     </div>
     <div class="form-group row">
         <label for="inputLastName" class="col-sm-2 col-form-label">นามสกุล</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="inputLastName" placeholder="กรุณากรอกนามสกุล">
+            <input type="text" class="form-control" id="inputLastName" [(ngModel)]="lastName" placeholder="กรุณากรอกนามสกุล">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="inputSex" class="col-sm-2 col-form-label">เพศ</label>
+        <div class="col-sm-10">
+            <select name="sexSelect" id="sexSelect" [(ngModel)]="sex" required>
+                <option value="male">ชาย</option>
+                <option value="female">หญิง</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="inputBloodType" class="col-sm-2 col-form-label">หมู่เลือด</label>
+        <div class="col-sm-10">
+            <select name="bloodTypeSelect" id="bloodTypeSelect" [(ngModel)]="bloodType" required>
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="AB">AB</option>
+                <option value="O">O</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="inputBirthDate" class="col-sm-2 col-form-label">วันเกิด</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="inputBirthDate" [(ngModel)]="birthDate" placeholder="กรุณากรอกวันเกิด ปี-เดือน-วัน">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="inputAllegicDrugs" class="col-sm-2 col-form-label">ยาที่แพ้</label>
+        <div class="col-sm-10">
+            <span class="drug" *ngFor="let elem of allegicDrugsList; let i = index;">
+                <select class="form-control" type="text" [ngModel]="elem.drugName" (ngModelChange)="bindsBack($event,i,1)">
+                    <option *ngFor="let drug of drugs" [selected]="drug.name == elem.drugName">{{drug.name}}</option>
+                </select>
+            </span>
+            <a (click)="deletePrescriptionField(i)" ><i  class="fa fa-trash pull-right icon" aria-hidden="true"></i></a>
+            <input type="text" class="form-control" id="inputAllegicDrugs" [(ngModel)]="allegicDrugs" placeholder="กรุณากรอกชื่อยาที่แพ้">
         </div>
     </div>
     <div class="form-group row">
         <label for="inputNationalId" class="col-sm-2 col-form-label">รหัสประจำตัวประชาชน</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="inputNationalId" placeholder="กรุณากรอกรหัสประจำตัวประชาชน 13 หลัก">
+            <input type="text" class="form-control" id="inputNationalId" [(ngModel)]="nationalID" placeholder="กรุณากรอกรหัสประจำตัวประชาชน 13 หลัก">
         </div>
     </div>
     <hr>
     <div class="form-group row">
         <label for="inputHouseNo" class="col-sm-2 col-form-label">ที่อยู่</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="inputHouseNo" placeholder="กรุณากรอกที่อยู่: บ้านเลขที่ ถนน หมู่">
+            <input type="text" class="form-control" id="inputHouseNo" [(ngModel)]="address" placeholder="กรุณากรอกที่อยู่: บ้านเลขที่ ถนน หมู่">
         </div>
     </div>
     <div class="form-group row">
         <label for="input" class="col-sm-2 col-form-label">จังหวัด</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="inputNationalId" placeholder="กรุณากรอกรหัสประจำตัวประชาชน 13 หลัก">
+            <input type="text" class="form-control" id="inputProvince" [(ngModel)]="province" placeholder="กรุณากรอกชื่อจังหวัง">
         </div>
     </div>
     <div class="form-group row">
         <label for="inputDistrict" class="col-sm-2 col-form-label">เขต (อำเภอ)</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="inputDistrict" placeholder="กรุณากรอกเขต (อำเภอ)">
+            <input type="text" class="form-control" id="inputDistrict" [(ngModel)]="district" placeholder="กรุณากรอกเขต (อำเภอ)">
         </div>
     </div>
     <div class="form-group row">
         <label for="inputSubdistrict" class="col-sm-2 col-form-label">แขวง (ตำบล)</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="inputNationalId" placeholder="กรุณากรอกแขวง (ตำบล)">
+            <input type="text" class="form-control" id="inputNationalId" [(ngModel)]="subdistrict" placeholder="กรุณากรอกแขวง (ตำบล)">
         </div>
     </div>
     <div class="form-group row">
         <label for="inputPostcode" class="col-sm-2 col-form-label">รหัสไปรษณีย์</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="inputPostcode" placeholder="กรุณากรอกรหัสไปรษณีย์">
+            <input type="text" class="form-control" id="inputPostcode" [(ngModel)]="postCode" placeholder="กรุณากรอกรหัสไปรษณีย์">
         </div>
     </div>
     <hr>
     <div class="form-group row">
         <label for="inputPhone" class="col-sm-2 col-form-label">เบอร์โทรศัพท์</label>
         <div class="col-sm-10">
-            <input type="tel" class="form-control" id="inputPhone" placeholder="กรุณากรอกเบอร์โทรศัพท์">
+            <input type="tel" class="form-control" id="inputPhone" [(ngModel)]="tel" placeholder="กรุณากรอกเบอร์โทรศัพท์">
         </div>
     </div>
     <div class="form-group row">
         <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
         <div class="col-sm-10">
-            <input type="tel" class="form-control" id="inputEmail" placeholder="กรุณากรอกอีเมล">
+            <input type="email" class="form-control" id="inputEmail" [(ngModel)]="email" placeholder="กรุณากรอกอีเมล">
         </div>
     </div>
     <div class="center">
         <button type="button" class="btn btn-danger center" (click)="goBack()">ยกเลิก</button>
-        <button type="button" class="btn btn-primary center">ลงทะเบียน</button>
+        <button type="button" class="btn btn-primary center" (click)="register()">ลงทะเบียน</button>
         <br>
         <br>
     </div>

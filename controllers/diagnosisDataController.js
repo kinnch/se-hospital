@@ -14,6 +14,19 @@ var Disease = require("../model/disease");
 var Prescription = require("../model/drugPrescription");
 var PrescriptionDrug  = require("../model/prescriptionDrug");
 var PhysicalData = require("../model/physicalChecking");
+var Disease = require("../model/disease");
+exports.getAllDiseases = function(req,res){
+    Disease.find({},function(err,data){
+        if(err){
+            return res.send({status:"error"});
+        }
+        if(!data){
+            return res.send({status:"not found"});
+        }
+        return res.send({diseases:data});
+    });
+    return ;
+}
 exports.getDiagnosisAndPhysicalCheck = function(req,res){
     Diagnosis.findOne({_id:req.body.diagnosisID},function(err,data){
         if(err){
@@ -160,7 +173,7 @@ exports.create = function(req, res){
     var diagnose = new Diagnosis();
     diagnose.drugPrescription = prescription._id;
     diagnose.patient = req.body.patientID;
-    diagnose.doctor =  request.user._id; //mock
+    diagnose.doctor =  '583096688475ff002e9dfb13';//request.user._id; //mock
     diagnose.timePeriod =  req.body.timePeriod;
     diagnose.date = req.body.date;
     diagnose.detail = req.body.detail;
@@ -171,6 +184,7 @@ exports.create = function(req, res){
 };
 
 exports.diagnosisHistory = function(req, res){
+    //TODO have to fix ?
     Drug.find({}, function(err, all_drug){
     Patient.findOne({HN: req.body.HN}, function(err, patient){
         Diagnosis.find({}, function(err, diagnosises){

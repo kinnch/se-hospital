@@ -98,101 +98,110 @@ export class PrescriptionService {
                         return res.json();
         });
     }
+     
+     private apiUrlPrescriptionChange = 'api/doctor/prescriptionChangeRequest/makeChange';
+     prescriptionChange(prescriptionID:string, newPrescription): Promise<JSON>{
+         return this.http
+                    .post(this.apiUrlPrescriptionChange, JSON.stringify({prescriptionID : prescriptionID, newPrescription:newPrescription}), {headers: this.headers})
+                    .toPromise()
+                    .then(function(res){
+                        return res.json();
+        });
+     }
 
-    
-    getPrescriptionElements() : PrescriptionListElement[] {
-        return [
-            {
-            id: 1,
-            doctor:{
-                id: 1,
-                title: "นพ.",
-                firstName: "string",
-                lastName: "string",
-                department: "string"
-            },
-            patient: {
-                id: 1,
-                title: "string", 
-                firstName: "string",
-                lastName: "string",
-                HN: "string",
-                sex: "string",
-                birthdate: new Date("10-01-1995"),
-                age: '12ปี',
-                allegicTo: "string"
-            },
-            status: 0,
-            prescriptionList: [
-                {
-                id: 1,
-                drugName: 'mydrug',
-                amount: 100,
-                manual: 'use with caution'
-                }
-            ]
-            },
-            {
-            id: 2,
-            doctor:{
-                id: 2,
-                title: "นพ.",
-                firstName: "string",
-                lastName: "string",
-                department: "string"
-            },
-            patient: {
-                id: 2,
-                title: "string", 
-                firstName: "string",
-                lastName: "string",
-                HN: "string",
-                sex: "string",
-                birthdate: new Date("10-01-1995"),
-                age: '12ปี',
-                allegicTo: "string"
-            },
-            status: 1,
-            prescriptionList: [
-                {
-                id: 1,
-                drugName: 'mydrug',
-                amount: 100,
-                manual: 'use with caution'
-                }
-            ]
-            },
-            {
-            id: 3,
-            doctor:{
-                id: 3,
-                title: "นพ.",
-                firstName: "string",
-                lastName: "string",
-                department: "string"
-            },
-            patient: {
-                id: 3,
-                title: "string", 
-                firstName: "string",
-                lastName: "string",
-                HN: "string",
-                sex: "string",
-                birthdate: new Date("10-01-1995"),
-                age: '12ปี',
-                allegicTo: "string"
-            },
-            status: 2,
-            prescriptionList: [
-                {
-                id: 1,
-                drugName: 'mydrug',
-                amount: 100,
-                manual: 'use with caution'
-                }
-            ]
-            }
-        ]; 
+    // getPrescriptionElements() : PrescriptionListElement[] {
+    //     return [
+    //         {
+    //         id: 1,
+    //         doctor:{
+    //             id: 1,
+    //             title: "นพ.",
+    //             firstName: "string",
+    //             lastName: "string",
+    //             department: "string"
+    //         },
+    //         patient: {
+    //             id: 1,
+    //             title: "string", 
+    //             firstName: "string",
+    //             lastName: "string",
+    //             HN: "string",
+    //             sex: "string",
+    //             birthdate: new Date("10-01-1995"),
+    //             age: '12ปี',
+    //             allegicTo: "string"
+    //         },
+    //         status: 0,
+    //         prescriptionList: [
+    //             {
+    //             id: 1,
+    //             drugName: 'mydrug',
+    //             amount: 100,
+    //             manual: 'use with caution'
+    //             }
+    //         ]
+    //         },
+    //         {
+    //         id: 2,
+    //         doctor:{
+    //             id: 2,
+    //             title: "นพ.",
+    //             firstName: "string",
+    //             lastName: "string",
+    //             department: "string"
+    //         },
+    //         patient: {
+    //             id: 2,
+    //             title: "string", 
+    //             firstName: "string",
+    //             lastName: "string",
+    //             HN: "string",
+    //             sex: "string",
+    //             birthdate: new Date("10-01-1995"),
+    //             age: '12ปี',
+    //             allegicTo: "string"
+    //         },
+    //         status: 1,
+    //         prescriptionList: [
+    //             {
+    //             id: 1,
+    //             drugName: 'mydrug',
+    //             amount: 100,
+    //             manual: 'use with caution'
+    //             }
+    //         ]
+    //         },
+    //         {
+    //         id: 3,
+    //         doctor:{
+    //             id: 3,
+    //             title: "นพ.",
+    //             firstName: "string",
+    //             lastName: "string",
+    //             department: "string"
+    //         },
+    //         patient: {
+    //             id: 3,
+    //             title: "string", 
+    //             firstName: "string",
+    //             lastName: "string",
+    //             HN: "string",
+    //             sex: "string",
+    //             birthdate: new Date("10-01-1995"),
+    //             age: '12ปี',
+    //             allegicTo: "string"
+    //         },
+    //         status: 2,
+    //         prescriptionList: [
+    //             {
+    //             id: 1,
+    //             drugName: 'mydrug',
+    //             amount: 100,
+    //             manual: 'use with caution'
+    //             }
+    //         ]
+    //         }
+    //     ]; 
         
-    }
+    // }
 }

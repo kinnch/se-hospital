@@ -257,8 +257,8 @@ exports.makeChange = function(req, res){
             Prescription.update({_id: req.body.prescriptionID},
             {status: 1, prescriptions: createAll(req.body.newPrescription,[])},
             function(err,data){
-                if(err) return res.send({status: "Fail"});
-                return res.send({status: "Success"});
+                if(err) return res.send({status: "fail"});
+                return res.send({status: "success"});
             });
         });
     });
