@@ -23,24 +23,25 @@ exports.sendSMS = function(req,res){
         } 
     };
 
-    request(options, function (error, response, body) {
-        if(error){
-            return res.send({
-                status : "fail",
-                msg : "error : cannot send sms"
-            });
-        }
-         
-        console.log("======= return from gipsic =======");
-        console.log(body);
-        res.send({
+    // request(options, function (error, response, body) {
+    //     if(error){
+    //         return res.send({
+    //             status : "fail",
+    //             msg : "error : cannot send sms"
+    //         });
+    //     }
+    //     console.log("======= return from gipsic =======");
+    //     console.log(body);
+    //     res.send({
+    //             status : "success",
+    //             msg : ""
+    //         });
+    //     return;
+    // });
+    return res.send({
                 status : "success",
-                msg : ""
-            });
-        return;
-        
-
-    });
+                msg : "test : it's ok"
+            })
 }
 
 exports.sendEmail = function(req,res){
