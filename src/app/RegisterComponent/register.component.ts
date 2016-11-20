@@ -47,7 +47,7 @@ export class RegisterComponent implements OnInit{
     }
     addAllegicDrugField() {
         // this.myform = 'hello';
-        this.allegicDrugsList.push({id:this.currentDrugId, drugName:""});
+        this.allegicDrugsList.push({id:this.currentDrugId, drugID:""});
         this.currentDrugId++;
         // console.log(this.allegicDrugsList);
     }
@@ -57,7 +57,7 @@ export class RegisterComponent implements OnInit{
     }
     bindsBack(selectedValue,i){
         // console.log('myFormChange');
-        this.allegicDrugsList[i].drugName = selectedValue;
+		this.allegicDrugsList[i].drugID = selectedValue;
         // console.log(this.allegicDrugsList[i]);
     }
 
@@ -67,8 +67,8 @@ export class RegisterComponent implements OnInit{
     }
     register(): void {
         for(let drug of this.allegicDrugsList) {
-            if(drug['drugName'])
-                this.allegicDrugs.push(drug['drugName']);
+            if(drug['drugID'])
+                this.allegicDrugs.push(drug['drugID']);
         }
         this.patientService.createPatient(this.email, this.title, this.firstName, this.lastName, this.sex, this.birthDate, this.tel, this.nationalID, this.address, this.subdistrict, this.district, this.province, this.postCode, this.allegicDrugs, this.bloodType)
         .then((res)=>{
