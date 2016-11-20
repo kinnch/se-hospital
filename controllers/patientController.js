@@ -148,19 +148,30 @@ exports.login = function (req, res, next) {
 exports.register = function (req, res) {
     var data = req.body;
         Patient.register(new Patient({
+            email: data.email,
             name: {
                     title: data.title,
                     fname: data.fname,
                     lname: data.lname
                 },
                 sex: data.sex,
+                birthDate: data.birthDate,
                 tel: data.tel,
+                nationalID: data.nationalID,
+                HN: null,
+                address: {
+                    detail: data.detail,
+                    subDistrict: data.subDistrict,
+                    district: data.district,
+                    province: data.province,
+                    postCode: data.postCode,
+                },
                 OTP: {
                     text: "NOTUSE",
                     generatedDate: new Date()
                 },
-                nationalID: data.nationalID,
-                HN: data.HN
+                allegicDrugs: data.allegicDrugs,
+                bloodType: data.bloodType
         }), '845792', function (err, user) {
             if (err) {
                 console.log(err);
