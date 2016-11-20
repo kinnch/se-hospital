@@ -53,7 +53,7 @@
         <div class="col-sm-10">
             <div class="row drug" *ngFor="let elem of allegicDrugsList; let i = index;">
 		<div class="col-sm-12">
-	                <select class="form-control" type="text" [ngModel]="elem.drugName">
+	                <select class="form-control" type="text" [ngModel]="elem.drugName" (ngModelChange)="bindsBack($event,i)">
 	                    <option *ngFor="let drug of drugs" [selected]="drug.name == elem.drugName">{{drug.name}}</option>
 	                </select>
 	           	<a (click)="deleteAllegicDrugField(i)" ><i  class="fa fa-trash pull-right icon" aria-hidden="true"></i></a>
