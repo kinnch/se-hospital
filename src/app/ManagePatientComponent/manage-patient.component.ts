@@ -1,7 +1,8 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input,ViewChild} from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { PatientAppointmentComponent } from '../PatientAppointmentComponent/patient-appointment.component';
 import { AppointmentService } from '../../services/appointment.service';
+import { ToastComponent } from '../ToastComponent/toast.component';
 import { Router } from '@angular/router';
 import * as moment_ from 'moment';
 
@@ -12,6 +13,7 @@ import * as moment_ from 'moment';
 })
 
 export class ManagePatientComponent{
+    @ViewChild( ToastComponent ) toast: ToastComponent;
     hnOrIDinput:string;
     found:boolean = false;
     constructor(private router: Router, private appointmentService: AppointmentService) {
@@ -25,7 +27,12 @@ export class ManagePatientComponent{
         .then((data) => {
             // console.log('then');
             console.log(data);
-            for(var i =0; i < data.appoint.length ; i++){
+            if(data['status']=='not found'){
+                this.found = false;
+                this.toast.addToastError();
+            }
+            else{
+                for(var i =0; i < data.appoint.length ; i++){
                 data['appoint'][i]['date2'] = moment_(data['appoint'][i]['date']).format('ll');
                 if( data['appoint'][i]['timePeriod'] == "pm" ){
                     data['appoint'][i]['timePeriod2'] = "ช่วงบ่าย"
@@ -36,7 +43,9 @@ export class ManagePatientComponent{
                 
             }
             this.data = data;
-            this.found = true;
+            this.found = true;    
+            }
+            
         });
     }
 }
