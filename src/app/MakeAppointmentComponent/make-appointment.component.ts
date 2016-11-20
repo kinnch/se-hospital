@@ -70,9 +70,9 @@ export class MakeAppointComponent implements OnInit{
     }
 
       ngOnDestroy() {
-    // prevent memory leak by unsubscribing
-    this.subscription.unsubscribe();
-  }
+        // prevent memory leak by unsubscribing
+        this.subscription.unsubscribe();
+      }
 
     getAllList():void{
         console.log('getAllList');
