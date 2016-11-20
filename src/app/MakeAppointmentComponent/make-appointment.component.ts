@@ -1,8 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Params ,Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { DepartmentService } from '../../services/department.service';
+import {Subscription } from 'rxjs';
 import * as moment_ from 'moment';
 // departments: string[] = [];
 
@@ -13,7 +13,7 @@ import * as moment_ from 'moment';
 })
 
 export class MakeAppointComponent implements OnInit{
-
+    private subscription: Subscription;
     departments = [];
     doctors = [];
     timeTable = [];
@@ -33,9 +33,13 @@ export class MakeAppointComponent implements OnInit{
     isTimeRangeChecked = [true, true, true];
 
     isWalkIn:boolean = false;
-
+    enableWalkIn = false;
+    mode = '';
+    patientID = '';
+    aptID = '';
     constructor(private router: Router,
                 private location: Location,
+                private activatedRoute: ActivatedRoute,
                 private DepartmentService: DepartmentService) {
     }
 
@@ -44,6 +48,16 @@ export class MakeAppointComponent implements OnInit{
         this.DepartmentService.getAllDepartments().then((departments)=>{
             this.departments = departments['departments'];
             console.log(this.departments)
+        });
+        this.subscription = this.activatedRoute.params.subscribe(
+            (param: any) => {
+                this.mode = param['mode'];
+                this.patientID = param['id'];
+                this.aptID = param['aptID'];
+                if(this.mode=='create_appointment_s' || this.mode == 'edit_appointment_s'){
+                    this.enableWalkIn = true;
+                }
+                
         });
     }
 
@@ -113,9 +127,22 @@ export class MakeAppointComponent implements OnInit{
             this.setTimeTable();
         })
     }
-    
     save(): void{
         //this.DepartmentService.saveData(this.selectTime, localStorage.getItem('patient_id'), this.reason);
+        this.DepartmentService.saveData(this.selectTime,this.patientID,this.reason)
+        .then((data)=>{
+            console.log('----save----');
+            console.log(data);
+            //TODO: toast
+            if(data['status']=='success'){
+                if(this.mode=='edit'){
+                    //TODO delete
+                }
+            }
+            // else{
+
+            // }
+        });
     }
 
     goBack(): void {

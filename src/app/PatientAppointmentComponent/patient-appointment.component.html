@@ -18,7 +18,11 @@
         </div>
     </div>
     <div class = "col-md-6">
-        <h5>รายการนัดทั้งหมด <a routerLink="create_appointment"><button type="submit" class="btn btn-success">+เพิ่มนัดหมายใหม่</button></a></h5>
+        <h5>รายการนัดทั้งหมด 
+            <a routerLink="create_appointment_s/{{data['patient_data']['_id']}}">
+                <button type="submit" class="btn btn-success">+เพิ่มนัดหมายใหม่</button>
+            </a>
+        </h5>
         <appointment-list-c [data]="data"></appointment-list-c>
     </div>
 </div>

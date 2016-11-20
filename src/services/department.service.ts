@@ -60,7 +60,7 @@ export class DepartmentService {
 
     saveData(schedule_id: string, patient_id: string, reason: string):Promise<JSON>{
         return this.http
-        .post('/api/schedule/all', JSON.stringify({
+        .post('/api/appointment/create', JSON.stringify({
             schedule_id: schedule_id,
             patient_id: patient_id,
             reason: reason
