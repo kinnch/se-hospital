@@ -146,8 +146,21 @@ export class MakeAppointComponent implements OnInit{
     }
     
     save(): void{
-        console.log('save');
         //this.DepartmentService.saveData(this.selectTime, localStorage.getItem('patient_id'), this.reason);
+        this.DepartmentService.saveData(this.selectTime,this.patientID,this.reason)
+        .then((data)=>{
+            console.log('----save----');
+            console.log(data);
+            //TODO: toast
+            if(data['status']=='success'){
+                if(this.mode=='edit'){
+                    //TODO delete old appointment (aptID)
+                }
+            }
+            // else{
+
+            // }
+        });
     }
 
     goBack(): void {
