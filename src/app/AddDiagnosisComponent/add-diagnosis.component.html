@@ -39,7 +39,7 @@
 			</div>
 			<br>
 			<div class="contain">
-				<prescription-form-c></prescription-form-c>
+				<prescription-form-c *ngIf="enable" [data] = "data" (myformChange)="handle($event)"></prescription-form-c>
 			</div>
 			<br>
 				<div class="row right">
