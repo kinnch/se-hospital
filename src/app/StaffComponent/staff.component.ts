@@ -111,11 +111,10 @@ export class StaffComponent{
         //     this.router.navigate(link);  
         // }
     }
-    getPrescriptionRequest(doctor_id):number{
+    getPrescriptionRequest(doctor_id):void{
         this.prescriptionService.getPrescriptionChangeRequest(doctor_id).then((pres)=>{
             if(pres) this.prescriptionRequest = pres.length;
             else this.prescriptionRequest = 0;
-            console.log(this.prescriptionRequest,pres.length)
         })
     }
 

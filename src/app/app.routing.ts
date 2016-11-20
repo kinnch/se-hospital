@@ -7,6 +7,7 @@ import { NurseGuard } from './nurse.guard';
 import { PharmacistGuard } from './pharmacist.guard';
 import { ManageQueueGuard } from './manage-queue.guard';
 import { PrescriptionHistoryGuard } from './prescription-history.guard';
+import { PhysicalCheckGuard } from './physical-check.guard';
 import { UserService } from '../services/user.service';
 
 import { PatientComponent } from './PatientComponent/patient.component';
@@ -146,7 +147,7 @@ const appRoutes: Routes = [
       {
         path: 'physical_check/:hn',
         component: PatientDetailComponent,
-        canActivate: [LoggedInGuard, NurseGuard]
+        canActivate: [LoggedInGuard, PhysicalCheckGuard]
       },
       {
         path: 'prescription_request',
@@ -196,7 +197,7 @@ const appRoutes: Routes = [
       {
         path: 'create_appointment/:hn/:doctor_id/:department_id',
         component: MakeAppointComponent,
-        canActivate: [LoggedInGuard, StaffGuard]
+        canActivate: [LoggedInGuard, DoctorGuard]
       }
     ]
   }
