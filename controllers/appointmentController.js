@@ -72,13 +72,15 @@ exports.getAppointmentByTime = function(req, res){
 
 exports.create = function(req, res) {
 	// Create our deferred object, which we will use in our promise chain
+	var user = req.hasOwnProperty('user') ? req.user : null;
+	// res.send(user);
 	var deferred = Q.defer();
 	
 	Patient.findOne({_id: req.body.patient_id})
 	.then( // Check existing patient
 	function(patient) {
 			// console.log("0");
-			return HospitalEmployee.findOne({_id: req.body.doctor_id});
+			return Schedule.findOne({'_id': req.body.schedule_id}); 
 		},
 		function(error) {
 			res.send({
@@ -89,29 +91,15 @@ exports.create = function(req, res) {
 			deferred.reject(new Error(error));
 		}
 	)
-	.then( // Check existing  doctor
-		function(doctor){
-			// console.log("2");
-			return Schedule.findOne({'date': new Date(req.body.date), 'timePeriod': req.body.time_period}); 
-		},
-		function(error) {
-			res.send({
-				'status': 'fail',
-				'msg': 'Doctor is not exist.'
-			});
-			// console.log("3");
-			deferred.reject(new Error(error));
-		}
-	)
 	.then( // check existing that schedule slot
 		function(schedule) {
 			// console.log("4");
 			// check whether have enough available slot
 			// 15 slot (+5 walk-in slot  if staff)
-			if( /*LOGGED_IN_USER==PATIENT && */schedule.appointments.length <= 15 ) {
-				// console.log("6");
-			} else if( /*LOGGED_IN_USER==STAFF && */schedule.appointments.length <= 20 ) {
-				// console.log("7");
+			if( /*LOGGED_IN_USER==STAFF*/ (user && user.hasOwnProperty("roleID") && user.roleID==1) && schedule.appointments.length <= 20 ) {
+				console.log("6");
+			} else if( /*LOGGED_IN_USER==PATIENT*/ (!user || (user && !user.hasOwnProperty("roleID"))) && schedule.appointments.length <= 15 ) {
+				console.log("7");
 			} else {
 				// console.log("8");		
 				res.send({
@@ -147,6 +135,7 @@ exports.create = function(req, res) {
 			selectedSchedule.appointments.push(newAppointment._id);
 			selectedSchedule.save();
 			// console.log("102");
+			console.log("Create new appointment ID: "+newAppointment._id);
 			res.send({
 				'status': 'success',
 				'msg': '',
