@@ -18,6 +18,7 @@ export class ManageDoctorCalendarComponent{
     now = moment();
     successCount = 0;
     totalCount =0;
+    readResult :any;
     this_month_str = this.now.format('MMMM').concat(' (เดือนนี้)');
     next_month_str = this.now.add(1, 'months').format('MMMM').concat(' (เดือนหน้า)');
     next_next_month_str = this.now.add(2, 'months').format('MMMM').concat(' (2 เดือนหน้า)');
@@ -39,12 +40,18 @@ export class ManageDoctorCalendarComponent{
         var self = this;
         myReader.onloadend = function(e){
         // you can perform an action with readed data here
-            var result = myReader.result;
+            self.readResult = myReader.result;
             // console.log(result);
-            var lines = result.split('\n');
+            
+        }
+
+        myReader.readAsText(file);
+    }
+    toastResult(){
+        var lines = this.readResult.split('\n');
             // console.log(lines);
-            self.successCount = 0;
-            self.totalCount = lines.length;
+            this.successCount = 0;
+            this.totalCount = lines.length;
             for(var i=0;i<lines.length;i++){
                 var arr = lines[i].split(',');
                 var oneItem = {
@@ -54,22 +61,18 @@ export class ManageDoctorCalendarComponent{
                     "doctor_lname": arr[3].trim()
                 }
                 
-                    self.diagnosisService.addSchedule(oneItem)
+                    this.diagnosisService.addSchedule(oneItem)
                     .then((data) => {
                         console.log('called');
                         console.log(data);
                         if(data['msg']=='saved'){
-                            self.successCount++;
+                            this.successCount++;
                         }
                     });
                 
             }
-        }
 
-        myReader.readAsText(file);
-    }
-    toastResult(){
-        this.toast.titleSuccess = "เพิ่มสำเร็จ: "+this.successCount+"/"+this.totalCount;
+        this.toast.titleSuccess = "เพิ่มสำเร็จ";
         this.toast.messageSuccess = "";
         this.toast.addToastSuccess();
     }
