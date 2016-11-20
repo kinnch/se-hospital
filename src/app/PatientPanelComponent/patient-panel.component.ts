@@ -89,9 +89,12 @@ export class PatientPanelComponent implements OnInit {
 
 		this.patient_sex = localStorage.getItem('patient_sex');
 
+
 		this.AppointmentService.getPatientAndAppointment(this.patient_nationalID).then((p_data)=>{
 			this.patient_data = p_data;
 			this.appointments = p_data['appoint'];
+			//moment_(appt.date>format('ll'))
+
 			console.log(this.patient_data);
 		});
 
