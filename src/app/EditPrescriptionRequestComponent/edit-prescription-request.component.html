@@ -1,6 +1,11 @@
-<div>
+<div *ngIf="data">
     <h3>รายการยาที่ต้องแก้ไข</h3>
     <hr>
+    <div class="container" *ngIf="data.length == 0">
+        <br>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ไม่มีรายการยาที่ต้องแก้ไข</p>
+        <br>
+    </div>
     <div *ngFor="let elem of data">
         <prescription-list-element-c [data]="elem">
             <div class="detail">
