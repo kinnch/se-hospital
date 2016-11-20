@@ -35,34 +35,28 @@
     </section>
     <hr>
     <h4>รายการนัดทั้งหมด 
-        <a routerLink="create_appointment/123"><button type="submit" style="margin-right: 5%" class="btn btn-success pull-right">+เพิ่มนัดหมายใหม่</button></a>
+        <a routerLink="/patient/create_appointment/{{patient_id}}"><button type="submit" style="margin-right: 5%" class="btn btn-success pull-right">+เพิ่มนัดหมายใหม่</button></a>
     </h4>
     <br>
-    <div class="appointment-list">
-        <h5 class="card-title">[AM] Oct 24, 2016
-            <button type="button" style="margin-left: 5px" class="btn btn-danger pull-right"><i class="fa fa-trash" aria-hidden="true"></i></button>
-            <button type="button" class="btn btn-primary pull-right"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+    <div class="appointment-list" *ngFor="let appt of appointments; let i = index;">
+        <h5 class="card-title">{{appt.date}}
+            <a routerLink="/patient/edit_appointment/{{patient_id}}">
+                <button type="button" style="margin-left: 5px" class="btn btn-danger pull-right">
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                </button>
+            </a>
+            <a routerLink="/"> <!--TODO modal delete and post API delete-->
+                <button type="button" class="btn btn-primary pull-right">
+                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                </button>
+            </a>
         </h5>
         <div class="row">
             <div class="col-sm-4">
-                <p><b>แผนก : </b> aaaaaaaaaaaaa</p>
+                <p><b>แผนก : </b> {{appt.doctor.department.name}}</p>
             </div>
             <div class="col-sm-8">
-                <p><b>แพทย์ : </b> aaaaaaa  aaaaaaaaaaaa</p>
-            </div>    
-        </div>    
-    </div>
-    <div class="appointment-list">
-        <h5 class="card-title">[AM] Oct 24, 2016
-            <button type="button" style="margin-left: 5px" class="btn btn-danger pull-right"><i class="fa fa-trash" aria-hidden="true"></i></button>
-            <button type="button" class="btn btn-primary pull-right"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-        </h5>
-        <div class="row">
-            <div class="col-sm-4">
-                <p><b>แผนก : </b> aaaaaaaaaaaaa</p>
-            </div>
-            <div class="col-sm-8">
-                <p><b>แพทย์ : </b> aaaaaaa  aaaaaaaaaaaa</p>
+                <p><b>แพทย์ : </b> {{appt.doctor.name.title}}{{appt.doctor.name.fname}}{{appt.doctor.name.lname}}</p>
             </div>    
         </div>    
     </div>

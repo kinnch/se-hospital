@@ -113,12 +113,12 @@
                 </div>
             </div>
         </div>
-        <br>
-            <div>
-                <div class="center">
-                    <button type="button" class="btn btn-danger center" (click)="goBack()" style="width: 15%; min-width: 150px; margin-right: 10px">ยกเลิก</button>
-                    <button [disabled]="cannotBook" type="button" class="btn btn-primary center" (click)="save()" style="width: 15%; min-width: 150px;">บันทึก</button>
-                </div>
+        
+        <div class="col-md-12">
+            <div class="center">
+                <button type="button" class="btn btn-danger center" (click)="goBack()">ยกเลิก</button>
+                <button [disabled]="!selectTime" type="button" class="btn btn-primary center" (click)="save()">บันทึก</button>
+                <br><br>
             </div>
         <br>
         <br>

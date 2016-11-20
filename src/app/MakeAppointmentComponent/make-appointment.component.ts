@@ -25,7 +25,7 @@ export class MakeAppointComponent implements OnInit{
 
     selectedDepartment = '';
     selectedDoctor = 'non';
-    selectTime = '';
+    selectTime = null;
 
     reason = '';
 
@@ -44,7 +44,6 @@ export class MakeAppointComponent implements OnInit{
     patientID = '';
     aptID = '';//appointmentID in case edit
     //--------
-    cannotBook = true;
     constructor(private router: Router,
                 private location: Location,
                 private DepartmentService: DepartmentService,
@@ -65,14 +64,13 @@ export class MakeAppointComponent implements OnInit{
                 if(this.mode=='create_appointment_s' || this.mode == 'edit_appointment_s'){
                     this.enableGod = true;
                 }
-                
         });
     }
 
       ngOnDestroy() {
-    // prevent memory leak by unsubscribing
-    this.subscription.unsubscribe();
-  }
+        // prevent memory leak by unsubscribing
+        this.subscription.unsubscribe();
+      }
 
     getAllList():void{
         console.log('getAllList');
@@ -104,7 +102,7 @@ export class MakeAppointComponent implements OnInit{
         console.log('setTimeTable');
         this.timeTable = [];
         var mem = {};
-                   
+        this.selectTime = null;
         for(var i = 0; i < this.rawSchedule.data.length; i++){
             if(!this.isAm && this.rawSchedule.data[i].timePeriod == 'am') continue;
             if(!this.isPm && this.rawSchedule.data[i].timePeriod == 'pm') continue;
@@ -128,7 +126,6 @@ export class MakeAppointComponent implements OnInit{
             });  
         }
         this.selectTime = this.timeTable[0]._id;
-
     }
 
     getTimeTable():void{
@@ -155,6 +152,7 @@ export class MakeAppointComponent implements OnInit{
             if(data['status']=='success'){
                 if(this.mode=='edit'){
                     //TODO delete old appointment (aptID)
+                    //this.DepartmentService.deleteDate(this.aptID).then(data)
                 }
             }
             // else{
