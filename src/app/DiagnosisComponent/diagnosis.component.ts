@@ -3,6 +3,8 @@ import { ActivatedRoute, Params ,Router } from '@angular/router';
 import { AppointmentService } from '../../services/appointment.service';
 import { DiagnosisService } from '../../services/diagnosis.service';
 import {Subscription } from 'rxjs';
+import * as moment_ from 'moment';
+
 @Component({
     selector: 'diagnosis-c',
     template: require('./diagnosis.component.html'),
@@ -28,8 +30,17 @@ export class DiagnosisComponent {
                     // console.log(patient_id);
                     this.diagnosisService.getAllDiagnosisHistory(patient_id)
                     .then((data) =>{
-                        console.log('diagnosis history all');
-                        console.log(data);
+                        // console.log('diagnosis history all');
+                        // console.log(data);
+                        
+                        moment_.locale('th');
+
+                        for(var i=0 ; i < data['diagnosisHistory'].length ; i++){
+                            data['diagnosisHistory'][i]['date'] = moment_(data['diagnosisHistory'][i]['date']).format('ll');
+                        }
+
+                        // console.log('diagnosis -------');
+                        // console.log(data);
                         this.allDiagnosisHistory = data['diagnosisHistory'];
                     });
                     // this.found = true;
