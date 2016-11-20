@@ -34,12 +34,8 @@ export class LoginComponent {
         this.isLoading = true;
         this.loadingMSG = "กำลังตรวจสอบรหัส OTP";
         this.errorMSG = "";
-         if(this.OTPCode.length != 6){
-            console.log(this.OTPCode.length);
-            this.errorMSG = "ความยาวOTP(6)ไม่ถูกต้อง";
-            this.isLoading = false;
-        }else if ( !/^[0-6]*$/g.test(this.OTPCode)) {
-            this.errorMSG = "รูปแบบเลขบัตรประชาชนหรือเลขHN ไม่ถูกต้อง";
+        if ( !/^[0-9]{6}$/g.test(this.OTPCode)) {
+            this.errorMSG = "รูปแบบรหัส OTP ไม่ถูกต้องกรุณากรอกใหม่อีกครั้ง";
             this.isLoading = false;
         }else{
             this.userService.loginPatient(this.username , this.OTPCode ).subscribe((result) => {
@@ -77,7 +73,7 @@ export class LoginComponent {
         this.location.back();
     }
 
-    checkAndRequest() {
+    checkAndRequest() : void {
         // search api and will get phone
         this.step =1;
         this.errorMSG = "";
@@ -122,7 +118,7 @@ export class LoginComponent {
         } 
 
     }
-    checkOnly(){
+    checkOnly() : void{
         alert("checkOnly");
         this.errorMSG = "";
         this.isLoading = true;
@@ -148,5 +144,5 @@ export class LoginComponent {
              
             
         }
-    }
+    )}
 }

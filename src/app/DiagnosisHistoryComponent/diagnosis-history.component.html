@@ -15,10 +15,10 @@
 								</thead>
 								<tbody>
 									<tr *ngFor="let diag of allDiagnosisHistory">
-										<th>[{{diag['timePeriod']}}] {{diag['date']}}</th>
+										<th>{{diag['date']}}</th>
 										<td>
 										<span *ngFor="let result of diag['disease']; let i = index">
-											<span *ngIf="i!=0">,</span>
+											<span *ngIf="i!=0"> ,</span>
 											{{result['name']}}
 										</span>
 										<button class="btn btn-outline-success pull-right" role="button" (click)="gotoDetail(diag['_id'])">ดูเพิ่มเติม</button>

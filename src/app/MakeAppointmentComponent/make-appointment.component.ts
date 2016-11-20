@@ -3,6 +3,9 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { DepartmentService } from '../../services/department.service';
+import {Subscription } from 'rxjs';
+
+
 import * as moment_ from 'moment';
 // departments: string[] = [];
 
@@ -13,6 +16,7 @@ import * as moment_ from 'moment';
 })
 
 export class MakeAppointComponent implements OnInit{
+    private subscription: Subscription;
 
     departments = [];
     doctors = [];
@@ -34,9 +38,17 @@ export class MakeAppointComponent implements OnInit{
 
     isWalkIn:boolean = false;
 
+    //----Var to use----
+    enableGod = false;//staff 15-20 is OK
+    mode = '';//create_appointment_s.edit_appointment_s,create_appointment,edit_appointment
+    patientID = '';
+    aptID = '';//appointmentID in case edit
+    //--------
+    cannotBook = true;
     constructor(private router: Router,
                 private location: Location,
-                private DepartmentService: DepartmentService) {
+                private DepartmentService: DepartmentService,
+                private activatedRoute: ActivatedRoute) {
     }
 
     ngOnInit():void{
@@ -45,9 +57,25 @@ export class MakeAppointComponent implements OnInit{
             this.departments = departments['departments'];
             console.log(this.departments)
         });
+        this.subscription = this.activatedRoute.params.subscribe(
+            (param: any) => {
+                this.mode = param['mode'];
+                this.patientID = param['id'];
+                this.aptID = param['aptID'];
+                if(this.mode=='create_appointment_s' || this.mode == 'edit_appointment_s'){
+                    this.enableGod = true;
+                }
+                
+        });
     }
 
+      ngOnDestroy() {
+    // prevent memory leak by unsubscribing
+    this.subscription.unsubscribe();
+  }
+
     getAllList():void{
+        console.log('getAllList');
         console.log(this.isWalkIn);
         console.log(this.selectedDepartment);
         this.DepartmentService.getAllSchedule(this.selectedDepartment, this.isWalkIn).then((data)=>{
@@ -57,6 +85,7 @@ export class MakeAppointComponent implements OnInit{
     }
 
     getDoctorList():void{
+        console.log('getDoctorList');
         this.DepartmentService.getAllDoctor(this.selectedDepartment).then((doctors)=>{
             this.doctors = doctors;
             this.doctors.splice(0,0,{
@@ -72,6 +101,7 @@ export class MakeAppointComponent implements OnInit{
     }
 
     setTimeTable():void{
+        console.log('setTimeTable');
         this.timeTable = [];
         var mem = {};
                    
@@ -102,6 +132,7 @@ export class MakeAppointComponent implements OnInit{
     }
 
     getTimeTable():void{
+        console.log('getTimeTable');
         if(this.selectedDoctor == 'non'){
             this.getAllList();
             return;
@@ -116,6 +147,20 @@ export class MakeAppointComponent implements OnInit{
     
     save(): void{
         //this.DepartmentService.saveData(this.selectTime, localStorage.getItem('patient_id'), this.reason);
+        this.DepartmentService.saveData(this.selectTime,this.patientID,this.reason)
+        .then((data)=>{
+            console.log('----save----');
+            console.log(data);
+            //TODO: toast
+            if(data['status']=='success'){
+                if(this.mode=='edit'){
+                    //TODO delete old appointment (aptID)
+                }
+            }
+            // else{
+
+            // }
+        });
     }
 
     goBack(): void {

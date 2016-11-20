@@ -18,6 +18,76 @@ var Department = require("../model/department");
 var HospitalEmployee = require("../model/hospitalEmployee");
 var Appointment = require("../model/appointment");
 
+function recursiveCSV(data){
+    //if(data.length == 0) return {status: 'success'};
+    var top = data.pop();
+    //return top;
+    // insert code here!
+    HospitalEmployee.find({
+            // roleID:2, 
+            // 'name.fname':top.doctor_fname, 
+            // 'name.lname':top.doctor_lname
+            }, function (err,dr){
+            if(err) return {status: 'fail'};
+            if(dr == null) return {status: 'fail'};
+            return res.send(dr);
+            Schedule.find({doctor: top._id, 
+                date: {"$gte": new Date(top.date),
+                $lt:new Date(new Date(top.date).getTime() + 24 * 3600 * 1000)},
+                timePeriod: top.timePeriod}, function(err,schedule){
+                if(err) return {status: 'fail'};
+                return res.send(schedule);
+                if(schedule == null){
+                    /*
+                    sche = new Schedule({
+                        date: schedule.date,
+                        timePeriod: schedule.timePeriod,
+                        doctor: dr._id,
+                        appointments: []
+                    });
+                    sche.save();
+                    */
+                    //return 'HELLo';
+                    return recursiveCSV(data);
+                }
+                else{
+                    return recursiveCSV(data);
+                }
+            })
+        });
+}
+exports.importCSV = function(req,res){
+    //var arr = req.body.data;
+     HospitalEmployee.findOne({
+            roleID:2, 
+            'name.fname': req.body.data.doctor_fname, 
+            'name.lname': req.body.data.doctor_lname
+            }, function (err,dr){
+            if(err) return res.send({status: 'fail1'});
+            if(dr == null) return res.send({status: 'fail2'});
+            Schedule.findOne({doctor: dr._id, 
+                date: {"$gte": new Date(req.body.data.date),
+                $lt:new Date(new Date(req.body.data.date).getTime() + 24 * 3600 * 1000)},
+                timePeriod: req.body.data.timePeriod}, function(err,schedule){
+                if(err) return res.send({status: 'fail3'});
+                //return res.send(schedule);
+                if(schedule == null){
+                    var sche = new Schedule({
+                        date: req.body.data.date,
+                        timePeriod: req.body.data.timePeriod,
+                        doctor: dr._id,
+                        appointments: []
+                    });
+                    //return res.send(sche);
+                    sche.save();
+                    return res.send({status: 'success', msg: 'saved'})
+                }
+                else{
+                    return res.send({status: 'success', msg: 'already have'})
+                }
+            })
+        });
+}
 exports.getTable = function(reg, res){
     //res.send(getDateNow());
     //return res.send(reg.body.department);
@@ -119,3 +189,11 @@ exports.getDoctorSchedule = function(req, res) {
 		return;
 	});
 };
+
+//peak
+exports.delete = function(req, res){
+    //return res.send(req.body);
+    Schedule.findOne({_id: req.body.scheduleID}, function(err,data){
+        return res.send(data.appointments);
+    });
+}

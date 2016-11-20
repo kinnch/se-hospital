@@ -204,3 +204,17 @@ exports.getLogin = function (req, res) {
     });
 };
 
+exports.getObjIdFromHN = function(req,res){
+    var HN = req.body.hn;
+    Patient.findOne({HN: HN},function(err,patient){
+        if(err || !patient){
+            return res.send({
+                status : "fail",
+                msg : "error : not found patient"
+            });
+        }
+        res.send({patientId : patient._id})
+        return;
+    })
+}
+
