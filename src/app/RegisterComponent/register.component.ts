@@ -1,9 +1,11 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { PatientService } from '../../services/patient.service';
 import { PrescriptionService } from '../../services/prescription.service';
+import { ToastComponent } from '../ToastComponent/toast.component';
+import { ModalComponent } from '../ModalComponent/modal.component';
 
 @Component({
     selector: 'register-c',
@@ -12,17 +14,19 @@ import { PrescriptionService } from '../../services/prescription.service';
 })
 
 export class RegisterComponent implements OnInit{
-    title: string;
-    firstName: string;
-    lastName: string;
-    nationalID: string;
-    address: string;
-    province: string;
-    district: string;
-    subdistrict: string;
-    postCode: string;
-    tel: string;
-    email: string;
+    @ViewChild( ToastComponent ) toast :ToastComponent;
+    @ViewChild( ModalComponent ) modal: ModalComponent;
+    title: string = "";
+    firstName: string = "";
+    lastName: string = "";
+    nationalID: string = "";
+    address: string = "";
+    province: string = "";
+    district: string = "";
+    subdistrict: string = "";
+    postCode: string = "";
+    tel: string = "";
+    email: string = "";
     sex: string = "no";
     birthDate: Date;
     bloodType: string = "no";
@@ -76,7 +80,7 @@ export class RegisterComponent implements OnInit{
         this.location.back();
     }
     register(): void {
-       // if(this.validate()){
+       if(this.validate()){
             for(let drug of this.allegicDrugsList) {
                 if(drug['drugID'])
                     this.allegicDrugs.push(drug['drugID']);
@@ -84,13 +88,15 @@ export class RegisterComponent implements OnInit{
             this.patientService.createPatient(this.email, this.title, this.firstName, this.lastName, this.sex, this.birthDate, this.tel, this.nationalID, this.address, this.subdistrict, this.district, this.province, this.postCode, this.allegicDrugs, this.bloodType)
             .then((res)=>{
                 console.log(res);
-                if(res.status == "success") {
-                    console.log("register success!")
+                if(res['status'] == "success") {
+                    console.log("register success!");
+                    this.modal.modalOpen();
                 } else {
                     console.log("register fail!")
+                    this.toast.addToastError();
                 }
             });
-        //}      
+        }      
     }
 
     validate():boolean{
@@ -107,16 +113,22 @@ export class RegisterComponent implements OnInit{
         else if(!/^[ก-๙|a-z|A-Z]+$/.test(this.lastName)) this.errlastName = "นามสกุลควรประกอบด้วยอักขระภาษาไทย หรือภาษาอังกฤษเท่านั้น และมีความยาวไม่เกิน 50 ตัวอักษร";
         else this.errlastName = "";
 
-        if(this.nationalID != ""){
+        if(this.nationalID == "") this.errnationalID = "กรุณากรอกรหัสประจำตัวประชาชน";
+        else if(this.nationalID != ""){
             if(!/^\d{13}$/.test(this.nationalID)){
                 this.errnationalID = "รหัสประจำตัวประชาชนควรประกอบด้วยตัวเลข 0-9 และมีความยาว 13 ตัวอักษร";
             }
+            else this.errnationalID = "";            
         }
         else this.errnationalID = "";
 
         if(this.tel == "") this.errtel = "กรุณากรอกเบอร์โทรศัพท์";
-        else if(!/^d{10}$/.test(this.tel)) this.errtel = "เบอร์โทรศัพท์ควรประกอบด้วยตัวเลข 0-9 และมีความยาว 10 ตัวอักษร"
-        else this.errtel = "";
+        else if(this.tel != ""){
+            if(!/^\d{10}$/.test(this.tel)) this.errtel = "เบอร์โทรศัพท์ควรประกอบด้วยตัวเลข 0-9 และมีความยาว 10 ตัวอักษร"
+            else this.errtel = "";            
+        }
+        else this.errtel = "";            
+        
 
         if(this.email != ""){
             if(!/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/) this.erremail = "รูปแบบของ Email ไม่ถูกต้อง"
