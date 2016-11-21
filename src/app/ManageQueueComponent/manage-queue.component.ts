@@ -64,13 +64,18 @@ export class ManageQueueComponent implements OnInit{
                       console.log("this.scheduleList");
                     }
                     else{
+                      this.isEmpty = true;
                       this.scheduleList = [];
                       var onceTester = true;
+                      console.log('else');
                       for( var i = 0 ; i < data['scheduleList'].length ; i++){
                           if(data['scheduleList'][i]['doctor']['userName'] == localStorage.getItem('user_username')){
                               // if(onceTester){
                                   // onceTester = false;
                               this.scheduleList.push(data['scheduleList'][i]);
+                              console.log("this.scheduleList");
+                              console.log(this.scheduleList);
+                              this.isEmpty = false;
                           }
                       }
                     }
