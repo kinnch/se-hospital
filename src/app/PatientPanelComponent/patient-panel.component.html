@@ -22,7 +22,7 @@
                             <p><b>นามสกุล : </b>{{patient_lname}}</p>    
                         </div>
                         <div class="col-sm-4">
-                            <p><b>HN : </b>{{patient_HN ? patient_HN : "ไม่มีรหัส HN"}}</p>    
+                            <p><b>HN : </b>{{patient_HN!="null" ? patient_HN : "ไม่มีรหัส HN"}}</p>    
                         </div> 
                     </div>
                     <div class="row">
