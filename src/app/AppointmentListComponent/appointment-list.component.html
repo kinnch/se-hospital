@@ -1,8 +1,8 @@
 <div [attr.id] =  "printDiv"></div>
 <div *ngFor = "let apt of data['appoint'] | reverse">
-  <modal #modal [id]="'delete'" [size]="'md'" [title]="'ยืนยันการลบ'" (modalSuccess)="confirmDelete(apt['_id'])" (modalCancel)="cancelDelete()">
+  <modal #modal [id]="'delete'" [size]="'md'" [title]="'ยืนยันการลบ'" (modalSuccess)="confirmDelete(apt)" (modalCancel)="cancelDelete()">
   </modal>
-  <div class="card card-block">
+  <div class="card card-block" *ngIf ="apt">
     <h5 class="card-title">[{{apt['timePeriod2']}}] {{apt['date2']}}</h5>
     
     <div class = "right-btn">
@@ -15,3 +15,4 @@
     <p class="card-text"><b>แผนก</b> : {{apt['doctor']['department']['name']}} <br> <b>แพทย์ : </b> {{apt['doctor']['name']['title']}}{{apt['doctor']['name']['fname']}} {{apt['doctor']['name']['lname']}}</p>
   </div>
 </div>
+<toast></toast>
