@@ -102,6 +102,45 @@ export class DoctorDateElementService {
                        };
                     });
     }
+    getAllDD() : Promise<any> {
+         return this.http
+                    .get('api/departmentsDoctors', {headers: this.headers})
+                    .toPromise()
+                    .then(function(res){
+                        return res.json();
+                    }).catch(function(err){
+                       console.log(err);
+                       return {
+                         
+                       };
+                    });
+    }
+    staffSearchSchedule(date,period,d_id) : Promise<any> {
+         return this.http
+                    .post('api/schedule/search', JSON.stringify({date: date,timePeriod : period, doctorID:d_id}), {headers: this.headers})
+                    .toPromise()
+                    .then(function(res){
+                        return res.json();
+                    }).catch(function(err){
+                       console.log(err);
+                       return {
+                         
+                       };
+                    });
+    }
+    staffShift(appointmentID,date,d_id) : Promise<any> {
+         return this.http
+                    .post('api/appointment/shift', JSON.stringify({date: date,appointmentID :appointmentID, doctorID:d_id}), {headers: this.headers})
+                    .toPromise()
+                    .then(function(res){
+                        return res.json();
+                    }).catch(function(err){
+                       console.log(err);
+                       return {
+                         
+                       };
+                    });
+    }
 
 
 }

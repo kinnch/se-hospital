@@ -178,7 +178,7 @@ const appRoutes: Routes = [
       {
         path: 'landing',
         component: LandingComponent,
-        canActivate: [LoggedInGuard, DoctorGuard]
+        canActivate: [LoggedInGuard]
       },
       // {
       //   path: 'patient/check/:hn',
