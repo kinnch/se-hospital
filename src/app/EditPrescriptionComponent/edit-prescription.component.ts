@@ -6,7 +6,7 @@ import {Subscription } from 'rxjs';
 import {OnInit, OnDestroy} from '@angular/core';
 import { PrescriptionService } from '../../services/prescription.service';
 import { ToastComponent } from '../ToastComponent/toast.component';
-
+import { ModalComponent } from '../ModalComponent/modal.component';
 
 @Component({
     selector: 'edit-prescription-c',
@@ -20,13 +20,15 @@ export class EditPrescriptionComponent{
     private subscription: Subscription;
     prescriptionToBeSave = [];
     newPres: string;
-        @ViewChild( ToastComponent ) toast: ToastComponent;
+    @ViewChild( ToastComponent ) toast: ToastComponent;
+    @ViewChild( ModalComponent ) modal: ModalComponent;
+
 
     constructor(private router: Router,private prescriptionService: PrescriptionService, private activatedRoute: ActivatedRoute) {
     }
 
     goBack():void{      
-        window.history.back();
+        this.router.navigate(['manage','edit_prescription_request']);
     }
 
      ngOnInit() {
@@ -61,13 +63,13 @@ export class EditPrescriptionComponent{
          this.prescriptionService.prescriptionChange(this.presID, this.prescriptionToBeSave)
          .then((res) => {
                if (res.status == "success") {
-                    this.toast.titleSuccess="ยืนยันการจ่ายยาสำเร็จ";
-                    this.toast.messageSuccess="";
-                    this.toast.addToastSuccess();
-                    setTimeout(()=>{
-                         this.router.navigate(['manage','edit_prescription_request']);
-                    }, 3000);
-                   
+                    // this.toast.titleSuccess="ยืนยันการจ่ายยาสำเร็จ";
+                    // this.toast.messageSuccess="";
+                    // this.toast.addToastSuccess();
+                    // setTimeout(()=>{
+                    //      this.router.navigate(['manage','edit_prescription_request']);
+                    // }, 3000);
+                    this.modal.modalOpen();
                 } else{
                     this.toast.addToastError();
                 }
