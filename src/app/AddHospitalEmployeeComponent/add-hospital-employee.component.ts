@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { HospitalEmployeeService } from '../../services/hospital-employee.service';
 import { DepartmentService } from '../../services/department.service';
 import { ToastComponent } from '../ToastComponent/toast.component';
+import { ModalComponent } from '../ModalComponent/modal.component';
 
 @Component({
     selector: 'add-hospital-employee-c',
@@ -12,6 +13,7 @@ import { ToastComponent } from '../ToastComponent/toast.component';
 
 export class AddHospitalEmployeeComponent implements OnInit {
     @ViewChild( ToastComponent ) toast :ToastComponent;
+    @ViewChild( ModalComponent ) modal: ModalComponent;
     title:string = "";
     fname:string = "";
     lname:string = "";
@@ -47,12 +49,13 @@ export class AddHospitalEmployeeComponent implements OnInit {
             this.hospitalEmployeeService.addHospitalEmployee(this.username,this.password,this.roleId,this.department,this.title,this.fname,this.lname)
                 .then((res)=>{
                         if (res == "success") {
-                            this.toast.titleSuccess = "เพิ่มสำเร็จ"
-                            this.toast.messageSuccess = "ทำการเพิ่มบุคลากรสำเร็จ"
-                            this.toast.addToastSuccess();                            
-                            setTimeout(()=>
-                                { this.router.navigate(['manage','manage_staff']); }
-                            , 3000);
+                            // this.toast.titleSuccess = "เพิ่มสำเร็จ"
+                            // this.toast.messageSuccess = "ทำการเพิ่มบุคลากรสำเร็จ"
+                            // this.toast.addToastSuccess();                            
+                            // setTimeout(()=>
+                            //     { this.router.navigate(['manage','manage_staff']); }
+                            // , 3000);
+                            this.modal.modalOpen();
                         } else{
                             this.toast.addToastError();
                         }
@@ -90,5 +93,8 @@ export class AddHospitalEmployeeComponent implements OnInit {
         if(!this.errorTitle && !this.errorFname && !this.errorLname && !this.errorUsername && !this.errorPassword && !this.errorConfirmPassword && !this.errorRole && !this.errorDepartment )
             isPass = true;
         return isPass;
+    }
+    goToNextPage(): void {
+        this.router.navigate(['manage','manage_staff']);
     }
 }
