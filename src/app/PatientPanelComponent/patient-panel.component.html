@@ -46,7 +46,7 @@
     <br>
     <div *ngFor="let appt of appointments; let i = index;">
         <div *ngIf="appt['appointments'][0].status==0" class="appointment-list" id="appt-box-{{appt['appointments'][0]._id}}">
-            <h5 class="card-title">{{appt.dateAndPeriod}}
+            <h4 class="card-title">{{appt.dateAndPeriod}}
                 <a (click)="tryToDeleteAppointment(appt['appointments'][0]._id)">
                 <button type="button" style="margin-left: 5px" class="btn btn-danger pull-right">
                         <i class="fa fa-trash" aria-hidden="true"></i>
@@ -57,13 +57,13 @@
                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                     </button>
                 </a>
-            </h5>
+            </h4>
             <div class="row">
                 <div class="col-sm-4">
                     <p><b>แผนก : </b> {{appt.doctor.department.name}}</p>
                 </div>
                 <div class="col-sm-8">
-                    <p><b>แพทย์ผู้ตรวจ : </b> {{appt.doctor.name.title}}{{appt.doctor.name.fname}}{{appt.doctor.name.lname}}</p>
+                    <p><b>แพทย์ผู้ตรวจ : </b> {{appt.doctor.name.title}}{{appt.doctor.name.fname}}&nbsp;&nbsp;{{appt.doctor.name.lname}}</p>
                 </div>    
             </div>    
         </div>
