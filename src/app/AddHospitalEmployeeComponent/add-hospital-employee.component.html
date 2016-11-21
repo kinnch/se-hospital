@@ -1,4 +1,7 @@
-<h3>เพิ่มบุคคลากร</h3>
+<modal #modal [id]="'add-emp'" [size]="'md'" [title]="'ผลลัพธ์การเพิ่มบุคลากร'" (modalSuccess)="goToNextPage()" [success]="'ตกลง'" [enableCancel]="false">
+    เพิ่มบุคลากรสำเร็จ
+</modal>
+<h3>เพิ่มบุคลากร</h3>
 <a class="back" (click)="goback()">< ย้อนกลับ</a>
 <hr>
 <div class = "container">

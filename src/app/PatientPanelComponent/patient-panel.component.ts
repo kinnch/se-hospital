@@ -1,4 +1,5 @@
-import {Component, Input, OnInit} from '@angular/core';
+import { Component, OnInit, ViewChild} from '@angular/core';
+import { ModalComponent } from '../ModalComponent/modal.component';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Router } from '@angular/router';
 
@@ -13,6 +14,12 @@ import * as moment_ from 'moment';
 })
 
 export class PatientPanelComponent implements OnInit {
+	@ViewChild( ModalComponent ) deleteModal: ModalComponent;
+	selected_appt_id: string;
+	ageYear: number;
+    ageMonth: number; 
+
+	
 	patient_id: string;
 	patient_title: string;
 	patient_fname: string;
@@ -89,6 +96,10 @@ export class PatientPanelComponent implements OnInit {
 
 		this.patient_sex = localStorage.getItem('patient_sex');
 
+		// age
+		var diffDuration = moment_.duration(moment_().diff(this.patient_birthDate));
+        this.ageYear = diffDuration.years();
+        this.ageMonth = diffDuration.months();
 
 		this.AppointmentService.getPatientAndAppointment(this.patient_nationalID).then((p_data)=>{
 			this.patient_data = p_data;
@@ -97,6 +108,32 @@ export class PatientPanelComponent implements OnInit {
 
 			console.log(this.patient_data);
 		});
+	}
 
-    }
+	tryToDeleteAppointment(appt_id) {
+		this.selected_appt_id = appt_id;
+		this.deleteModal.modalOpen();
+	}
+
+	deleteAppointment(appt_id) {
+		console.log("DEL:  "+appt_id);
+
+		this.AppointmentService.deleteAppointment(appt_id).then( (jsonObj) => {
+			this.deleteModal.modalClose();
+			if(jsonObj['status'] == 'Success') {
+				console.log("delete done");
+				console.log(this.appointments);
+				for(let i in this.appointments) {
+					console.log(this.appointments[i]['appointments'][0]['_id']);
+					if(this.appointments[i]['appointments'][0]['_id']==appt_id) {
+						this.appointments.splice(i, 1);
+						console.log("delete appointment element: "+appt_id);
+						break;
+					}
+				}
+			} else {
+				console.log("delete fail");
+			}
+		});
+	}
 }

@@ -42,7 +42,7 @@ exports.search = function(req, res){
         .populate('allegicDrugs')
         .exec( function(err,patient_data){
             if (err) return res.send({status : 'not found'});
-            if (!patient_data)return res.send({status : 'not found'});
+            if (!patient_data)return res.send({status : 'fail', msg: "patient not found"});
             //res.send(patient_data._id);
             Schedule.find({appointments: {$gt: []}}, function(err, data){
                 if (err) return res.send({status : 'not found'});
@@ -74,7 +74,7 @@ exports.search = function(req, res){
         .populate('allegicDrugs')
         .exec( function(err,patient_data){
             if (err) return res.send({status : 'not found'});
-            if (!patient_data)return res.send({status : 'not found'});
+            if (!patient_data)return res.send({status : 'fail', msg: "patient not found"});
             //res.send(patient_data._id);
             Schedule.find({appointments: {$gt: []}}, function(err, data){
                 if (err) return res.send({status : 'not found'});
@@ -175,13 +175,16 @@ exports.register = function (req, res) {
         }), '845792', function (err, user) {
             if (err) {
                 console.log(err);
-                return res.send(err);
+                return res.send({
+                    status: "fail",
+                    msg: err
+                });
             } else {
                 res.send({
-                    success: true,
-                    user: user
+                    status: "success",
+                    msg: user
                 });
-            }        
+            }      
         });
         return;
 }
@@ -216,5 +219,25 @@ exports.getObjIdFromHN = function(req,res){
         res.send({patientId : patient._id})
         return;
     })
+}
+
+exports.createHN = function(req, res){
+    Patient.findOne({HN: { $ne: null }}).sort({HN : -1}).exec(function(err, max_hn_pat){
+        if(err) return res.send({status: 'fail'});
+        var maxHN = -1;
+        if(max_hn_pat) maxHN = max_hn_pat.HN;
+        Patient.findOne({_id: req.body.patientID},function(err, patient){
+            if(err) return res.send({status: 'fail'});
+            if(!patient) return res.send({status: 'fail'});
+            if(patient.HN != null) return res.send({status: 'fail', msg: 'already have HN'});
+            var newHN = (parseInt(maxHN) + 1) + '';
+            while(newHN.length < 8){
+                newHN = '0' + newHN;
+            }
+            patient.HN = newHN;
+            patient.save();
+            return res.send(patient);
+        });
+    });
 }
 

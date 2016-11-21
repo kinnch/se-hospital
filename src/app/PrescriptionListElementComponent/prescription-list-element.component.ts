@@ -20,8 +20,10 @@ export class PrescriptionListElementComponent{
     year: number;
     month: number;
 
-    reason: string;
+    reason: string = "";
     pharmaID = localStorage.getItem('user_id');
+
+    errorReason="";
 
     @Output() dataChange = new EventEmitter();
     @ViewChild( ToastComponent ) toast: ToastComponent;
@@ -82,20 +84,35 @@ export class PrescriptionListElementComponent{
      }
 
      rejected(pres){
-        this.prescriptionService.sendChangeRequest(pres, this.pharmaID, this.reason).
-        then((res) => {
-            if (res.status == "success") {
-                    this.data.drugPrescription.status =0;
-                    this.toast.titleSuccess="ส่งคำร้องสำเร็จ";
-                    this.toast.messageSuccess="";
-                    this.toast.addToastSuccess();
-                } else{
-                    this.toast.messageError = "กรุณาส่งคำร้องใหม่อีกครั้ง";
-                    this.toast.addToastError();
-                }
-        })
+        console.log('rejected clicked');
+        
+        if(this.validate()){
+            this.prescriptionService.sendChangeRequest(pres, this.pharmaID, this.reason).
+            then((res) => {
+                if (res.status == "success") {
+                        this.data.drugPrescription.status =0;
+                        this.toast.titleSuccess="ส่งคำร้องสำเร็จ";
+                        this.toast.messageSuccess="";
+                        this.toast.addToastSuccess();
+                    } else{
+                        this.toast.messageError = "กรุณาส่งคำร้องใหม่อีกครั้ง";
+                        this.toast.addToastError();
+                    }
+            })
+        }    
      }
 
+     validate() : boolean{
+         console.log('call validate');
+         if(this.reason.length == 0){
+              this.errorReason = "กรุณาระบุเหตุผลที่ขอแก้ไขยา";
+            return false;
+         }
+         return true;
+     }
 
+     resetError(){
+         this.errorReason = "";
+     }
 
 }

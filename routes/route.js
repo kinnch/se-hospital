@@ -71,6 +71,7 @@ module.exports = function(app) {
     app.post('/api/patient/search',  patientController.search);
     app.post('/api/patient/register', patientController.register);
     app.post('/api/patient/getObjIdFromHN', patientController.getObjIdFromHN);
+    app.post('/api/patient/createHN', patientController.createHN);
 
     var seederController = require('../controllers/seederController');
     app.get('/seed',  seederController.seed);
@@ -88,6 +89,7 @@ module.exports = function(app) {
     app.post('/api/appointment/create',  appointmentController.create);
     app.post('/api/appointment/showSomeDoctors',  prescriptionController.showSomeDoctors);
     app.post('/api/prescription/History',  prescriptionController.showHistory);
+    app.post('/api/appointment/getInfo', appointmentController.getInfo);
     
     app.post('/api/updateStatusPres', prescriptionController.updateStatus);
     app.post('/api/pharma/prescription/requestChange', prescriptionController.requestChange);
@@ -113,8 +115,13 @@ module.exports = function(app) {
     app.post('/api/doctorAvailable',  scheduleController.getDoctorSchedule);
     app.post('/api/schedule/getTableStaff', scheduleController.getTableStaff);
     app.post('/api/schedule/all', scheduleController.listAll);
-    app.post('/api/schedule/delete', scheduleController.delete);
     app.post('/api/importCSV',scheduleController.importCSV);
+
+    //delete schedule group
+    app.post('/api/schedule/search', scheduleController.search);
+    app.post('/api/appointment/shift', scheduleController.shiftAppointment);
+    app.post('/api/schedule/delete', scheduleController.delete);
+    
     var diagnosisDataController = require('../controllers/diagnosisDataController');
     // app.post('/api/diagnosisHistory', diagnosisDataController.diagnosisHistory); //TODO :REMOVE IF no one blame.
     app.post('/api/patient/diagnosisHistory',diagnosisDataController.getPatientDiagnosisHistory);
@@ -133,7 +140,7 @@ module.exports = function(app) {
     app.get('/login', hospitalEmployeeController.getLogin);
     app.get('/logout', hospitalEmployeeController.logout);
 
-    app.post('/loginPatient', patientController.login);
+    app.post('/loginPatient', patientController.login); 
     app.post('/registerPatient', patientController.register);
     app.get('/loginPatient', patientController.getLogin);
    

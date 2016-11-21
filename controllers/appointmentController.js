@@ -34,7 +34,10 @@ exports.getAppointmentByTime = function(req, res){
             }
         })
         .populate({
-            path: 'appointments'
+            path: 'appointments',
+			populate: {
+                path: 'patient',
+            }
         })
         .exec(function(error,data){
             if (error) return res.send({status : 'not found'});
@@ -42,7 +45,7 @@ exports.getAppointmentByTime = function(req, res){
             data = data.filter(function(doc){
                 return doc.doctor != null;
             });
-            res.send({data: data});
+            res.send({scheduleList: data});
             return;
         });
     }else{
@@ -68,6 +71,30 @@ exports.getAppointmentByTime = function(req, res){
         });
     }
     
+}
+
+exports.getInfo = function(req, res){
+	Appointment.findOne({_id: req.body.appointmentID}, function(err, appointment){
+		if(err) return res.send({status: 'fail'});
+		if(!appointment) return res.send({status: 'fail'});
+		Schedule.findOne({appointments: appointment._id})
+		.populate({
+			path:'doctor',
+			populate:{
+				'path': 'department'
+			}
+		}).exec(function(err, data){
+			if(err) return res.send({status: 'fail'});
+			if(!data) return res.send({status: 'fail'});
+			return res.send({
+				status: 'success',
+				data: {
+					app: appointment,
+					detail: data
+				}
+			})
+		})
+	})
 }
 
 exports.create = function(req, res) {

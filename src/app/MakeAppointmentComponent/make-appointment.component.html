@@ -1,3 +1,6 @@
+<modal #modal [id]="'delete'" [size]="'md'" [title]="modalTitle" (modalSuccess)="goBack()" [success]="'ตกลง'" [enableCancel]="false">
+    {{modalBody}}
+</modal>
 <a class="back" (click)="goBack()">< ย้อนกลับ</a>
 <hr>
 <div class="container">
@@ -117,8 +120,10 @@
         <div class="col-md-12">
             <div class="center">
                 <button type="button" class="btn btn-danger center" (click)="goBack()">ยกเลิก</button>
-                <button [disabled]="!selectTime" type="button" class="btn btn-primary center" (click)="save()">บันทึก</button>
-                <br><br>
+                <button type="button" class="btn btn-primary center" (click)="save()">บันทึก</button>
+                <br>
+                <small class="text-danger"> {{ errorMSG }} </small>
+                <br>
             </div>
         <br>
         <br>

@@ -4,18 +4,21 @@
             <label for="example-text-input" class="col-xs-7 col-form-label right">น้ำหนัก (กก.)</label>
             <div class="col-xs-5 space-top">
                 <input class="form-control" type="text" name="weight" [(ngModel)]="weight" [disabled]="isAdd || userRoleId!=3">
+                <small class="text-danger">{{errorWeight}}</small> 
             </div>
         </div>
         <div class="col-xs-4">
             <label for="example-text-input" class="col-xs-7 col-form-label right">ส่วนสูง (ซม.)</label>
             <div class="col-xs-5 space-top">
                 <input class="form-control" type="text" name="height" [(ngModel)]="height" [disabled]="isAdd || userRoleId!=3">
+                <small class="text-danger">{{errorHeight}}</small>                 
             </div>
         </div>
         <div class="col-xs-4">
             <label for="example-text-input" class="col-xs-7 col-form-label right">อุณหภูมิ (องศา)</label>
             <div class="col-xs-5 space-top">
                 <input class="form-control" type="text" name="temp" [(ngModel)]="temp" [disabled]="isAdd || userRoleId!=3">
+                <small class="text-danger">{{errorTemp}}</small>                 
             </div>
         </div>
     </div>
@@ -24,18 +27,21 @@
             <label for="example-text-input" class="col-xs-7 col-form-label right">อัตราการเต้นหัวใจ</label>
             <div class="col-xs-5 space-top">
                 <input class="form-control" type="text" name="heartRate" [(ngModel)]="heartRate" [disabled]="isAdd || userRoleId!=3">
+                <small class="text-danger">{{errorHeartRate}}</small>                 
             </div>
         </div>
         <div class="col-xs-4">
             <label for="example-text-input" class="col-xs-7 col-form-label right">ความดันช่วงบีบ</label>
             <div class="col-xs-5 space-top">
                 <input class="form-control" type="text" name="systolic" [(ngModel)]="systolic" [disabled]="isAdd || userRoleId!=3">
+                <small class="text-danger">{{errorSystolic}}</small> 
             </div>
         </div>
         <div class="col-xs-4">
             <label for="example-text-input" class="col-xs-7 col-form-label right">ความดันช่วงคลาย</label>
             <div class="col-xs-5 space-top">
                 <input class="form-control" type="text" name="diastolic" [(ngModel)]="diastolic" [disabled]="isAdd || userRoleId!=3">
+                <small class="text-danger">{{errorDiastolic}}</small> 
             </div>
         </div>
     </div>

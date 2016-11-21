@@ -1,9 +1,11 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit,ViewChild} from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { DepartmentService } from '../../services/department.service';
+import { AppointmentService} from '../../services/appointment.service';
 import {Subscription } from 'rxjs';
+import { ModalComponent } from '../ModalComponent/modal.component';
 
 
 import * as moment_ from 'moment';
@@ -16,18 +18,21 @@ import * as moment_ from 'moment';
 })
 
 export class MakeAppointComponent implements OnInit{
+    @ViewChild( ModalComponent ) modal: ModalComponent;
     private subscription: Subscription;
-
+    modalBody = '';
+    modalTitle='';
     departments = [];
     doctors = [];
     timeTable = [];
     rawSchedule = [];
 
-    selectedDepartment = '';
+    selectedDepartment = null;
     selectedDoctor = 'non';
     selectTime = null;
 
     reason = '';
+    errorMSG = '';
 
     isAm = true;
     isPm = true;
@@ -47,7 +52,8 @@ export class MakeAppointComponent implements OnInit{
     constructor(private router: Router,
                 private location: Location,
                 private DepartmentService: DepartmentService,
-                private activatedRoute: ActivatedRoute) {
+                private activatedRoute: ActivatedRoute,
+                private AppointmentService: AppointmentService) {
     }
 
     ngOnInit():void{
@@ -64,6 +70,18 @@ export class MakeAppointComponent implements OnInit{
                 if(this.mode=='create_appointment_s' || this.mode == 'edit_appointment_s'){
                     this.enableGod = true;
                 }
+                if(this.mode=='edit_appointment_s' || this.mode == 'edit_appointment'){
+                    //fetch data.
+                    this.AppointmentService.getAppointmentInfo(this.aptID).then((data)=>{
+                        this.reason = data.data.app.reason;
+                        //console.log(data.data.app);
+                        this.selectedDepartment = data.data.detail.doctor.department._id;
+                        this.getDoctorList();
+                        this.selectedDoctor = data.data.detail.doctor._id;
+                        this.getTimeTable();
+                        this.selectTime = data.data.detail._id;
+                    });
+                }
         });
     }
 
@@ -73,9 +91,6 @@ export class MakeAppointComponent implements OnInit{
       }
 
     getAllList():void{
-        console.log('getAllList');
-        console.log(this.isWalkIn);
-        console.log(this.selectedDepartment);
         this.DepartmentService.getAllSchedule(this.selectedDepartment, this.isWalkIn).then((data)=>{
             this.rawSchedule = data;
             this.setTimeTable();
@@ -83,7 +98,6 @@ export class MakeAppointComponent implements OnInit{
     }
 
     getDoctorList():void{
-        console.log('getDoctorList');
         this.DepartmentService.getAllDoctor(this.selectedDepartment).then((doctors)=>{
             this.doctors = doctors;
             this.doctors.splice(0,0,{
@@ -94,14 +108,15 @@ export class MakeAppointComponent implements OnInit{
                 },
                 _id: "non"
             });
-        })
+        });
+        this.selectedDoctor = 'non';
         this.getAllList();
     }
 
     setTimeTable():void{
-        console.log('setTimeTable');
         this.timeTable = [];
         var mem = {};
+        this.errorMSG = '';
         this.selectTime = null;
         for(var i = 0; i < this.rawSchedule.data.length; i++){
             if(!this.isAm && this.rawSchedule.data[i].timePeriod == 'am') continue;
@@ -111,6 +126,7 @@ export class MakeAppointComponent implements OnInit{
 
             var appointmentWeek = new Date(moment(this.rawSchedule.data[i].date).format('YYYY-MM-DD')).getTime();
             var todayWeek =  new Date(moment().format('YYYY-MM-DD')).getTime();
+            if(parseInt(appointmentWeek - todayWeek) < 0) continue;
             var weeks = parseInt((appointmentWeek - todayWeek)/604800000);
 
             if(weeks > 2) weeks = 2;
@@ -125,7 +141,7 @@ export class MakeAppointComponent implements OnInit{
                 _id: this.rawSchedule.data[i]._id
             });  
         }
-        this.selectTime = this.timeTable[0]._id;
+        if(this.timeTable.length > 0)this.selectTime = this.timeTable[0]._id;
     }
 
     getTimeTable():void{
@@ -144,20 +160,39 @@ export class MakeAppointComponent implements OnInit{
     
     save(): void{
         //this.DepartmentService.saveData(this.selectTime, localStorage.getItem('patient_id'), this.reason);
+        if(this.selectedDepartment == null){
+            this.errorMSG = 'กรุณาเลือกแผนกที่ต้องการจะนัด';
+            return;
+        }
+        if(this.selectTime == null){
+            this.errorMSG = 'ไม่มีมีเวลาที่สามารถนัดได้ กรุณาเลือกเวลาอื่นๆ ';
+            if(this.selectedDoctor != null) this.errorMSG += 'หรือแพทย์ท่านอื่น';
+            this.errorMSG += 'ที่ระบบมีให้';
+            return;
+        }
         this.DepartmentService.saveData(this.selectTime,this.patientID,this.reason)
         .then((data)=>{
             console.log('----save----');
             console.log(data);
             //TODO: toast
             if(data['status']=='success'){
-                if(this.mode=='edit'){
+                if(this.mode=='edit_appointment_s' || this.mode=='edit_appointment'){
                     //TODO delete old appointment (aptID)
                     //this.DepartmentService.deleteDate(this.aptID).then(data)
+                    this.AppointmentService.deleteAppointment(this.aptID).then((data)=>{
+                        this.modalTitle = 'ผลลัพธ์การเลื่อนนัด';
+                        this.modalBody = 'เลื่อนนัดสำเร็จ'
+                        this.modal.modalOpen();
+                        //alert('แก้ไขการจองสำเร็จ');
+                    });
+                }
+                else{
+                    this.modalTitle = 'ผลลัพธ์การทำนัดหมาย';
+                    this.modalBody = 'นัดหมายสำเร็จ'
+                    this.modal.modalOpen();
+                    // alert('ทำการจองสำเร็จ');
                 }
             }
-            // else{
-
-            // }
         });
     }
 
