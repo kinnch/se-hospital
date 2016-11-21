@@ -28,6 +28,8 @@ export class AddDiagnosisComponent implements OnInit {
     currentPeriod : string;
     currentAppointmentID : string;
     patientID : string;
+    
+    errorText = '';
     constructor(private router: Router,
                 private activatedRoute: ActivatedRoute,
                 private diagnosisService : DiagnosisService,
@@ -68,6 +70,7 @@ export class AddDiagnosisComponent implements OnInit {
         });
         
     }
+    
     handle(receivedData){
         
         var parsed = JSON.parse(receivedData);
@@ -82,7 +85,11 @@ export class AddDiagnosisComponent implements OnInit {
         console.log(this.prescriptionToBeSave);
     }
     saveDiagnosis(){
-        console.log('-----save----');
+        if(this.detail==''){
+            this.errorText = 'กรุณากรอกรายละเอียดการวินิจฉัย';
+        }
+        else{
+            console.log('-----save----');
         console.log(this.detail);
         console.log(this.prescriptionToBeSave);
         console.log(this.selectedOption);
@@ -117,6 +124,8 @@ export class AddDiagnosisComponent implements OnInit {
                         });
                 }
             });
+        }
+        
         
         
         
