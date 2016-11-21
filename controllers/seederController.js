@@ -1467,7 +1467,13 @@ exports.seed = function(req, res) {
             date: getDateNextKday(16),
             doctor: hospitalEmployees[5]._id,
             appointments: []
-        })
+        }),
+        new Schedule({
+            timePeriod: 'pm',
+            date: getDateNow(),
+            doctor: hospitalEmployees[4]._id,
+            appointments: []
+        }),
     ];
 
     // PhysicalChecking  N=6
