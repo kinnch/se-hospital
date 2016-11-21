@@ -2,6 +2,8 @@ import { Component, AfterViewInit , OnInit, ViewChild } from '@angular/core';
 import { ModalComponent } from '../ModalComponent/modal.component';
 import { DoctorDateElementService } from '../../services/doctor-date-element.service';
 import { DiagnosisService } from '../../services/diagnosis.service';
+import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 import * as moment from 'moment';
 
 @Component({
@@ -20,7 +22,7 @@ export class DoctorCalendarComponent implements AfterViewInit, OnInit {
     schedule: Object[] = [];
     doctor: Object[] = [];
 
-    constructor(private elementService: DoctorDateElementService , private diagnosisService : DiagnosisService){
+    constructor(private router: Router,private elementService: DoctorDateElementService , private diagnosisService : DiagnosisService){
         
     }
     ngOnInit(){
@@ -279,6 +281,9 @@ export class DoctorCalendarComponent implements AfterViewInit, OnInit {
                         // successs ok 
                         self.selectedEvent["isOperate"] = true;
                         self.modal1.modalClose();
+                        // this.router.navigate(['manage','doctor_calendar']);
+                        this.router.navigateByUrl('/DummyComponent', true);
+                        this.router.navigate(['manage','doctor_calendar']);
                         // document.getElementById("calendar").innerHTML ="";
                         // self.getData();
                         // self.initFullCalendar();
