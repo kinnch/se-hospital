@@ -168,6 +168,7 @@ exports.listAll = function(req, res){
         });
         result = result.filter(function(doc){
             if(res.user != null && req.body.isWalkIn) return doc.appointments.length < 20;
+            //if(req.body.isWalkIn) return doc.appointments.length < 20;
             return doc.appointments.length < 15;
         });
         return res.send({status: 'Success', data: result});
@@ -182,6 +183,7 @@ exports.getDoctorSchedule = function(req, res) {
         if(!result) return res.send({status: 'Fail'});
         result = result.filter(function(doc){
             if(res.user != null && req.body.isWalkIn) return doc.appointments.length < 20;
+            //if(req.body.isWalkIn) return doc.appointments.length < 20;
             return doc.appointments.length < 15;
         });
 		res.send({
