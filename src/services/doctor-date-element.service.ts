@@ -48,6 +48,46 @@ export class DoctorDateElementService {
     //                    };
     //                 });
     // }
+    searchSchedule(date,period) : Promise<any> {
+         return this.http
+                    .post('api/schedule/search', JSON.stringify({date: date,timePeriod : period, doctorID:localStorage.getItem('user_id')}), {headers: this.headers})
+                    .toPromise()
+                    .then(function(res){
+                        return res.json();
+                    }).catch(function(err){
+                       console.log(err);
+                       return {
+                         
+                       };
+                    });
+    }
+    // api/appointment/shift
+    shift(appointmentID,date) : Promise<any> {
+         return this.http
+                    .post('api/appointment/shift', JSON.stringify({date: date,appointmentID :appointmentID, doctorID:localStorage.getItem('user_id')}), {headers: this.headers})
+                    .toPromise()
+                    .then(function(res){
+                        return res.json();
+                    }).catch(function(err){
+                       console.log(err);
+                       return {
+                         
+                       };
+                    });
+    }
+    removeSchedule(id) : Promise<any> {
+         return this.http
+                    .post('api/schedule/delete', JSON.stringify({scheduleID: id}), {headers: this.headers})
+                    .toPromise()
+                    .then(function(res){
+                        return res.json();
+                    }).catch(function(err){
+                       console.log(err);
+                       return {
+                         
+                       };
+                    });
+    }
 
 
 }

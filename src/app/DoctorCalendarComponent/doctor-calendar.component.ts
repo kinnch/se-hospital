@@ -277,13 +277,13 @@ export class DoctorCalendarComponent implements AfterViewInit, OnInit {
                     if(data['msg']=='saved'){
 
                         console.log('called');
-                    console.log(data);
+                        console.log(data);
                         // successs ok 
                         self.selectedEvent["isOperate"] = true;
                         self.modal1.modalClose();
                         // this.router.navigate(['manage','doctor_calendar']);
-                        this.router.navigateByUrl('/DummyComponent', true);
-                        this.router.navigate(['manage','doctor_calendar']);
+                      
+                        this.router.navigate(['manage','landing']);
                         // document.getElementById("calendar").innerHTML ="";
                         // self.getData();
                         // self.initFullCalendar();
@@ -301,6 +301,7 @@ export class DoctorCalendarComponent implements AfterViewInit, OnInit {
 
                     }else{
                         // error
+                        console.log(data);
                     }
                 });
     }
@@ -348,6 +349,38 @@ export class DoctorCalendarComponent implements AfterViewInit, OnInit {
                 );
 
             });
+    }
+    doClick(){
+        if(this.selectedEvent["isOperate"]){
+            this.removeSchedule();
+        }else{
+            this.addSchedule();
+        }
+    }
+     
+    removeSchedule(){
+        this.elementService.searchSchedule(this.selectedEvent["_id"]["date"].toISOString().split("T")[0].concat('T00:00:00.000Z') ,this.selectedEvent["_id"]["period"] ).then((data) => {
+            console.log("search");
+            console.log(data);
+            data["appointments"].forEach((e)=>{
+                this.elementService.shift(e,data["date"]).then((result)=>{
+                    console.log(result);
+                    if(result.status == "success"){
+                        // send some noti
+                        console.log("success");
+                        console.log(result.data);
+                    }else{
+                        //send some noti
+                        console.log("fail");
+                         console.log(result.data);
+                    }
+                });
+            });
+            this.elementService.removeSchedule(data._id).then((data)=>{
+                this.modal1.modalClose();
+                this.router.navigate(['manage','landing']);
+            });
+        });
     }
     
 }

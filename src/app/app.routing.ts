@@ -36,6 +36,8 @@ import { AddHospitalEmployeeComponent } from './AddHospitalEmployeeComponent/add
 import { DiagnosisDetailComponent } from './DiagnosisDetailComponent/diagnosis-detail.component'; 
 import { EditPrescriptionComponent } from './EditPrescriptionComponent/edit-prescription.component';
 import { PatientPanelComponent } from './PatientPanelComponent/patient-panel.component';
+import { LandingComponent } from './LandingComponent/landing.component' ;
+
 
 //TODO: query state from user
 let redirectToPathLastPage: string = 'login';
@@ -171,6 +173,11 @@ const appRoutes: Routes = [
       {
         path: 'edit_prescription_request',
         component: EditPrescriptionRequestComponent,
+        canActivate: [LoggedInGuard, DoctorGuard]
+      },
+      {
+        path: 'landing',
+        component: LandingComponent,
         canActivate: [LoggedInGuard, DoctorGuard]
       },
       // {
