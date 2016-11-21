@@ -131,6 +131,7 @@ module.exports = function(app) {
     //patientController.setDBConnectionsFromApp(app);
     
     app.get('/api/employees',hospitalEmployeeController.getAllEmployee);
+    app.post('/api/depatment_name',hospitalEmployeeController.department_name);
     app.get('/api/departments',hospitalEmployeeController.getAllDepartment);
     app.get('/api/departmentsDoctors',hospitalEmployeeController.getAllDepartmentOfDoctor);
     app.post('/api/staff/changePassword',hospitalEmployeeController.changePassword);

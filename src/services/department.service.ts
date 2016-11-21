@@ -70,6 +70,17 @@ export class DepartmentService {
                         return res.json();
                     });
     }
+
+    getName(departmentID: string):Promise<JSON>{
+        return this.http
+        .post('/api/depatment_name', JSON.stringify({
+            departmentID: departmentID
+            }), {headers: this.headers})
+                    .toPromise()
+                    .then(function(res){
+                        return res.json();
+                    });
+    }
     /*
     getAllDoctor(departmentID : string ,timePeriod : string): Promise<JSON>{
         return this.http

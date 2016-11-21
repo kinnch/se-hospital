@@ -24,6 +24,7 @@
         <!--<span class="likes-info">9</span>-->
       </a>
       <h5 class="user-name">{{userTitle}}{{userFname}} {{userLname}}</h5>
+      <h5 class="user-name">{{userDepartment}}</h5>
    </div>
    <ul class="menu clearfix">
       <li *ngIf="userRoleId == '1'" [class.active]="(activatedClass===1)" [class.selected]="(activatedClass===1)"><a (click)="gotoPage(1)"><i class="fa fa-user" aria-hidden="true"></i> <span class="menu-item">จัดการผู้ป่วย</span></a></li>
