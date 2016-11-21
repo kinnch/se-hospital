@@ -3,6 +3,9 @@
 		margin-bottom: 10px;
 	}
 </style>
+<modal #modal [id]="'register'" [size]="'md'" [title]="'ผลลัพธ์การสมัคร'" (modalSuccess)="goBack()" [success]="'ตกลง'" [enableCancel]="false">
+    สมัครสำเร็จ
+</modal>
 <div class="bg">
 <div *ngIf="router.url != '/p_register'">
 <a class="back" (click)="goBack()">< ย้อนกลับ</a>
@@ -72,7 +75,7 @@
                             <option value="AB">AB</option>
                             <option value="O">O</option>
                         </select>
-                        <small class="text-danger">{{errbloodType}}</small>    
+                        <small class="text-danger">{{errbloodtype}}</small>    
                         </div>                            
                     </div>
                     <div class="form-group row">
