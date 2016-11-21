@@ -1,37 +1,35 @@
 <modal #modal [id]="'delete'" [size]="'md'" [title]="modalTitle" (modalSuccess)="goBack()" [success]="'ตกลง'" [enableCancel]="false">
     {{modalBody}}
 </modal>
+<div class="bg">
+<div *ngIf="router.url.slice(0,7) == '/manage'">    
 <a class="back" (click)="goBack()">< ย้อนกลับ</a>
 <hr>
+</div>
+
 <div class="container">
-    <br>
-    <h3 class = "center">{{headerText}}</h3>
-    <hr>
-    <br>
-    <div class="container2">
-        <div class = "row">
-            <div class = "col-md-12">
-                <div class="form-group row">
+    <div class="card">
+        <h3 class = "center">{{headerText}}</h3>
+        <div class="card-block">
+            <div class="form-group row">
                     <label for="inputDepartment" class="col-sm-2 col-form-label">แผนก</label>
                     <div class="col-sm-10">
                         <select class="form-control" id="inputDepartment" [(ngModel)]="selectedDepartment" (ngModelChange)="getDoctorList()">
+                            <option value=null selected disabled>กรุณาเลือกแผนก</option>
                             <option *ngFor="let department of departments" value={{department._id}}>{{department.name}}</option>
                         </select>
                     </div> 
-                </div>
-            </div>
-            <div class = "col-md-12">
-                <div class="form-group row">
+                </div>     
+            <div class="form-group row">
                     <label for="inputDoctor" class="col-sm-2 col-form-label">แพทย์</label>
                     <div class="col-sm-10">
                         <select class="form-control" id="inputDoctor" [(ngModel)]="selectedDoctor" (ngModelChange)="getTimeTable()">
+                            <option value="non" selected disabled>กรุณาเลือกแพทย์</option>
                             <option *ngFor="let doctor of doctors" value={{doctor._id}}>{{doctor.name.title}} {{doctor.name.fname}} {{doctor.name.lname}}</option>
                         </select>
                     </div> 
                 </div>
-            </div>
-            <div class = "col-md-12" *ngIf="enableGod">
-                <div class="form-group row">
+                <div class="form-group row" *ngIf="enableGod">
                     <label for="inputDoctor" class="col-sm-2 col-form-label"></label>
                     <div class="col-sm-10">
                         <label class="form-check-inline">
@@ -39,8 +37,6 @@
                         </label>
                     </div> 
                 </div>
-            </div>
-            <div class = "col-md-12">
                 <div class="form-group row">
                     <label for="inputDoctor" class="col-sm-2 col-form-label">ช่วงเวลาที่ต้องการ</label>
                     <div class="col-sm-10">
@@ -55,8 +51,6 @@
                         </label>
                     </div> 
                 </div>
-            </div>
-            <div class ="col-md-12">
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">เลือกวัน</label>
                     <div class="col-sm-10">
@@ -83,8 +77,7 @@
                         </label>
                     </div>
                 </div>
-            </div>
-            <div class ="col-md-12">
+
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">ช่วงเวลา</label>
                     <div class="col-sm-10">
@@ -96,37 +89,33 @@
                         </label>
                     </div>
                 </div>
-            </div>
-            <div class = "col-md-12">
                 <div class="form-group row">
                     <label for="inputDoctor" class="col-sm-2 col-form-label">เวลาที่จะนัดหมาย</label>
                     <div class="col-sm-10">
                         <select class="form-control" id="inputDoctor" [(ngModel)]="selectTime">
+                            <option value=null selected disabled>กรุณาเลือกเวลาที่ต้องการนัดหมาย</option>
                             <option *ngFor="let item of timeTable" value={{item._id}}>{{item.text}}</option>
                         </select>
                     </div> 
                 </div>
-            </div>
-            <div class = "col-md-12">
+
                 <div class="form-group row">
                     <label for="inputNote" class="col-sm-2 col-form-label">อาการ(Optional)</label>
                     <div class="col-sm-10">
-                        <textarea class="form-control" id="inputNote" rows="3" [(ngModel)]="reason"></textarea>
+                        <textarea class="form-control" id="inputNote" rows="3" [(ngModel)]="reason" placeholder="อาการ / สาเหตุที่ต้องการพบแพทย์"></textarea>
                     </div> 
                 </div>
-            </div>
         </div>
-        
-        <div class="col-md-12">
-            <div class="center">
-                <button type="button" class="btn btn-danger center" (click)="goBack()">ยกเลิก</button>
-                <button type="button" class="btn btn-primary center" (click)="save()">บันทึก</button>
+        <div class="center">
+                <button type="button" class="btn btn-danger center" (click)="goBack()" style="width: 15%; min-width: 150px; margin-right: 10px">ยกเลิก</button>
+                <button type="button" class="btn btn-primary center" (click)="save()" style="width: 15%; min-width: 150px;">บันทึก</button>
                 <br>
                 <small class="text-danger"> {{ errorMSG }} </small>
-                <br>
+              
             </div>
-        <br>
-        <br>
+            <br>
+            <br>
     </div>
-    
+</div>    
+
 </div>

@@ -6,7 +6,7 @@
             <i aria-hidden="true" class="fa "  [ngClass]="selectedEvent.isOperate ? 'fa-check-circle-o text-success' : 'fa-times text-danger'" ></i> {{ selectedEvent["isOperate"] ? 'ออกตรวจ' : 'ไม่ออกตรวจ'  }}
         </div>    
     </div>    
-    <button class="form-control btn btn-block" [ngClass]="!selectedEvent.isOperate ? 'btn-success' : 'btn-danger'" (click)="addSchedule()">{{ !selectedEvent["isOperate"] ? 'ออกตรวจ' : 'ยกเลิกออกตรวจ'  }}</button>
+    <button class="form-control btn btn-block" [ngClass]="!selectedEvent.isOperate ? 'btn-success' : 'btn-danger'" (click)="doClick()">{{ !selectedEvent["isOperate"] ? 'ออกตรวจ' : 'ยกเลิกออกตรวจ'  }}</button>
     </span>
     <hr>
     <h6 style="text-align: center;"> รายชื่อผู้ป่วยที่นัดหมายกับท่าน </h6>
