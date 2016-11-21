@@ -44,3 +44,14 @@ input[type=submit] {
   padding-top: 10%;
   margin: 0
 }
+
+.text-center {
+    text-align: center;
+}
+
+.form-signin {
+    padding: 20px 15px;
+    margin: 0 auto;
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
