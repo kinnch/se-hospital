@@ -204,6 +204,54 @@ exports.search = function(req, res){
         date: {"$gte": new Date(req.body.date),
                 $lt:new Date(new Date(req.body.date).getTime() + 24 * 3600 * 1000)}
     }, function(err, oldSchedule){
+        if(err) res.send({status: 'fail'});
+        if(!oldSchedule) res.send({status: 'fail'});
         return res.send(oldSchedule);
     });
 };
+
+exports.delete = function(req, res){
+     Schedule.findOne({_id: req.body.scheduleID}).remove().exec(function (err,data){
+         if(err) return res.send({status: 'fail'});
+         return res.send({status: 'success'});
+     })
+}
+
+exports.shiftAppointment = function(req, res){
+    Schedule.find({
+        doctor: req.body.doctorID,
+        date: {"$gt": new Date(req.body.date)}
+    }, function(err, schedule){
+        if(err || !schedule){
+            return res.send({status: 'fail', msg:'cannot find this schedule on database'});
+        }
+        var schedule = schedule.filter(function(doc){
+            return doc.appointments.length < 15;
+        });
+        Appointment.findOne({_id: req.body.appointmentID}).populate('patient')
+        .exec(function (err ,oldApp){
+            if(err || !oldApp) return res.send({status: 'fail', msg:'cannot found this appointment on DB'});
+            if(schedule.length == 0){
+                Appointment.findOne({_id: req.body.appointmentID}).remove().exec( function(err,data){
+                    return res.send({status: 'fail', msg:'app was removed cause cannot insert new schedule to it', 
+                        data:{
+                            patient: oldApp.patient
+                        }
+                    });
+                });
+            }
+            else{
+                Schedule.update({_id: schedule[0]._id},
+                {$push: {appointments: req.body.appointmentID}},
+                function(err ,data){
+                    return res.send({status: 'success', 
+                        data:{
+                            patient: oldApp.patient,
+                            newDate: schedule[0].date
+                        }
+                    });
+                });
+            }
+        });
+    });
+}
