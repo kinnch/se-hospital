@@ -113,6 +113,7 @@ export class StaffComponent{
     }
     getPrescriptionRequest(doctor_id):void{
         this.prescriptionService.getPrescriptionChangeRequest(doctor_id).then((pres)=>{
+            console.log("prescription request",pres);
             if(pres) this.prescriptionRequest = pres.length;
             else this.prescriptionRequest = 0;
         })
