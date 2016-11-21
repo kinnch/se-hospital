@@ -17,7 +17,7 @@ import { Component, Input, trigger, animate, state, style, transition , OnChange
        <ng-content></ng-content>
       </div>
       <div class="modal-footer" *ngIf="isShowFooter">
-        <button type="button" class="btn btn-secondary" (click)="callCallbackCancel()">{{close}}</button>
+        <button type="button" class="btn btn-secondary" (click)="callCallbackCancel()" *ngIf="enableCancel">{{close}}</button>
         <button type="button" class="btn btn-primary" (click)="callCallbackSuccess()" >{{success}}</button>
       </div>
     </div>
@@ -33,6 +33,7 @@ export class ModalComponent implements AfterViewInit {
             case "sm" : this.sizeClass="modal-sm"; break;
         }
     }
+    @Input() enableCancel: boolean = true;
     @Input() size : string = "";
     @Input() id : string = "";
     @Input() title : string = "";

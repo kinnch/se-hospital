@@ -1,3 +1,6 @@
+<modal #modal [id]="'delete'" [size]="'md'" [title]="modalTitle" (modalSuccess)="goBack()" [success]="'ตกลง'" [enableCancel]="false">
+    {{modalBody}}
+</modal>
 <a class="back" (click)="goBack()">< ย้อนกลับ</a>
 <hr>
 <div class="container">

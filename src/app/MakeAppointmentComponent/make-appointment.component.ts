@@ -1,10 +1,11 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit,ViewChild} from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { DepartmentService } from '../../services/department.service';
 import { AppointmentService} from '../../services/appointment.service';
 import {Subscription } from 'rxjs';
+import { ModalComponent } from '../ModalComponent/modal.component';
 
 
 import * as moment_ from 'moment';
@@ -17,8 +18,10 @@ import * as moment_ from 'moment';
 })
 
 export class MakeAppointComponent implements OnInit{
+    @ViewChild( ModalComponent ) modal: ModalComponent;
     private subscription: Subscription;
-
+    modalBody = '';
+    modalTitle='';
     departments = [];
     doctors = [];
     timeTable = [];
@@ -169,11 +172,17 @@ export class MakeAppointComponent implements OnInit{
                     //TODO delete old appointment (aptID)
                     //this.DepartmentService.deleteDate(this.aptID).then(data)
                     this.AppointmentService.deleteAppointment(this.aptID).then((data)=>{
-                        alert('แก้ไขการจองสำเร็จ');
+                        this.modalTitle = 'ผลลัพธ์การเลื่อนนัด';
+                        this.modalBody = 'เลื่อนนัดสำเร็จ'
+                        this.modal.modalOpen();
+                        //alert('แก้ไขการจองสำเร็จ');
                     });
                 }
                 else{
-                    alert('ทำการจองสำเร็จ');
+                    this.modalTitle = 'ผลลัพธ์การทำนัดหมาย';
+                    this.modalBody = 'นัดหมายสำเร็จ'
+                    this.modal.modalOpen();
+                    // alert('ทำการจองสำเร็จ');
                 }
             }
         });
