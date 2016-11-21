@@ -1,4 +1,5 @@
-import {Component, Input, OnInit} from '@angular/core';
+import { Component, OnInit, ViewChild} from '@angular/core';
+import { ModalComponent } from '../ModalComponent/modal.component';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Router } from '@angular/router';
 
@@ -13,6 +14,10 @@ import * as moment_ from 'moment';
 })
 
 export class PatientPanelComponent implements OnInit {
+	@ViewChild( ModalComponent ) deleteModal: ModalComponent;
+	selected_appt_id: string; 
+
+	
 	patient_id: string;
 	patient_title: string;
 	patient_fname: string;
@@ -97,6 +102,26 @@ export class PatientPanelComponent implements OnInit {
 
 			console.log(this.patient_data);
 		});
+		tryToDeleteAppointment(appt_id) {
+			this.selected_appt_id = appt_id;
+			this.deleteModal.modalOpen();
+		}
+		deleteAppointment(appt_id) {
+			AppointmentService.deleteAppointment(appt_id).then( (jsonObj) => {
+                this.deleteModal.modalClose();
 
+				if(jsonObj['status'] == 'Success') {
+					console.log("delete success");
+					for(let index in this.appointments) {
+						if(this.appointments[i][_id]==appt_id){
+							this.appointments.splice(index, 1);
+							break;
+						}
+					}
+				} else {
+					console.log("delete fail");
+				}
+			});
+		}
     }
 }
