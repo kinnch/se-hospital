@@ -28,7 +28,7 @@ export class AddDiagnosisComponent implements OnInit {
     currentPeriod : string;
     currentAppointmentID : string;
     patientID : string;
-    
+    drugListIsOK = true;
     errorText = '';
     constructor(private router: Router,
                 private activatedRoute: ActivatedRoute,
@@ -81,12 +81,25 @@ export class AddDiagnosisComponent implements OnInit {
         arr.push(parsed[x]);
         }
         this.prescriptionToBeSave = arr;
+        this.drugListIsOK = true;
+        for (var i = 0 ; i<this.prescriptionToBeSave.length;i++){
+            if(parseInt(this.prescriptionToBeSave[i]['amount'])>=0){
+
+            }
+            else{
+                this.drugListIsOK = false;
+            }
+        }
         console.log('handle');
+        console.log(this.drugListIsOK);
         console.log(this.prescriptionToBeSave);
     }
     saveDiagnosis(){
         if(this.detail==''){
             this.errorText = 'กรุณากรอกรายละเอียดการวินิจฉัย';
+        }
+        else if(!this.drugListIsOK){
+            this.errorText = 'กรุณากรอกจำนวนยาให้ถูกต้อง(จำนวนยาต้องเป็นตัวเลขบวก)';
         }
         else{
             console.log('-----save----');
