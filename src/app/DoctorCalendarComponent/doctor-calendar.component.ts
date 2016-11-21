@@ -380,19 +380,21 @@ export class DoctorCalendarComponent implements AfterViewInit, OnInit {
                         hours=hours%12;
                         mid='pm';
                     }
+                        //-----TODO : KIN please fill these.------
+                        var d_fname ='xxx';//doctor name
+                        var d_lname ='yyy';
+                        var dep = 'zzz';//dapartment
+                        //----end of todo kinnch
+                        var oldDate = this.selectedEvent['_id']['date'];
+                        oldDate = moment(new Date(oldDate)).format("ll")
                     if(result.status == "success"){
                         // send some noti
                         console.log("success");
                         console.log(e);
-                        //-----TODO : KIN please fill these.------
-                        var d_fname ='xxx';
-                        var d_lname ='yyy';
-                        var dep = 'zzz';
-                        var oldDate = this.selectedEvent['_id']['date'];
-                        oldDate = moment(new Date(oldDate)).format("ll")
+                        
+                        
                         var newDate = result.data['newDate'];
                         newDate = moment(new Date(newDate)).format("ll")
-                        //----end of todo kinnch
                         this.notificationService.sendSMSDoctorCancelAppt(
                                 result.data['patient']['tel'],
                                 result.data['patient']['name']['fname'],
@@ -430,6 +432,32 @@ export class DoctorCalendarComponent implements AfterViewInit, OnInit {
                     }else{
                         //send some noti
                         console.log("fail");
+                        this.notificationService.sendSMSStaffCancelAppt(
+                            result.data['patient']['tel'],
+                            result.data['patient']['name']['fname'],
+                            result.data['patient']['name']['lname'],
+                            d_fname,
+                            d_lname,
+                            dep,
+                            oldDate,
+                            this.selectedEvent['_id']['period'])
+                            .then((data)=>{
+                                console.log('sms sended');
+                                console.log(data);
+                            });
+                        this.notificationService.sendEmailStaffCancelAppt(
+                            result.data['patient']['tel'],
+                            result.data['patient']['name']['fname'],
+                            result.data['patient']['name']['lname'],
+                            d_fname,
+                            d_lname,
+                            dep,
+                            oldDate,
+                            this.selectedEvent['_id']['period'])
+                            .then((data)=>{
+                                console.log('email sended');
+                                console.log(data);
+                            });
                          console.log(result.data);
                     }
                 });
