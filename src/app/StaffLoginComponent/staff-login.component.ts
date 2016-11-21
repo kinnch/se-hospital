@@ -11,6 +11,9 @@ export class StaffLoginComponent{
     constructor(private userService: UserService, private router: Router) {}
     username='';
     password='';
+
+    errorMsg = "";
+
     onSubmit() {
         this.userService.login(this.username, this.password).subscribe((result) => {
             if (result) {
@@ -26,6 +29,8 @@ export class StaffLoginComponent{
                     link = ['manage','prescription_request'];
                 }
                 this.router.navigate(link);  
+            } else {
+                this.errorMsg = "ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง กรุณาตรวจสอบอีกครั้ง"
             }
         });
     }

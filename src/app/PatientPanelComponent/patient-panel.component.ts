@@ -108,20 +108,26 @@ export class PatientPanelComponent implements OnInit {
 
 			console.log(this.patient_data);
 		});
-    }
+	}
+
 	tryToDeleteAppointment(appt_id) {
 		this.selected_appt_id = appt_id;
 		this.deleteModal.modalOpen();
 	}
-	deleteAppointment(appt_id) {
-		AppointmentService.deleteAppointment(appt_id).then( (jsonObj) => {
-			this.deleteModal.modalClose();
 
+	deleteAppointment(appt_id) {
+		console.log("DEL:  "+appt_id);
+
+		this.AppointmentService.deleteAppointment(appt_id).then( (jsonObj) => {
+			this.deleteModal.modalClose();
 			if(jsonObj['status'] == 'Success') {
-				console.log("delete success");
-				for(let index in this.appointments) {
-					if(this.appointments[i][_id]==appt_id){
-						this.appointments.splice(index, 1);
+				console.log("delete done");
+				console.log(this.appointments);
+				for(let i in this.appointments) {
+					console.log(this.appointments[i]['appointments'][0]['_id']);
+					if(this.appointments[i]['appointments'][0]['_id']==appt_id) {
+						this.appointments.splice(i, 1);
+						console.log("delete appointment element: "+appt_id);
 						break;
 					}
 				}

@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { ActivatedRoute, Params ,Router } from '@angular/router';
 import { AppointmentService } from '../../services/appointment.service';
 import { DiagnosisService } from '../../services/diagnosis.service';
+import { PhysicalCheckService} from '../../services/physical-check.service';
 import {Subscription } from 'rxjs';
 import * as moment_ from 'moment';
 import { UserService } from '../../services/user.service';
@@ -17,13 +18,14 @@ export class DiagnosisComponent {
     HN: string;
     doctorID = localStorage.getItem('user_id');
     doctorDepartment = localStorage.getItem('department_id');
-
+    todayPhysicalCheck: any;
     private subscription: Subscription;
     allDiagnosisHistory: JSON;
     constructor(private router: Router,
         private activatedRoute: ActivatedRoute,
         private appointmentService: AppointmentService,
-        private diagnosisService: DiagnosisService) { 
+        private diagnosisService: DiagnosisService,
+        private physicalCheckService : PhysicalCheckService) { 
             router.events.subscribe((val) => {
                 this.doctorID = localStorage.getItem('user_id');
             });
@@ -51,6 +53,16 @@ export class DiagnosisComponent {
                         // console.log('diagnosis -------');
                         // console.log(data);
                         this.allDiagnosisHistory = data['diagnosisHistory'];
+                        this.physicalCheckService.getPhysicalCheckHistory(this.HN)
+                        .then((data)=>{
+                            console.log('physical check service');
+                            // console.log(data);
+                            if(data['status']!='fail' && data['physical_check'].length !=0){
+                                this.todayPhysicalCheck = data['physical_check'][0];
+                                console.log(this.todayPhysicalCheck);
+                            }
+                            
+                        });
                     });
                     // this.found = true;
                     // var diffDuration = moment_.duration(moment_().diff(this.data['patient_data']['birthDate']));

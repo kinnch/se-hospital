@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component,Input} from '@angular/core';
 import { Router } from '@angular/router';
 @Component({
     selector: 'patient-detail-element-c',
@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 })
 
 export class PatientDetailElementComponent {
+    @Input() data:JSON;
     constructor(private router: Router) {}
       
 }

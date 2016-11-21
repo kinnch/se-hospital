@@ -1,4 +1,4 @@
-<section class="container">
+<section class="container" *ngIf="data">
     <br>
     <h5 _ngcontent-bir-6="">ข้อมูลการตรวจร่างกายประจำวัน</h5>
 			<div _ngcontent-bir-6="" class="card">
@@ -6,24 +6,24 @@
 					<blockquote _ngcontent-bir-6="" class="card-blockquote">
 						<div class="row">
 							<div class="col-md-4">
-								<p>น้ำหนัก (กก.) : </p>
+								<p>น้ำหนัก (กก.) : {{data['weight']}}</p>
 							</div>
 							<div class="col-md-4">
-								<p>ส่วนสูง (ซม.) : </p>
+								<p>ส่วนสูง (ซม.) : {{data['height']}}</p>
 							</div>
 							<div class="col-md-4">
-								<p>อุณหภูมิ (องศา) : </p>
+								<p>อุณหภูมิ (องศา) : {{data['temp']}}</p>
 							</div>
 						</div>
                         <div class="row">
 							<div class="col-md-4">
-								<p>อัตราการเต้นหัวใจ : </p>
+								<p>อัตราการเต้นหัวใจ : {{data['heartRate']}}</p>
 							</div>
 							<div class="col-md-4">
-								<p>ความดันช่วงบีบ : </p>
+								<p>ความดันช่วงบีบ : {{data['bloodPresure']['systolic']}}</p>
 							</div>
 							<div class="col-md-4">
-								<p>ความดันช่วงคลาย : </p>
+								<p>ความดันช่วงคลาย : {{data['bloodPresure']['diastolic']}}</p>
 							</div>
 						</div>
 					</blockquote>

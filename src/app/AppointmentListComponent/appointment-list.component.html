@@ -6,7 +6,7 @@
     <h5 class="card-title">[{{apt['timePeriod2']}}] {{apt['date2']}}</h5>
     
     <div class = "right-btn">
-      <a routerLink="/manage/manage_patient/edit_appointment_s/{{data['patient_data']['_id']}}/{{apt['_id']}}">
+      <a routerLink="/manage/manage_patient/edit_appointment_s/{{data['patient_data']['_id']}}/{{apt['appointments'][0]['_id']}}">
         <button *ngIf="apt['appointments'][0]['status'] == 0"type="button" class="btn btn-primary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
       </a>
       <button (click)="openConfirm()"*ngIf="apt['appointments'][0]['status'] == 0" type="button" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button>

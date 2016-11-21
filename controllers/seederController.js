@@ -30,8 +30,8 @@ function getDateYesterday(){
     return this_date;
 }
 
-function getDateSomeday(){
-    var this_date = new Date(new Date().getTime() - 24 * 8 * 3600 * 1000 + 7 * 3600 * 1000);
+function getDateNextKday(k){
+    var this_date = new Date(new Date().getTime() + k * 24 * 3600 * 1000 + 7 * 3600 * 1000);
     this_date = new Date(this_date.getFullYear()+'-'+(this_date.getMonth() + 1)+"-"+this_date.getDate());
     return this_date;
 }
@@ -138,9 +138,11 @@ exports.seed = function(req, res) {
         new Department({
             name: "กระดูก"
         }),
+        /*
         new Department({
             name: "BOSS"
         })
+        */
     ];
 
     //Patients N=6
@@ -156,7 +158,7 @@ exports.seed = function(req, res) {
             nationalID: '1103701553821',
             sex: "male",
             birthDate: new Date("1994-11-16"),
-            HN: '12344321',
+            HN: 12344321,
             salt: '471e91c751f97efdfa7e6df71a497dd739564a3db679c8ab1564f92368a23d29',
             address: {
                 detail: "842 เสนาวิลล่า84 ถ.แฮบปี้แลนด์",
@@ -296,7 +298,7 @@ exports.seed = function(req, res) {
             nationalID: '2749477015164',
             sex: "male",
             birthDate: new Date("1990-01-06"),
-            HN: '20000015',
+            HN: null,
             salt: '471e91c751f97efdfa7e6df71a497dd739564a3db679c8ab1564f92368a23d29',
             address: {
                 detail: "1873 ถนนพระราม 4 ",
@@ -312,7 +314,548 @@ exports.seed = function(req, res) {
             allegicDrugs: [],
             bloodType: "A"
 
-        })
+        }),
+        // new patient 20.
+        new Patient({
+            name: {
+                title: "นาย",
+                fname: "คนไข้01",
+                lname: "เป็นตัวปลอม"
+            },
+            email: "miracle@me.in.th",
+            tel: "0818132200",
+            nationalID: null,
+            sex: "male",
+            birthDate: new Date("1990-01-06"),
+            HN: null,
+            salt: '471e91c751f97efdfa7e6df71a497dd739564a3db679c8ab1564f92368a23d29',
+            address: {
+                detail: "1873 ถนนพระราม 4 ",
+                subDistrict: "ปทุมวัน",
+                distict: "ปทุมวัน",
+                province: "กรุงเทพมหานคร",
+                postCode: "10330"
+            },
+            OTP: {
+                text: "999999",
+                generatedDate: new Date()
+            },
+            allegicDrugs: [],
+            bloodType: "A"
+        }),
+        new Patient({
+            name: {
+                title: "นาย",
+                fname: "คนไข้02",
+                lname: "เป็นตัวปลอม"
+            },
+            email: "miracle@me.in.th",
+            tel: "0818132200",
+            nationalID: null,
+            sex: "male",
+            birthDate: new Date("1990-01-06"),
+            HN: null,
+            salt: '471e91c751f97efdfa7e6df71a497dd739564a3db679c8ab1564f92368a23d29',
+            address: {
+                detail: "1873 ถนนพระราม 4 ",
+                subDistrict: "ปทุมวัน",
+                distict: "ปทุมวัน",
+                province: "กรุงเทพมหานคร",
+                postCode: "10330"
+            },
+            OTP: {
+                text: "999999",
+                generatedDate: new Date()
+            },
+            allegicDrugs: [],
+            bloodType: "A"
+        }),
+        new Patient({
+            name: {
+                title: "นาย",
+                fname: "คนไข้03",
+                lname: "เป็นตัวปลอม"
+            },
+            email: "miracle@me.in.th",
+            tel: "0818132200",
+            nationalID: null,
+            sex: "male",
+            birthDate: new Date("1990-01-06"),
+            HN: null,
+            salt: '471e91c751f97efdfa7e6df71a497dd739564a3db679c8ab1564f92368a23d29',
+            address: {
+                detail: "1873 ถนนพระราม 4 ",
+                subDistrict: "ปทุมวัน",
+                distict: "ปทุมวัน",
+                province: "กรุงเทพมหานคร",
+                postCode: "10330"
+            },
+            OTP: {
+                text: "999999",
+                generatedDate: new Date()
+            },
+            allegicDrugs: [],
+            bloodType: "A"
+        }),
+        new Patient({
+            name: {
+                title: "นาย",
+                fname: "คนไข้04",
+                lname: "เป็นตัวปลอม"
+            },
+            email: "miracle@me.in.th",
+            tel: "0818132200",
+            nationalID: null,
+            sex: "male",
+            birthDate: new Date("1990-01-06"),
+            HN: null,
+            salt: '471e91c751f97efdfa7e6df71a497dd739564a3db679c8ab1564f92368a23d29',
+            address: {
+                detail: "1873 ถนนพระราม 4 ",
+                subDistrict: "ปทุมวัน",
+                distict: "ปทุมวัน",
+                province: "กรุงเทพมหานคร",
+                postCode: "10330"
+            },
+            OTP: {
+                text: "999999",
+                generatedDate: new Date()
+            },
+            allegicDrugs: [],
+            bloodType: "A"
+        }),
+        new Patient({
+            name: {
+                title: "นาย",
+                fname: "คนไข้05",
+                lname: "เป็นตัวปลอม"
+            },
+            email: "miracle@me.in.th",
+            tel: "0818132200",
+            nationalID: null,
+            sex: "male",
+            birthDate: new Date("1990-01-06"),
+            HN: null,
+            salt: '471e91c751f97efdfa7e6df71a497dd739564a3db679c8ab1564f92368a23d29',
+            address: {
+                detail: "1873 ถนนพระราม 4 ",
+                subDistrict: "ปทุมวัน",
+                distict: "ปทุมวัน",
+                province: "กรุงเทพมหานคร",
+                postCode: "10330"
+            },
+            OTP: {
+                text: "999999",
+                generatedDate: new Date()
+            },
+            allegicDrugs: [],
+            bloodType: "A"
+        }),
+        new Patient({
+            name: {
+                title: "นาย",
+                fname: "คนไข้06",
+                lname: "เป็นตัวปลอม"
+            },
+            email: "miracle@me.in.th",
+            tel: "0818132200",
+            nationalID: null,
+            sex: "male",
+            birthDate: new Date("1990-01-06"),
+            HN: null,
+            salt: '471e91c751f97efdfa7e6df71a497dd739564a3db679c8ab1564f92368a23d29',
+            address: {
+                detail: "1873 ถนนพระราม 4 ",
+                subDistrict: "ปทุมวัน",
+                distict: "ปทุมวัน",
+                province: "กรุงเทพมหานคร",
+                postCode: "10330"
+            },
+            OTP: {
+                text: "999999",
+                generatedDate: new Date()
+            },
+            allegicDrugs: [],
+            bloodType: "A"
+        }),
+        new Patient({
+            name: {
+                title: "นาย",
+                fname: "คนไข้07",
+                lname: "เป็นตัวปลอม"
+            },
+            email: "miracle@me.in.th",
+            tel: "0818132200",
+            nationalID: null,
+            sex: "male",
+            birthDate: new Date("1990-01-06"),
+            HN: null,
+            salt: '471e91c751f97efdfa7e6df71a497dd739564a3db679c8ab1564f92368a23d29',
+            address: {
+                detail: "1873 ถนนพระราม 4 ",
+                subDistrict: "ปทุมวัน",
+                distict: "ปทุมวัน",
+                province: "กรุงเทพมหานคร",
+                postCode: "10330"
+            },
+            OTP: {
+                text: "999999",
+                generatedDate: new Date()
+            },
+            allegicDrugs: [],
+            bloodType: "A"
+        }),
+        new Patient({
+            name: {
+                title: "นาย",
+                fname: "คนไข้08",
+                lname: "เป็นตัวปลอม"
+            },
+            email: "miracle@me.in.th",
+            tel: "0818132200",
+            nationalID: null,
+            sex: "male",
+            birthDate: new Date("1990-01-06"),
+            HN: null,
+            salt: '471e91c751f97efdfa7e6df71a497dd739564a3db679c8ab1564f92368a23d29',
+            address: {
+                detail: "1873 ถนนพระราม 4 ",
+                subDistrict: "ปทุมวัน",
+                distict: "ปทุมวัน",
+                province: "กรุงเทพมหานคร",
+                postCode: "10330"
+            },
+            OTP: {
+                text: "999999",
+                generatedDate: new Date()
+            },
+            allegicDrugs: [],
+            bloodType: "A"
+        }),
+        new Patient({
+            name: {
+                title: "นาย",
+                fname: "คนไข้09",
+                lname: "เป็นตัวปลอม"
+            },
+            email: "miracle@me.in.th",
+            tel: "0818132200",
+            nationalID: null,
+            sex: "male",
+            birthDate: new Date("1990-01-06"),
+            HN: null,
+            salt: '471e91c751f97efdfa7e6df71a497dd739564a3db679c8ab1564f92368a23d29',
+            address: {
+                detail: "1873 ถนนพระราม 4 ",
+                subDistrict: "ปทุมวัน",
+                distict: "ปทุมวัน",
+                province: "กรุงเทพมหานคร",
+                postCode: "10330"
+            },
+            OTP: {
+                text: "999999",
+                generatedDate: new Date()
+            },
+            allegicDrugs: [],
+            bloodType: "A"
+        }),
+        new Patient({
+            name: {
+                title: "นาย",
+                fname: "คนไข้10",
+                lname: "เป็นตัวปลอม"
+            },
+            email: "miracle@me.in.th",
+            tel: "0818132200",
+            nationalID: null,
+            sex: "male",
+            birthDate: new Date("1990-01-06"),
+            HN: null,
+            salt: '471e91c751f97efdfa7e6df71a497dd739564a3db679c8ab1564f92368a23d29',
+            address: {
+                detail: "1873 ถนนพระราม 4 ",
+                subDistrict: "ปทุมวัน",
+                distict: "ปทุมวัน",
+                province: "กรุงเทพมหานคร",
+                postCode: "10330"
+            },
+            OTP: {
+                text: "999999",
+                generatedDate: new Date()
+            },
+            allegicDrugs: [],
+            bloodType: "A"
+        }),
+        new Patient({
+            name: {
+                title: "นาย",
+                fname: "คนไข้11",
+                lname: "เป็นตัวปลอม"
+            },
+            email: "miracle@me.in.th",
+            tel: "0818132200",
+            nationalID: null,
+            sex: "male",
+            birthDate: new Date("1990-01-06"),
+            HN: null,
+            salt: '471e91c751f97efdfa7e6df71a497dd739564a3db679c8ab1564f92368a23d29',
+            address: {
+                detail: "1873 ถนนพระราม 4 ",
+                subDistrict: "ปทุมวัน",
+                distict: "ปทุมวัน",
+                province: "กรุงเทพมหานคร",
+                postCode: "10330"
+            },
+            OTP: {
+                text: "999999",
+                generatedDate: new Date()
+            },
+            allegicDrugs: [],
+            bloodType: "A"
+        }),
+        new Patient({
+            name: {
+                title: "นาย",
+                fname: "คนไข้12",
+                lname: "เป็นตัวปลอม"
+            },
+            email: "miracle@me.in.th",
+            tel: "0818132200",
+            nationalID: null,
+            sex: "male",
+            birthDate: new Date("1990-01-06"),
+            HN: null,
+            salt: '471e91c751f97efdfa7e6df71a497dd739564a3db679c8ab1564f92368a23d29',
+            address: {
+                detail: "1873 ถนนพระราม 4 ",
+                subDistrict: "ปทุมวัน",
+                distict: "ปทุมวัน",
+                province: "กรุงเทพมหานคร",
+                postCode: "10330"
+            },
+            OTP: {
+                text: "999999",
+                generatedDate: new Date()
+            },
+            allegicDrugs: [],
+            bloodType: "A"
+        }),
+        new Patient({
+            name: {
+                title: "นาย",
+                fname: "คนไข้13",
+                lname: "เป็นตัวปลอม"
+            },
+            email: "miracle@me.in.th",
+            tel: "0818132200",
+            nationalID: null,
+            sex: "male",
+            birthDate: new Date("1990-01-06"),
+            HN: null,
+            salt: '471e91c751f97efdfa7e6df71a497dd739564a3db679c8ab1564f92368a23d29',
+            address: {
+                detail: "1873 ถนนพระราม 4 ",
+                subDistrict: "ปทุมวัน",
+                distict: "ปทุมวัน",
+                province: "กรุงเทพมหานคร",
+                postCode: "10330"
+            },
+            OTP: {
+                text: "999999",
+                generatedDate: new Date()
+            },
+            allegicDrugs: [],
+            bloodType: "A"
+        }),
+        new Patient({
+            name: {
+                title: "นาย",
+                fname: "คนไข้14",
+                lname: "เป็นตัวปลอม"
+            },
+            email: "miracle@me.in.th",
+            tel: "0818132200",
+            nationalID: null,
+            sex: "male",
+            birthDate: new Date("1990-01-06"),
+            HN: null,
+            salt: '471e91c751f97efdfa7e6df71a497dd739564a3db679c8ab1564f92368a23d29',
+            address: {
+                detail: "1873 ถนนพระราม 4 ",
+                subDistrict: "ปทุมวัน",
+                distict: "ปทุมวัน",
+                province: "กรุงเทพมหานคร",
+                postCode: "10330"
+            },
+            OTP: {
+                text: "999999",
+                generatedDate: new Date()
+            },
+            allegicDrugs: [],
+            bloodType: "A"
+        }),
+        new Patient({
+            name: {
+                title: "นาย",
+                fname: "คนไข้15",
+                lname: "เป็นตัวปลอม"
+            },
+            email: "miracle@me.in.th",
+            tel: "0818132200",
+            nationalID: null,
+            sex: "male",
+            birthDate: new Date("1990-01-06"),
+            HN: null,
+            salt: '471e91c751f97efdfa7e6df71a497dd739564a3db679c8ab1564f92368a23d29',
+            address: {
+                detail: "1873 ถนนพระราม 4 ",
+                subDistrict: "ปทุมวัน",
+                distict: "ปทุมวัน",
+                province: "กรุงเทพมหานคร",
+                postCode: "10330"
+            },
+            OTP: {
+                text: "999999",
+                generatedDate: new Date()
+            },
+            allegicDrugs: [],
+            bloodType: "A"
+        }),
+        new Patient({
+            name: {
+                title: "นาย",
+                fname: "คนไข้16",
+                lname: "เป็นตัวปลอม"
+            },
+            email: "miracle@me.in.th",
+            tel: "0818132200",
+            nationalID: null,
+            sex: "male",
+            birthDate: new Date("1990-01-06"),
+            HN: null,
+            salt: '471e91c751f97efdfa7e6df71a497dd739564a3db679c8ab1564f92368a23d29',
+            address: {
+                detail: "1873 ถนนพระราม 4 ",
+                subDistrict: "ปทุมวัน",
+                distict: "ปทุมวัน",
+                province: "กรุงเทพมหานคร",
+                postCode: "10330"
+            },
+            OTP: {
+                text: "999999",
+                generatedDate: new Date()
+            },
+            allegicDrugs: [],
+            bloodType: "A"
+        }),
+        new Patient({
+            name: {
+                title: "นาย",
+                fname: "คนไข้17",
+                lname: "เป็นตัวปลอม"
+            },
+            email: "miracle@me.in.th",
+            tel: "0818132200",
+            nationalID: null,
+            sex: "male",
+            birthDate: new Date("1990-01-06"),
+            HN: null,
+            salt: '471e91c751f97efdfa7e6df71a497dd739564a3db679c8ab1564f92368a23d29',
+            address: {
+                detail: "1873 ถนนพระราม 4 ",
+                subDistrict: "ปทุมวัน",
+                distict: "ปทุมวัน",
+                province: "กรุงเทพมหานคร",
+                postCode: "10330"
+            },
+            OTP: {
+                text: "999999",
+                generatedDate: new Date()
+            },
+            allegicDrugs: [],
+            bloodType: "A"
+        }),
+        new Patient({
+            name: {
+                title: "นาย",
+                fname: "คนไข้18",
+                lname: "เป็นตัวปลอม"
+            },
+            email: "miracle@me.in.th",
+            tel: "0818132200",
+            nationalID: null,
+            sex: "male",
+            birthDate: new Date("1990-01-06"),
+            HN: null,
+            salt: '471e91c751f97efdfa7e6df71a497dd739564a3db679c8ab1564f92368a23d29',
+            address: {
+                detail: "1873 ถนนพระราม 4 ",
+                subDistrict: "ปทุมวัน",
+                distict: "ปทุมวัน",
+                province: "กรุงเทพมหานคร",
+                postCode: "10330"
+            },
+            OTP: {
+                text: "999999",
+                generatedDate: new Date()
+            },
+            allegicDrugs: [],
+            bloodType: "A"
+        }),
+        new Patient({
+            name: {
+                title: "นาย",
+                fname: "คนไข้19",
+                lname: "เป็นตัวปลอม"
+            },
+            email: "miracle@me.in.th",
+            tel: "0818132200",
+            nationalID: null,
+            sex: "male",
+            birthDate: new Date("1990-01-06"),
+            HN: null,
+            salt: '471e91c751f97efdfa7e6df71a497dd739564a3db679c8ab1564f92368a23d29',
+            address: {
+                detail: "1873 ถนนพระราม 4 ",
+                subDistrict: "ปทุมวัน",
+                distict: "ปทุมวัน",
+                province: "กรุงเทพมหานคร",
+                postCode: "10330"
+            },
+            OTP: {
+                text: "999999",
+                generatedDate: new Date()
+            },
+            allegicDrugs: [],
+            bloodType: "A"
+        }),
+        new Patient({
+            name: {
+                title: "นาย",
+                fname: "คนไข้20",
+                lname: "เป็นตัวปลอม"
+            },
+            email: "miracle@me.in.th",
+            tel: "0818132200",
+            nationalID: null,
+            sex: "male",
+            birthDate: new Date("1990-01-06"),
+            HN: null,
+            salt: '471e91c751f97efdfa7e6df71a497dd739564a3db679c8ab1564f92368a23d29',
+            address: {
+                detail: "1873 ถนนพระราม 4 ",
+                subDistrict: "ปทุมวัน",
+                distict: "ปทุมวัน",
+                province: "กรุงเทพมหานคร",
+                postCode: "10330"
+            },
+            OTP: {
+                text: "999999",
+                generatedDate: new Date()
+            },
+            allegicDrugs: [],
+            bloodType: "A"
+        }),
     ];
 
     //HospitalEmployees
@@ -611,7 +1154,7 @@ exports.seed = function(req, res) {
         new Appointment({
             patient: patients[1]._id,
             reason: "น้ำมูกไหลตอนกลางคืน",
-            status: 3
+            status: 0
         }),
         new Appointment({
             patient: patients[2]._id,
@@ -621,7 +1164,7 @@ exports.seed = function(req, res) {
         new Appointment({
             patient: patients[3]._id,
             reason: "เจ็บหน้าอกข้างซ้ายเป็นระยะ ๆ มา 2 เดือนแล้ว",
-            status: 2
+            status: 4
         }),
         new Appointment({
             patient: patients[4]._id,
@@ -631,18 +1174,195 @@ exports.seed = function(req, res) {
         new Appointment({
             patient: patients[5]._id,
             reason: "กินข้าวไม่ลง คลื่นไส้อาเจียร",
-            status: 4
+            status: 0
         }),
         new Appointment({
             patient: patients[5]._id,
             reason: "ปวดกระดูก ตกบันได",
-            status: 4
+            status: 0
         }),
         new Appointment({
             patient: patients[2]._id,
             reason: "ปวดท้อง",
-            status: 3
-        })
+            status: 0
+        }),
+        // and so on 15 in the same schedukle (which mean patient have to differrent in this slot)
+        new Appointment({
+            patient: patients[6]._id,
+            reason: "กินข้าวไม่ลง คลื่นไส้อาเจียร",
+            status: 0
+        }),
+        new Appointment({
+            patient: patients[7]._id,
+            reason: "กินข้าวไม่ลง คลื่นไส้อาเจียร",
+            status: 0
+        }),
+        new Appointment({
+            patient: patients[8]._id,
+            reason: "กินข้าวไม่ลง คลื่นไส้อาเจียร",
+            status: 0
+        }),
+        new Appointment({
+            patient: patients[9]._id,
+            reason: "กินข้าวไม่ลง คลื่นไส้อาเจียร",
+            status: 0
+        }),
+        new Appointment({
+            patient: patients[10]._id,
+            reason: "กินข้าวไม่ลง คลื่นไส้อาเจียร",
+            status: 0
+        }),
+        new Appointment({
+            patient: patients[11]._id,
+            reason: "กินข้าวไม่ลง คลื่นไส้อาเจียร",
+            status: 0
+        }),
+        new Appointment({
+            patient: patients[12]._id,
+            reason: "กินข้าวไม่ลง คลื่นไส้อาเจียร",
+            status: 0
+        }),
+        new Appointment({
+            patient: patients[13]._id,
+            reason: "กินข้าวไม่ลง คลื่นไส้อาเจียร",
+            status: 0
+        }),
+        new Appointment({
+            patient: patients[14]._id,
+            reason: "กินข้าวไม่ลง คลื่นไส้อาเจียร",
+            status: 0
+        }),
+        new Appointment({
+            patient: patients[15]._id,
+            reason: "กินข้าวไม่ลง คลื่นไส้อาเจียร",
+            status: 0
+        }),
+        new Appointment({
+            patient: patients[16]._id,
+            reason: "กินข้าวไม่ลง คลื่นไส้อาเจียร",
+            status: 0
+        }),
+        new Appointment({
+            patient: patients[17]._id,
+            reason: "กินข้าวไม่ลง คลื่นไส้อาเจียร",
+            status: 0
+        }),
+        new Appointment({
+            patient: patients[18]._id,
+            reason: "กินข้าวไม่ลง คลื่นไส้อาเจียร",
+            status: 0
+        }),
+        new Appointment({
+            patient: patients[19]._id,
+            reason: "กินข้าวไม่ลง คลื่นไส้อาเจียร",
+            status: 0
+        }),
+        new Appointment({
+            patient: patients[20]._id,
+            reason: "กินข้าวไม่ลง คลื่นไส้อาเจียร",
+            status: 0
+        }),
+        // and so on 20 in the same schedukle (which mean patient have to differrent in this slot)
+        new Appointment({
+            patient: patients[6]._id,
+            reason: "กินข้าวไม่ลง คลื่นไส้อาเจียร",
+            status: 0
+        }),
+        new Appointment({
+            patient: patients[7]._id,
+            reason: "กินข้าวไม่ลง คลื่นไส้อาเจียร",
+            status: 0
+        }),
+        new Appointment({
+            patient: patients[8]._id,
+            reason: "กินข้าวไม่ลง คลื่นไส้อาเจียร",
+            status: 0
+        }),
+        new Appointment({
+            patient: patients[9]._id,
+            reason: "กินข้าวไม่ลง คลื่นไส้อาเจียร",
+            status: 0
+        }),
+        new Appointment({
+            patient: patients[10]._id,
+            reason: "กินข้าวไม่ลง คลื่นไส้อาเจียร",
+            status: 0
+        }),
+        new Appointment({
+            patient: patients[11]._id,
+            reason: "กินข้าวไม่ลง คลื่นไส้อาเจียร",
+            status: 0
+        }),
+        new Appointment({
+            patient: patients[12]._id,
+            reason: "กินข้าวไม่ลง คลื่นไส้อาเจียร",
+            status: 0
+        }),
+        new Appointment({
+            patient: patients[13]._id,
+            reason: "กินข้าวไม่ลง คลื่นไส้อาเจียร",
+            status: 0
+        }),
+        new Appointment({
+            patient: patients[14]._id,
+            reason: "กินข้าวไม่ลง คลื่นไส้อาเจียร",
+            status: 0
+        }),
+        new Appointment({
+            patient: patients[15]._id,
+            reason: "กินข้าวไม่ลง คลื่นไส้อาเจียร",
+            status: 0
+        }),
+        new Appointment({
+            patient: patients[16]._id,
+            reason: "กินข้าวไม่ลง คลื่นไส้อาเจียร",
+            status: 0
+        }),
+        new Appointment({
+            patient: patients[17]._id,
+            reason: "กินข้าวไม่ลง คลื่นไส้อาเจียร",
+            status: 0
+        }),
+        new Appointment({
+            patient: patients[18]._id,
+            reason: "กินข้าวไม่ลง คลื่นไส้อาเจียร",
+            status: 0
+        }),
+        new Appointment({
+            patient: patients[19]._id,
+            reason: "กินข้าวไม่ลง คลื่นไส้อาเจียร",
+            status: 0
+        }),
+        new Appointment({
+            patient: patients[20]._id,
+            reason: "กินข้าวไม่ลง คลื่นไส้อาเจียร",
+            status: 0
+        }),
+        new Appointment({
+            patient: patients[21]._id,
+            reason: "กินข้าวไม่ลง คลื่นไส้อาเจียร",
+            status: 0
+        }),
+        new Appointment({
+            patient: patients[22]._id,
+            reason: "กินข้าวไม่ลง คลื่นไส้อาเจียร",
+            status: 0
+        }),
+        new Appointment({
+            patient: patients[23]._id,
+            reason: "กินข้าวไม่ลง คลื่นไส้อาเจียร",
+            status: 0
+        }),
+        new Appointment({
+            patient: patients[24]._id,
+            reason: "กินข้าวไม่ลง คลื่นไส้อาเจียร",
+            status: 0
+        }),
+        new Appointment({
+            patient: patients[25]._id,
+            reason: "กินข้าวไม่ลง คลื่นไส้อาเจียร",
+            status: 0
+        }),
     ];
 
     // Schedules  N=4
@@ -663,26 +1383,97 @@ exports.seed = function(req, res) {
             timePeriod: 'am',
             date: getDateNow(),
             doctor: hospitalEmployees[4]._id,
-            appointments: [appointments[7]._id,  appointments[4]._id, appointments[5]._id, appointments[8]._id]
+            appointments: [
+                appointments[7]._id,  
+                appointments[4]._id, 
+                appointments[5]._id, 
+                appointments[8]._id
+            ]
+        }),
+        
+        //15 appointments
+        new Schedule({
+            timePeriod: 'am',
+            date: getDateNow(),
+            doctor: hospitalEmployees[5]._id,
+            //fix it.
+            appointments: [
+                appointments[9]._id,  
+                appointments[10]._id, 
+                appointments[11]._id, 
+                appointments[12]._id,
+                appointments[13]._id, 
+                appointments[14]._id, 
+                appointments[15]._id,
+                appointments[16]._id, 
+                appointments[17]._id, 
+                appointments[18]._id,
+                appointments[19]._id, 
+                appointments[20]._id,
+                appointments[21]._id,
+                appointments[22]._id, 
+                appointments[23]._id,
+            ]
+        }),
+        //appoitnments.length = 20
+        new Schedule({
+            timePeriod: 'pm',
+            date: getDateNextKday(2),
+            doctor: hospitalEmployees[5]._id,
+            //fix it.
+            appointments: [
+                appointments[24]._id,  
+                appointments[25]._id, 
+                appointments[26]._id, 
+                appointments[27]._id,
+                appointments[28]._id, 
+                appointments[29]._id, 
+                appointments[30]._id,
+                appointments[31]._id, 
+                appointments[32]._id, 
+                appointments[33]._id,
+                appointments[34]._id, 
+                appointments[35]._id,
+                appointments[36]._id,
+                appointments[37]._id, 
+                appointments[38]._id,
+                appointments[39]._id, 
+                appointments[40]._id,
+                appointments[41]._id,
+                appointments[42]._id, 
+                appointments[43]._id,
+            ]
         }),
         new Schedule({
             timePeriod: 'pm',
-            date: getDateNow(),
-            doctor: hospitalEmployees[4]._id,
+            date: getDateNextKday(4),
+            doctor: hospitalEmployees[12]._id,
             appointments: [appointments[1]._id]
         }),
         new Schedule({
             timePeriod: 'pm',
-            date: getDateSomeday(),
+            date: getDateNextKday(8),
             doctor: hospitalEmployees[4]._id,
             appointments: [appointments[2]._id]
         }),
         new Schedule({
             timePeriod: 'am',
-            date: getDateSomeday(),
+            date: getDateNextKday(7),
             doctor: hospitalEmployees[4]._id,
             appointments: [appointments[3]._id]
-        })
+        }),
+        new Schedule({
+            timePeriod: 'am',
+            date: getDateNextKday(16),
+            doctor: hospitalEmployees[5]._id,
+            appointments: []
+        }),
+        new Schedule({
+            timePeriod: 'pm',
+            date: getDateNow(),
+            doctor: hospitalEmployees[4]._id,
+            appointments: []
+        }),
     ];
 
     // PhysicalChecking  N=6
