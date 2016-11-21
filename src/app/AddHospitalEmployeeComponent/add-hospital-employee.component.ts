@@ -61,63 +61,34 @@ export class AddHospitalEmployeeComponent implements OnInit {
         
     }
     validate():boolean{
-        let isPass = true;
+        let isPass = false;
         if(this.title == "") this.errorTitle = "กรุณากรอกคำนำหน้าชื่อ";
         else if(!/^[ก-๙|a-z|A-Z|\.]+$/.test(this.title)) this.errorTitle = "คำนำหน้าชื่อควรประกอบด้วยอักขระภาษาไทย, อักขระภาษาอังกฤษ หรือจุด(.) และมีความยาวอย่างน้อย 2 ตัวอักษร"
-        else {
-            this.errorTitle = "";
-            isPass = true;
-        }
-        isPass = false;
+        else this.errorTitle = "";
         if(this.fname == "") this.errorFname = "กรุณากรอกชื่อ";
         else if(!/^[ก-๙|a-z|A-Z]+$/.test(this.fname)) this.errorFname = "ชื่อควรประกอบด้วยอักขระภาษาไทย หรือภาษาอังกฤษเท่านั้น และมีความยาวไม่เกิน 50 ตัวอักษร";
         else if(this.fname.length > 50) this.errorFname = "ชื่อควรมีความยาวไม่เกิน 50 ตัวอักษร"
-        else {
-            this.errorFname = "";
-            isPass = true;
-        }
-        isPass = false;
+        else this.errorFname = "";
         if(this.lname == "") this.errorLname = "กรุณากรอกนามสกุล";
         else if(!/^[ก-๙|a-z|A-Z]+$/.test(this.lname)) this.errorLname = "นามสกุลควรประกอบด้วยอักขระภาษาไทย หรือภาษาอังกฤษเท่านั้น และมีความยาวไม่เกิน 50 ตัวอักษร";
         else if(this.lname.length > 50) this.errorLname = "นามสกุลควรมีความยาวไม่เกิน 50 ตัวอักษร"
-        else {
-            this.errorLname = "";
-            isPass = true;
-        }
-        isPass = false;
+        else this.errorLname = "";
         if(this.username == "") this.errorUsername = "กรุณากรอกชื่อบัญชีผู้ใช้";
         else if(!/^[a-z|A-Z|0-9|_]+$/.test(this.username)) this.errorUsername = "ชื่อบัญชีผู้ใช้ควรประกอบด้วยอักขระภาษาอังกฤษ, ตัวเลข 0-9 หรือ Underscore(_) เท่านั้น และมีความยาวไม่เกิน 60 ตัวอักษร";
         else if(this.username.length > 50) this.errorUsername = "ชื่อบัญชีผู้ใช้ควรมีความยาวไม่เกิน 50 ตัวอักษร"
-        else {
-            this.errorUsername = "";
-            isPass = true;
-        }
-        isPass = false;
+        else this.errorUsername = "";
         if(this.password == "") this.errorPassword = "กรุณากรอกรหัสผ่าน";
         else if(this.password.length > 100) this.errorPassword = "รหัสผ่านควรมีความยาวไม่เกิน 100 ตัวอักษร"
-        else {
-            this.errorPassword = "";
-            isPass = true;
-        }
-        isPass = false;
+        else this.errorPassword = "";
         if(this.confirmPassword == "") this.errorConfirmPassword = "กรุณากรอกรหัสผ่านอีกครั้ง";
         else if(this.password != this.confirmPassword) this.errorConfirmPassword = "กรุณากรอกรหัสผ่านให้ตรงกัน";
-        else {
-            this.errorConfirmPassword = "";
-            isPass = true;
-        }
-        isPass = false;
+        else this.errorConfirmPassword = "";
         if(this.roleId == 0) this.errorRole = "กรุณาเลือกตำแหน่ง";
-        else {
-            this.errorRole = "";
-            isPass = true;
-        }
-        isPass = false;
+        else this.errorRole = "";
         if(this.department == "0") this.errorDepartment = "กรุณาเลือกแผนก";
-        else {
-            this.errorDepartment = "";
+        else this.errorDepartment = "";
+        if(!this.errorTitle && !this.errorFname && !this.errorLname && !this.errorUsername && !this.errorPassword && !this.errorConfirmPassword && !this.errorRole && !this.errorDepartment )
             isPass = true;
-        }
         return isPass;
     }
 }
