@@ -97,7 +97,7 @@ export class PatientPanelComponent implements OnInit {
 		this.patient_sex = localStorage.getItem('patient_sex');
 
 		// age
-		var diffDuration = moment_.duration(moment_().diff(this.data.patient.birthDate));
+		var diffDuration = moment_.duration(moment_().diff(this.patient_birthDate));
         this.ageYear = diffDuration.years();
         this.ageMonth = diffDuration.months();
 
