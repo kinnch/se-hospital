@@ -18,6 +18,8 @@ var Department = require("../model/department");
 var HospitalEmployee = require("../model/hospitalEmployee");
 var Appointment = require("../model/appointment");
 
+var notificationController = require('../controllers/notificationController');
+
 function recursiveCSV(data){
     //if(data.length == 0) return {status: 'success'};
     var top = data.pop();
@@ -195,16 +197,13 @@ exports.getDoctorSchedule = function(req, res) {
 	});
 };
 
-function recursiveNewAppoint(app_list, doctor_id){
-    var top = app_list.pop();
-    Schedule
-    return top;
-}
-
-//peak
-exports.delete = function(req, res){
-    //return res.send(req.body);
-    Schedule.findOne({_id: req.body.scheduleID}, function(err,data){
-        return res.send(recursiveNewAppoint(data.appointments, data.doctor));
+exports.search = function(req, res){
+    Schedule.findOne({
+        doctor: req.body.doctorID, 
+        timePeriod: req.body.timePeriod,
+        date: {"$gte": new Date(req.body.date),
+                $lt:new Date(new Date(req.body.date).getTime() + 24 * 3600 * 1000)}
+    }, function(err, oldSchedule){
+        return res.send(oldSchedule);
     });
-}
+};
