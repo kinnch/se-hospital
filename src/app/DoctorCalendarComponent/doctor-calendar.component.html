@@ -1,11 +1,13 @@
-<modal #modal1 [id]="'modal'" [title]="titleModal" [callbackSuccess]="callback" [isShowFooter]="false" >
+<modal #modal1 [id]="'modal'" [title]="titleModal" [callbackSuccess]="callback" [isShowFooter]="false"  >
+    <span *ngIf="selectedEvent">
     <div class="row" style="display: inline-flex; padding-bottom: 10px;">
         <div class="container">สถานะการออกตรวจของท่าน  </div>
         <div class="" style="display: inline;">
-            <i aria-hidden="true" class="fa " [ngClass]="isOperate ? 'fa-check-circle-o text-success' : 'fa-times text-danger'" ></i> {{ isOperate ? 'ออกตรวจ' : 'ไม่ออกตรวจ'  }}
+            <i aria-hidden="true" class="fa "  [ngClass]="selectedEvent.isOperate ? 'fa-check-circle-o text-success' : 'fa-times text-danger'" ></i> {{ selectedEvent["isOperate"] ? 'ออกตรวจ' : 'ไม่ออกตรวจ'  }}
         </div>    
     </div>    
-    <button class="form-control btn btn-block" [ngClass]="!isOperate ? 'btn-success' : 'btn-danger'" (click)="isOperate = !isOperate">{{ !isOperate ? 'ออกตรวจ' : 'ยกเลิกออกตรวจ'  }}</button>
+    <button class="form-control btn btn-block" [ngClass]="!selectedEvent.isOperate ? 'btn-success' : 'btn-danger'" (click)="addSchedule()">{{ !selectedEvent["isOperate"] ? 'ออกตรวจ' : 'ยกเลิกออกตรวจ'  }}</button>
+    </span>
     <hr>
     <h6 style="text-align: center;"> รายชื่อผู้ป่วยที่นัดหมายกับท่าน </h6>
     
@@ -52,3 +54,4 @@
  </div>    
 
 <div id="stylehere"></div>
+<toast  ></toast>

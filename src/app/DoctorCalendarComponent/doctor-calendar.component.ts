@@ -1,6 +1,7 @@
 import { Component, AfterViewInit , OnInit, ViewChild } from '@angular/core';
 import { ModalComponent } from '../ModalComponent/modal.component';
 import { DoctorDateElementService } from '../../services/doctor-date-element.service';
+import { DiagnosisService } from '../../services/diagnosis.service';
 import * as moment from 'moment';
 
 @Component({
@@ -19,7 +20,7 @@ export class DoctorCalendarComponent implements AfterViewInit, OnInit {
     schedule: Object[] = [];
     doctor: Object[] = [];
 
-    constructor(private elementService: DoctorDateElementService){
+    constructor(private elementService: DoctorDateElementService , private diagnosisService : DiagnosisService){
         
     }
     ngOnInit(){
@@ -217,48 +218,11 @@ export class DoctorCalendarComponent implements AfterViewInit, OnInit {
 
 
             // ***************init calendar******************
-             this.schedule.forEach((e) => {
-                var img = e["_id"]["period"] == "pm" ? `<img src="/resources/images/sun-rise-1.png" width="70%" style="float: left;" >` : `<img src="/resources/images/anoon-1.png" width="70%" style="float: left;" >`;
-                // console.log(e["doctors"]);
-                var isDoctor = e["isOperate"] ? `<i class="fa fa-stethoscope"  ></i>` : '';
-                this.events.push(
-                    {
-                        title  : `<div class="col-sm-1 padd-right-unset"><div class="row">${img}</div><div class="row" style="padding-right:10px; color: #ff9800;">${isDoctor}</div></div><i class="fa left-event" aria-hidden="true"><span class="doc-num-left"> ${e["doctors"]}/10</span></i> <i class="fa pull-right right-event" aria-hidden="true"><span class="doc-num-left" style="color:rgb(217, 83, 79)"> ${e["patients"]}/15</span></i>`,
-                        start  : moment(e["_id"]["date"]).format(),
-                        allDay: true,
-                        backgroundColor : "rgba(171,71,188,0)",
-                        borderColor : e["_id"]["period"] == "am"? "rgba(113, 183, 85, 0.72)": "rgba(71, 164, 179, 0.58)",
-                        // url : e,
-                        id : e 
-                    }
-                );
-
-            });
+            this.scheduleToEvents();
+            this.initFullCalendar();
 
 
-             var self = this;
-            jQuery('#calendar').fullCalendar({
-                aspectRatio: 1.35 ,
-                eventClick: function(calEvent, jsEvent, view) {
-                    console.log(calEvent.id);
-                    var data = calEvent.id
-                    // console.log('Event: ' + calEvent.title);
-                    // console.log('Event id : '+ calEvent.id);
-                    // console.log('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
-                    // console.log('View: ' + view.name);
-                    self.selectedEvent = data;
-                    self.isOperate = self.selectedEvent["isOperate"];
-                    console.log(self.selectedEvent);
-                    var period = data["_id"]["period"] == "am" ? 'เช้า' : 'บ่าย';
-                    self.titleModal = "รายละเอียดของช่วง<span class='text-primary'>        "+ period +"       วันที่         "+ moment(new Date(calEvent.start)).format("ll")+"</span>";
-                    self.modal1.modalOpen();
-                },
-                dayClick: function () {
-                console.log('clicked');
-                
-                },
-                events: this.events
-            });
+            var self = this;
             $(window).on('resize', function () {
                 console.log("resize")
                 self.resizeData()
@@ -294,6 +258,91 @@ export class DoctorCalendarComponent implements AfterViewInit, OnInit {
             date: date,
             period: period
         }
+    }
+
+    addSchedule(){
+        
+        console.log(this.selectedEvent["_id"]["date"].toISOString().split("T")[0]);
+            var oneItem = {
+                "date": this.selectedEvent["_id"]["date"].toISOString().split("T")[0].concat('T00:00:00.000Z'),
+                "timePeriod":this.selectedEvent["_id"]["period"],
+                "doctor_fname": localStorage.getItem('user_fname'),
+                "doctor_lname": localStorage.getItem('user_lname')
+            }
+                var self = this;
+            this.diagnosisService.addSchedule(oneItem).then((data) => {
+                    
+                    if(data['msg']=='saved'){
+
+                        console.log('called');
+                    console.log(data);
+                        // successs ok 
+                        self.selectedEvent["isOperate"] = true;
+                        self.modal1.modalClose();
+                        // document.getElementById("calendar").innerHTML ="";
+                        // self.getData();
+                        // self.initFullCalendar();
+                        // this.ngOnInit();
+                        //  self.scheduleToEvents();
+                        //  jQuery('#calendar').fullCalendar( 'removeEvents' )
+                        //  jQuery('#calendar').fullCalendar( 'removeEventSources');
+                        //     jQuery('#calendar').fullCalendar( 'rerenderEvents' );
+                        //  jQuery('#calendar').fullCalendar( 'refetchEvents' );
+                        //  jQuery('#calendar').fullCalendar( 'addEventSource', self.events);         
+                        //  jQuery('#calendar').fullCalendar( 'rerenderEvents' );
+                        //  jQuery('#calendar').fullCalendar( 'refetchEvents' );
+                        //  jQuery('#calendar').fullCalendar( 'refresh' )
+                         self.resizeData();
+
+                    }else{
+                        // error
+                    }
+                });
+    }
+    initFullCalendar(){
+        console.log("init");
+         var self = this;
+            jQuery('#calendar').fullCalendar({
+                aspectRatio: 1.35 ,
+                eventClick: function(calEvent, jsEvent, view) {
+                    console.log(calEvent.id);
+                    var data = calEvent.id
+                    // console.log('Event: ' + calEvent.title);
+                    // console.log('Event id : '+ calEvent.id);
+                    // console.log('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
+                    // console.log('View: ' + view.name);
+                    self.selectedEvent = data;
+                    self.isOperate = self.selectedEvent["isOperate"];
+                    console.log(self.selectedEvent);
+                    var period = data["_id"]["period"] == "am" ? 'เช้า' : 'บ่าย';
+                    self.titleModal = "รายละเอียดของช่วง<span class='text-primary'>        "+ period +"       วันที่         "+ moment(new Date(calEvent.start)).format("ll")+"</span>";
+                    self.modal1.modalOpen();
+                },
+                dayClick: function () {
+                console.log('clicked');
+                
+                },
+                events: this.events
+            });
+    }
+    scheduleToEvents(){
+            this.schedule.forEach((e) => {
+                var img = e["_id"]["period"] == "pm" ? `<img src="/resources/images/sun-rise-1.png" width="70%" style="float: left;" >` : `<img src="/resources/images/anoon-1.png" width="70%" style="float: left;" >`;
+                // console.log(e["doctors"]);
+                var isDoctor = e["isOperate"] ? `<i class="fa fa-stethoscope"  ></i>` : '';
+                this.events.push(
+                    {
+                        title  : `<div class="col-sm-1 padd-right-unset"><div class="row">${img}</div><div class="row" style="padding-right:10px; color: #ff9800;">${isDoctor}</div></div><i class="fa left-event" aria-hidden="true"><span class="doc-num-left"> ${e["doctors"]}/10</span></i> <i class="fa pull-right right-event" aria-hidden="true"><span class="doc-num-left" style="color:rgb(217, 83, 79)"> ${e["patients"]}/15</span></i>`,
+                        start  : moment(e["_id"]["date"]).format(),
+                        allDay: true,
+                        backgroundColor : "rgba(171,71,188,0)",
+                        borderColor : e["_id"]["period"] == "am"? "rgba(113, 183, 85, 0.72)": "rgba(71, 164, 179, 0.58)",
+                        // url : e,
+                        id : e 
+                    }
+                );
+
+            });
     }
     
 }

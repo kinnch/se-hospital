@@ -315,7 +315,20 @@ exports.seed = function(req, res) {
         })
     ];
 
-    //HospitalEmployees N=5
+    //HospitalEmployees
+    //--- staff 0-3
+            //0-1 อายุรกรรม departments[0]._id
+            //2-3 หู คอ จมูก departments[7]._id
+    //--- doctor 4-15
+            //4-10 อายุรกรรม departments[0]._id
+            //11-15 หู คอ จมูก departments[7]._id
+    //--- nurse 16-17
+            //16 อายุรกรรม departments[0]._id
+            //17 อายุรกรรม departments[7]._id
+    //--- pharmacist 18-19
+            //18 อายุรกรรม departments[0]._id
+            //19 อายุรกรรม departments[0]._id
+
     var hospitalEmployees = [
         new HospitalEmployee({
             name: {
@@ -325,8 +338,47 @@ exports.seed = function(req, res) {
             },
             sex: 'male',
             roleID: 1, //staff
-            department: departments[10]._id,
-            userName: "staffuser",
+            department: departments[0]._id,
+            userName: "staffuser1",
+            salt: "ca32c2542af60469091b9a9f9541aff16882dfa66a1dc69b6458422383f7b3a7",
+            hash:"4585c2bb65725fff7c15d98a1107e3d2adc209d63c8819da6e5f7a09b9b5a948ba7112e85cd527cbbfaf7bda02d3d8fb0970cdeffe17bcee05b017810cfe645fc59f644c8228032f1a3b10312aab0c86dda750a7d174db26457d9ccac8138784ce079257ebdc95906d6ee651e77656f9a992e9d08c973e78eecee3187ed7ce1ba9106b521fe563400fda79e16e2e7bf5b37ad22f3fd612ff7f3b5b421eb8fa6b97460137a98bdaee5c31429e40e967db9a1774753784cfe29f3914fef4edb82792b451f72ac712a04f1f25ebef91cf6f9530ca63587fd0af7ff1214aca6a184bb5900cf292fce3b519314b37783d8894f6a5b81cfaef35530d56ab24ca7c55568d43d4fd03fb61f2cb734971c8b80729a6996a5799323d3552a9b436799b34aa757b69935a202e456954dac288d1106d661144c34e06ba15f976833521782bc5d839cc5af63e189ee92ec29c16b5b52d9f47e61baf6d64ee2cea6c03beacda0963c073a3cf6a9c03205cf4e50875128a64ff804fe63bb035a6a1d7951fb7e4599f7e2d65d4417c974362a1589e3547bbbbbacc95a2a7ecfed034be6c3eee702dd13da31837773b94db3cf29c72e291eb1cacb256c20c84ecf5402a2394a5424bb0f96f49099dabf4e605b394b6a207b94a2785739a6acc833b5208d05dda0d03e704cebc8e098bd02a12c091ccb408c93d4d3e0dd258b56c4033f74b2c88b4d0"
+        }),
+         new HospitalEmployee({
+            name: {
+                title: "นางสาว",
+                fname: "สยาม",
+                lname: "เป็นสตาฟ"
+            },
+            sex: 'female',
+            roleID: 1, //staff
+            department: departments[0]._id,
+            userName: "staffuser2",
+            salt: "ca32c2542af60469091b9a9f9541aff16882dfa66a1dc69b6458422383f7b3a7",
+            hash:"4585c2bb65725fff7c15d98a1107e3d2adc209d63c8819da6e5f7a09b9b5a948ba7112e85cd527cbbfaf7bda02d3d8fb0970cdeffe17bcee05b017810cfe645fc59f644c8228032f1a3b10312aab0c86dda750a7d174db26457d9ccac8138784ce079257ebdc95906d6ee651e77656f9a992e9d08c973e78eecee3187ed7ce1ba9106b521fe563400fda79e16e2e7bf5b37ad22f3fd612ff7f3b5b421eb8fa6b97460137a98bdaee5c31429e40e967db9a1774753784cfe29f3914fef4edb82792b451f72ac712a04f1f25ebef91cf6f9530ca63587fd0af7ff1214aca6a184bb5900cf292fce3b519314b37783d8894f6a5b81cfaef35530d56ab24ca7c55568d43d4fd03fb61f2cb734971c8b80729a6996a5799323d3552a9b436799b34aa757b69935a202e456954dac288d1106d661144c34e06ba15f976833521782bc5d839cc5af63e189ee92ec29c16b5b52d9f47e61baf6d64ee2cea6c03beacda0963c073a3cf6a9c03205cf4e50875128a64ff804fe63bb035a6a1d7951fb7e4599f7e2d65d4417c974362a1589e3547bbbbbacc95a2a7ecfed034be6c3eee702dd13da31837773b94db3cf29c72e291eb1cacb256c20c84ecf5402a2394a5424bb0f96f49099dabf4e605b394b6a207b94a2785739a6acc833b5208d05dda0d03e704cebc8e098bd02a12c091ccb408c93d4d3e0dd258b56c4033f74b2c88b4d0"
+        }),
+        new HospitalEmployee({
+            name: {
+                title: "นาย",
+                fname: "สหาย",
+                lname: "เป็นสตาฟ"
+            },
+            sex: 'male',
+            roleID: 1, //staff
+            department: departments[7]._id,
+            userName: "staffuser3",
+            salt: "ca32c2542af60469091b9a9f9541aff16882dfa66a1dc69b6458422383f7b3a7",
+            hash:"4585c2bb65725fff7c15d98a1107e3d2adc209d63c8819da6e5f7a09b9b5a948ba7112e85cd527cbbfaf7bda02d3d8fb0970cdeffe17bcee05b017810cfe645fc59f644c8228032f1a3b10312aab0c86dda750a7d174db26457d9ccac8138784ce079257ebdc95906d6ee651e77656f9a992e9d08c973e78eecee3187ed7ce1ba9106b521fe563400fda79e16e2e7bf5b37ad22f3fd612ff7f3b5b421eb8fa6b97460137a98bdaee5c31429e40e967db9a1774753784cfe29f3914fef4edb82792b451f72ac712a04f1f25ebef91cf6f9530ca63587fd0af7ff1214aca6a184bb5900cf292fce3b519314b37783d8894f6a5b81cfaef35530d56ab24ca7c55568d43d4fd03fb61f2cb734971c8b80729a6996a5799323d3552a9b436799b34aa757b69935a202e456954dac288d1106d661144c34e06ba15f976833521782bc5d839cc5af63e189ee92ec29c16b5b52d9f47e61baf6d64ee2cea6c03beacda0963c073a3cf6a9c03205cf4e50875128a64ff804fe63bb035a6a1d7951fb7e4599f7e2d65d4417c974362a1589e3547bbbbbacc95a2a7ecfed034be6c3eee702dd13da31837773b94db3cf29c72e291eb1cacb256c20c84ecf5402a2394a5424bb0f96f49099dabf4e605b394b6a207b94a2785739a6acc833b5208d05dda0d03e704cebc8e098bd02a12c091ccb408c93d4d3e0dd258b56c4033f74b2c88b4d0"
+        }),
+         new HospitalEmployee({
+            name: {
+                title: "นาง",
+                fname: "กนก",
+                lname: "เป็นสตาฟ"
+            },
+            sex: 'female',
+            roleID: 1, //staff
+            department: departments[7]._id,
+            userName: "staffuser4",
             salt: "ca32c2542af60469091b9a9f9541aff16882dfa66a1dc69b6458422383f7b3a7",
             hash:"4585c2bb65725fff7c15d98a1107e3d2adc209d63c8819da6e5f7a09b9b5a948ba7112e85cd527cbbfaf7bda02d3d8fb0970cdeffe17bcee05b017810cfe645fc59f644c8228032f1a3b10312aab0c86dda750a7d174db26457d9ccac8138784ce079257ebdc95906d6ee651e77656f9a992e9d08c973e78eecee3187ed7ce1ba9106b521fe563400fda79e16e2e7bf5b37ad22f3fd612ff7f3b5b421eb8fa6b97460137a98bdaee5c31429e40e967db9a1774753784cfe29f3914fef4edb82792b451f72ac712a04f1f25ebef91cf6f9530ca63587fd0af7ff1214aca6a184bb5900cf292fce3b519314b37783d8894f6a5b81cfaef35530d56ab24ca7c55568d43d4fd03fb61f2cb734971c8b80729a6996a5799323d3552a9b436799b34aa757b69935a202e456954dac288d1106d661144c34e06ba15f976833521782bc5d839cc5af63e189ee92ec29c16b5b52d9f47e61baf6d64ee2cea6c03beacda0963c073a3cf6a9c03205cf4e50875128a64ff804fe63bb035a6a1d7951fb7e4599f7e2d65d4417c974362a1589e3547bbbbbacc95a2a7ecfed034be6c3eee702dd13da31837773b94db3cf29c72e291eb1cacb256c20c84ecf5402a2394a5424bb0f96f49099dabf4e605b394b6a207b94a2785739a6acc833b5208d05dda0d03e704cebc8e098bd02a12c091ccb408c93d4d3e0dd258b56c4033f74b2c88b4d0"
         }),
@@ -334,12 +386,155 @@ exports.seed = function(req, res) {
             name: {
                 title: "นพ.",
                 fname: "ผมคือหมอ",
-                lname: "หมอโดยกำเนิด"
+                lname: "อายุรกรรมหนึ่ง"
             },
             sex: 'male',
             roleID: 2, //doctor
-            department: departments[1]._id,
-            userName: "doctoruser",
+            department: departments[0]._id,
+            userName: "doctoruser1",
+            salt: "ca32c2542af60469091b9a9f9541aff16882dfa66a1dc69b6458422383f7b3a7",
+            hash:"4585c2bb65725fff7c15d98a1107e3d2adc209d63c8819da6e5f7a09b9b5a948ba7112e85cd527cbbfaf7bda02d3d8fb0970cdeffe17bcee05b017810cfe645fc59f644c8228032f1a3b10312aab0c86dda750a7d174db26457d9ccac8138784ce079257ebdc95906d6ee651e77656f9a992e9d08c973e78eecee3187ed7ce1ba9106b521fe563400fda79e16e2e7bf5b37ad22f3fd612ff7f3b5b421eb8fa6b97460137a98bdaee5c31429e40e967db9a1774753784cfe29f3914fef4edb82792b451f72ac712a04f1f25ebef91cf6f9530ca63587fd0af7ff1214aca6a184bb5900cf292fce3b519314b37783d8894f6a5b81cfaef35530d56ab24ca7c55568d43d4fd03fb61f2cb734971c8b80729a6996a5799323d3552a9b436799b34aa757b69935a202e456954dac288d1106d661144c34e06ba15f976833521782bc5d839cc5af63e189ee92ec29c16b5b52d9f47e61baf6d64ee2cea6c03beacda0963c073a3cf6a9c03205cf4e50875128a64ff804fe63bb035a6a1d7951fb7e4599f7e2d65d4417c974362a1589e3547bbbbbacc95a2a7ecfed034be6c3eee702dd13da31837773b94db3cf29c72e291eb1cacb256c20c84ecf5402a2394a5424bb0f96f49099dabf4e605b394b6a207b94a2785739a6acc833b5208d05dda0d03e704cebc8e098bd02a12c091ccb408c93d4d3e0dd258b56c4033f74b2c88b4d0"
+        }),
+        new HospitalEmployee({
+            name: {
+                title: "นพ.",
+                fname: "ผมคือหมอ",
+                lname: "อายุรกรรมสอง"
+            },
+            sex: 'male',
+            roleID: 2, //doctor
+            department: departments[0]._id,
+            userName: "doctoruser2",
+            salt: "ca32c2542af60469091b9a9f9541aff16882dfa66a1dc69b6458422383f7b3a7",
+            hash:"4585c2bb65725fff7c15d98a1107e3d2adc209d63c8819da6e5f7a09b9b5a948ba7112e85cd527cbbfaf7bda02d3d8fb0970cdeffe17bcee05b017810cfe645fc59f644c8228032f1a3b10312aab0c86dda750a7d174db26457d9ccac8138784ce079257ebdc95906d6ee651e77656f9a992e9d08c973e78eecee3187ed7ce1ba9106b521fe563400fda79e16e2e7bf5b37ad22f3fd612ff7f3b5b421eb8fa6b97460137a98bdaee5c31429e40e967db9a1774753784cfe29f3914fef4edb82792b451f72ac712a04f1f25ebef91cf6f9530ca63587fd0af7ff1214aca6a184bb5900cf292fce3b519314b37783d8894f6a5b81cfaef35530d56ab24ca7c55568d43d4fd03fb61f2cb734971c8b80729a6996a5799323d3552a9b436799b34aa757b69935a202e456954dac288d1106d661144c34e06ba15f976833521782bc5d839cc5af63e189ee92ec29c16b5b52d9f47e61baf6d64ee2cea6c03beacda0963c073a3cf6a9c03205cf4e50875128a64ff804fe63bb035a6a1d7951fb7e4599f7e2d65d4417c974362a1589e3547bbbbbacc95a2a7ecfed034be6c3eee702dd13da31837773b94db3cf29c72e291eb1cacb256c20c84ecf5402a2394a5424bb0f96f49099dabf4e605b394b6a207b94a2785739a6acc833b5208d05dda0d03e704cebc8e098bd02a12c091ccb408c93d4d3e0dd258b56c4033f74b2c88b4d0"
+        }),
+        new HospitalEmployee({
+            name: {
+                title: "นพ.",
+                fname: "ผมคือหมอ",
+                lname: "อายุรกรรมสาม"
+            },
+            sex: 'male',
+            roleID: 2, //doctor
+            department: departments[0]._id,
+            userName: "doctoruser3",
+            salt: "ca32c2542af60469091b9a9f9541aff16882dfa66a1dc69b6458422383f7b3a7",
+            hash:"4585c2bb65725fff7c15d98a1107e3d2adc209d63c8819da6e5f7a09b9b5a948ba7112e85cd527cbbfaf7bda02d3d8fb0970cdeffe17bcee05b017810cfe645fc59f644c8228032f1a3b10312aab0c86dda750a7d174db26457d9ccac8138784ce079257ebdc95906d6ee651e77656f9a992e9d08c973e78eecee3187ed7ce1ba9106b521fe563400fda79e16e2e7bf5b37ad22f3fd612ff7f3b5b421eb8fa6b97460137a98bdaee5c31429e40e967db9a1774753784cfe29f3914fef4edb82792b451f72ac712a04f1f25ebef91cf6f9530ca63587fd0af7ff1214aca6a184bb5900cf292fce3b519314b37783d8894f6a5b81cfaef35530d56ab24ca7c55568d43d4fd03fb61f2cb734971c8b80729a6996a5799323d3552a9b436799b34aa757b69935a202e456954dac288d1106d661144c34e06ba15f976833521782bc5d839cc5af63e189ee92ec29c16b5b52d9f47e61baf6d64ee2cea6c03beacda0963c073a3cf6a9c03205cf4e50875128a64ff804fe63bb035a6a1d7951fb7e4599f7e2d65d4417c974362a1589e3547bbbbbacc95a2a7ecfed034be6c3eee702dd13da31837773b94db3cf29c72e291eb1cacb256c20c84ecf5402a2394a5424bb0f96f49099dabf4e605b394b6a207b94a2785739a6acc833b5208d05dda0d03e704cebc8e098bd02a12c091ccb408c93d4d3e0dd258b56c4033f74b2c88b4d0"
+        }),
+        new HospitalEmployee({
+            name: {
+                title: "นพ.",
+                fname: "ผมคือหมอ",
+                lname: "อายุรกรรมสี่"
+            },
+            sex: 'male',
+            roleID: 2, //doctor
+            department: departments[0]._id,
+            userName: "doctoruser4",
+            salt: "ca32c2542af60469091b9a9f9541aff16882dfa66a1dc69b6458422383f7b3a7",
+            hash:"4585c2bb65725fff7c15d98a1107e3d2adc209d63c8819da6e5f7a09b9b5a948ba7112e85cd527cbbfaf7bda02d3d8fb0970cdeffe17bcee05b017810cfe645fc59f644c8228032f1a3b10312aab0c86dda750a7d174db26457d9ccac8138784ce079257ebdc95906d6ee651e77656f9a992e9d08c973e78eecee3187ed7ce1ba9106b521fe563400fda79e16e2e7bf5b37ad22f3fd612ff7f3b5b421eb8fa6b97460137a98bdaee5c31429e40e967db9a1774753784cfe29f3914fef4edb82792b451f72ac712a04f1f25ebef91cf6f9530ca63587fd0af7ff1214aca6a184bb5900cf292fce3b519314b37783d8894f6a5b81cfaef35530d56ab24ca7c55568d43d4fd03fb61f2cb734971c8b80729a6996a5799323d3552a9b436799b34aa757b69935a202e456954dac288d1106d661144c34e06ba15f976833521782bc5d839cc5af63e189ee92ec29c16b5b52d9f47e61baf6d64ee2cea6c03beacda0963c073a3cf6a9c03205cf4e50875128a64ff804fe63bb035a6a1d7951fb7e4599f7e2d65d4417c974362a1589e3547bbbbbacc95a2a7ecfed034be6c3eee702dd13da31837773b94db3cf29c72e291eb1cacb256c20c84ecf5402a2394a5424bb0f96f49099dabf4e605b394b6a207b94a2785739a6acc833b5208d05dda0d03e704cebc8e098bd02a12c091ccb408c93d4d3e0dd258b56c4033f74b2c88b4d0"
+        }),
+        new HospitalEmployee({
+            name: {
+                title: "พญ.",
+                fname: "เราเป็นหมอ",
+                lname: "อายุรกรรมห้า"
+            },
+            sex: 'female',
+            roleID: 2, //doctor
+            department: departments[0]._id,
+            userName: "doctoruser5",
+            salt: "ca32c2542af60469091b9a9f9541aff16882dfa66a1dc69b6458422383f7b3a7",
+            hash:"4585c2bb65725fff7c15d98a1107e3d2adc209d63c8819da6e5f7a09b9b5a948ba7112e85cd527cbbfaf7bda02d3d8fb0970cdeffe17bcee05b017810cfe645fc59f644c8228032f1a3b10312aab0c86dda750a7d174db26457d9ccac8138784ce079257ebdc95906d6ee651e77656f9a992e9d08c973e78eecee3187ed7ce1ba9106b521fe563400fda79e16e2e7bf5b37ad22f3fd612ff7f3b5b421eb8fa6b97460137a98bdaee5c31429e40e967db9a1774753784cfe29f3914fef4edb82792b451f72ac712a04f1f25ebef91cf6f9530ca63587fd0af7ff1214aca6a184bb5900cf292fce3b519314b37783d8894f6a5b81cfaef35530d56ab24ca7c55568d43d4fd03fb61f2cb734971c8b80729a6996a5799323d3552a9b436799b34aa757b69935a202e456954dac288d1106d661144c34e06ba15f976833521782bc5d839cc5af63e189ee92ec29c16b5b52d9f47e61baf6d64ee2cea6c03beacda0963c073a3cf6a9c03205cf4e50875128a64ff804fe63bb035a6a1d7951fb7e4599f7e2d65d4417c974362a1589e3547bbbbbacc95a2a7ecfed034be6c3eee702dd13da31837773b94db3cf29c72e291eb1cacb256c20c84ecf5402a2394a5424bb0f96f49099dabf4e605b394b6a207b94a2785739a6acc833b5208d05dda0d03e704cebc8e098bd02a12c091ccb408c93d4d3e0dd258b56c4033f74b2c88b4d0"
+        }),
+        new HospitalEmployee({
+            name: {
+                title: "พญ.",
+                fname: "เราเป็นหมอ",
+                lname: "อายุรกรรมหก"
+            },
+            sex: 'female',
+            roleID: 2, //doctor
+            department: departments[0]._id,
+            userName: "doctoruser6",
+            salt: "ca32c2542af60469091b9a9f9541aff16882dfa66a1dc69b6458422383f7b3a7",
+            hash:"4585c2bb65725fff7c15d98a1107e3d2adc209d63c8819da6e5f7a09b9b5a948ba7112e85cd527cbbfaf7bda02d3d8fb0970cdeffe17bcee05b017810cfe645fc59f644c8228032f1a3b10312aab0c86dda750a7d174db26457d9ccac8138784ce079257ebdc95906d6ee651e77656f9a992e9d08c973e78eecee3187ed7ce1ba9106b521fe563400fda79e16e2e7bf5b37ad22f3fd612ff7f3b5b421eb8fa6b97460137a98bdaee5c31429e40e967db9a1774753784cfe29f3914fef4edb82792b451f72ac712a04f1f25ebef91cf6f9530ca63587fd0af7ff1214aca6a184bb5900cf292fce3b519314b37783d8894f6a5b81cfaef35530d56ab24ca7c55568d43d4fd03fb61f2cb734971c8b80729a6996a5799323d3552a9b436799b34aa757b69935a202e456954dac288d1106d661144c34e06ba15f976833521782bc5d839cc5af63e189ee92ec29c16b5b52d9f47e61baf6d64ee2cea6c03beacda0963c073a3cf6a9c03205cf4e50875128a64ff804fe63bb035a6a1d7951fb7e4599f7e2d65d4417c974362a1589e3547bbbbbacc95a2a7ecfed034be6c3eee702dd13da31837773b94db3cf29c72e291eb1cacb256c20c84ecf5402a2394a5424bb0f96f49099dabf4e605b394b6a207b94a2785739a6acc833b5208d05dda0d03e704cebc8e098bd02a12c091ccb408c93d4d3e0dd258b56c4033f74b2c88b4d0"
+        }),
+        new HospitalEmployee({
+            name: {
+                title: "พญ.",
+                fname: "เราเป็นหมอ",
+                lname: "อายุรกรรมเจ็ด"
+            },
+            sex: 'female',
+            roleID: 2, //doctor
+            department: departments[0]._id,
+            userName: "doctoruser7",
+            salt: "ca32c2542af60469091b9a9f9541aff16882dfa66a1dc69b6458422383f7b3a7",
+            hash:"4585c2bb65725fff7c15d98a1107e3d2adc209d63c8819da6e5f7a09b9b5a948ba7112e85cd527cbbfaf7bda02d3d8fb0970cdeffe17bcee05b017810cfe645fc59f644c8228032f1a3b10312aab0c86dda750a7d174db26457d9ccac8138784ce079257ebdc95906d6ee651e77656f9a992e9d08c973e78eecee3187ed7ce1ba9106b521fe563400fda79e16e2e7bf5b37ad22f3fd612ff7f3b5b421eb8fa6b97460137a98bdaee5c31429e40e967db9a1774753784cfe29f3914fef4edb82792b451f72ac712a04f1f25ebef91cf6f9530ca63587fd0af7ff1214aca6a184bb5900cf292fce3b519314b37783d8894f6a5b81cfaef35530d56ab24ca7c55568d43d4fd03fb61f2cb734971c8b80729a6996a5799323d3552a9b436799b34aa757b69935a202e456954dac288d1106d661144c34e06ba15f976833521782bc5d839cc5af63e189ee92ec29c16b5b52d9f47e61baf6d64ee2cea6c03beacda0963c073a3cf6a9c03205cf4e50875128a64ff804fe63bb035a6a1d7951fb7e4599f7e2d65d4417c974362a1589e3547bbbbbacc95a2a7ecfed034be6c3eee702dd13da31837773b94db3cf29c72e291eb1cacb256c20c84ecf5402a2394a5424bb0f96f49099dabf4e605b394b6a207b94a2785739a6acc833b5208d05dda0d03e704cebc8e098bd02a12c091ccb408c93d4d3e0dd258b56c4033f74b2c88b4d0"
+        }),
+        new HospitalEmployee({
+            name: {
+                title: "นพ.",
+                fname: "เราเป็นหมอ",
+                lname: "หูคอจมูกหนึ่ง"
+            },
+            sex: 'male',
+            roleID: 2, //doctor
+            department: departments[7]._id,
+            userName: "doctoruser8",
+            salt: "ca32c2542af60469091b9a9f9541aff16882dfa66a1dc69b6458422383f7b3a7",
+            hash:"4585c2bb65725fff7c15d98a1107e3d2adc209d63c8819da6e5f7a09b9b5a948ba7112e85cd527cbbfaf7bda02d3d8fb0970cdeffe17bcee05b017810cfe645fc59f644c8228032f1a3b10312aab0c86dda750a7d174db26457d9ccac8138784ce079257ebdc95906d6ee651e77656f9a992e9d08c973e78eecee3187ed7ce1ba9106b521fe563400fda79e16e2e7bf5b37ad22f3fd612ff7f3b5b421eb8fa6b97460137a98bdaee5c31429e40e967db9a1774753784cfe29f3914fef4edb82792b451f72ac712a04f1f25ebef91cf6f9530ca63587fd0af7ff1214aca6a184bb5900cf292fce3b519314b37783d8894f6a5b81cfaef35530d56ab24ca7c55568d43d4fd03fb61f2cb734971c8b80729a6996a5799323d3552a9b436799b34aa757b69935a202e456954dac288d1106d661144c34e06ba15f976833521782bc5d839cc5af63e189ee92ec29c16b5b52d9f47e61baf6d64ee2cea6c03beacda0963c073a3cf6a9c03205cf4e50875128a64ff804fe63bb035a6a1d7951fb7e4599f7e2d65d4417c974362a1589e3547bbbbbacc95a2a7ecfed034be6c3eee702dd13da31837773b94db3cf29c72e291eb1cacb256c20c84ecf5402a2394a5424bb0f96f49099dabf4e605b394b6a207b94a2785739a6acc833b5208d05dda0d03e704cebc8e098bd02a12c091ccb408c93d4d3e0dd258b56c4033f74b2c88b4d0"
+        }),
+        new HospitalEmployee({
+            name: {
+                title: "นพ.",
+                fname: "เราเป็นหมอ",
+                lname: "หูคอจมูกสอง"
+            },
+            sex: 'male',
+            roleID: 2, //doctor
+            department: departments[7]._id,
+            userName: "doctoruser9",
+            salt: "ca32c2542af60469091b9a9f9541aff16882dfa66a1dc69b6458422383f7b3a7",
+            hash:"4585c2bb65725fff7c15d98a1107e3d2adc209d63c8819da6e5f7a09b9b5a948ba7112e85cd527cbbfaf7bda02d3d8fb0970cdeffe17bcee05b017810cfe645fc59f644c8228032f1a3b10312aab0c86dda750a7d174db26457d9ccac8138784ce079257ebdc95906d6ee651e77656f9a992e9d08c973e78eecee3187ed7ce1ba9106b521fe563400fda79e16e2e7bf5b37ad22f3fd612ff7f3b5b421eb8fa6b97460137a98bdaee5c31429e40e967db9a1774753784cfe29f3914fef4edb82792b451f72ac712a04f1f25ebef91cf6f9530ca63587fd0af7ff1214aca6a184bb5900cf292fce3b519314b37783d8894f6a5b81cfaef35530d56ab24ca7c55568d43d4fd03fb61f2cb734971c8b80729a6996a5799323d3552a9b436799b34aa757b69935a202e456954dac288d1106d661144c34e06ba15f976833521782bc5d839cc5af63e189ee92ec29c16b5b52d9f47e61baf6d64ee2cea6c03beacda0963c073a3cf6a9c03205cf4e50875128a64ff804fe63bb035a6a1d7951fb7e4599f7e2d65d4417c974362a1589e3547bbbbbacc95a2a7ecfed034be6c3eee702dd13da31837773b94db3cf29c72e291eb1cacb256c20c84ecf5402a2394a5424bb0f96f49099dabf4e605b394b6a207b94a2785739a6acc833b5208d05dda0d03e704cebc8e098bd02a12c091ccb408c93d4d3e0dd258b56c4033f74b2c88b4d0"
+        }),
+        new HospitalEmployee({
+            name: {
+                title: "พญ.",
+                fname: "เราเป็นหมอ",
+                lname: "หูคอจมูกสาม"
+            },
+            sex: 'female',
+            roleID: 2, //doctor
+            department: departments[7]._id,
+            userName: "doctoruser10",
+            salt: "ca32c2542af60469091b9a9f9541aff16882dfa66a1dc69b6458422383f7b3a7",
+            hash:"4585c2bb65725fff7c15d98a1107e3d2adc209d63c8819da6e5f7a09b9b5a948ba7112e85cd527cbbfaf7bda02d3d8fb0970cdeffe17bcee05b017810cfe645fc59f644c8228032f1a3b10312aab0c86dda750a7d174db26457d9ccac8138784ce079257ebdc95906d6ee651e77656f9a992e9d08c973e78eecee3187ed7ce1ba9106b521fe563400fda79e16e2e7bf5b37ad22f3fd612ff7f3b5b421eb8fa6b97460137a98bdaee5c31429e40e967db9a1774753784cfe29f3914fef4edb82792b451f72ac712a04f1f25ebef91cf6f9530ca63587fd0af7ff1214aca6a184bb5900cf292fce3b519314b37783d8894f6a5b81cfaef35530d56ab24ca7c55568d43d4fd03fb61f2cb734971c8b80729a6996a5799323d3552a9b436799b34aa757b69935a202e456954dac288d1106d661144c34e06ba15f976833521782bc5d839cc5af63e189ee92ec29c16b5b52d9f47e61baf6d64ee2cea6c03beacda0963c073a3cf6a9c03205cf4e50875128a64ff804fe63bb035a6a1d7951fb7e4599f7e2d65d4417c974362a1589e3547bbbbbacc95a2a7ecfed034be6c3eee702dd13da31837773b94db3cf29c72e291eb1cacb256c20c84ecf5402a2394a5424bb0f96f49099dabf4e605b394b6a207b94a2785739a6acc833b5208d05dda0d03e704cebc8e098bd02a12c091ccb408c93d4d3e0dd258b56c4033f74b2c88b4d0"
+        }),
+        new HospitalEmployee({
+            name: {
+                title: "พญ.",
+                fname: "เราเป็นหมอ",
+                lname: "หูคอจมูกสี่"
+            },
+            sex: 'female',
+            roleID: 2, //doctor
+            department: departments[7]._id,
+            userName: "doctoruser11",
+            salt: "ca32c2542af60469091b9a9f9541aff16882dfa66a1dc69b6458422383f7b3a7",
+            hash:"4585c2bb65725fff7c15d98a1107e3d2adc209d63c8819da6e5f7a09b9b5a948ba7112e85cd527cbbfaf7bda02d3d8fb0970cdeffe17bcee05b017810cfe645fc59f644c8228032f1a3b10312aab0c86dda750a7d174db26457d9ccac8138784ce079257ebdc95906d6ee651e77656f9a992e9d08c973e78eecee3187ed7ce1ba9106b521fe563400fda79e16e2e7bf5b37ad22f3fd612ff7f3b5b421eb8fa6b97460137a98bdaee5c31429e40e967db9a1774753784cfe29f3914fef4edb82792b451f72ac712a04f1f25ebef91cf6f9530ca63587fd0af7ff1214aca6a184bb5900cf292fce3b519314b37783d8894f6a5b81cfaef35530d56ab24ca7c55568d43d4fd03fb61f2cb734971c8b80729a6996a5799323d3552a9b436799b34aa757b69935a202e456954dac288d1106d661144c34e06ba15f976833521782bc5d839cc5af63e189ee92ec29c16b5b52d9f47e61baf6d64ee2cea6c03beacda0963c073a3cf6a9c03205cf4e50875128a64ff804fe63bb035a6a1d7951fb7e4599f7e2d65d4417c974362a1589e3547bbbbbacc95a2a7ecfed034be6c3eee702dd13da31837773b94db3cf29c72e291eb1cacb256c20c84ecf5402a2394a5424bb0f96f49099dabf4e605b394b6a207b94a2785739a6acc833b5208d05dda0d03e704cebc8e098bd02a12c091ccb408c93d4d3e0dd258b56c4033f74b2c88b4d0"
+        }),
+        new HospitalEmployee({
+            name: {
+                title: "พญ.",
+                fname: "เราเป็นหมอ",
+                lname: "หูคอจมูกห้า"
+            },
+            sex: 'female',
+            roleID: 2, //doctor
+            department: departments[7]._id,
+            userName: "doctoruser12",
             salt: "ca32c2542af60469091b9a9f9541aff16882dfa66a1dc69b6458422383f7b3a7",
             hash:"4585c2bb65725fff7c15d98a1107e3d2adc209d63c8819da6e5f7a09b9b5a948ba7112e85cd527cbbfaf7bda02d3d8fb0970cdeffe17bcee05b017810cfe645fc59f644c8228032f1a3b10312aab0c86dda750a7d174db26457d9ccac8138784ce079257ebdc95906d6ee651e77656f9a992e9d08c973e78eecee3187ed7ce1ba9106b521fe563400fda79e16e2e7bf5b37ad22f3fd612ff7f3b5b421eb8fa6b97460137a98bdaee5c31429e40e967db9a1774753784cfe29f3914fef4edb82792b451f72ac712a04f1f25ebef91cf6f9530ca63587fd0af7ff1214aca6a184bb5900cf292fce3b519314b37783d8894f6a5b81cfaef35530d56ab24ca7c55568d43d4fd03fb61f2cb734971c8b80729a6996a5799323d3552a9b436799b34aa757b69935a202e456954dac288d1106d661144c34e06ba15f976833521782bc5d839cc5af63e189ee92ec29c16b5b52d9f47e61baf6d64ee2cea6c03beacda0963c073a3cf6a9c03205cf4e50875128a64ff804fe63bb035a6a1d7951fb7e4599f7e2d65d4417c974362a1589e3547bbbbbacc95a2a7ecfed034be6c3eee702dd13da31837773b94db3cf29c72e291eb1cacb256c20c84ecf5402a2394a5424bb0f96f49099dabf4e605b394b6a207b94a2785739a6acc833b5208d05dda0d03e704cebc8e098bd02a12c091ccb408c93d4d3e0dd258b56c4033f74b2c88b4d0"
         }),
@@ -347,12 +542,25 @@ exports.seed = function(req, res) {
             name: {
                 title: "นางสาว",
                 fname: "ชลกานต์",
-                lname: "พยาบาลโดยกำเนิด"
+                lname: "พยาบาลอายุกรรม"
             },
             roleID: 3, //nurse
             sex: 'female',
-            department: departments[1]._id,
-            userName: "nurseuser",
+            department: departments[0]._id,
+            userName: "nurseuser1",
+            salt: "ca32c2542af60469091b9a9f9541aff16882dfa66a1dc69b6458422383f7b3a7",
+            hash:"4585c2bb65725fff7c15d98a1107e3d2adc209d63c8819da6e5f7a09b9b5a948ba7112e85cd527cbbfaf7bda02d3d8fb0970cdeffe17bcee05b017810cfe645fc59f644c8228032f1a3b10312aab0c86dda750a7d174db26457d9ccac8138784ce079257ebdc95906d6ee651e77656f9a992e9d08c973e78eecee3187ed7ce1ba9106b521fe563400fda79e16e2e7bf5b37ad22f3fd612ff7f3b5b421eb8fa6b97460137a98bdaee5c31429e40e967db9a1774753784cfe29f3914fef4edb82792b451f72ac712a04f1f25ebef91cf6f9530ca63587fd0af7ff1214aca6a184bb5900cf292fce3b519314b37783d8894f6a5b81cfaef35530d56ab24ca7c55568d43d4fd03fb61f2cb734971c8b80729a6996a5799323d3552a9b436799b34aa757b69935a202e456954dac288d1106d661144c34e06ba15f976833521782bc5d839cc5af63e189ee92ec29c16b5b52d9f47e61baf6d64ee2cea6c03beacda0963c073a3cf6a9c03205cf4e50875128a64ff804fe63bb035a6a1d7951fb7e4599f7e2d65d4417c974362a1589e3547bbbbbacc95a2a7ecfed034be6c3eee702dd13da31837773b94db3cf29c72e291eb1cacb256c20c84ecf5402a2394a5424bb0f96f49099dabf4e605b394b6a207b94a2785739a6acc833b5208d05dda0d03e704cebc8e098bd02a12c091ccb408c93d4d3e0dd258b56c4033f74b2c88b4d0"
+        }),
+        new HospitalEmployee({
+            name: {
+                title: "นางสาว",
+                fname: "นลกานต์",
+                lname: "พยาบาลหูคอจมูก"
+            },
+            roleID: 3, //nurse
+            sex: 'female',
+            department: departments[7]._id,
+            userName: "nurseuser2",
             salt: "ca32c2542af60469091b9a9f9541aff16882dfa66a1dc69b6458422383f7b3a7",
             hash:"4585c2bb65725fff7c15d98a1107e3d2adc209d63c8819da6e5f7a09b9b5a948ba7112e85cd527cbbfaf7bda02d3d8fb0970cdeffe17bcee05b017810cfe645fc59f644c8228032f1a3b10312aab0c86dda750a7d174db26457d9ccac8138784ce079257ebdc95906d6ee651e77656f9a992e9d08c973e78eecee3187ed7ce1ba9106b521fe563400fda79e16e2e7bf5b37ad22f3fd612ff7f3b5b421eb8fa6b97460137a98bdaee5c31429e40e967db9a1774753784cfe29f3914fef4edb82792b451f72ac712a04f1f25ebef91cf6f9530ca63587fd0af7ff1214aca6a184bb5900cf292fce3b519314b37783d8894f6a5b81cfaef35530d56ab24ca7c55568d43d4fd03fb61f2cb734971c8b80729a6996a5799323d3552a9b436799b34aa757b69935a202e456954dac288d1106d661144c34e06ba15f976833521782bc5d839cc5af63e189ee92ec29c16b5b52d9f47e61baf6d64ee2cea6c03beacda0963c073a3cf6a9c03205cf4e50875128a64ff804fe63bb035a6a1d7951fb7e4599f7e2d65d4417c974362a1589e3547bbbbbacc95a2a7ecfed034be6c3eee702dd13da31837773b94db3cf29c72e291eb1cacb256c20c84ecf5402a2394a5424bb0f96f49099dabf4e605b394b6a207b94a2785739a6acc833b5208d05dda0d03e704cebc8e098bd02a12c091ccb408c93d4d3e0dd258b56c4033f74b2c88b4d0"
         }),
@@ -363,25 +571,26 @@ exports.seed = function(req, res) {
                 lname: "ยาดี"
             },
             roleID: 4, //phar
-            department: departments[10]._id,
+            department: departments[0]._id,
             sex: 'female',
             userName: "pharmacistuser",
             salt: "ca32c2542af60469091b9a9f9541aff16882dfa66a1dc69b6458422383f7b3a7",
             hash:"4585c2bb65725fff7c15d98a1107e3d2adc209d63c8819da6e5f7a09b9b5a948ba7112e85cd527cbbfaf7bda02d3d8fb0970cdeffe17bcee05b017810cfe645fc59f644c8228032f1a3b10312aab0c86dda750a7d174db26457d9ccac8138784ce079257ebdc95906d6ee651e77656f9a992e9d08c973e78eecee3187ed7ce1ba9106b521fe563400fda79e16e2e7bf5b37ad22f3fd612ff7f3b5b421eb8fa6b97460137a98bdaee5c31429e40e967db9a1774753784cfe29f3914fef4edb82792b451f72ac712a04f1f25ebef91cf6f9530ca63587fd0af7ff1214aca6a184bb5900cf292fce3b519314b37783d8894f6a5b81cfaef35530d56ab24ca7c55568d43d4fd03fb61f2cb734971c8b80729a6996a5799323d3552a9b436799b34aa757b69935a202e456954dac288d1106d661144c34e06ba15f976833521782bc5d839cc5af63e189ee92ec29c16b5b52d9f47e61baf6d64ee2cea6c03beacda0963c073a3cf6a9c03205cf4e50875128a64ff804fe63bb035a6a1d7951fb7e4599f7e2d65d4417c974362a1589e3547bbbbbacc95a2a7ecfed034be6c3eee702dd13da31837773b94db3cf29c72e291eb1cacb256c20c84ecf5402a2394a5424bb0f96f49099dabf4e605b394b6a207b94a2785739a6acc833b5208d05dda0d03e704cebc8e098bd02a12c091ccb408c93d4d3e0dd258b56c4033f74b2c88b4d0"
         }),
-         new HospitalEmployee({
+        new HospitalEmployee({
             name: {
-                title: "นพญ.",
-                fname: "เราคือหมอ2",
-                lname: "หมอโดยกำเนิด"
+                title: "นาง",
+                fname: "ชมนาฏ",
+                lname: "ยาดี"
             },
-            roleID: 2, //doctor
+            roleID: 4, //phar
+            department: departments[7]._id,
             sex: 'female',
-            department: departments[3]._id,
-            userName: "doctor2user",
+            userName: "pharmacistuser2",
             salt: "ca32c2542af60469091b9a9f9541aff16882dfa66a1dc69b6458422383f7b3a7",
             hash:"4585c2bb65725fff7c15d98a1107e3d2adc209d63c8819da6e5f7a09b9b5a948ba7112e85cd527cbbfaf7bda02d3d8fb0970cdeffe17bcee05b017810cfe645fc59f644c8228032f1a3b10312aab0c86dda750a7d174db26457d9ccac8138784ce079257ebdc95906d6ee651e77656f9a992e9d08c973e78eecee3187ed7ce1ba9106b521fe563400fda79e16e2e7bf5b37ad22f3fd612ff7f3b5b421eb8fa6b97460137a98bdaee5c31429e40e967db9a1774753784cfe29f3914fef4edb82792b451f72ac712a04f1f25ebef91cf6f9530ca63587fd0af7ff1214aca6a184bb5900cf292fce3b519314b37783d8894f6a5b81cfaef35530d56ab24ca7c55568d43d4fd03fb61f2cb734971c8b80729a6996a5799323d3552a9b436799b34aa757b69935a202e456954dac288d1106d661144c34e06ba15f976833521782bc5d839cc5af63e189ee92ec29c16b5b52d9f47e61baf6d64ee2cea6c03beacda0963c073a3cf6a9c03205cf4e50875128a64ff804fe63bb035a6a1d7951fb7e4599f7e2d65d4417c974362a1589e3547bbbbbacc95a2a7ecfed034be6c3eee702dd13da31837773b94db3cf29c72e291eb1cacb256c20c84ecf5402a2394a5424bb0f96f49099dabf4e605b394b6a207b94a2785739a6acc833b5208d05dda0d03e704cebc8e098bd02a12c091ccb408c93d4d3e0dd258b56c4033f74b2c88b4d0"
         }),
+       
     ];
     
     
@@ -417,7 +626,7 @@ exports.seed = function(req, res) {
         new Appointment({
             patient: patients[4]._id,
             reason: "ก้างปลาตำคอ",
-            status: 1
+            status: 0
         }),
         new Appointment({
             patient: patients[5]._id,
@@ -441,37 +650,37 @@ exports.seed = function(req, res) {
         new Schedule({
             timePeriod: 'am',
             date: getDateYesterday(),
-            doctor: hospitalEmployees[1]._id,
+            doctor: hospitalEmployees[4]._id,
             appointments: [appointments[0]._id, appointments[6]._id]
         }),
         new Schedule({
             timePeriod: 'pm',
             date: getDateYesterday(),
-            doctor: hospitalEmployees[1]._id,
+            doctor: hospitalEmployees[4]._id,
             appointments: []
         }),
         new Schedule({
             timePeriod: 'am',
             date: getDateNow(),
-            doctor: hospitalEmployees[1]._id,
+            doctor: hospitalEmployees[4]._id,
             appointments: [appointments[7]._id,  appointments[4]._id, appointments[5]._id, appointments[8]._id]
         }),
         new Schedule({
             timePeriod: 'pm',
             date: getDateNow(),
-            doctor: hospitalEmployees[1]._id,
+            doctor: hospitalEmployees[4]._id,
             appointments: [appointments[1]._id]
         }),
         new Schedule({
             timePeriod: 'pm',
             date: getDateSomeday(),
-            doctor: hospitalEmployees[1]._id,
+            doctor: hospitalEmployees[4]._id,
             appointments: [appointments[2]._id]
         }),
         new Schedule({
             timePeriod: 'am',
             date: getDateSomeday(),
-            doctor: hospitalEmployees[0]._id,
+            doctor: hospitalEmployees[4]._id,
             appointments: [appointments[3]._id]
         })
     ];
@@ -490,7 +699,7 @@ exports.seed = function(req, res) {
             height: 164,
             temp: 38.0,
             patient: patients[0]._id,
-            nurse: hospitalEmployees[2]._id
+            nurse: hospitalEmployees[16]._id
         }),
         new PhysicalChecking({
             bloodPresure: {
@@ -504,7 +713,7 @@ exports.seed = function(req, res) {
             height: 160,
             temp: 37.4,
             patient: patients[5]._id,
-            nurse: hospitalEmployees[2]._id
+            nurse: hospitalEmployees[16]._id
         }),
         new PhysicalChecking({
             bloodPresure: {
@@ -518,7 +727,7 @@ exports.seed = function(req, res) {
             height: 160,
             temp: 37.2,
             patient: patients[5]._id,
-            nurse: hospitalEmployees[2]._id
+            nurse: hospitalEmployees[16]._id
         }),
         new PhysicalChecking({
             bloodPresure: {
@@ -532,7 +741,7 @@ exports.seed = function(req, res) {
             height: 169,
             temp: 38.0,
             patient: patients[3]._id,
-            nurse: hospitalEmployees[2]._id
+            nurse: hospitalEmployees[16]._id
         }),
         new PhysicalChecking({
             bloodPresure: {
@@ -546,7 +755,7 @@ exports.seed = function(req, res) {
             height: 164,
             temp: 38.9,
             patient: patients[1]._id,
-            nurse: hospitalEmployees[2]._id
+            nurse: hospitalEmployees[16]._id
         }),
         new PhysicalChecking({
             bloodPresure: {
@@ -560,7 +769,7 @@ exports.seed = function(req, res) {
             height: 150,
             temp: 38.9,
             patient: patients[1]._id,
-            nurse: hospitalEmployees[2]._id
+            nurse: hospitalEmployees[16]._id
         })
     ];
 
@@ -620,7 +829,7 @@ exports.seed = function(req, res) {
         }),
         new DrugPrescription({
             status: 0, // reject
-            inspectedBy: hospitalEmployees[3]._id,
+            inspectedBy: hospitalEmployees[18]._id,
             note: "ผู้ป้วยแพ้ยาพาราเซตามอน",
             prescriptions: [prescriptionDrugs[4]._id]
         }),
@@ -666,7 +875,7 @@ exports.seed = function(req, res) {
         new Diagnosis({
             drugPrescription: drugPrescriptions[8]._id,
             patient: patients[2]._id,
-            doctor: hospitalEmployees[1]._id,
+            doctor: hospitalEmployees[4]._id,
             timePeriod: 'pm',
             date: new Date("2016-06-25"),
             detail: "ผู้ป่วยมีอาการคลื่นไส้",
@@ -675,7 +884,7 @@ exports.seed = function(req, res) {
         new Diagnosis({
             drugPrescription: drugPrescriptions[0]._id,
             patient: patients[2]._id,
-            doctor: hospitalEmployees[1]._id,
+            doctor: hospitalEmployees[4]._id,
             timePeriod: 'am',
             date: getDateYesterday(),
             detail: "ผู้ป่วยมีไข้มา 3 วันก่อนหน้านี้",
@@ -684,7 +893,7 @@ exports.seed = function(req, res) {
         new Diagnosis({
             drugPrescription: drugPrescriptions[1]._id,
             patient: patients[5]._id,
-            doctor: hospitalEmployees[1]._id,
+            doctor: hospitalEmployees[4]._id,
             timePeriod: 'am',
             date: getDateYesterday(),
             detail: "ผู้ป่วยปัสสาวะมีน้ำตาลสูง",
@@ -693,7 +902,7 @@ exports.seed = function(req, res) {
         new Diagnosis({
             drugPrescription: drugPrescriptions[2]._id,
             patient: patients[5]._id,
-            doctor: hospitalEmployees[1]._id,
+            doctor: hospitalEmployees[4]._id,
             timePeriod: 'am',
             date: getDateNow(),
             detail: "ผู้ป่วยปวดหัวไมเกรน เวียนศีรษะ",
@@ -702,7 +911,7 @@ exports.seed = function(req, res) {
         new Diagnosis({
             drugPrescription: drugPrescriptions[3]._id,
             patient: patients[1]._id,
-            doctor: hospitalEmployees[1]._id,
+            doctor: hospitalEmployees[4]._id,
             timePeriod: 'am',
             date: getDateNow(),
             detail: "ผู้ป่วยปวดตัวมาก",
@@ -711,7 +920,7 @@ exports.seed = function(req, res) {
         new Diagnosis({
             drugPrescription: drugPrescriptions[4]._id,
             patient: patients[2]._id,
-            doctor: hospitalEmployees[1]._id,
+            doctor: hospitalEmployees[4]._id,
             timePeriod: 'am',
             date: getDateNow(),
             detail: "ผู้ป่วยมีอาการตัวร้อน ไขขึ้นสูง",
@@ -729,7 +938,7 @@ exports.seed = function(req, res) {
         new Diagnosis({
             drugPrescription: drugPrescriptions[6]._id,
             patient: patients[4]._id,
-            doctor: hospitalEmployees[1]._id,
+            doctor: hospitalEmployees[4]._id,
             timePeriod: 'am',
             date: getDateNow(),
             detail: "ผู้ป่วยปวดหัวไมเกรน",
@@ -755,14 +964,14 @@ exports.seed = function(req, res) {
     });
     Drug.remove({}, function(err) { 
         console.log('drug collection removed');
-        for(var i = 0 ; i <drugs.length ; i++){
+        for(var i = 0 ; i < drugs.length ; i++){
             drugs[i].save();
         }
     });
 
     PrescriptionDrug.remove({}, function(err) { 
         console.log('PrescriptionDrug collection removed');
-        for(var i = 0 ; i <prescriptionDrugs.length ; i++){
+        for(var i = 0 ; i < prescriptionDrugs.length ; i++){
             prescriptionDrugs[i].save();
         }
     });

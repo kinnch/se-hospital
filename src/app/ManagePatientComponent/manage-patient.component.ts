@@ -30,6 +30,10 @@ export class ManagePatientComponent{
             if(data['status']=='not found'){
                 this.found = false;
                 this.toast.addToastError();
+            } else if (data['msg'] == 'patient not found' ){
+                this.toast.titleError = "ไม่พบผู้ป่วยที่ต้องการค้นหา";
+                this.toast.messageError = "กรุณาตรวจสอบข้อมูลอีกครั้ง";
+                this.toast.addToastError();
             }
             else{
                 for(var i =0; i < data.appoint.length ; i++){

@@ -42,7 +42,7 @@ exports.search = function(req, res){
         .populate('allegicDrugs')
         .exec( function(err,patient_data){
             if (err) return res.send({status : 'not found'});
-            if (!patient_data)return res.send({status : 'not found'});
+            if (!patient_data)return res.send({status : 'fail', msg: "patient not found"});
             //res.send(patient_data._id);
             Schedule.find({appointments: {$gt: []}}, function(err, data){
                 if (err) return res.send({status : 'not found'});
@@ -74,7 +74,7 @@ exports.search = function(req, res){
         .populate('allegicDrugs')
         .exec( function(err,patient_data){
             if (err) return res.send({status : 'not found'});
-            if (!patient_data)return res.send({status : 'not found'});
+            if (!patient_data)return res.send({status : 'fail', msg: "patient not found"});
             //res.send(patient_data._id);
             Schedule.find({appointments: {$gt: []}}, function(err, data){
                 if (err) return res.send({status : 'not found'});

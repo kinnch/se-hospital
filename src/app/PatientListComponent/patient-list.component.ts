@@ -25,6 +25,7 @@ export class PatientListComponent implements OnInit {
            
     }
     ngOnInit() {
+        if(this.queue['appointments'].length !=0 || this.queue != null){
         if(this.roleID == 1){//staff header shows doctor name
             this.queueHeader = 'ห้อง ';
             this.queueHeader = this.queueHeader.concat(this.queue['doctor']['name']['title']);
@@ -38,16 +39,18 @@ export class PatientListComponent implements OnInit {
         else if(this.roleID == 3){//nurse
             this.queueHeader = 'ผู้ป่วยรอตรวจร่างกาย';
         }
-        
+        console.log('print queue');
         console.log(this.queue);
-        var appointments = this.queue['appointments'];
+        
+            // console.log('continue');
+            var appointments = this.queue['appointments'];
         for ( var i = 0 ; i < appointments.length ; i++){
-//             0 == created in website
-// 1 == ปรินท์ใบนัดแล้ว
-// 2 == ตรวจร่างกายแล้ว
-// 3 == ตรวจอยู่
-// 4 == ตรวจเสร็จ.
-    console.log(appointments[i].status);
+            //             0 == created in website
+            // 1 == ปรินท์ใบนัดแล้ว
+            // 2 == ตรวจร่างกายแล้ว
+            // 3 == ตรวจอยู่
+            // 4 == ตรวจเสร็จ.
+            console.log(appointments[i].status);
             switch (appointments[i].status){
                 case 0:
                     this.notHereApt.push(appointments[i]);
@@ -67,6 +70,8 @@ export class PatientListComponent implements OnInit {
             }
             
         }
+        }
+        
     }
     goto(hn):void{
         this.router.navigate(['manage','patient',hn]);

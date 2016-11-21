@@ -16,6 +16,7 @@ export class ManageQueueComponent implements OnInit{
     departmentID : string;
     doctorList : any;
     scheduleList : any;
+    isEmpty = false;
     constructor(private router: Router, private departmentService : DepartmentService, private appointmentService : AppointmentService ) {
                     
     }
@@ -30,6 +31,8 @@ export class ManageQueueComponent implements OnInit{
         this.roleID = Number(localStorage.getItem('user_roleID'));
         this.departmentID  = localStorage.getItem('department_id');
             var hours = new Date().getHours();
+            console.log('hours');
+            console.log(hours);
             var hours = (hours+24-2)%24; 
             var mid='am';
             if(hours==0){ //At 00 hours we need to show 12 am
@@ -41,13 +44,18 @@ export class ManageQueueComponent implements OnInit{
             }
             
             //Retrive all appointment in queue (now)
-            this.departmentID = '';//TODO : remove this tester
-            mid = 'am';
+            // this.departmentID = '';//TODO : remove this tester
+            // mid = 'am';
             this.appointmentService.getTodayAppointments(this.departmentID,mid)
             .then((data) => {
                 // this.roleID = 3; //TODO : remove this tester
                 if(this.roleID == 1){//staff
                     this.scheduleList  = data['scheduleList'];
+                    if(this.scheduleList == [] || this.scheduleList==null || this.scheduleList.length == 0){
+                      this.isEmpty = true;
+                      console.log("this.scheduleList");
+                    }
+                    
                 }
                 else if(this.roleID == 2){//doctor
                     //make the doctor who is the user to the first doctor in array//BAD CODE but get things done.
@@ -257,8 +265,11 @@ export class ManageQueueComponent implements OnInit{
   ]
 };
 */
-                    this.scheduleList = [];
+                    this.scheduleList = [];                  
                     this.scheduleList.push(data['scheduleList'][0]);
+                    if(data['scheduleList'][0]['appointments'].length == 0|| data['scheduleList'][0]['appointments'] == null){
+                      data['scheduleList'][0]['appointments'] = [];
+                    }
                     for( var i = 1 ; i < data['scheduleList'].length ; i++){
                             for ( var j = 0 ; j < data['scheduleList'][i]['appointments'].length ; j++){
                                 this.scheduleList[0]['appointments'].push(data['scheduleList'][i]['appointments'][j]);

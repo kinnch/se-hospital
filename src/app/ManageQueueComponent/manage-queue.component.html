@@ -26,6 +26,9 @@ roleID
             <patient-list-c *ngFor="let doctorSchedule of scheduleList" [queue]="doctorSchedule" [roleID] = "roleID">
             </patient-list-c>
     </div>
+    <div *ngIf="roleID==1 && isEmpty">
+        <p>วันนี้ยังไม่มีผู้ป่วย</p>
+    </div>
 </div>
 <!--doctor-->
 <div *ngIf="roleID==2 && scheduleList">
