@@ -18,7 +18,7 @@ exports.sendSMS = function(req,res){
             key: 'k4TQ9727536hhgVmw8DK10yDNBlH5DpO',
             secret: 'KbQNLWCtL82qP0jP8HC1H0ZZM4R3slsv',
             phone: tel,
-            sender: 'โรงพยาบาลเทพพดุงพร',
+            sender: 'OTP',
             message: message 
         } 
     };

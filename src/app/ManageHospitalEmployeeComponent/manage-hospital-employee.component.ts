@@ -132,8 +132,8 @@ export class ManageHospitalEmployeeComponent implements OnInit{
                 this.selectedPass = "";
                 this.selectedConfirmPass = "";
                 console.log("confirm")
-                this.toast.titleSuccess = "บันทึกสำเร็จ"
-                this.toast.messageSuccess = "ทำการบันทึกข้อมูลเรียบร้อยแล้ว";
+                this.toast.titleSuccess = "เปลี่ยน Password สำเร็จ"
+                this.toast.messageSuccess = "ทำการเปลี่ยน Password เรียบร้อยแล้ว";
                 this.toast.addToastSuccess();
             }
             else{

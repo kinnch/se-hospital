@@ -6,6 +6,7 @@ import { DepartmentService } from '../../services/department.service';
 import { AppointmentService} from '../../services/appointment.service';
 import {Subscription } from 'rxjs';
 import { ModalComponent } from '../ModalComponent/modal.component';
+import {NotificationService} from '../../services/notification.service';
 
 
 import * as moment_ from 'moment';
@@ -31,11 +32,15 @@ export class MakeAppointComponent implements OnInit{
     selectedDoctor = 'non';
     selectTime = null;
 
+    headerText = 'เพิ่มนัดหมายใหม่';
     reason = '';
     errorMSG = '';
 
     isAm = true;
     isPm = true;
+
+    oldDate:Date = null;
+    oldPeriod = '';
 
     isDateChecked = [true,true,true,true,true,true,true];
 
@@ -53,7 +58,8 @@ export class MakeAppointComponent implements OnInit{
                 private location: Location,
                 private DepartmentService: DepartmentService,
                 private activatedRoute: ActivatedRoute,
-                private AppointmentService: AppointmentService) {
+                private AppointmentService: AppointmentService,
+                private NotificationService: NotificationService) {
     }
 
     ngOnInit():void{
@@ -72,8 +78,12 @@ export class MakeAppointComponent implements OnInit{
                 }
                 if(this.mode=='edit_appointment_s' || this.mode == 'edit_appointment'){
                     //fetch data.
+                    this.headerText = 'เลื่อนนัดหมาย';
                     this.AppointmentService.getAppointmentInfo(this.aptID).then((data)=>{
                         this.reason = data.data.app.reason;
+                        this.oldDate = data.data.detail.date;
+                        this.oldPeriod = data.data.detail.timePeriod;
+                        
                         //console.log(data.data.app);
                         this.selectedDepartment = data.data.detail.doctor.department._id;
                         this.getDoctorList();
@@ -137,7 +147,7 @@ export class MakeAppointComponent implements OnInit{
             if(mem[moment(this.rawSchedule.data[i].date).format('DD-MM-YYYY') + this.rawSchedule.data[i].timePeriod]) continue;
             mem[moment(this.rawSchedule.data[i].date).format('DD-MM-YYYY') + this.rawSchedule.data[i].timePeriod] = true;
             this.timeTable.push({
-                text: moment_(this.rawSchedule.data[i].date).format('ll') + ' - ' + ((this.rawSchedule.data[i].timePeriod == 'am')? 'ช่วงเช้า':'ช่วงบ่าย'),
+                text: moment_(this.rawSchedule.data[i].date).format('ll') + ' - ' + ((this.rawSchedule.data[i].timePeriod == 'am')? 'ช่วงเช้า (9.00 - 11.30)':'ช่วงบ่าย (13.00 - 15.30)'),
                 _id: this.rawSchedule.data[i]._id
             });  
         }
@@ -173,25 +183,77 @@ export class MakeAppointComponent implements OnInit{
         this.DepartmentService.saveData(this.selectTime,this.patientID,this.reason)
         .then((data)=>{
             console.log('----save----');
-            console.log(data);
+            console.log(data.data.appointmentID);
             //TODO: toast
             if(data['status']=='success'){
-                if(this.mode=='edit_appointment_s' || this.mode=='edit_appointment'){
-                    //TODO delete old appointment (aptID)
-                    //this.DepartmentService.deleteDate(this.aptID).then(data)
-                    this.AppointmentService.deleteAppointment(this.aptID).then((data)=>{
-                        this.modalTitle = 'ผลลัพธ์การเลื่อนนัด';
-                        this.modalBody = 'เลื่อนนัดสำเร็จ'
+            this.AppointmentService.getAppointmentInfo(data.data.appointmentID).then((newAppointment)=>{
+                    var patient = newAppointment.data.app.patient;
+                    var doctor = newAppointment.data.detail.doctor;
+                    var appTimePeriod = newAppointment.data.detail.timePeriod;
+                    var appDate = newAppointment.data.detail.date;
+                    var departmentName = doctor.department.name;
+                    if(this.mode=='edit_appointment_s' || this.mode=='edit_appointment'){
+                        //TODO delete old appointment (aptID)
+                        //this.DepartmentService.deleteDate(this.aptID).then(data)
+                        this.AppointmentService.deleteAppointment(this.aptID).then((data)=>{
+                            this.NotificationService.sendSMSPostponeAppt(
+                                patient.tel, 
+                                patient.name.fname,
+                                patient.name.lname,
+                                doctor.name.fname,
+                                doctor.name.lname,
+                                departmentName, 
+                                moment_(this.oldDate).format('ll'),
+                                (this.oldPeriod == 'am')? "ช่วงเช้า(9.00 - 11.30)":"ช่วงบ่าย(13.00 - 15.30)",
+                                moment_(appDate).format('ll'),
+                                (appTimePeriod == 'am')? "ช่วงเช้า(9.00 - 11.30)":"ช่วงบ่าย(13.00 - 15.30)"
+                            );
+                            this.NotificationService.sendEmailPostponeAppt(
+                                patient.email, 
+                                patient.name.fname,
+                                patient.name.lname,
+                                doctor.name.fname,
+                                doctor.name.lname,
+                                departmentName, 
+                                moment_(this.oldDate).format('ll'),
+                                (this.oldPeriod == 'am')? "ช่วงเช้า(9.00 - 11.30)":"ช่วงบ่าย(13.00 - 15.30)",
+                                moment_(appDate).format('ll'),
+                                (appTimePeriod == 'am')? "ช่วงเช้า(9.00 - 11.30)":"ช่วงบ่าย(13.00 - 15.30)"
+                            );
+                            
+                            this.modalTitle = 'ผลลัพธ์การเลื่อนนัด';
+                            this.modalBody = 'เลื่อนนัดสำเร็จ'
+                            this.modal.modalOpen();
+                            //alert('แก้ไขการจองสำเร็จ');
+                        });
+                    }
+                    else{ //moment_(this.rawSchedule.data[i].date).format('ll')
+                        this.NotificationService.sendSMSCreateAppt(
+                            patient.tel, 
+                            patient.name.fname,
+                            patient.name.lname,
+                            doctor.name.fname,
+                            doctor.name.lname,
+                            departmentName,
+                            moment_(appDate).format('ll'),
+                            (appTimePeriod == 'am')? "ช่วงเช้า(9.00 - 11.30)":"ช่วงบ่าย(13.00 - 15.30)"
+                        );
+                        this.NotificationService.sendEmailCreateAppt(
+                            patient.email,
+                            patient.name.fname,
+                            patient.name.lname,
+                            doctor.name.fname,
+                            doctor.name.lname,
+                            departmentName,
+                            moment_(appDate).format('ll'),
+                            (appTimePeriod == 'am')? "ช่วงเช้า(9.00 - 11.30)":"ช่วงบ่าย(13.00 - 15.30)"
+                        );
+                        this.modalTitle = 'ผลลัพธ์การทำนัดหมาย';
+                        this.modalBody = 'นัดหมายสำเร็จ'
                         this.modal.modalOpen();
-                        //alert('แก้ไขการจองสำเร็จ');
-                    });
-                }
-                else{
-                    this.modalTitle = 'ผลลัพธ์การทำนัดหมาย';
-                    this.modalBody = 'นัดหมายสำเร็จ'
-                    this.modal.modalOpen();
-                    // alert('ทำการจองสำเร็จ');
-                }
+                        // alert('ทำการจองสำเร็จ');
+                    }
+            });
             }
         });
     }
