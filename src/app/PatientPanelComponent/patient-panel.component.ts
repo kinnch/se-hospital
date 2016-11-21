@@ -15,7 +15,9 @@ import * as moment_ from 'moment';
 
 export class PatientPanelComponent implements OnInit {
 	@ViewChild( ModalComponent ) deleteModal: ModalComponent;
-	selected_appt_id: string; 
+	selected_appt_id: string;
+	ageYear: number;
+    ageMonth: number; 
 
 	
 	patient_id: string;
@@ -94,6 +96,10 @@ export class PatientPanelComponent implements OnInit {
 
 		this.patient_sex = localStorage.getItem('patient_sex');
 
+		// age
+		var diffDuration = moment_.duration(moment_().diff(this.data.patient.birthDate));
+        this.ageYear = diffDuration.years();
+        this.ageMonth = diffDuration.months();
 
 		this.AppointmentService.getPatientAndAppointment(this.patient_nationalID).then((p_data)=>{
 			this.patient_data = p_data;
