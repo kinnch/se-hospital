@@ -69,6 +69,12 @@ export class NotificationService {
             return res;
         });
     }
+    sendSMSStaffCancelAppt(tel:string,p_fname:string,p_lname:string,d_fname:string,d_lname:string,dep:string,appt_date:Date,appt_period:string) : Promise<JSON>{
+        let message = `การนัดพบแพทย์ของคุณ ${p_fname} ${p_lname} วันที่ ${appt_date} เวลา ${appt_period} ถูกยกเลิก เนื่องจากแพทย์ ${d_fname} ${d_lname} แผนก ${dep} มีติดธุระฉุกเฉิน กรุณาเข้ามาสร้างนัดใหม่ที่ระบบของเว็บไซต์ ขออภัยมา ณ ที่นี้`;
+        return this.sendSMS(tel,message).then((res)=>{
+            return res;
+        });
+    }
     // ================ Email ======================
     sendEmail(receiver:string,subject:string,text:string): Promise<JSON>{
         return this.http
@@ -152,5 +158,15 @@ export class NotificationService {
             return res;
         });
     }
-    
+    sendEmailStaffCancelAppt(receiver:string,p_fname:string,p_lname:string,d_fname:string,d_lname:string,dep:string,appt_date:Date,appt_period:string) : Promise<JSON>{
+        let subject = `นัดหมายในวันที่ ${appt_date} เวลา ${appt_period}ถูกยกเลิก`
+        let text = `เรียน คุณ ${p_fname} ${p_lname} \n\n
+                    การนัดพบแพทย์ของคุณ เนื่องจากแพทย์ ${d_fname} ${d_lname} แผนก ${dep} มีติดธุระฉุกเฉิน\n 
+                    กรุณาเข้ามาสร้างนัดใหม่ ที่ <link>
+                    หรือติดต่อเจ้าหน้าที่ของโรงพยาบาลโดยตรง \n\n
+                    ขออภัยมา ณ ที่นี้ และขอบพระคุณที่ให้ความไว้วางใจในโรงพยาบาลเทพพดุงพร`
+        return this.sendEmail(receiver,subject,text).then((res)=>{
+            return res;
+        });
+    }
 }
