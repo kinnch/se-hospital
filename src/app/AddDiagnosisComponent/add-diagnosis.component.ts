@@ -111,6 +111,7 @@ export class AddDiagnosisComponent implements OnInit {
             diseaseIDs: this.selectedOption,
             detail: this.detail,
             date: this.currentDate,
+            doctorID: localStorage.getItem('user_id'),
             timePeriod: this.currentPeriod,
             patientID : this.patientID
         }

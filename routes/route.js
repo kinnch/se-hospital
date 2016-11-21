@@ -119,6 +119,8 @@ module.exports = function(app) {
 
     //delete schedule group
     app.post('/api/schedule/search', scheduleController.search);
+    app.post('/api/appointment/shift', scheduleController.shiftAppointment);
+    app.post('/api/schedule/delete', scheduleController.delete);
     
     var diagnosisDataController = require('../controllers/diagnosisDataController');
     // app.post('/api/diagnosisHistory', diagnosisDataController.diagnosisHistory); //TODO :REMOVE IF no one blame.

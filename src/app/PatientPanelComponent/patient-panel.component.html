@@ -22,7 +22,7 @@
                             <p><b>นามสกุล : </b>{{patient_lname}}</p>    
                         </div>
                         <div class="col-sm-4">
-                            <p><b>HN : </b>{{patient_HN}}</p>    
+                            <p><b>HN : </b>{{patient_HN ? patient_HN : "ไม่มีรหัส HN"}}</p>    
                         </div> 
                     </div>
                     <div class="row">
@@ -30,9 +30,10 @@
                             <p><b>เพศ : </b>{{patient_sex}}</p>
                         </div>  
                         <div class="col-sm-4">
-                            <p><b>อายุ : </b>{{patient_birthDate}}</p>    
+                            <p><b>อายุ : </b>{{ageYear}}&nbsp;ปี&nbsp;{{ageMonth}}&nbsp;เดือน</p>    
                         </div> 
                         <div class="col-sm-4">  
+                            <p><b>กรุ๊ปเลือด : </b> {{patient_bloodType}}</p>
                         </div>
                     </div> 
                 </div>    
@@ -61,7 +62,7 @@
                 <p><b>แผนก : </b> {{appt.doctor.department.name}}</p>
             </div>
             <div class="col-sm-8">
-                <p><b>แพทย์ : </b> {{appt.doctor.name.title}}{{appt.doctor.name.fname}}{{appt.doctor.name.lname}}</p>
+                <p><b>แพทย์ผู้ตรวจ : </b> {{appt.doctor.name.title}}{{appt.doctor.name.fname}}{{appt.doctor.name.lname}}</p>
             </div>    
         </div>    
     </div>
