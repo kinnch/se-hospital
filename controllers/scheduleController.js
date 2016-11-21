@@ -92,8 +92,7 @@ exports.importCSV = function(req,res){
 }
 exports.getTable = function(reg, res){
     Department.findOne({name: reg.body.department}, function(err, department){
-        Schedule.aggregate([
-        {
+        Schedule.aggregate([{
             $group: { 
                 _id: {
                     period: "$timePeriod",

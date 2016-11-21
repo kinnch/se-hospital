@@ -74,7 +74,7 @@ exports.getAppointmentByTime = function(req, res){
 }
 
 exports.getInfo = function(req, res){
-	Appointment.findOne({_id: req.body.appointmentID}, function(err, appointment){
+	Appointment.findOne({_id: req.body.appointmentID}).populate('patient').exec(function(err, appointment){
 		if(err) return res.send({status: 'fail'});
 		if(!appointment) return res.send({status: 'fail'});
 		Schedule.findOne({appointments: appointment._id})

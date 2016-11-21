@@ -7,6 +7,7 @@ exports.setDBConnectionsFromApp = function(app) {
 }
 
 var Drug = require("../model/drug");
+var Drug2 = require("../model/drug2");
 var Disease = require("../model/disease");
 var Patient = require("../model/patient");
 var Department = require("../model/department");
@@ -38,43 +39,79 @@ function getDateNextKday(k){
 
 
 exports.seed = function(req, res) {
-    //Drugs N=7
+    //Drugs [0-10]
     var drugs = [
         new Drug({
-            name: "paracetamol",
+            name: "Paracetamol 500mg. (เม็ด)",
             hasInHospital:  true
         }),
         new Drug({
-            name: "cpm",
+            name: "Paracetamol 325mg. (เม็ด)",
+            hasInHospital:  true
+        }),
+        new Drug({
+            name: "Antacid (เม็ด)",
             hasInHospital: true
         }),
         new Drug({
+            name: "chemicalX (เม็ด)",
+            hasInHospital: true
+        }),
+         new Drug({
+            name: "Antiseptic (เม็ด)",
+            hasInHospital: true
+        }),
+        new Drug({
+            name: "Aspirin (เม็ด)",
+            hasInHospital: true
+        }),
+        new Drug({
+            name: "Sleeping pills (เม็ด)",
+            hasInHospital: true
+        }),
+        new Drug({
+            name: "Laxative (เม็ด)",
+            hasInHospital: true
+        }),
+        new Drug({
+            name: "Ponstan (เม็ด)",
+            hasInHospital: true
+        }),
+        new Drug({
+            name: "Cough mixture 125ml.(ขวด)",
+            hasInHospital: true
+        }),
+        new Drug({
+            name: "Ear drops (หลอด)",
+            hasInHospital: true
+        })
+        
+    ];
+
+    //[0-4]
+    var drugs2 = [
+        new Drug2({
+            name: "Paracetamol",
+        }),
+        new Drug2({
             name: "chemicalX",
-            hasInHospital: false
         }),
-        new Drug({
-            name: "aspirin",
-            hasInHospital: true
+        new Drug2({
+            name: "Aspirin",
         }),
-        new Drug({
-            name: "colgate",
-            hasInHospital: true
+        new Drug2({
+            name: "Laxative",
         }),
-        new Drug({
-            name: "listerline",
-            hasInHospital: true
-        }),
-        new Drug({
-            name: "ponstan",
-            hasInHospital: true
+        new Drug2({
+            name: "Ponstan",
         })
     ];
 
-    //Diseases N=7
+    //Diseases [0-11]
     //len(icd10) = 2-20 char
     var diseases = [
         new Disease({
-            name: "วัดใหญ่",
+            name: "ไข้หวัดใหญ่",
             icd10: "H1N1"
         }),
         new Disease({
@@ -100,7 +137,25 @@ exports.seed = function(req, res) {
         new Disease({
             name: "พาร์กินสัน",
             icd10: "PAKS"
+        }),
+         new Disease({
+            name: "ปอดอักเสบ",
+            icd10: "PNEU"
+        }),
+        new Disease({
+            name: "แผลในกระเพาะอาหาร",
+            icd10: "PEU1"
+        }),
+        new Disease({
+            name: "กระเพาะปัสสาวะอักเสบ",
+            icd10: "CYS1"
+        }),
+        new Disease({
+            name: "ปอดอักเสบ",
+            icd10: "PNEU"
         })
+        
+
     ];
 
     //Departments N=12
@@ -171,7 +226,7 @@ exports.seed = function(req, res) {
                 text: "931278",
                 generatedDate: new Date()
             },
-            allegicDrugs: [drugs[0]._id],
+            allegicDrugs: [drugs2[0]._id],
             bloodType: "A"
         }),
         new Patient({
@@ -198,7 +253,7 @@ exports.seed = function(req, res) {
                 text: "092201",
                 generatedDate: new Date()
             },
-            allegicDrugs: [drugs[0], drugs[4]],
+            allegicDrugs: [drugs2[0], drugs2[4]],
             bloodType: "O"
 
         }),
@@ -226,7 +281,7 @@ exports.seed = function(req, res) {
                 text: "111112",
                 generatedDate: new Date()
             },
-            allegicDrugs: [drugs[0], drugs[1], drugs[2]],
+            allegicDrugs: [drugs2[0], drugs2[1], drugs2[2]],
             bloodType: "AB"
 
         }),
@@ -254,7 +309,7 @@ exports.seed = function(req, res) {
                 text: "111112",
                 generatedDate: new Date()
             },
-            allegicDrugs: [drugs[0]._id],
+            allegicDrugs: [drugs2[0]._id],
             bloodType: "A"
 
         }),
@@ -928,7 +983,7 @@ exports.seed = function(req, res) {
         new HospitalEmployee({
             name: {
                 title: "นพ.",
-                fname: "ผมคือหมอ",
+                fname: "ผมหมอหนึ่ง",
                 lname: "อายุรกรรมหนึ่ง"
             },
             sex: 'male',
@@ -941,7 +996,7 @@ exports.seed = function(req, res) {
         new HospitalEmployee({
             name: {
                 title: "นพ.",
-                fname: "ผมคือหมอ",
+                fname: "ผมหมอสอง",
                 lname: "อายุรกรรมสอง"
             },
             sex: 'male',
@@ -954,7 +1009,7 @@ exports.seed = function(req, res) {
         new HospitalEmployee({
             name: {
                 title: "นพ.",
-                fname: "ผมคือหมอ",
+                fname: "ผมหมอสาม",
                 lname: "อายุรกรรมสาม"
             },
             sex: 'male',
@@ -967,7 +1022,7 @@ exports.seed = function(req, res) {
         new HospitalEmployee({
             name: {
                 title: "นพ.",
-                fname: "ผมคือหมอ",
+                fname: "ผมหมอสี่",
                 lname: "อายุรกรรมสี่"
             },
             sex: 'male',
@@ -980,7 +1035,7 @@ exports.seed = function(req, res) {
         new HospitalEmployee({
             name: {
                 title: "พญ.",
-                fname: "เราเป็นหมอ",
+                fname: "เราหมอห้า",
                 lname: "อายุรกรรมห้า"
             },
             sex: 'female',
@@ -993,7 +1048,7 @@ exports.seed = function(req, res) {
         new HospitalEmployee({
             name: {
                 title: "พญ.",
-                fname: "เราเป็นหมอ",
+                fname: "เราหมอหก",
                 lname: "อายุรกรรมหก"
             },
             sex: 'female',
@@ -1006,7 +1061,7 @@ exports.seed = function(req, res) {
         new HospitalEmployee({
             name: {
                 title: "พญ.",
-                fname: "เราเป็นหมอ",
+                fname: "เราหมอเจ็ด",
                 lname: "อายุรกรรมเจ็ด"
             },
             sex: 'female',
@@ -1019,7 +1074,7 @@ exports.seed = function(req, res) {
         new HospitalEmployee({
             name: {
                 title: "นพ.",
-                fname: "เราเป็นหมอ",
+                fname: "เราหมอหนึ่ง",
                 lname: "หูคอจมูกหนึ่ง"
             },
             sex: 'male',
@@ -1032,7 +1087,7 @@ exports.seed = function(req, res) {
         new HospitalEmployee({
             name: {
                 title: "นพ.",
-                fname: "เราเป็นหมอ",
+                fname: "เราหมอสอง",
                 lname: "หูคอจมูกสอง"
             },
             sex: 'male',
@@ -1045,7 +1100,7 @@ exports.seed = function(req, res) {
         new HospitalEmployee({
             name: {
                 title: "พญ.",
-                fname: "เราเป็นหมอ",
+                fname: "เราหมอสาม",
                 lname: "หูคอจมูกสาม"
             },
             sex: 'female',
@@ -1058,7 +1113,7 @@ exports.seed = function(req, res) {
         new HospitalEmployee({
             name: {
                 title: "พญ.",
-                fname: "เราเป็นหมอ",
+                fname: "เราหมอสี่",
                 lname: "หูคอจมูกสี่"
             },
             sex: 'female',
@@ -1071,7 +1126,7 @@ exports.seed = function(req, res) {
         new HospitalEmployee({
             name: {
                 title: "พญ.",
-                fname: "เราเป็นหมอ",
+                fname: "เราหมอห้า",
                 lname: "หูคอจมูกห้า"
             },
             sex: 'female',
@@ -1757,6 +1812,13 @@ exports.seed = function(req, res) {
         console.log('drug collection removed');
         for(var i = 0 ; i < drugs.length ; i++){
             drugs[i].save();
+        }
+    });
+
+    Drug2.remove({}, function(err) { 
+        console.log('drug2 collection removed');
+        for(var i = 0 ; i < drugs2.length ; i++){
+            drugs2[i].save();
         }
     });
 
