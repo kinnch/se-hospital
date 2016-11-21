@@ -157,8 +157,6 @@ export class MakeAppointComponent implements OnInit{
                     //this.DepartmentService.deleteDate(this.aptID).then(data)
                     this.AppointmentService.deleteAppointment(this.aptID).then((data)=>{
                         alert('แก้ไขการจองสำเร็จ');
-
-                        //
                     });
                 }
                 else{

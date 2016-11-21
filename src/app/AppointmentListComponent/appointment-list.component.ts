@@ -1,6 +1,7 @@
 import {Component, Input,ViewChild} from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { ModalComponent } from '../ModalComponent/modal.component';
+import { AppointmentService } from '../../services/appointment.service';
 import { Router } from '@angular/router';
 @Component({
     selector: 'appointment-list-c',
@@ -11,7 +12,7 @@ import { Router } from '@angular/router';
 export class AppointmentListComponent{
     @ViewChild( ModalComponent ) modal: ModalComponent;
     @Input() data:JSON;
-    constructor(private router: Router) {
+    constructor(private router: Router,private appointmentService : AppointmentService ) {
     }
     openConfirm(){
         this.modal.modalOpen();
@@ -28,6 +29,13 @@ export class AppointmentListComponent{
         console.log('start printing');
         console.log(appointment);
         console.log(patientData);
+        this.appointmentService.printAppointment(appointment['appointments'][0]['_id'])
+        .then((data)=>{
+            console.log(data);
+            if(data['status']=='success'){
+                console.log('print passed');
+            }
+        });
         var mywindow = window.open('', 'PRINT', 'height=600,width=1000');
         
     

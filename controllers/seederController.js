@@ -626,7 +626,7 @@ exports.seed = function(req, res) {
         new Appointment({
             patient: patients[4]._id,
             reason: "ก้างปลาตำคอ",
-            status: 1
+            status: 0
         }),
         new Appointment({
             patient: patients[5]._id,

@@ -78,4 +78,17 @@ export class AppointmentService {
                         return res.json();
                     });
     }
-}
+
+    printAppointment(appointmentID : string): Promise<JSON>{
+        return this.http
+                    .post('api/appointment/changeState', JSON.stringify({
+                        appointmentID: appointmentID,
+                        newState : 1
+                    }), {headers: this.headers})
+                    .toPromise()
+                    .then(function(res){
+                        console.log(res.json());
+                        return res.json();
+                    });
+        }
+    }
