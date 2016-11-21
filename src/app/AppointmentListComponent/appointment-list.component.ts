@@ -51,19 +51,19 @@ export class AppointmentListComponent{
                         console.log(data);
                     });
                 // this.sendEmailStaffCancelAppt(receiver:string,p_fname:string,p_lname:string,d_fname:string,d_lname:string,dep:string,appt_date:Date,appt_period:string) : Promise<JSON>{
-                // this.notificationService.sendEmailStaffCancelAppt(
-                //         this.data['patient_data']['email'],
-                //         this.data['patient_data']['name']['fname'],
-                //         this.data['patient_data']['name']['lname'],
-                //         appointment['doctor']['name']['fname'],
-                //         appointment['doctor']['name']['lname'],
-                //         appointment['doctor']['department']['name'],
-                //         appointment['date2'],
-                //         appointment['tiemPeriod2'])
-                //     .then((data)=>{
-                //         console.log('email sended');
-                //         console.log(data);
-                //     });
+                this.notificationService.sendEmailStaffCancelAppt(
+                        this.data['patient_data']['email'],
+                        this.data['patient_data']['name']['fname'],
+                        this.data['patient_data']['name']['lname'],
+                        appointment['doctor']['name']['fname'],
+                        appointment['doctor']['name']['lname'],
+                        appointment['doctor']['department']['name'],
+                        appointment['date2'],
+                        appointment['tiemPeriod2'])
+                    .then((data)=>{
+                        console.log('email sended');
+                        console.log(data);
+                    });
                 
 
                 for(var i=0;i<this.data['appoint'].length;i++){
