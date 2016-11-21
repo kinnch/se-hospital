@@ -27,11 +27,12 @@ export class MakeAppointComponent implements OnInit{
     timeTable = [];
     rawSchedule = [];
 
-    selectedDepartment = '';
+    selectedDepartment = null;
     selectedDoctor = 'non';
     selectTime = null;
 
     reason = '';
+    errorMSG = '';
 
     isAm = true;
     isPm = true;
@@ -90,9 +91,6 @@ export class MakeAppointComponent implements OnInit{
       }
 
     getAllList():void{
-        console.log('getAllList');
-        console.log(this.isWalkIn);
-        console.log(this.selectedDepartment);
         this.DepartmentService.getAllSchedule(this.selectedDepartment, this.isWalkIn).then((data)=>{
             this.rawSchedule = data;
             this.setTimeTable();
@@ -100,7 +98,6 @@ export class MakeAppointComponent implements OnInit{
     }
 
     getDoctorList():void{
-        console.log('getDoctorList');
         this.DepartmentService.getAllDoctor(this.selectedDepartment).then((doctors)=>{
             this.doctors = doctors;
             this.doctors.splice(0,0,{
@@ -111,14 +108,15 @@ export class MakeAppointComponent implements OnInit{
                 },
                 _id: "non"
             });
-        })
+        });
+        this.selectedDoctor = 'non';
         this.getAllList();
     }
 
     setTimeTable():void{
-        console.log('setTimeTable');
         this.timeTable = [];
         var mem = {};
+        this.errorMSG = '';
         this.selectTime = null;
         for(var i = 0; i < this.rawSchedule.data.length; i++){
             if(!this.isAm && this.rawSchedule.data[i].timePeriod == 'am') continue;
@@ -162,6 +160,16 @@ export class MakeAppointComponent implements OnInit{
     
     save(): void{
         //this.DepartmentService.saveData(this.selectTime, localStorage.getItem('patient_id'), this.reason);
+        if(this.selectedDepartment == null){
+            this.errorMSG = 'กรุณาเลือกแผนกที่ต้องการจะนัด';
+            return;
+        }
+        if(this.selectTime == null){
+            this.errorMSG = 'ไม่มีมีเวลาที่สามารถนัดได้ กรุณาเลือกเวลาอื่นๆ ';
+            if(this.selectedDoctor != null) this.errorMSG += 'หรือแพทย์ท่านอื่น';
+            this.errorMSG += 'ที่ระบบมีให้';
+            return;
+        }
         this.DepartmentService.saveData(this.selectTime,this.patientID,this.reason)
         .then((data)=>{
             console.log('----save----');
