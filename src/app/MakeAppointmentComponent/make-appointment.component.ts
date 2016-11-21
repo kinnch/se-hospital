@@ -3,6 +3,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { DepartmentService } from '../../services/department.service';
+import { AppointmentService} from '../../services/appointment.service';
 import {Subscription } from 'rxjs';
 
 
@@ -47,7 +48,8 @@ export class MakeAppointComponent implements OnInit{
     constructor(private router: Router,
                 private location: Location,
                 private DepartmentService: DepartmentService,
-                private activatedRoute: ActivatedRoute) {
+                private activatedRoute: ActivatedRoute,
+                private AppointmentService: AppointmentService) {
     }
 
     ngOnInit():void{
@@ -150,14 +152,19 @@ export class MakeAppointComponent implements OnInit{
             console.log(data);
             //TODO: toast
             if(data['status']=='success'){
-                if(this.mode=='edit'){
+                if(this.mode=='edit_appointment_s' || this.mode=='edit_appointment'){
                     //TODO delete old appointment (aptID)
                     //this.DepartmentService.deleteDate(this.aptID).then(data)
+                    this.AppointmentService.deleteAppointment(this.aptID).then((data)=>{
+                        alert('แก้ไขการจองสำเร็จ');
+
+                        //
+                    });
+                }
+                else{
+                    alert('ทำการจองสำเร็จ');
                 }
             }
-            // else{
-
-            // }
         });
     }
 

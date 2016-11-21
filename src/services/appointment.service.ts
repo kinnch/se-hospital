@@ -66,4 +66,16 @@ export class AppointmentService {
                         return res.json();
                     });
     }
+    
+    deleteAppointment(appointmentID: string): Promise<JSON>{
+        return this.http
+                .post('/api/appointment/delete', JSON.stringify({
+                        appointmentID: appointmentID
+                    }), {headers: this.headers})
+                    .toPromise()
+                    .then(function(res){
+                        console.log(res.json());
+                        return res.json();
+                    });
+    }
 }
