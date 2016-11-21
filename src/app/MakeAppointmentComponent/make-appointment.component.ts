@@ -66,6 +66,18 @@ export class MakeAppointComponent implements OnInit{
                 if(this.mode=='create_appointment_s' || this.mode == 'edit_appointment_s'){
                     this.enableGod = true;
                 }
+                if(this.mode=='edit_appointment_s' || this.mode == 'edit_appointment'){
+                    //fetch data.
+                    this.AppointmentService.getAppointmentInfo(this.aptID).then((data)=>{
+                        this.reason = data.data.app.reason;
+                        //console.log(data.data.app);
+                        this.selectedDepartment = data.data.detail.doctor.department._id;
+                        this.getDoctorList();
+                        this.selectedDoctor = data.data.detail.doctor._id;
+                        this.getTimeTable();
+                        this.selectTime = data.data.detail._id;
+                    });
+                }
         });
     }
 

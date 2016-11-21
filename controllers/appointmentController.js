@@ -73,6 +73,30 @@ exports.getAppointmentByTime = function(req, res){
     
 }
 
+exports.getInfo = function(req, res){
+	Appointment.findOne({_id: req.body.appointmentID}, function(err, appointment){
+		if(err) return res.send({status: 'fail'});
+		if(!appointment) return res.send({status: 'fail'});
+		Schedule.findOne({appointments: appointment._id})
+		.populate({
+			path:'doctor',
+			populate:{
+				'path': 'department'
+			}
+		}).exec(function(err, data){
+			if(err) return res.send({status: 'fail'});
+			if(!data) return res.send({status: 'fail'});
+			return res.send({
+				status: 'success',
+				data: {
+					app: appointment,
+					detail: data
+				}
+			})
+		})
+	})
+}
+
 exports.create = function(req, res) {
 	// Create our deferred object, which we will use in our promise chain
 	var user = req.hasOwnProperty('user') ? req.user : null;

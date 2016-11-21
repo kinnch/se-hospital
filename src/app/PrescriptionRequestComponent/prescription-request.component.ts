@@ -30,18 +30,18 @@ export class PrescriptionRequestComponent{
     ngOnInit(): void {
         this.prescriptionService.getPrescriptionRequestForPharmacist()
         .then((preData)=>{
-           preData.some((pres)=>{
-                if(!this.status1){
-                    if(pres['drugPrescription'].status == 1) this.status1 = true;
-                }
-                if(!this.status2){
-                    if(pres['drugPrescription'].status == 2) this.status2 = true;
-                }
-                if(!this.status3){
-                    if(pres['drugPrescription'].status == 3) this.status3 = true;
-                }
-                return this.status1 && this.status2 && this.status3;   
-            }) 
+        //    preData.some((pres)=>{
+        //         if(!this.status1){
+        //             if(pres['drugPrescription'].status == 1) this.status1 = true;
+        //         }
+        //         if(!this.status2){
+        //             if(pres['drugPrescription'].status == 2) this.status2 = true;
+        //         }
+        //         if(!this.status3){
+        //             if(pres['drugPrescription'].status == 3) this.status3 = true;
+        //         }
+        //         return this.status1 && this.status2 && this.status3;   
+        //     }) 
 
             this.data = preData;
         })
