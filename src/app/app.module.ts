@@ -14,7 +14,7 @@ import { ManageQueueGuard } from './manage-queue.guard';
 import { PrescriptionHistoryGuard } from './prescription-history.guard';
 import { PhysicalCheckGuard } from './physical-check.guard';
 import { UserService } from '../services/user.service';
-
+import { NotificationService } from '../services/notification.service';
 import {PatientComponent} from './PatientComponent/patient.component';
 import {StaffComponent} from './StaffComponent/staff.component';
 import { ManagePatientComponent }   from './ManagePatientComponent/manage-patient.component';
@@ -143,7 +143,8 @@ import {ToastyModule} from 'ng2-toasty';
         PrescriptionHistoryGuard,
         PhysicalCheckGuard,
         DoctorDateElementService,
-        DiagnosisService
+        DiagnosisService,
+        NotificationService
     ],
     bootstrap:      [
         AppComponent
