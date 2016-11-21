@@ -135,12 +135,12 @@ exports.getTableStaff = function(req, res){
 
 exports.deleteAppointment = function(req, res){
      Appointment.remove({_id:req.body.appointmentID }, function(err,data){
-         if(err) return res.send("Fail");
+         if(err) return res.send({status: "Fail"});
          Schedule.update( {appointments: req.body.appointmentID}, 
          { $pullAll: {appointments: [req.body.appointmentID]}},
          function(err,data){
-             if(err) return res.send("Fail");
-             return res.send("Success");
+             if(err) return res.send({status : "Fail"});
+             return res.send({status : "Success"});
          })
      });
 };
