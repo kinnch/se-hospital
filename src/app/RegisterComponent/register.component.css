@@ -1,9 +1,4 @@
-.container{
-    background-color: #FFFFFF;
-    background-repeat: repeat-y;
-            margin-bottom: 30px;
 
-}
 .center{
     text-align: center !important;
 }
@@ -16,16 +11,30 @@ a:hover {
     cursor: pointer;
 }
 
-.container2{
-    margin: 0 5%;
-}
-
-.title{
-    margin-bottom: 20px;
+.container{
+    padding: 2% 0;
 }
 
 .bg {
-  background-color: whitesmoke;
+  background-color: #ebebeb;
   width: 100%;
   height: auto;
+}
+
+.card-header{
+    text-align: center;
+    background-color: lightgrey;
+}
+
+.info{
+    padding-top: 10px;
+    padding-left: 30px;
+}
+
+.card-block{
+    padding-bottom: 0;
+}
+
+.card{
+    box-shadow: 0 0 0 1px #D4D4D5,1px 3px 0 0 #1abd9d,0 1px 3px 0 #D4D4D5;
 }
