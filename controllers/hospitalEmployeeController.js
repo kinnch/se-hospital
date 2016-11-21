@@ -22,6 +22,13 @@ var hashWithSalt = function(otp,salt){
     return derivedKey.toString("hex");
 }
 
+exports.department_name = function(req, res){
+    Department.findOne({_id: req.body.departmentID}, function(err, data){
+        if(err || !data) return res.send({status: 'fail'});
+        return res.send({status: 'success', data: data});
+    })
+}
+
 exports.getAllEmployee = function(req, res){
     HospitalEmployee.find({},function(err,employees){
         if(err || !employees){

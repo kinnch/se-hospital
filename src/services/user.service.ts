@@ -10,12 +10,15 @@ import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/toPromise';
+
+import {DepartmentService} from './department.service';
+
 @Injectable()
 export class UserService {
   private loggedIn = false;
   private headers = new Headers({'Content-Type': 'application/json'});
 
-  constructor(private http: Http) {
+  constructor(private http: Http, private DepartmentService: DepartmentService) {
     this.loggedIn = !!localStorage.getItem('auth_token');
   }
 
@@ -46,6 +49,10 @@ export class UserService {
           localStorage.setItem('user_lname', res.user.name.lname);
           localStorage.setItem('department_id', res.user.department);
           localStorage.setItem('user_sex',res.user.sex);
+          this.DepartmentService.getName(res.user.department).then((data)=>{
+              console.log(data);
+              localStorage.setItem('department_name', data.data.name);
+          });
           this.loggedIn = true;
         }
 

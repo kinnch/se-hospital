@@ -2,6 +2,7 @@ import {Component,OnInit, AfterViewInit} from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
 import { PrescriptionService } from '../../services/prescription.service';
+
 @Component({
     selector: 'staff-c',
     template: require('./staff.component.html'),
@@ -15,7 +16,8 @@ export class StaffComponent{
     userLname = localStorage.getItem('user_lname');
     userTitle = localStorage.getItem('user_title');
     userSex = localStorage.getItem('user_sex');
-    userId = localStorage.getItem('user_id')
+    userId = localStorage.getItem('user_id');
+    userDepartment = localStorage.getItem('department_name');
     userPic = "";
     prescriptionRequest:number = 0;
     
@@ -30,7 +32,8 @@ export class StaffComponent{
             this.userFname = localStorage.getItem('user_fname');
             this.userLname = localStorage.getItem('user_lname');
             this.userTitle = localStorage.getItem('user_title');
-            this.userSex = localStorage.getItem('user_sex');            
+            this.userSex = localStorage.getItem('user_sex');
+            this.userDepartment = localStorage.getItem('department_name');            
             this.userRole = (this.userRoleId == "1") ? "เจ้าหน้าที่ของโรงพยาบาล" : 
                         (this.userRoleId == "2") ? "แพทย์" : 
                         (this.userRoleId == "3") ? "พยาบาล" : 
@@ -120,7 +123,9 @@ export class StaffComponent{
     }
 
     ngOnInit(): void {
+        //department_id
         // this.loggedIn = this.userService.isLoggedIn();
+        //getName
     }
     hn = '123456';
     isExpandedNav: Boolean = true;
