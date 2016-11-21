@@ -78,13 +78,12 @@ export class AddDiagnosisComponent implements OnInit {
         var arr = [];
 
         for(var x in parsed){
-        arr.push(parsed[x]);
+            arr.push(parsed[x]);
         }
         this.prescriptionToBeSave = arr;
         this.drugListIsOK = true;
         for (var i = 0 ; i<this.prescriptionToBeSave.length;i++){
-            if(parseInt(this.prescriptionToBeSave[i]['amount'])>=0){
-
+            if(Number(this.prescriptionToBeSave[i]['amount'])>=0){
             }
             else{
                 this.drugListIsOK = false;

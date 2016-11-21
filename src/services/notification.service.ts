@@ -56,7 +56,7 @@ export class NotificationService {
     sendSMSDoctorCancelAppt(tel:string,p_fname:string,p_lname:string,d_fname:string,d_lname:string,dep:string,old_appt_date:Date,old_appt_period:string,appt_date:Date,appt_period:string) : Promise<JSON>{
         let message = `เนื่องจากแพทย์ ${d_fname} ${d_lname} แผนก ${dep} ไม่สามารถออกตรวจได้ในวันที่ ${old_appt_date} 
                         เวลา ${old_appt_period} จึงขอเปลี่ยนแปลงวันนัดหมายของคุณ ${p_fname} ${p_lname} เป็นวันที่
-                        ${appt_date} เวลา ${appt_period} หากท่านไม่สะดวกในวันและเวลาดังกล่าว สามารถเปลี่ยนแปลงได้ทาง <link>
+                        ${appt_date} เวลา ${appt_period} หากท่านไม่สะดวกในวันและเวลาดังกล่าว สามารถเปลี่ยนแปลงได้ทาง www.teppadungporn.com
                         หรือติดต่อเจ้าหน้าที่ของโรงพยาบาลโดยตรง`
         return this.sendSMS(tel,message).then((res)=>{
             return res;
@@ -65,6 +65,12 @@ export class NotificationService {
     sendSMSNotiAppt(tel:string,p_fname:string,p_lname:string,d_fname:string,d_lname:string,dep:string,appt_date:Date,appt_period:string) : Promise<JSON>{
         let message = `คุณ ${p_fname} ${p_lname} มีการนัดหมายแพทย์ ${d_fname} ${d_lname} แผนก ${dep} 
                         เพื่อเข้ารับการตรวจในวันที่ ${appt_date} เวลา ${appt_period}`
+        return this.sendSMS(tel,message).then((res)=>{
+            return res;
+        });
+    }
+    sendSMSStaffCancelAppt(tel:string,p_fname:string,p_lname:string,d_fname:string,d_lname:string,dep:string,appt_date:Date,appt_period:string) : Promise<JSON>{
+        let message = `การนัดพบแพทย์ของคุณ ${p_fname} ${p_lname} วันที่ ${appt_date} เวลา ${appt_period} ถูกยกเลิก เนื่องจากแพทย์ ${d_fname} ${d_lname} แผนก ${dep} มีติดธุระฉุกเฉิน กรุณาเข้ามาสร้างนัดใหม่ที่ระบบของเว็บไซต์ ขออภัยมา ณ ที่นี้`;
         return this.sendSMS(tel,message).then((res)=>{
             return res;
         });
@@ -80,11 +86,11 @@ export class NotificationService {
     }
     sendEmailCreateAppt(receiver:string,p_fname:string,p_lname:string,d_fname:string,d_lname:string,dep:string,appt_date:Date,appt_period:string) : Promise<JSON>{
         let subject = `สร้างการนัดหมายสำเร็จ`
-        let text = `เรียน คุณ ${p_fname} ${p_lname} \n\n
+        let text = `เรียน คุณ ${p_fname} ${p_lname} <br><br>
                     คุณได้ทำการนัดหมาย แพทย์ ${d_fname} ${d_lname} แผนก ${dep} 
-                    เพื่อเข้ารับการตรวจในวันที่ ${appt_date} เวลา ${appt_period} \n
-                    หากต้องการเปลี่ยนแปลงการนัดหมาย สามารถเปลี่ยนแปลงได้ทาง <link>
-                    หรือติดต่อเจ้าหน้าที่ของโรงพยาบาลโดยตรง \n\n
+                    เพื่อเข้ารับการตรวจในวันที่ ${appt_date} เวลา ${appt_period} <br>
+                    หากต้องการเปลี่ยนแปลงการนัดหมาย สามารถเปลี่ยนแปลงได้ทาง www.teppadungporn.com
+                    หรือติดต่อเจ้าหน้าที่ของโรงพยาบาลโดยตรง <br><br>
                     ขอบพระคุณที่ให้ความไว้วางใจในโรงพยาบาลเทพพดุงพร`
         return this.sendEmail(receiver,subject,text).then((res)=>{
             return res;
@@ -92,12 +98,12 @@ export class NotificationService {
     }
     sendEmailPostponeAppt(receiver:string,p_fname:string,p_lname:string,d_fname:string,d_lname:string,dep:string,old_appt_date:Date,old_appt_period:string,appt_date:Date,appt_period:string) : Promise<JSON>{
         let subject = `เลื่อนการนัดหมายสำเร็จ`
-        let text = `เรียน คุณ ${p_fname} ${p_lname} \n\n
+        let text = `เรียน คุณ ${p_fname} ${p_lname} <br><br>
                     คุณได้เลื่อนนัดหมาย แพทย์ ${d_fname} ${d_lname} แผนก ${dep} 
                     เพื่อเข้ารับการตรวจจากวันที่ ${old_appt_date} เวลา ${old_appt_period}
-                    เป็นวันที่ ${appt_date} เวลา ${appt_period} \n
-                    หากต้องการเปลี่ยนแปลงการนัดหมาย สามารถเปลี่ยนแปลงได้ทาง <link>
-                    หรือติดต่อเจ้าหน้าที่ของโรงพยาบาลโดยตรง \n\n
+                    เป็นวันที่ ${appt_date} เวลา ${appt_period} <br>
+                    หากต้องการเปลี่ยนแปลงการนัดหมาย สามารถเปลี่ยนแปลงได้ทาง www.teppadungporn.com
+                    หรือติดต่อเจ้าหน้าที่ของโรงพยาบาลโดยตรง <br><br>
                     ขอบพระคุณที่ให้ความไว้วางใจในโรงพยาบาลเทพพดุงพร`
         return this.sendEmail(receiver,subject,text).then((res)=>{
             return res;
@@ -105,11 +111,11 @@ export class NotificationService {
     }
     sendEmailCancelAppt(receiver:string,p_fname:string,p_lname:string,d_fname:string,d_lname:string,dep:string,appt_date:Date,appt_period:string) : Promise<JSON>{
         let subject = `ยกเลิกการนัดหมายสำเร็จ`
-        let text = `เรียน คุณ ${p_fname} ${p_lname} \n\n
+        let text = `เรียน คุณ ${p_fname} ${p_lname} <br><br>
                     คุณได้ยกเลิกนัดหมาย แพทย์ ${d_fname} ${d_lname} แผนก ${dep} 
-                    เพื่อเข้ารับการตรวจในวันที่ ${appt_date} เวลา ${appt_period} \n
-                    หากต้องการต้องการทำการนัดหมายใหม่อีกครั้ง สามารถนัดหมายได้ทาง <link>
-                    หรือติดต่อเจ้าหน้าที่ของโรงพยาบาลโดยตรง \n\n
+                    เพื่อเข้ารับการตรวจในวันที่ ${appt_date} เวลา ${appt_period} <br>
+                    หากต้องการต้องการทำการนัดหมายใหม่อีกครั้ง สามารถนัดหมายได้ทาง www.teppadungporn.com
+                    หรือติดต่อเจ้าหน้าที่ของโรงพยาบาลโดยตรง <br><br>
                     ขอบพระคุณที่ให้ความไว้วางใจในโรงพยาบาลเทพพดุงพร`
         return this.sendEmail(receiver,subject,text).then((res)=>{
             return res;
@@ -117,11 +123,11 @@ export class NotificationService {
     }
     sendEmailDoctorNextAppt(receiver:string,p_fname:string,p_lname:string,d_fname:string,d_lname:string,dep:string,appt_date:Date,appt_period:string) : Promise<JSON>{
         let subject = `คุณมีนัดหมายใหม่`
-        let text = `เรียน คุณ ${p_fname} ${p_lname} \n\n
+        let text = `เรียน คุณ ${p_fname} ${p_lname} <br><br>
                     แพทย์ ${d_fname} ${d_lname} แผนก ${dep} 
-                    ได้ทำการนัดหมายคุณเพื่อเข้ารับการตรวจในวันที่ ${appt_date} เวลา ${appt_period} \n
-                    หากต้องการเปลี่ยนแปลงการนัดหมาย สามารถเปลี่ยนแปลงได้ทาง <link>
-                    หรือติดต่อเจ้าหน้าที่ของโรงพยาบาลโดยตรง \n\n
+                    ได้ทำการนัดหมายคุณเพื่อเข้ารับการตรวจในวันที่ ${appt_date} เวลา ${appt_period} <br>
+                    หากต้องการเปลี่ยนแปลงการนัดหมาย สามารถเปลี่ยนแปลงได้ทาง www.teppadungporn.com
+                    หรือติดต่อเจ้าหน้าที่ของโรงพยาบาลโดยตรง <br><br>
                     ขอบพระคุณที่ให้ความไว้วางใจในโรงพยาบาลเทพพดุงพร`
         return this.sendEmail(receiver,subject,text).then((res)=>{
             return res;
@@ -129,12 +135,12 @@ export class NotificationService {
     }
     sendEmailDoctorCancelAppt(receiver:string,p_fname:string,p_lname:string,d_fname:string,d_lname:string,dep:string,old_appt_date:Date,old_appt_period:string,appt_date:Date,appt_period:string) : Promise<JSON>{
         let subject = `ขออณุญาตเลื่อนนัดหมายใหม่เป็นวันที่ ${appt_date} เวลา ${appt_period}`
-        let text = `เรียน คุณ ${p_fname} ${p_lname} \n\n
+        let text = `เรียน คุณ ${p_fname} ${p_lname} <br><br>
                     เนื่องจากแพทย์ ${d_fname} ${d_lname} แผนก ${dep} 
                     ไม่สามารถออกตรวจได้ในวันที่ ${old_appt_date} เวลา ${old_appt_period}
-                    จึงขอเปลี่ยนแปลงวันนัดหมายของคุณเป็นวันที่ ${appt_date} เวลา ${appt_period} \n
-                    หากท่านไม่สะดวกในวันและเวลาดังกล่าว สามารถเปลี่ยนแปลงได้ทาง <link>
-                    หรือติดต่อเจ้าหน้าที่ของโรงพยาบาลโดยตรง \n\n
+                    จึงขอเปลี่ยนแปลงวันนัดหมายของคุณเป็นวันที่ ${appt_date} เวลา ${appt_period} <br>
+                    หากท่านไม่สะดวกในวันและเวลาดังกล่าว สามารถเปลี่ยนแปลงได้ทาง www.teppadungporn.com
+                    หรือติดต่อเจ้าหน้าที่ของโรงพยาบาลโดยตรง <br><br>
                     ทางโรงพยาบาลโรงพยาบาลเทพพดุงพร ต้องขออภัยในความไม่สะดวกมา ณ ที่นี้`
         return this.sendEmail(receiver,subject,text).then((res)=>{
             return res;
@@ -142,15 +148,25 @@ export class NotificationService {
     }
     sendEmailNotiAppt(receiver:string,p_fname:string,p_lname:string,d_fname:string,d_lname:string,dep:string,appt_date:Date,appt_period:string) : Promise<JSON>{
         let subject = `คุณมีนัดหมายในวันที่ ${appt_date} เวลา ${appt_period}`
-        let text = `เรียน คุณ ${p_fname} ${p_lname} \n\n
+        let text = `เรียน คุณ ${p_fname} ${p_lname} <br><br>
                     คุณมีการนัดหมาย แพทย์ ${d_fname} ${d_lname} แผนก ${dep} 
-                    เพื่อเข้ารับการตรวจในวันที่ ${appt_date} เวลา ${appt_period} \n
-                    หากต้องการต้องเปลี่ยนแปลงการนัดหมาย สามารถนัดหมายได้ทาง <link>
-                    หรือติดต่อเจ้าหน้าที่ของโรงพยาบาลโดยตรง \n\n
+                    เพื่อเข้ารับการตรวจในวันที่ ${appt_date} เวลา ${appt_period} <br>
+                    หากต้องการต้องเปลี่ยนแปลงการนัดหมาย สามารถนัดหมายได้ทาง www.teppadungporn.com
+                    หรือติดต่อเจ้าหน้าที่ของโรงพยาบาลโดยตรง <br><br>
                     ขอบพระคุณที่ให้ความไว้วางใจในโรงพยาบาลเทพพดุงพร`
         return this.sendEmail(receiver,subject,text).then((res)=>{
             return res;
         });
     }
-    
+    sendEmailStaffCancelAppt(receiver:string,p_fname:string,p_lname:string,d_fname:string,d_lname:string,dep:string,appt_date:Date,appt_period:string) : Promise<JSON>{
+        let subject = `นัดหมายในวันที่ ${appt_date} เวลา ${appt_period}ถูกยกเลิก`
+        let text = `เรียน คุณ ${p_fname} ${p_lname} \n\n
+                    การนัดพบแพทย์ของคุณ เนื่องจากแพทย์ ${d_fname} ${d_lname} แผนก ${dep} มีติดธุระฉุกเฉิน\n 
+                    กรุณาเข้ามาสร้างนัดใหม่ ที่ <link>
+                    หรือติดต่อเจ้าหน้าที่ของโรงพยาบาลโดยตรง \n\n
+                    ขออภัยมา ณ ที่นี้ และขอบพระคุณที่ให้ความไว้วางใจในโรงพยาบาลเทพพดุงพร`
+        return this.sendEmail(receiver,subject,text).then((res)=>{
+            return res;
+        });
+    }
 }

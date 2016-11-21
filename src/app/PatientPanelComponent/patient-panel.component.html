@@ -22,12 +22,12 @@
                             <p><b>นามสกุล : </b>{{patient_lname}}</p>    
                         </div>
                         <div class="col-sm-4">
-                            <p><b>HN : </b>{{patient_HN ? patient_HN : "ไม่มีรหัส HN"}}</p>    
+                            <p><b>HN : </b>{{patient_HN!="null" ? patient_HN : "ไม่มีรหัส HN"}}</p>    
                         </div> 
                     </div>
                     <div class="row">
                         <div class="col-sm-4">
-                            <p><b>เพศ : </b>{{patient_sex}}</p>
+                            <p><b>เพศ : </b>{{patient_sex=='male' ? "ชาย" : "หญิง"}}</p>
                         </div>  
                         <div class="col-sm-4">
                             <p><b>อายุ : </b>{{ageYear}}&nbsp;ปี&nbsp;{{ageMonth}}&nbsp;เดือน</p>    
@@ -44,26 +44,28 @@
         <a routerLink="/patient/create_appointment/{{patient_id}}"><button type="submit" style="margin-right: 5%" class="btn btn-success pull-right">+เพิ่มนัดหมายใหม่</button></a>
     </h4>
     <br>
-    <div class="appointment-list" *ngFor="let appt of appointments; let i = index;" id="appt-box-{{appt['appointments'][0]._id}}">
-        <h5 class="card-title">{{appt.date}}
-            <a (click)="tryToDeleteAppointment(appt['appointments'][0]._id)">
-	    	<button type="button" style="margin-left: 5px" class="btn btn-danger pull-right">
-                    <i class="fa fa-trash" aria-hidden="true"></i>
-                </button>
-            </a>
-	    <a routerLink="/patient/edit_appointment/{{patient_id}}/{{appt['appointments'][0]._id}}">
-                <button type="button" class="btn btn-primary pull-right">
-                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                </button>
-            </a>
-        </h5>
-        <div class="row">
-            <div class="col-sm-4">
-                <p><b>แผนก : </b> {{appt.doctor.department.name}}</p>
-            </div>
-            <div class="col-sm-8">
-                <p><b>แพทย์ผู้ตรวจ : </b> {{appt.doctor.name.title}}{{appt.doctor.name.fname}}{{appt.doctor.name.lname}}</p>
+    <div *ngFor="let appt of appointments; let i = index;">
+        <div *ngIf="appt['appointments'][0].status==0" class="appointment-list" id="appt-box-{{appt['appointments'][0]._id}}">
+            <h4 class="card-title">{{appt.dateAndPeriod}}
+                <a (click)="tryToDeleteAppointment(appt['appointments'][0]._id)">
+                <button type="button" style="margin-left: 5px" class="btn btn-danger pull-right">
+                        <i class="fa fa-trash" aria-hidden="true"></i>
+                    </button>
+                </a>
+            <a routerLink="/patient/edit_appointment/{{patient_id}}/{{appt['appointments'][0]._id}}">
+                    <button type="button" class="btn btn-primary pull-right">
+                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                    </button>
+                </a>
+            </h4>
+            <div class="row">
+                <div class="col-sm-4">
+                    <p><b>แผนก : </b> {{appt.doctor.department.name}}</p>
+                </div>
+                <div class="col-sm-8">
+                    <p><b>แพทย์ผู้ตรวจ : </b> {{appt.doctor.name.title}}{{appt.doctor.name.fname}}&nbsp;&nbsp;{{appt.doctor.name.lname}}</p>
+                </div>    
             </div>    
-        </div>    
+        </div>
     </div>
 </div>    

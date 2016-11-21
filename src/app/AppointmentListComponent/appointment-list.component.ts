@@ -2,6 +2,7 @@ import {Component, Input,ViewChild} from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { ModalComponent } from '../ModalComponent/modal.component';
 import { AppointmentService } from '../../services/appointment.service';
+import { NotificationService } from '../../services/notification.service';
 import { ToastComponent } from '../ToastComponent/toast.component';
 import { Router } from '@angular/router';
 @Component({
@@ -14,7 +15,7 @@ export class AppointmentListComponent{
     @ViewChild( ToastComponent ) toast: ToastComponent;
     @ViewChild( ModalComponent ) modal: ModalComponent;
     @Input() data:JSON;
-    constructor(private router: Router,private appointmentService : AppointmentService ) {
+    constructor(private router: Router,private appointmentService : AppointmentService ,private notificationService: NotificationService) {
     }
     openConfirm(){
         this.modal.modalOpen();
@@ -25,6 +26,7 @@ export class AppointmentListComponent{
     confirmDelete(appointment){
         console.log('confirmed Delete');
         // console.log(appointmentID);
+        console.log(this.data['patient_data']);
         this.appointmentService.deleteAppointment(appointment['appointments'][0]['_id'])
         .then((data)=>{
             console.log(data);
@@ -33,6 +35,37 @@ export class AppointmentListComponent{
                 this.toast.messageSuccess = "";
                 this.toast.addToastSuccess();
                 console.log("deleted");
+                //send sms and email
+                // this.notificationService.sendSMSStaffCancelAppt(tel:string,p_fname:string,p_lname:string,d_fname:string,d_lname:string,dep:string,appt_date:Date,appt_period:string)
+                this.notificationService.sendSMSStaffCancelAppt(
+                        this.data['patient_data']['tel'],
+                        this.data['patient_data']['name']['fname'],
+                        this.data['patient_data']['name']['lname'],
+                        appointment['doctor']['name']['fname'],
+                        appointment['doctor']['name']['lname'],
+                        appointment['doctor']['department']['name'],
+                        appointment['date2'],
+                        appointment['tiemPeriod2'])
+                    .then((data)=>{
+                        console.log('sms sended');
+                        console.log(data);
+                    });
+                // this.sendEmailStaffCancelAppt(receiver:string,p_fname:string,p_lname:string,d_fname:string,d_lname:string,dep:string,appt_date:Date,appt_period:string) : Promise<JSON>{
+                this.notificationService.sendEmailStaffCancelAppt(
+                        this.data['patient_data']['email'],
+                        this.data['patient_data']['name']['fname'],
+                        this.data['patient_data']['name']['lname'],
+                        appointment['doctor']['name']['fname'],
+                        appointment['doctor']['name']['lname'],
+                        appointment['doctor']['department']['name'],
+                        appointment['date2'],
+                        appointment['tiemPeriod2'])
+                    .then((data)=>{
+                        console.log('email sended');
+                        console.log(data);
+                    });
+                
+
                 for(var i=0;i<this.data['appoint'].length;i++){
                     if(this.data['appoint'][i]['appointments'][0]['_id'] == appointment['appointments'][0]['_id']){
                         this.data['appoint'].splice(i, 1);
