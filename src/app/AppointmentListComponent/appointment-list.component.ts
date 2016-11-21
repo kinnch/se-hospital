@@ -2,6 +2,7 @@ import {Component, Input,ViewChild} from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { ModalComponent } from '../ModalComponent/modal.component';
 import { AppointmentService } from '../../services/appointment.service';
+import { ToastComponent } from '../ToastComponent/toast.component';
 import { Router } from '@angular/router';
 @Component({
     selector: 'appointment-list-c',
@@ -10,6 +11,7 @@ import { Router } from '@angular/router';
 })
 
 export class AppointmentListComponent{
+    @ViewChild( ToastComponent ) toast: ToastComponent;
     @ViewChild( ModalComponent ) modal: ModalComponent;
     @Input() data:JSON;
     constructor(private router: Router,private appointmentService : AppointmentService ) {
@@ -20,9 +22,26 @@ export class AppointmentListComponent{
     cancelDelete(){
 
     }
-    confirmDelete(appointmentID){
+    confirmDelete(appointment){
         console.log('confirmed Delete');
-        console.log(appointmentID);
+        // console.log(appointmentID);
+        this.appointmentService.deleteAppointment(appointment['appointments'][0]['_id'])
+        .then((data)=>{
+            console.log(data);
+            if(data['status']=='Success'){
+                this.toast.titleSuccess = "ลบสำเร็จ"
+                this.toast.messageSuccess = "";
+                this.toast.addToastSuccess();
+                console.log("deleted");
+                for(var i=0;i<this.data['appoint'].length;i++){
+                    if(this.data['appoint'][i]['appointments'][0]['_id'] == appointment['appointments'][0]['_id']){
+                        this.data['appoint'].splice(i, 1);
+                        console.log(this.data);
+                    }
+                }
+                
+            }
+        });
     }
     printAppointment(appointment,patientData){
         //,fname,lname,date,periodTime,doctor,department,reason
