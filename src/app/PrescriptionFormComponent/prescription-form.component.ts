@@ -25,13 +25,8 @@ export class PrescriptionFormComponent implements OnInit{
         this.prescriptionService.getAllDrugs()
             .then((res) => {
                this.drugs = res.msg;
-               console.log('--------------------');
-               console.log(this.drugs);
         });
 
-        console.log('=========');
-        console.log(this.data);
-        //this.newPres = [];
         var ok =true;
         try {
            this.data['prescriptions']; 

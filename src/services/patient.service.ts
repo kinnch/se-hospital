@@ -48,8 +48,8 @@ export class PatientService {
                         bloodType: bloodType
                     }), {headers: this.headers})
                     .toPromise()
-                    .then(res =>{
-                        return "success";
-                    });
+                    .then(function(res){
+                        return res.json();
+                    })
     }
 }

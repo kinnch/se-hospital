@@ -158,7 +158,7 @@ exports.seed = function(req, res) {
             nationalID: '1103701553821',
             sex: "male",
             birthDate: new Date("1994-11-16"),
-            HN: null,
+            HN: 12344321,
             salt: '471e91c751f97efdfa7e6df71a497dd739564a3db679c8ab1564f92368a23d29',
             address: {
                 detail: "842 เสนาวิลล่า84 ถ.แฮบปี้แลนด์",
@@ -1461,7 +1461,19 @@ exports.seed = function(req, res) {
             date: getDateNextKday(7),
             doctor: hospitalEmployees[4]._id,
             appointments: [appointments[3]._id]
-        })
+        }),
+        new Schedule({
+            timePeriod: 'am',
+            date: getDateNextKday(16),
+            doctor: hospitalEmployees[5]._id,
+            appointments: []
+        }),
+        new Schedule({
+            timePeriod: 'pm',
+            date: getDateNow(),
+            doctor: hospitalEmployees[4]._id,
+            appointments: []
+        }),
     ];
 
     // PhysicalChecking  N=6

@@ -6,19 +6,25 @@
   }
 
   .btn {
-    background-color: white;
+    background-color:rgba(255, 255, 255, 0.6);
     color: dimgray;
-    border: 2px solid #009263;
+    border: 1px solid #1abc9c;
+    width: 250px;
+    font-size: 24px;
 }
 
 .btn:hover {
-    background-color: #009263;
+    background-color:#1abc9c;
     color: white;
+}
+.header-info{
+    position: static;
+    margin-top: 20%;
 }
 
      
     footer {
-      background-color: #009263;
+      background-color: #1abc9c;
       color: white; 
       padding: 25px;
       bottom: 0;

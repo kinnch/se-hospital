@@ -175,13 +175,16 @@ exports.register = function (req, res) {
         }), '845792', function (err, user) {
             if (err) {
                 console.log(err);
-                return res.send(err);
+                return res.send({
+                    status: "fail",
+                    msg: err
+                });
             } else {
                 res.send({
-                    success: true,
-                    user: user
+                    status: "success",
+                    msg: user
                 });
-            }        
+            }      
         });
         return;
 }
@@ -226,6 +229,7 @@ exports.createHN = function(req, res){
         Patient.findOne({_id: req.body.patientID},function(err, patient){
             if(err) return res.send({status: 'fail'});
             if(!patient) return res.send({status: 'fail'});
+            if(patient.HN != null) return res.send({status: 'fail', msg: 'already have HN'});
             var newHN = (parseInt(maxHN) + 1) + '';
             while(newHN.length < 8){
                 newHN = '0' + newHN;
