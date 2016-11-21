@@ -88,6 +88,7 @@ module.exports = function(app) {
     app.post('/api/appointment/create',  appointmentController.create);
     app.post('/api/appointment/showSomeDoctors',  prescriptionController.showSomeDoctors);
     app.post('/api/prescription/History',  prescriptionController.showHistory);
+    app.post('/api/appointment/getInfo', appointmentController.getInfo);
     
     app.post('/api/updateStatusPres', prescriptionController.updateStatus);
     app.post('/api/pharma/prescription/requestChange', prescriptionController.requestChange);
