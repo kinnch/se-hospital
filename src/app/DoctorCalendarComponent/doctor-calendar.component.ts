@@ -2,6 +2,7 @@ import { Component, AfterViewInit , OnInit, ViewChild } from '@angular/core';
 import { ModalComponent } from '../ModalComponent/modal.component';
 import { DoctorDateElementService } from '../../services/doctor-date-element.service';
 import { DiagnosisService } from '../../services/diagnosis.service';
+import { NotificationService } from '../../services/notification.service';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import * as moment from 'moment';
@@ -22,7 +23,7 @@ export class DoctorCalendarComponent implements AfterViewInit, OnInit {
     schedule: Object[] = [];
     doctor: Object[] = [];
 
-    constructor(private router: Router,private elementService: DoctorDateElementService , private diagnosisService : DiagnosisService){
+    constructor(private router: Router,private elementService: DoctorDateElementService , private diagnosisService : DiagnosisService,private notificationService: NotificationService){
         
     }
     ngOnInit(){
@@ -359,15 +360,72 @@ export class DoctorCalendarComponent implements AfterViewInit, OnInit {
     }
      
     removeSchedule(){
+        console.log("remove schedule() called");
+        console.log(this.selectedEvent);
         this.elementService.searchSchedule(this.selectedEvent["_id"]["date"].toISOString().split("T")[0].concat('T00:00:00.000Z') ,this.selectedEvent["_id"]["period"] ).then((data) => {
             console.log("search");
             console.log(data);
             data["appointments"].forEach((e)=>{
                 this.elementService.shift(e,data["date"]).then((result)=>{
+                    console.log('----');
                     console.log(result);
+                    
+                    var hours = new Date(result.data['newDate']).getHours();
+                    var hours = (hours+24-2)%24; 
+                    var mid='am';
+                    if(hours==0){ //At 00 hours we need to show 12 am
+                        hours=12;
+                    }
+                    else if(hours>12){
+                        hours=hours%12;
+                        mid='pm';
+                    }
                     if(result.status == "success"){
                         // send some noti
                         console.log("success");
+                        console.log(e);
+                        //-----TODO : KIN please fill these.------
+                        var d_fname ='xxx';
+                        var d_lname ='yyy';
+                        var dep = 'zzz';
+                        var oldDate = this.selectedEvent['_id']['date'];
+                        oldDate = moment(new Date(oldDate)).format("ll")
+                        var newDate = result.data['newDate'];
+                        newDate = moment(new Date(newDate)).format("ll")
+                        //----end of todo kinnch
+                        this.notificationService.sendSMSDoctorCancelAppt(
+                                result.data['patient']['tel'],
+                                result.data['patient']['name']['fname'],
+                                result.data['patient']['name']['lname'],
+                                d_fname,
+                                d_lname,
+                                dep,
+                                oldDate,
+                                this.selectedEvent['_id']['period'],
+                                newDate,
+                                mid)
+                            .then((data)=>{
+                                console.log('sms sended');
+                                console.log(data);
+                            });
+
+                        //email
+                        this.notificationService.sendEmailDoctorCancelAppt(
+                                result.data['patient']['email'],
+                                result.data['patient']['name']['fname'],
+                                result.data['patient']['name']['lname'],
+                                d_fname,
+                                d_lname,
+                                dep,
+                                oldDate,
+                                this.selectedEvent['_id']['period'],
+                                newDate,
+                                mid)
+                            .then((data)=>{
+                                console.log('email sended');
+                                console.log(data);
+                            });
+                        
                         console.log(result.data);
                     }else{
                         //send some noti
