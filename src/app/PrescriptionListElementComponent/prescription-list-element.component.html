@@ -66,10 +66,11 @@
                 </section>
                 <section class ="reject-form" [hidden]="!isReject">
                 <p><b>เหตุผลที่ขอแก้ไข :</b></p>
-                <textarea  row="3" class="form-control" [(ngModel)]="reason"></textarea>
-                
+                <textarea  row="3" class="form-control" type="text" [(ngModel)]="reason"></textarea>
+                <small class="text-danger">{{errorReason}}</small>                                                
+
                 <div class="form-button">
-                    <button type="button" class="btn btn-danger" (click)="isReject = !isReject" style="margin-right: 10px">ยกเลิก</button>
+                    <button type="button" class="btn btn-danger" (click)="isReject = !isReject" (click)="resetError()" style="margin-right: 10px">ยกเลิก</button>
                     <button type="button" class="btn btn-primary" (click)="rejected(data.drugPrescription._id)">ส่งคำร้อง</button>
                  </div>
             </section>  
