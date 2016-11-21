@@ -5,8 +5,7 @@
 			<h5>{{date}}</h5>
 			<hr>
 			<!--<patient-detail-element-c></patient-detail-element-c>-->
-			<div *ngIf="physicalCheck">
-				<section class="container">
+			<div *ngIf="physicalCheck" style="margin: 0 15px;">
 					<br>
 					<h5 _ngcontent-bir-6="">ข้อมูลการตรวจร่างกายประจำวัน</h5>
 							<div _ngcontent-bir-6="" class="card">
@@ -38,7 +37,6 @@
 								</div>
 							</div>
 					
-				</section>
 			</div>
 			<diagnosis-detail-result-c [detail]="detail" [disease]="disease"></diagnosis-detail-result-c>
 			<br>

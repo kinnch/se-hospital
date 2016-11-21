@@ -8,6 +8,10 @@
     margin-bottom: 50px;
 }
 
+.container2{
+    box-shadow: unset;
+}
+
 .back{
     color: #4286F7 !important;
 }

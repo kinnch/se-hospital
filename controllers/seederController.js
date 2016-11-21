@@ -353,7 +353,7 @@ exports.seed = function(req, res) {
             nationalID: '2749477015164',
             sex: "male",
             birthDate: new Date("1990-01-06"),
-            HN: null,
+            HN: 11223344,
             salt: '471e91c751f97efdfa7e6df71a497dd739564a3db679c8ab1564f92368a23d29',
             address: {
                 detail: "1873 ถนนพระราม 4 ",
@@ -1188,6 +1188,92 @@ exports.seed = function(req, res) {
             salt: "ca32c2542af60469091b9a9f9541aff16882dfa66a1dc69b6458422383f7b3a7",
             hash:"4585c2bb65725fff7c15d98a1107e3d2adc209d63c8819da6e5f7a09b9b5a948ba7112e85cd527cbbfaf7bda02d3d8fb0970cdeffe17bcee05b017810cfe645fc59f644c8228032f1a3b10312aab0c86dda750a7d174db26457d9ccac8138784ce079257ebdc95906d6ee651e77656f9a992e9d08c973e78eecee3187ed7ce1ba9106b521fe563400fda79e16e2e7bf5b37ad22f3fd612ff7f3b5b421eb8fa6b97460137a98bdaee5c31429e40e967db9a1774753784cfe29f3914fef4edb82792b451f72ac712a04f1f25ebef91cf6f9530ca63587fd0af7ff1214aca6a184bb5900cf292fce3b519314b37783d8894f6a5b81cfaef35530d56ab24ca7c55568d43d4fd03fb61f2cb734971c8b80729a6996a5799323d3552a9b436799b34aa757b69935a202e456954dac288d1106d661144c34e06ba15f976833521782bc5d839cc5af63e189ee92ec29c16b5b52d9f47e61baf6d64ee2cea6c03beacda0963c073a3cf6a9c03205cf4e50875128a64ff804fe63bb035a6a1d7951fb7e4599f7e2d65d4417c974362a1589e3547bbbbbacc95a2a7ecfed034be6c3eee702dd13da31837773b94db3cf29c72e291eb1cacb256c20c84ecf5402a2394a5424bb0f96f49099dabf4e605b394b6a207b94a2785739a6acc833b5208d05dda0d03e704cebc8e098bd02a12c091ccb408c93d4d3e0dd258b56c4033f74b2c88b4d0"
         }),
+        //[20-26]
+        new HospitalEmployee({
+            name: {
+                title: "นาย",
+                fname: "หมาย1",
+                lname: "เป็นหมอ"
+            },
+            sex: 'male',
+            roleID: 2, //doctor
+            department: departments[0]._id,
+            userName: "staff1",
+            salt: "ca32c2542af60469091b9a9f9541aff16882dfa66a1dc69b6458422383f7b3a7",
+            hash:"4585c2bb65725fff7c15d98a1107e3d2adc209d63c8819da6e5f7a09b9b5a948ba7112e85cd527cbbfaf7bda02d3d8fb0970cdeffe17bcee05b017810cfe645fc59f644c8228032f1a3b10312aab0c86dda750a7d174db26457d9ccac8138784ce079257ebdc95906d6ee651e77656f9a992e9d08c973e78eecee3187ed7ce1ba9106b521fe563400fda79e16e2e7bf5b37ad22f3fd612ff7f3b5b421eb8fa6b97460137a98bdaee5c31429e40e967db9a1774753784cfe29f3914fef4edb82792b451f72ac712a04f1f25ebef91cf6f9530ca63587fd0af7ff1214aca6a184bb5900cf292fce3b519314b37783d8894f6a5b81cfaef35530d56ab24ca7c55568d43d4fd03fb61f2cb734971c8b80729a6996a5799323d3552a9b436799b34aa757b69935a202e456954dac288d1106d661144c34e06ba15f976833521782bc5d839cc5af63e189ee92ec29c16b5b52d9f47e61baf6d64ee2cea6c03beacda0963c073a3cf6a9c03205cf4e50875128a64ff804fe63bb035a6a1d7951fb7e4599f7e2d65d4417c974362a1589e3547bbbbbacc95a2a7ecfed034be6c3eee702dd13da31837773b94db3cf29c72e291eb1cacb256c20c84ecf5402a2394a5424bb0f96f49099dabf4e605b394b6a207b94a2785739a6acc833b5208d05dda0d03e704cebc8e098bd02a12c091ccb408c93d4d3e0dd258b56c4033f74b2c88b4d0"
+        }),new HospitalEmployee({
+            name: {
+                title: "นาย",
+                fname: "หมาย2",
+                lname: "เป็นหมอ"
+            },
+            sex: 'male',
+            roleID: 2, //doctor
+            department: departments[0]._id,
+            userName: "staff2",
+            salt: "ca32c2542af60469091b9a9f9541aff16882dfa66a1dc69b6458422383f7b3a7",
+            hash:"4585c2bb65725fff7c15d98a1107e3d2adc209d63c8819da6e5f7a09b9b5a948ba7112e85cd527cbbfaf7bda02d3d8fb0970cdeffe17bcee05b017810cfe645fc59f644c8228032f1a3b10312aab0c86dda750a7d174db26457d9ccac8138784ce079257ebdc95906d6ee651e77656f9a992e9d08c973e78eecee3187ed7ce1ba9106b521fe563400fda79e16e2e7bf5b37ad22f3fd612ff7f3b5b421eb8fa6b97460137a98bdaee5c31429e40e967db9a1774753784cfe29f3914fef4edb82792b451f72ac712a04f1f25ebef91cf6f9530ca63587fd0af7ff1214aca6a184bb5900cf292fce3b519314b37783d8894f6a5b81cfaef35530d56ab24ca7c55568d43d4fd03fb61f2cb734971c8b80729a6996a5799323d3552a9b436799b34aa757b69935a202e456954dac288d1106d661144c34e06ba15f976833521782bc5d839cc5af63e189ee92ec29c16b5b52d9f47e61baf6d64ee2cea6c03beacda0963c073a3cf6a9c03205cf4e50875128a64ff804fe63bb035a6a1d7951fb7e4599f7e2d65d4417c974362a1589e3547bbbbbacc95a2a7ecfed034be6c3eee702dd13da31837773b94db3cf29c72e291eb1cacb256c20c84ecf5402a2394a5424bb0f96f49099dabf4e605b394b6a207b94a2785739a6acc833b5208d05dda0d03e704cebc8e098bd02a12c091ccb408c93d4d3e0dd258b56c4033f74b2c88b4d0"
+        }),new HospitalEmployee({
+            name: {
+                title: "นาย",
+                fname: "หมาย3",
+                lname: "เป็นหมอ"
+            },
+            sex: 'male',
+            roleID: 2, //doctor
+            department: departments[0]._id,
+            userName: "staff3",
+            salt: "ca32c2542af60469091b9a9f9541aff16882dfa66a1dc69b6458422383f7b3a7",
+            hash:"4585c2bb65725fff7c15d98a1107e3d2adc209d63c8819da6e5f7a09b9b5a948ba7112e85cd527cbbfaf7bda02d3d8fb0970cdeffe17bcee05b017810cfe645fc59f644c8228032f1a3b10312aab0c86dda750a7d174db26457d9ccac8138784ce079257ebdc95906d6ee651e77656f9a992e9d08c973e78eecee3187ed7ce1ba9106b521fe563400fda79e16e2e7bf5b37ad22f3fd612ff7f3b5b421eb8fa6b97460137a98bdaee5c31429e40e967db9a1774753784cfe29f3914fef4edb82792b451f72ac712a04f1f25ebef91cf6f9530ca63587fd0af7ff1214aca6a184bb5900cf292fce3b519314b37783d8894f6a5b81cfaef35530d56ab24ca7c55568d43d4fd03fb61f2cb734971c8b80729a6996a5799323d3552a9b436799b34aa757b69935a202e456954dac288d1106d661144c34e06ba15f976833521782bc5d839cc5af63e189ee92ec29c16b5b52d9f47e61baf6d64ee2cea6c03beacda0963c073a3cf6a9c03205cf4e50875128a64ff804fe63bb035a6a1d7951fb7e4599f7e2d65d4417c974362a1589e3547bbbbbacc95a2a7ecfed034be6c3eee702dd13da31837773b94db3cf29c72e291eb1cacb256c20c84ecf5402a2394a5424bb0f96f49099dabf4e605b394b6a207b94a2785739a6acc833b5208d05dda0d03e704cebc8e098bd02a12c091ccb408c93d4d3e0dd258b56c4033f74b2c88b4d0"
+        }),new HospitalEmployee({
+            name: {
+                title: "นาย",
+                fname: "หมาย4",
+                lname: "เป็นหมอ"
+            },
+            sex: 'male',
+            roleID: 2, //doctor
+            department: departments[0]._id,
+            userName: "staff4",
+            salt: "ca32c2542af60469091b9a9f9541aff16882dfa66a1dc69b6458422383f7b3a7",
+            hash:"4585c2bb65725fff7c15d98a1107e3d2adc209d63c8819da6e5f7a09b9b5a948ba7112e85cd527cbbfaf7bda02d3d8fb0970cdeffe17bcee05b017810cfe645fc59f644c8228032f1a3b10312aab0c86dda750a7d174db26457d9ccac8138784ce079257ebdc95906d6ee651e77656f9a992e9d08c973e78eecee3187ed7ce1ba9106b521fe563400fda79e16e2e7bf5b37ad22f3fd612ff7f3b5b421eb8fa6b97460137a98bdaee5c31429e40e967db9a1774753784cfe29f3914fef4edb82792b451f72ac712a04f1f25ebef91cf6f9530ca63587fd0af7ff1214aca6a184bb5900cf292fce3b519314b37783d8894f6a5b81cfaef35530d56ab24ca7c55568d43d4fd03fb61f2cb734971c8b80729a6996a5799323d3552a9b436799b34aa757b69935a202e456954dac288d1106d661144c34e06ba15f976833521782bc5d839cc5af63e189ee92ec29c16b5b52d9f47e61baf6d64ee2cea6c03beacda0963c073a3cf6a9c03205cf4e50875128a64ff804fe63bb035a6a1d7951fb7e4599f7e2d65d4417c974362a1589e3547bbbbbacc95a2a7ecfed034be6c3eee702dd13da31837773b94db3cf29c72e291eb1cacb256c20c84ecf5402a2394a5424bb0f96f49099dabf4e605b394b6a207b94a2785739a6acc833b5208d05dda0d03e704cebc8e098bd02a12c091ccb408c93d4d3e0dd258b56c4033f74b2c88b4d0"
+        }),new HospitalEmployee({
+            name: {
+                title: "นาย",
+                fname: "หมาย5",
+                lname: "เป็นหมอ"
+            },
+            sex: 'male',
+            roleID: 2, //doctor
+            department: departments[0]._id,
+            userName: "staff5",
+            salt: "ca32c2542af60469091b9a9f9541aff16882dfa66a1dc69b6458422383f7b3a7",
+            hash:"4585c2bb65725fff7c15d98a1107e3d2adc209d63c8819da6e5f7a09b9b5a948ba7112e85cd527cbbfaf7bda02d3d8fb0970cdeffe17bcee05b017810cfe645fc59f644c8228032f1a3b10312aab0c86dda750a7d174db26457d9ccac8138784ce079257ebdc95906d6ee651e77656f9a992e9d08c973e78eecee3187ed7ce1ba9106b521fe563400fda79e16e2e7bf5b37ad22f3fd612ff7f3b5b421eb8fa6b97460137a98bdaee5c31429e40e967db9a1774753784cfe29f3914fef4edb82792b451f72ac712a04f1f25ebef91cf6f9530ca63587fd0af7ff1214aca6a184bb5900cf292fce3b519314b37783d8894f6a5b81cfaef35530d56ab24ca7c55568d43d4fd03fb61f2cb734971c8b80729a6996a5799323d3552a9b436799b34aa757b69935a202e456954dac288d1106d661144c34e06ba15f976833521782bc5d839cc5af63e189ee92ec29c16b5b52d9f47e61baf6d64ee2cea6c03beacda0963c073a3cf6a9c03205cf4e50875128a64ff804fe63bb035a6a1d7951fb7e4599f7e2d65d4417c974362a1589e3547bbbbbacc95a2a7ecfed034be6c3eee702dd13da31837773b94db3cf29c72e291eb1cacb256c20c84ecf5402a2394a5424bb0f96f49099dabf4e605b394b6a207b94a2785739a6acc833b5208d05dda0d03e704cebc8e098bd02a12c091ccb408c93d4d3e0dd258b56c4033f74b2c88b4d0"
+        }),new HospitalEmployee({
+            name: {
+                title: "นาย",
+                fname: "หมาย6",
+                lname: "เป็นหมอ"
+            },
+            sex: 'male',
+            roleID: 2, //doctor
+            department: departments[0]._id,
+            userName: "staff6",
+            salt: "ca32c2542af60469091b9a9f9541aff16882dfa66a1dc69b6458422383f7b3a7",
+            hash:"4585c2bb65725fff7c15d98a1107e3d2adc209d63c8819da6e5f7a09b9b5a948ba7112e85cd527cbbfaf7bda02d3d8fb0970cdeffe17bcee05b017810cfe645fc59f644c8228032f1a3b10312aab0c86dda750a7d174db26457d9ccac8138784ce079257ebdc95906d6ee651e77656f9a992e9d08c973e78eecee3187ed7ce1ba9106b521fe563400fda79e16e2e7bf5b37ad22f3fd612ff7f3b5b421eb8fa6b97460137a98bdaee5c31429e40e967db9a1774753784cfe29f3914fef4edb82792b451f72ac712a04f1f25ebef91cf6f9530ca63587fd0af7ff1214aca6a184bb5900cf292fce3b519314b37783d8894f6a5b81cfaef35530d56ab24ca7c55568d43d4fd03fb61f2cb734971c8b80729a6996a5799323d3552a9b436799b34aa757b69935a202e456954dac288d1106d661144c34e06ba15f976833521782bc5d839cc5af63e189ee92ec29c16b5b52d9f47e61baf6d64ee2cea6c03beacda0963c073a3cf6a9c03205cf4e50875128a64ff804fe63bb035a6a1d7951fb7e4599f7e2d65d4417c974362a1589e3547bbbbbacc95a2a7ecfed034be6c3eee702dd13da31837773b94db3cf29c72e291eb1cacb256c20c84ecf5402a2394a5424bb0f96f49099dabf4e605b394b6a207b94a2785739a6acc833b5208d05dda0d03e704cebc8e098bd02a12c091ccb408c93d4d3e0dd258b56c4033f74b2c88b4d0"
+        }),new HospitalEmployee({
+            name: {
+                title: "นาย",
+                fname: "หมาย7",
+                lname: "เป็นหมอ"
+            },
+            sex: 'male',
+            roleID: 2, //doctor
+            department: departments[0]._id,
+            userName: "staff7",
+            salt: "ca32c2542af60469091b9a9f9541aff16882dfa66a1dc69b6458422383f7b3a7",
+            hash:"4585c2bb65725fff7c15d98a1107e3d2adc209d63c8819da6e5f7a09b9b5a948ba7112e85cd527cbbfaf7bda02d3d8fb0970cdeffe17bcee05b017810cfe645fc59f644c8228032f1a3b10312aab0c86dda750a7d174db26457d9ccac8138784ce079257ebdc95906d6ee651e77656f9a992e9d08c973e78eecee3187ed7ce1ba9106b521fe563400fda79e16e2e7bf5b37ad22f3fd612ff7f3b5b421eb8fa6b97460137a98bdaee5c31429e40e967db9a1774753784cfe29f3914fef4edb82792b451f72ac712a04f1f25ebef91cf6f9530ca63587fd0af7ff1214aca6a184bb5900cf292fce3b519314b37783d8894f6a5b81cfaef35530d56ab24ca7c55568d43d4fd03fb61f2cb734971c8b80729a6996a5799323d3552a9b436799b34aa757b69935a202e456954dac288d1106d661144c34e06ba15f976833521782bc5d839cc5af63e189ee92ec29c16b5b52d9f47e61baf6d64ee2cea6c03beacda0963c073a3cf6a9c03205cf4e50875128a64ff804fe63bb035a6a1d7951fb7e4599f7e2d65d4417c974362a1589e3547bbbbbacc95a2a7ecfed034be6c3eee702dd13da31837773b94db3cf29c72e291eb1cacb256c20c84ecf5402a2394a5424bb0f96f49099dabf4e605b394b6a207b94a2785739a6acc833b5208d05dda0d03e704cebc8e098bd02a12c091ccb408c93d4d3e0dd258b56c4033f74b2c88b4d0"
+        })
        
     ];
     
@@ -1219,17 +1305,17 @@ exports.seed = function(req, res) {
         new Appointment({
             patient: patients[3]._id,
             reason: "เจ็บหน้าอกข้างซ้ายเป็นระยะ ๆ มา 2 เดือนแล้ว",
-            status: 4
+            status: 2
         }),
         new Appointment({
             patient: patients[4]._id,
             reason: "ก้างปลาตำคอ",
-            status: 0
+            status: 1
         }),
         new Appointment({
             patient: patients[5]._id,
             reason: "กินข้าวไม่ลง คลื่นไส้อาเจียร",
-            status: 0
+            status: 1
         }),
         new Appointment({
             patient: patients[5]._id,
@@ -1239,7 +1325,7 @@ exports.seed = function(req, res) {
         new Appointment({
             patient: patients[2]._id,
             reason: "ปวดท้อง",
-            status: 0
+            status: 2
         }),
         // and so on 15 in the same schedukle (which mean patient have to differrent in this slot)
         new Appointment({
@@ -1529,6 +1615,97 @@ exports.seed = function(req, res) {
             doctor: hospitalEmployees[4]._id,
             appointments: []
         }),
+        //[4-10, 20-26]
+        new Schedule({
+            timePeriod: 'am',
+            date: getDateNextKday(5),
+            doctor: hospitalEmployees[5]._id,
+            appointments: []
+        }),
+        new Schedule({
+            timePeriod: 'am',
+            date: getDateNextKday(5),
+            doctor: hospitalEmployees[6]._id,
+            appointments: []
+        }),
+        new Schedule({
+            timePeriod: 'am',
+            date: getDateNextKday(5),
+            doctor: hospitalEmployees[9]._id,
+            appointments: []
+        }),
+        new Schedule({
+            timePeriod: 'am',
+            date: getDateNextKday(5),
+            doctor: hospitalEmployees[20]._id,
+            appointments: []
+        }),
+        new Schedule({
+            timePeriod: 'am',
+            date: getDateNextKday(5),
+            doctor: hospitalEmployees[23]._id,
+            appointments: []
+        }),
+        new Schedule({
+            timePeriod: 'am',
+            date: getDateNextKday(5),
+            doctor: hospitalEmployees[24]._id,
+            appointments: []
+        }),
+        new Schedule({
+            timePeriod: 'pm',
+            date: getDateNextKday(3),
+            doctor: hospitalEmployees[6]._id,
+            appointments: []
+        }),
+        new Schedule({
+            timePeriod: 'pm',
+            date: getDateNextKday(3),
+            doctor: hospitalEmployees[8]._id,
+            appointments: []
+        }),
+        new Schedule({
+            timePeriod: 'pm',
+            date: getDateNextKday(3),
+            doctor: hospitalEmployees[9]._id,
+            appointments: []
+        }),
+        new Schedule({
+            timePeriod: 'pm',
+            date: getDateNextKday(3),
+            doctor: hospitalEmployees[10]._id,
+            appointments: []
+        }),
+        new Schedule({
+            timePeriod: 'pm',
+            date: getDateNextKday(3),
+            doctor: hospitalEmployees[21]._id,
+            appointments: []
+        }),
+        new Schedule({
+            timePeriod: 'pm',
+            date: getDateNextKday(3),
+            doctor: hospitalEmployees[22]._id,
+            appointments: []
+        }),
+        new Schedule({
+            timePeriod: 'pm',
+            date: getDateNextKday(3),
+            doctor: hospitalEmployees[23]._id,
+            appointments: []
+        }),
+        new Schedule({
+            timePeriod: 'pm',
+            date: getDateNextKday(3),
+            doctor: hospitalEmployees[25]._id,
+            appointments: []
+        }),
+        new Schedule({
+            timePeriod: 'pm',
+            date: getDateNextKday(3),
+            doctor: hospitalEmployees[26]._id,
+            appointments: []
+        }),
     ];
 
     // PhysicalChecking  N=6
@@ -1572,7 +1749,7 @@ exports.seed = function(req, res) {
             weight: 50,
             height: 160,
             temp: 37.2,
-            patient: patients[5]._id,
+            patient: patients[4]._id,
             nurse: hospitalEmployees[16]._id
         }),
         new PhysicalChecking({
@@ -1614,12 +1791,83 @@ exports.seed = function(req, res) {
             weight: 65,
             height: 150,
             temp: 38.9,
+            patient: patients[2]._id,
+            nurse: hospitalEmployees[16]._id
+        }),
+        new PhysicalChecking({
+            bloodPresure: {
+                systolic: 110,
+                diastolic: 50
+            },
+            heartRate: 80,
+            date: new Date(2015-12-12),
+            timePeriod: "am",
+            weight: 52,
+            height: 155,
+            temp: 37.7,
+            patient: patients[4]._id,
+            nurse: hospitalEmployees[16]._id
+        }),
+        new PhysicalChecking({
+            bloodPresure: {
+                systolic: 122,
+                diastolic: 48
+            },
+            heartRate: 80,
+            date: new Date(2016-02-11),
+            timePeriod: "am",
+            weight: 59,
+            height: 155,
+            temp: 38.0,
+            patient: patients[4]._id,
+            nurse: hospitalEmployees[16]._id
+        }),
+        new PhysicalChecking({
+            bloodPresure: {
+                systolic: 118,
+                diastolic: 59
+            },
+            heartRate: 80,
+            date: new Date(2016-09-19),
+            timePeriod: "pm",
+            weight: 64,
+            height: 155,
+            temp: 37.3,
+            patient: patients[4]._id,
+            nurse: hospitalEmployees[16]._id
+        }),
+        new PhysicalChecking({
+            bloodPresure: {
+                systolic: 125,
+                diastolic: 57
+            },
+            heartRate: 70,
+            date: new Date(2016-06-07),
+            timePeriod: "am",
+            weight: 77,
+            height: 170,
+            temp: 38.9,
             patient: patients[1]._id,
             nurse: hospitalEmployees[16]._id
-        })
+        }),
+        new PhysicalChecking({
+            bloodPresure: {
+                systolic: 129,
+                diastolic: 54
+            },
+            heartRate: 84,
+            date: new Date(2016-08-18),
+            timePeriod: "am",
+            weight: 75,
+            height: 177,
+            temp: 37.5,
+            patient: patients[1]._id,
+            nurse: hospitalEmployees[16]._id
+        }),
+
     ];
 
-    // PrescriptionDrugs N=6
+    // PrescriptionDrugs [0-10]
     var prescriptionDrugs = [
         new PrescriptionDrug({
             drug: drugs[0]._id,
@@ -1628,87 +1876,132 @@ exports.seed = function(req, res) {
         }),
         new PrescriptionDrug({
             drug: drugs[2]._id,
-            detail: "1 เม็ดทุกมื้อ ก่อนอาหาร เช้า เย็น",
+            detail: "1 เม็ดทุก 4 ชั่วโมง",
             amount: 16
         }),
         new PrescriptionDrug({
+            drug: drugs[1]._id,
+            detail: "1 เม็ดเมือมีอาการปวด",
+            amount: 12
+        }),
+        new PrescriptionDrug({
             drug: drugs[3]._id,
-            detail: "1 เม็ดทุกมื้อ หลังอาหาร เช้า เย็น",
+            detail: "1 เม็ด หลังอาหาร เช้า เย็น",
             amount: 12
         }),
         new PrescriptionDrug({
             drug: drugs[4]._id,
-            detail: "1 เม็ดทุกมื้อ หลังอาหาร เช้า เย็น",
-            amount: 12
+            detail: "1 เม็ด หลังอาหาร เช้า กลางวัน เย็น",
+            amount: 10
         }),
         new PrescriptionDrug({
-            drug: drugs[1]._id,
-            detail: "1 เม็ดทุกมื้อ หลังอาหาร เช้า กลางวัน เย็น",
-            amount: 30
+            drug: drugs[5]._id,
+            detail: "1 เม็ด หลังอาหารเช้า",
+            amount: 10
         }),
         new PrescriptionDrug({
             drug: drugs[6]._id,
-            detail: "1 เม็ดทุกมื้อ หลังอาหาร เช้า กลางวัน เย็น",
+            detail: "1 เม็ด ก่อนนอน",
+            amount: 20
+        }),
+        new PrescriptionDrug({
+            drug: drugs[7]._id,
+            detail: "1 เม็ด ก่อนอาหาร เช้า",
             amount: 10
+        }),
+        new PrescriptionDrug({
+            drug: drugs[8]._id,
+            detail: "1 เม็ด หลังอาหารเช้า เย็น",
+            amount: 10
+        }),
+        new PrescriptionDrug({
+            drug: drugs[9]._id,
+            detail: "1 ช้อนชาก่อนอาหาร เช้า เย็น",
+            amount: 1
+        }),
+        new PrescriptionDrug({
+            drug: drugs[10]._id,
+            detail: "2-3 หยด ก่อนนอน",
+            amount: 1
         })
     ];
 
     // DrugPrescriptions  N=9
     var drugPrescriptions = [
         new DrugPrescription({
-            status: 3,
+            status: 1,
             inspectedBy: null,
             note: null,
-            prescriptions: [prescriptionDrugs[0]._id, prescriptionDrugs[1]._id]
+            prescriptions: [prescriptionDrugs[0]._id, prescriptionDrugs[3]._id]
         }),
         new DrugPrescription({
-            status: 3,
+            status: 1,
             inspectedBy: null,
             note: null,
-            prescriptions: [prescriptionDrugs[2]._id]
+            prescriptions: [prescriptionDrugs[2]._id, prescriptionDrugs[5]._id, prescriptionDrugs[8]._id]
         }),
         new DrugPrescription({
             status: 2, // pharmacist approved
             inspectedBy: null,
             note: null,
-            prescriptions: [prescriptionDrugs[3]._id, prescriptionDrugs[1]._id]
+            prescriptions: [prescriptionDrugs[4]._id, prescriptionDrugs[9]._id]
         }),
         new DrugPrescription({
-            status: 0, // reject
+            status: 2, 
+            inspectedBy: null,
+            note: null,
+            prescriptions: [prescriptionDrugs[1]._id, prescriptionDrugs[5]._id]
+        }),
+        new DrugPrescription({
+            status: 3, // reject
             inspectedBy: hospitalEmployees[18]._id,
             note: "ผู้ป้วยแพ้ยาพาราเซตามอน",
-            prescriptions: [prescriptionDrugs[4]._id]
+            prescriptions: [prescriptionDrugs[2]._id]
         }),
+
+        //old drugPres
         new DrugPrescription({
-            status: 1, // doctor created
+            status: 3,
             inspectedBy: null,
             note: null,
-            prescriptions: [prescriptionDrugs[1]._id, prescriptionDrugs[3]._id]
+            prescriptions: [prescriptionDrugs[5]._id, prescriptionDrugs[1]._id, prescriptionDrugs[7]._id]
         }),
         new DrugPrescription({
-            status: 1, // doctor created
-            inspectedBy: null,
-            note: null,
-            prescriptions: [prescriptionDrugs[5]._id, prescriptionDrugs[1]._id, prescriptionDrugs[2]._id]
-        }),
-        new DrugPrescription({
-            status: 1, // doctor created
+            status: 3,
             inspectedBy: null,
             note: null,
             prescriptions: [prescriptionDrugs[4]._id, prescriptionDrugs[0]._id]
         }),
          new DrugPrescription({
-            status: 3, // pharmacist approved
+            status: 3, 
             inspectedBy: null,
             note: null,
-            prescriptions: [prescriptionDrugs[4]._id, prescriptionDrugs[0]._id]
+            prescriptions: [prescriptionDrugs[10]._id]
         }),
          new DrugPrescription({
-            status: 3, // pharmacist approved
+            status: 3,
             inspectedBy: null,
             note: null,
-            prescriptions: [prescriptionDrugs[1]._id, prescriptionDrugs[3]._id,prescriptionDrugs[0]._id,prescriptionDrugs[4]._id]
-        })
+            prescriptions: [prescriptionDrugs[8]._id, prescriptionDrugs[3]._id,prescriptionDrugs[0]._id,prescriptionDrugs[4]._id]
+        }),
+        new DrugPrescription({
+            status: 3, 
+            inspectedBy: null,
+            note: null,
+            prescriptions: [prescriptionDrugs[2]._id, prescriptionDrugs[6]._id]
+        }),
+        new DrugPrescription({
+            status: 3, 
+            inspectedBy: null,
+            note: null,
+            prescriptions: [prescriptionDrugs[9]._id]
+        }),
+        new DrugPrescription({
+            status: 3, 
+            inspectedBy: null,
+            note: null,
+            prescriptions: [prescriptionDrugs[0]._id, prescriptionDrugs[5]._id]
+        }),
         
     ];
 
@@ -1720,7 +2013,7 @@ exports.seed = function(req, res) {
     var diagnosises = [
         new Diagnosis({
             drugPrescription: drugPrescriptions[8]._id,
-            patient: patients[2]._id,
+            patient: patients[3]._id,
             doctor: hospitalEmployees[4]._id,
             timePeriod: 'pm',
             date: new Date("2016-06-25"),
@@ -1728,13 +2021,13 @@ exports.seed = function(req, res) {
             disease: diseases[1]._id
         }),
         new Diagnosis({
-            drugPrescription: drugPrescriptions[0]._id,
-            patient: patients[2]._id,
+            drugPrescription: drugPrescriptions[10]._id,
+            patient: patients[3]._id,
             doctor: hospitalEmployees[4]._id,
             timePeriod: 'am',
             date: getDateYesterday(),
             detail: "ผู้ป่วยมีไข้มา 3 วันก่อนหน้านี้",
-            disease: diseases[0]._id
+            disease: [diseases[9]._id, diseases[5]._id]
         }),
         new Diagnosis({
             drugPrescription: drugPrescriptions[1]._id,
@@ -1746,7 +2039,7 @@ exports.seed = function(req, res) {
             disease: diseases[1]._id
         }),
         new Diagnosis({
-            drugPrescription: drugPrescriptions[2]._id,
+            drugPrescription: drugPrescriptions[3]._id,
             patient: patients[5]._id,
             doctor: hospitalEmployees[4]._id,
             timePeriod: 'am',
@@ -1755,7 +2048,7 @@ exports.seed = function(req, res) {
             disease: diseases[2]._id
         }),
         new Diagnosis({
-            drugPrescription: drugPrescriptions[3]._id,
+            drugPrescription: drugPrescriptions[1]._id,
             patient: patients[1]._id,
             doctor: hospitalEmployees[4]._id,
             timePeriod: 'am',
@@ -1764,7 +2057,7 @@ exports.seed = function(req, res) {
             disease: diseases[6]._id
         }),
         new Diagnosis({
-            drugPrescription: drugPrescriptions[4]._id,
+            drugPrescription: drugPrescriptions[2]._id,
             patient: patients[2]._id,
             doctor: hospitalEmployees[4]._id,
             timePeriod: 'am',
@@ -1773,16 +2066,16 @@ exports.seed = function(req, res) {
             disease: diseases[2]._id
         }),
         new Diagnosis({
-            drugPrescription: drugPrescriptions[5]._id,
+            drugPrescription: drugPrescriptions[0]._id,
             patient: patients[3]._id,
             doctor: hospitalEmployees[4]._id,
-            timePeriod: 'pm',
+            timePeriod: 'am',
             date: getDateNow(),
             detail: "ผู้ป่วยมีอาการคลื่นไส้ อาเจียน",
             disease: diseases[1]._id
         }),
         new Diagnosis({
-            drugPrescription: drugPrescriptions[6]._id,
+            drugPrescription: drugPrescriptions[4]._id,
             patient: patients[4]._id,
             doctor: hospitalEmployees[4]._id,
             timePeriod: 'am',
@@ -1792,12 +2085,39 @@ exports.seed = function(req, res) {
         }),
         new Diagnosis({
             drugPrescription: drugPrescriptions[7]._id,
-            patient: patients[2]._id,
+            patient: patients[3]._id,
             doctor: hospitalEmployees[4]._id,
             timePeriod: 'am',
             date: new Date("2016-10-19"),
             detail: "ผู้ป่วยมีไข้มา 3 วันก่อนหน้านี้",
-            disease: diseases[0]._id
+            disease: [diseases[0]._id, diseases[4]._id, diseases[9]._id]
+        }),
+        new Diagnosis({
+            drugPrescription: drugPrescriptions[5]._id,
+            patient: patients[3]._id,
+            doctor: hospitalEmployees[4]._id,
+            timePeriod: 'am',
+            date: new Date("2015-03-27"),
+            detail: "ผู้ป่วยมีไข้มา 3 วันก่อนหน้านี้",
+            disease: diseases[7]._id
+        }),
+        new Diagnosis({
+            drugPrescription: drugPrescriptions[11]._id,
+            patient: patients[1]._id,
+            doctor: hospitalEmployees[4]._id,
+            timePeriod: 'am',
+            date: new Date("2016-07-24"),
+            detail: "ปวดท้องรุนแรง ท้องบวม",
+            disease: diseases[6]._id
+        }),
+        new Diagnosis({
+            drugPrescription: drugPrescriptions[4]._id,
+            patient: patients[1]._id,
+            doctor: hospitalEmployees[4]._id,
+            timePeriod: 'am',
+            date: new Date("2015-11-18"),
+            detail: "ผู้ป่วยมีไข้มา 3 วันก่อนหน้านี้",
+            disease: [diseases[2]._id, diseases[3]._id]
         })
     ];
 
