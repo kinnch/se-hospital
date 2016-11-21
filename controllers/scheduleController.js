@@ -193,12 +193,16 @@ exports.getDoctorSchedule = function(req, res) {
 	});
 };
 
-
+function recursiveNewAppoint(app_list, doctor_id){
+    var top = app_list.pop();
+    Schedule
+    return top;
+}
 
 //peak
 exports.delete = function(req, res){
     //return res.send(req.body);
     Schedule.findOne({_id: req.body.scheduleID}, function(err,data){
-        return res.send(data.appointments);
+        return res.send(recursiveNewAppoint(data.appointments, data.doctor));
     });
 }

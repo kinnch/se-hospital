@@ -71,6 +71,7 @@ module.exports = function(app) {
     app.post('/api/patient/search',  patientController.search);
     app.post('/api/patient/register', patientController.register);
     app.post('/api/patient/getObjIdFromHN', patientController.getObjIdFromHN);
+    app.post('/api/patient/createHN', patientController.createHN);
 
     var seederController = require('../controllers/seederController');
     app.get('/seed',  seederController.seed);
@@ -134,7 +135,7 @@ module.exports = function(app) {
     app.get('/login', hospitalEmployeeController.getLogin);
     app.get('/logout', hospitalEmployeeController.logout);
 
-    app.post('/loginPatient', patientController.login);
+    app.post('/loginPatient', patientController.login); 
     app.post('/registerPatient', patientController.register);
     app.get('/loginPatient', patientController.getLogin);
    
