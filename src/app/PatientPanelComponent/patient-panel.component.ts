@@ -97,14 +97,17 @@ export class PatientPanelComponent implements OnInit {
 		this.patient_sex = localStorage.getItem('patient_sex');
 
 		// age
-		var diffDuration = moment_.duration(moment_().diff(this.data.patient.birthDate));
+		var diffDuration = moment_.duration(moment_().diff(this.patient_birthDate));
         this.ageYear = diffDuration.years();
         this.ageMonth = diffDuration.months();
 
 		this.AppointmentService.getPatientAndAppointment(this.patient_nationalID).then((p_data)=>{
 			this.patient_data = p_data;
 			this.appointments = p_data['appoint'];
-			//moment_(appt.date>format('ll'))
+
+			// Change output date format
+			for(let i in this.appointments) 
+				this.appointments[i].dateAndPeriod = moment_(this.appointments[i].date).format('ll') + ' - ' + ((this.appointments[i].timePeriod == 'am')? 'ช่วงเช้า':'ช่วงบ่าย'); 
 
 			console.log(this.patient_data);
 		});
