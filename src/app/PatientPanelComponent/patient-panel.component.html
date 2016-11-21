@@ -43,14 +43,14 @@
         <a routerLink="/patient/create_appointment/{{patient_id}}"><button type="submit" style="margin-right: 5%" class="btn btn-success pull-right">+เพิ่มนัดหมายใหม่</button></a>
     </h4>
     <br>
-    <div class="appointment-list" *ngFor="let appt of appointments; let i = index;" id="appt-box-{{appt._id}}">
+    <div class="appointment-list" *ngFor="let appt of appointments; let i = index;" id="appt-box-{{appt['appointments'][0]._id}}">
         <h5 class="card-title">{{appt.date}}
-            <a (click)="tryToDeleteAppointment(appt._id)">i
+            <a (click)="tryToDeleteAppointment(appt['appointments'][0]._id)">
 	    	<button type="button" style="margin-left: 5px" class="btn btn-danger pull-right">
                     <i class="fa fa-trash" aria-hidden="true"></i>
                 </button>
             </a>
-            <a routerLink="/patient/edit_appointment/{{patient_id}}">
+	    <a routerLink="/patient/edit_appointment/{{patient_id}}/{{appt['appointments'][0]._id}}">
                 <button type="button" class="btn btn-primary pull-right">
                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                 </button>
