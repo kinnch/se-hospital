@@ -1,22 +1,5 @@
 <!--Modal-->
-<modal #deleteModal [id]="'delete'" [size]="'md'" [title]="'ยืนยันการลบ'" [callbackSuccess]="deleteAppointment(selected_appt_id)" [isShowFooter]="false"  >
-    <div class="row" style="display: inline-flex; padding-bottom: 10px;">
-        <div class="container">ดำเนินการลบการนัดแพทย์</div>    
-    </div>
-    <hr>
-    <h6 style="text-align: center;"> รายละเอียดการนัดแพทย์ </h6>
-    <div class="row" style="text-align: center;">
-        <div class="col-xs-12">
-            <p><b>วันที่ : </b> {{appt.date}}</p>
-        </div>
-        <div class="col-xs-12 col-sm-5">
-            <p><b>แผนก : </b> {{appt.doctor.department.name}}</p>
-        </div>
-        <div class="col-xs-12 col-sm-7">
-            <p><b>แพทย์ : </b> {{appt.doctor.name.title}}{{appt.doctor.name.fname}}{{appt.doctor.name.lname}}</p>
-        </div>
-    </div>
-</modal>
+<modal #deleteModal [id]="'delete'" [size]="'md'" [title]="'ยืนยันการลบ'" (modalSuccess)="deleteAppointment(selected_appt_id)"></modal>
 
 
 
@@ -62,12 +45,12 @@
     <br>
     <div class="appointment-list" *ngFor="let appt of appointments; let i = index;" id="appt-box-{{appt._id}}">
         <h5 class="card-title">{{appt.date}}
-            <a routerLink="/patient/edit_appointment/{{patient_id}}">
-                <button type="button" style="margin-left: 5px" class="btn btn-danger pull-right">
+            <a (click)="tryToDeleteAppointment(appt._id)">i
+	    	<button type="button" style="margin-left: 5px" class="btn btn-danger pull-right">
                     <i class="fa fa-trash" aria-hidden="true"></i>
                 </button>
             </a>
-            <a (click)="tryToDeleteAppointment(appt._id)">
+            <a routerLink="/patient/edit_appointment/{{patient_id}}">
                 <button type="button" class="btn btn-primary pull-right">
                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                 </button>
