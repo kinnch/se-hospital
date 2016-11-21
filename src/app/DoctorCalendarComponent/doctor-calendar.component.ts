@@ -381,9 +381,9 @@ export class DoctorCalendarComponent implements AfterViewInit, OnInit {
                         mid='pm';
                     }
                         //-----TODO : KIN please fill these.------
-                        var d_fname ='xxx';//doctor name
-                        var d_lname ='yyy';
-                        var dep = 'zzz';//dapartment
+                        var d_fname =localStorage.getItem("user_fname");//doctor name
+                        var d_lname =localStorage.getItem("user_lname");
+                        var dep = 'อายุรกรรม';//dapartment
                         //----end of todo kinnch
                         var oldDate = this.selectedEvent['_id']['date'];
                         oldDate = moment(new Date(oldDate)).format("ll")
