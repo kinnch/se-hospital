@@ -53,10 +53,10 @@ export class RegisterComponent implements OnInit{
                 ) {}
     
     ngOnInit() {
-        this.prescriptionService.getAllDrugs()
+        this.prescriptionService.getAllDrugs2()
             .then((res) => {
                 this.drugs = res['msg'];
-                // console.log(this.drugs);
+                console.log(this.drugs);
         });
     }
     addAllegicDrugField() {
