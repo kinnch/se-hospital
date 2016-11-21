@@ -10,16 +10,34 @@
     <hr>
     <h6 style="text-align: center;"> รายชื่อแพทย์ที่ออกตรวจ </h6>
     
-    <div class="table-responsive">
+    <div class="table-responsive"  *ngIf="selectedEvent" >
     <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    No.
+                </th>
+                <th>
+                   คำนำหน้าชื่อ
+                </th>      
+                <th>
+                   ชื่อ
+                </th>
+                <th>
+                   นามสกุล
+                </th>
+                <th>
+                   ?
+                </th>   
+            </tr>    
+        </thead>    
         <tbody>
-        <tr *ngFor="let x of numbers; let i = index;" >
+        <tr *ngFor="let x of selectedEvent['doctors']; let i = index;" >
             <td>{{i}}</td>
-            <td>Anna</td>
-            <td>Pitt</td>
-            <td>35</td>
-            <td>New York</td>
-            <td>USA</td>
+            <td>{{x.name.title}}</td>
+            <td>{{x.name.fname}}</td>
+            <td>{{x.name.lname}}</td>
+            <td (click)="removeDoctor(x)"><i class="fa fa-times text-danger"  aria-hidden="true"></i></td>
         </tr>
         </tbody>
     </table>
