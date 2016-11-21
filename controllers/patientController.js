@@ -221,11 +221,12 @@ exports.getObjIdFromHN = function(req,res){
 exports.createHN = function(req, res){
     Patient.findOne({HN: { $ne: null }}).sort({HN : -1}).exec(function(err, max_hn_pat){
         if(err) return res.send({status: 'fail'});
-        if(!max_hn_pat) return res.send({status: 'fail'});
+        var maxHN = -1;
+        if(max_hn_pat) maxHN = max_hn_pat.HN;
         Patient.findOne({_id: req.body.patientID},function(err, patient){
             if(err) return res.send({status: 'fail'});
             if(!patient) return res.send({status: 'fail'});
-            var newHN = (parseInt(max_hn_pat.HN) + 1) + '';
+            var newHN = (parseInt(maxHN) + 1) + '';
             while(newHN.length < 8){
                 newHN = '0' + newHN;
             }
