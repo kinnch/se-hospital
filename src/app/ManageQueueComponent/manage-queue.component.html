@@ -22,7 +22,7 @@ roleID
 
 <!--staff-->
 <div class="horizontal-container" *ngIf="roleID==1">
-    <div *ngIf="roleID==1 && scheduleList">        
+    <div *ngIf="roleID==1 && scheduleList &&!isEmpty">        
             <patient-list-c *ngFor="let doctorSchedule of scheduleList" [queue]="doctorSchedule" [roleID] = "roleID">
             </patient-list-c>
     </div>
@@ -31,13 +31,19 @@ roleID
     </div>
 </div>
 <!--doctor-->
-<div *ngIf="roleID==2 && scheduleList">
+<div *ngIf="roleID==2 && scheduleList &&!isEmpty">
     <patient-list-c [queue]="scheduleList[0]" [roleID] = "roleID">
     </patient-list-c>
 </div>
+<div *ngIf="roleID==2 && isEmpty">
+    <p>วันนี้ยังไม่มีผู้ป่วย</p>
+</div>
 
 <!--nurse-->
-<div *ngIf="roleID==3 && scheduleList">
+<div *ngIf="roleID==3 && scheduleList && !isEmpty">
     <patient-list-c [queue]="scheduleList[0]" [roleID] = "roleID">
     </patient-list-c>
+</div>
+<div *ngIf="roleID==3 && isEmpty">
+    <p>วันนี้ยังไม่มีผู้ป่วย</p>
 </div>

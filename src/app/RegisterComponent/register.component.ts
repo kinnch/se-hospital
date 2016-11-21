@@ -72,7 +72,8 @@ export class RegisterComponent implements OnInit{
         }
         this.patientService.createPatient(this.email, this.title, this.firstName, this.lastName, this.sex, this.birthDate, this.tel, this.nationalID, this.address, this.subdistrict, this.district, this.province, this.postCode, this.allegicDrugs, this.bloodType)
         .then((res)=>{
-            if(res == "success") {
+            console.log(res);
+            if(res.status == "success") {
                 console.log("register success!")
             } else {
                 console.log("register fail!")

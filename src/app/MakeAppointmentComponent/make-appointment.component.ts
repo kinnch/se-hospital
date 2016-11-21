@@ -125,6 +125,7 @@ export class MakeAppointComponent implements OnInit{
 
             var appointmentWeek = new Date(moment(this.rawSchedule.data[i].date).format('YYYY-MM-DD')).getTime();
             var todayWeek =  new Date(moment().format('YYYY-MM-DD')).getTime();
+            if(parseInt(appointmentWeek - todayWeek) < 0) continue;
             var weeks = parseInt((appointmentWeek - todayWeek)/604800000);
 
             if(weeks > 2) weeks = 2;
@@ -139,7 +140,7 @@ export class MakeAppointComponent implements OnInit{
                 _id: this.rawSchedule.data[i]._id
             });  
         }
-        this.selectTime = this.timeTable[0]._id;
+        if(this.timeTable.length > 0)this.selectTime = this.timeTable[0]._id;
     }
 
     getTimeTable():void{

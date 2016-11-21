@@ -13,6 +13,7 @@ import * as moment_ from 'moment';
 })
 
 export class ManagePatientComponent{
+    errorTitle = "";
     @ViewChild( ToastComponent ) toast: ToastComponent;
     hnOrIDinput:string;
     found:boolean = false;
@@ -29,10 +30,12 @@ export class ManagePatientComponent{
             console.log(data);
             if(data['status']=='not found'){
                 this.found = false;
+                this.toast.titleError = "กรอกข้อมูลผิดหรือไม่ครบ";
+                this.toast.messageError = "กรุณากรอก HN(8 หลัก) หรือ รหัสประจำตัวประชาชน​(13 หลัก)";
                 this.toast.addToastError();
             } else if (data['msg'] == 'patient not found' ){
                 this.toast.titleError = "ไม่พบผู้ป่วยที่ต้องการค้นหา";
-                this.toast.messageError = "กรุณาตรวจสอบข้อมูลอีกครั้ง";
+                this.toast.messageError = "กรุณาตรวจสอบความถูกต้องอีกครั้ง";
                 this.toast.addToastError();
             }
             else{
@@ -51,5 +54,28 @@ export class ManagePatientComponent{
             }
             
         });
+    }
+    ngOnChanges(changes: any) {
+         if (changes['hnOrIDinput']) { // fire your event 
+            this.validate(); 
+            }
+    }
+    validateSearch(value){
+        this.validate();
+    }
+    validate():boolean{
+        console.log('validate');
+        let isPass = true;
+        if(this.hnOrIDinput == ""){
+               this.errorTitle = "กรุณากรอกรหัสประจำตัวผู้ป่วย(8หลัก) หรือรหัสประจำตัวประชาชน(ตัวเลข 13หลัก)";
+        }
+        else if(!/^........$/.test(this.hnOrIDinput) && !/^\d{13}$/.test(this.hnOrIDinput)){
+            this.errorTitle = "กรุณากรอกรหัสประจำตัวผู้ป่วย(8หลัก) หรือรหัสประจำตัวประชาชน(ตัวเลข 13หลัก)"
+        } 
+        else {
+            this.errorTitle = "";
+            isPass = true;
+        }
+        return isPass;
     }
 }
