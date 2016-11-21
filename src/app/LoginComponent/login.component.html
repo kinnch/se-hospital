@@ -1,4 +1,4 @@
-<div class="container" style="padding-top: 70px;">
+<div class="container" style="padding-top: 8%;">
 	<div class="col-sm-12 patient-login-area">
 		<div class="form-signin center-block clearfix" style="    padding-bottom: 20px; padding-top: 40px;" >
 			<div class="row">
@@ -48,7 +48,7 @@
 						<small class="text-danger"> {{ errorMSG }} </small>
 				</div>
 				<div class="form-group"  [hidden]="!(step==1 || step==4)" >
-					<button (click)="step==1 ? checkAndRequest() : checkOnly()" class="form-control btn btn-primary btn-block">เข้าสู่ระบบ</button>
+					<button (click)="step==1 ? checkAndRequest() : checkOnly()" class="form-control btn btn-primary btn-block color">เข้าสู่ระบบ</button>
 					
 				</div>
 				<div class="form-group"  [hidden]="step!=2" >
@@ -63,8 +63,11 @@
 				<a [hidden]="!( step !=4 )" class="btn btn-warning pull-right" style="color: white;" (click)="step=4">ได้รับ OTP แล้ว</a>				
 			</div>
 			<p [hidden]="step!=2 || isLoading" >หากไม่ได้รับรหัส OTP กด <a style="color : red;" (click)=" checkAndRequest();">ที่นี่</a> เพื่อส่งรหัส OTP อีกครั้ง</p>
-			<p [hidden]="step!=2 || isLoading" class="text-center" ><a style="" (click)="step=1; errorMSG='';">-นี่ไม่ใช่คุณ-</a> </p>
+			<p [hidden]="step!=2 || isLoading" class="text-center" ><a style="color : #149078" (click)="step=1; errorMSG='';">- นี่ไม่ใช่คุณ -</a> </p>
 
+		</div>
+		<div class="form-signin center-block clearfix back"  [hidden]="! ((step==1 || step==4) && !isLoading) " >
+			<a style="color : #1abc9c" (click)="goBack()">กลับสู่หน้าแรก</a>
 		</div>
 	</div>
 </div>

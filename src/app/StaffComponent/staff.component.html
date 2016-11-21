@@ -1,4 +1,4 @@
-<header>
+<header *ngIf="router.url != '/manage/login'">
    <a href="index.html" class="logo">
        <!--<img src="img/logo.png" alt="Arise Admin Dashboard Logo">-->
     </a>
@@ -39,6 +39,9 @@
       <li *ngIf="userRoleId == '2'" [class.active]="(activatedClass===9)" [class.selected]="(activatedClass===9)"><a (click)="gotoPage(9)"><i class="fa fa-calendar" aria-hidden="true"></i> <span class="menu-item">จัดการตารางออกตรวจ</span></a></li>            
    </ul>
 </div>
+
+<div style="background-color: whitesmoke;">
 <div [class.dashboard-wrapper-sm]="isExpandedNav == false" [class.dashboard-wrapper-lg]="router.url!='/manage/login'" [class.dashboard-wrapper]="router.url!='/manage/login'" class="dashboard-wrapper dashboard-wrapper-lg">
     <router-outlet></router-outlet>
+</div>
 </div>

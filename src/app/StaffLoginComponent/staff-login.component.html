@@ -1,5 +1,4 @@
-<div style="height: 5%;"></div>
-<div class="row center" >
+<div class="row center bg" >
     <div class="card login-block">
     <!--<img class="card-img-top" src="" alt="Card image cap">-->
     <div class="card-block">
@@ -17,8 +16,9 @@
                   <input type="password" class="form-control" id="exampleInputPassword"  placeholder="กรุณากรอกรหัสผ่าน" name="password" [(ngModel)]="password">
                   <i class="fa fa-unlock-alt icon-block" aria-hidden="true"></i>
                 </div>
-                <input type="submit" value="Sign In" (click)="onSubmit()">
-                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                <small class="text-danger">{{errorMsg}}</small> 
+                <br>                                               
+                <input type="submit" value="ลงชื่อเข้าใช้" (click)="onSubmit()">
               
             </div>
         </form>
