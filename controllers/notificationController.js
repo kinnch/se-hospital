@@ -57,8 +57,8 @@ exports.sendEmail = function(req,res){
         from: 'โรงพยาบาลเทพพดุงพร <leaplaunchteam@gmail.com>', // sender address 
         to: receiver, // list of receivers 
         subject: subject, // Subject line 
-        text: text, // plaintext body 
-        // html: '<b>Hello world</b>' // html body 
+        // text: text, // plaintext body 
+        html: text // html body 
     };
     
     // send mail with defined transport object 
