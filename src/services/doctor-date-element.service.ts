@@ -89,5 +89,19 @@ export class DoctorDateElementService {
                     });
     }
 
+    getStaffElements() : Promise<any> {
+         return this.http
+                    .post('api/schedule/getTableStaff', JSON.stringify({departmentID: localStorage.getItem('department_id')}), {headers: this.headers})
+                    .toPromise()
+                    .then(function(res){
+                        return res.json();
+                    }).catch(function(err){
+                       console.log(err);
+                       return {
+                         
+                       };
+                    });
+    }
+
 
 }

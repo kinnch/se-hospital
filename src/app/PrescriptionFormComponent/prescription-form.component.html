@@ -1,18 +1,18 @@
 <div class="row header">
-    <div class="col-sm-3">
+    <div class="col-sm-4">
         <p><b>ชื่อยา</b></p>
     </div>
     <div class="col-sm-3">
         <p><b>จำนวน</b></p>
     </div>
-    <div class="col-sm-6">
+    <div class="col-sm-5">
         <p><b>วิธีใช้</b></p>
     </div>    
 </div>
 <br>
 
 <div class="row drug" *ngFor="let elem of prescriptionList; let i = index;">
-    <div class="col-sm-3">
+    <div class="col-sm-4">
         <select class="form-control" type="text" [ngModel]="elem.drug" (ngModelChange)="bindsBack($event,i,1)">
             <option *ngFor="let drug of drugs" [ngValue]="drug._id" [selected]="drug._id == elem.drug" >{{drug.name}}</option>
         </select>
@@ -20,7 +20,7 @@
     <div class="col-sm-3">
         <input class="form-control" type="text" [ngModel]="elem.amount" (ngModelChange)="bindsBack($event,i,2)"/>
     </div>
-    <div class="col-sm-6">
+    <div class="col-sm-5">
         <input class="form-control" type="text" [ngModel]="elem.detail" (ngModelChange)="bindsBack($event,i,3)" placeholder="คู่มือการใช้ยา" />
         <a (click)="deletePrescriptionField(i)" ><i  class="fa fa-trash pull-right icon" aria-hidden="true"></i></a>   
     </div>

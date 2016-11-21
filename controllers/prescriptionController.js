@@ -15,6 +15,7 @@ var Schedule = require("../model/schedule");
 var Diagnosis = require("../model/diagnosis");
 var Patient = require("../model/patient");
 var Drug = require("../model/drug");
+var Drug2 = require("../model/drug2");
 var PrescriptionDrug  = require("../model/prescriptionDrug");
 
 function getDateNow(){
@@ -154,7 +155,8 @@ exports.allPrescription = function(reg, res){
         path: 'patient',
         select: 'name sex birthDate allegicDrugs bloodType HN',
         populate: {
-            path: 'allegicDrugs'
+            path: 'allegicDrugs',
+            model: 'Drug2'
         }
     }).populate({
         path: 'doctor',
@@ -183,7 +185,8 @@ exports.rejectedPrescription = function(req, res){
             path: 'patient',
             select: 'name sex birthDate allegicDrugs bloodType HN',
             populate: {
-                path: 'allegicDrugs'
+                path: 'allegicDrugs',
+                model: 'Drug2'
             }
         }).populate({
             path: 'doctor',
@@ -281,6 +284,16 @@ exports.getPrescription = function(req, res){
 
 exports.getAllDrugs = function(req, res){
     Drug.find({},function(err,drugs){
+        res.send({
+            status: 'success',
+            msg: drugs
+        });
+        return;
+    });
+}
+
+exports.getAllDrugs2 = function(req, res){
+    Drug2.find({},function(err,drugs){
         res.send({
             status: 'success',
             msg: drugs

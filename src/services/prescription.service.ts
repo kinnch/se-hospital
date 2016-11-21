@@ -99,6 +99,16 @@ export class PrescriptionService {
         });
     }
      
+       private apiUrlGetAllDrugs2 = 'api/drugs2';
+    getAllDrugs2(): Promise<JSON>{
+        return this.http
+                    .get(this.apiUrlGetAllDrugs2)
+                    .toPromise()
+                    .then(res => {
+                        return res.json();
+        });
+    }
+
      private apiUrlPrescriptionChange = 'api/doctor/prescriptionChangeRequest/makeChange';
      prescriptionChange(prescriptionID:string, newPrescription): Promise<JSON>{
          return this.http
