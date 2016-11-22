@@ -1,11 +1,5 @@
-.container{
-    background-color: #ffffff;
-    -webkit-border-radius: 2px;
-    -moz-border-radius: 2px;
-    border-radius: 2px;
-    -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2), 0 1px 1px rgba(0,0,0,0.1);
-    box-shadow: 0 1px 0 rgba(0,0,0,.2), 0 1px 1px rgba(0,0,0,.1);
-    margin-bottom: 50px;
+.contain{
+    margin: 0 3%;
 }
 
 .back{
@@ -34,4 +28,14 @@ a:hover {
     box-shadow: none;
     -webkit-box-shadow: none;
     color: #E84234;
+}
+
+.card{
+        box-shadow: 0 0 0 1px #D4D4D5,1px 3px 0 0 #1abd9d,0 1px 3px 0 #D4D4D5;
+
+}
+
+.card-header{
+    text-align: center;
+    background-color: lightgrey;
 }
