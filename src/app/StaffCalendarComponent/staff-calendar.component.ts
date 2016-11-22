@@ -3,6 +3,10 @@ import { ModalComponent } from '../ModalComponent/modal.component';
 import { DoctorDateElementService } from '../../services/doctor-date-element.service';
 import * as moment from 'moment';
 import { SearchSelectDropdownComponent } from '../SearchSelectDropdownComponent/search-select-dropdown.component';       
+import { DiagnosisService } from '../../services/diagnosis.service';
+import { Router } from '@angular/router';
+import { Location } from '@angular/common';
+import { NotificationService } from '../../services/notification.service';
 
 
 @Component({
@@ -19,31 +23,14 @@ export class StaffCalendarComponent implements AfterViewInit, OnInit {
     selectedEvent;
     schedule: Object[] = [];
     isFirst : boolean = true;
+    DD : Object[] = [];
+    addingDoc = [];
     issues=[
-        {
-            "key":1,
-            "value" : 2,
-            "text" : "นาย แพทย์ แปดสาวน้อย"
-        },
-        {
-            "key":2,
-            "value" : 3,
-            "text" : "นาง แพทย์ แปดสาวน้อย2"
-        },
-        {
-            "key":3,
-            "value" : 3,
-            "text" : "นาง แพทย์ แปดสาวน้อย2"
-        },
-        
-        {
-            "key":4,
-            "value" : 3,
-            "text" : "นาง แพทย์ แปดสาวน้อย2"
-        }
+       
         ];
+    thisDepName : string = "";
 
-    constructor(private elementService: DoctorDateElementService){
+    constructor(private router: Router, private diagnosisService : DiagnosisService, private elementService: DoctorDateElementService, private notificationService: NotificationService){
        
     }
     ngOnInit(){
@@ -53,6 +40,7 @@ export class StaffCalendarComponent implements AfterViewInit, OnInit {
     ngAfterViewInit () {
         // this.fetchAndAdaptData();
         this.getData();
+        this.getAllDD()
 
     }
     fetchAndAdaptData(){
@@ -168,7 +156,7 @@ export class StaffCalendarComponent implements AfterViewInit, OnInit {
             new_list.push({
                     date: new Date(this.schedule[0].date),
                     timePeriod: this.schedule[0].timePeriod,
-                    doctors : [this.schedule[0]["doctor"]]
+                    doctors : this.schedule[0]["doctors"]
                 });
             map[temp.date+temp.timePeriod] = true;
             console.log(new_list[0]);
@@ -247,6 +235,8 @@ export class StaffCalendarComponent implements AfterViewInit, OnInit {
     }
     scheduleToEvents(){
             this.schedule.forEach((e) => {
+                console.log("scheduleToEvents");
+                console.log(e)
                 // var img = e["timePeriod"] == "pm" ? `<img src="/resources/images/sun-rise-1.png" width="70%" style="float: left;" >` : `<img src="/resources/images/anoon-1.png" width="70%" style="float: left;" >`;
                 // // console.log(e["doctors"]);
                 // var isDoctor = e["isOperate"] ? `<i class="fa fa-stethoscope"  ></i>` : '';
@@ -262,7 +252,7 @@ export class StaffCalendarComponent implements AfterViewInit, OnInit {
                 //     }
                 // );
                 var color =e["timePeriod"] == "am" ? "rgba(113, 183, 85, 0.72)" : "rgba(71, 164, 179, 0.58)" ;
-                var pic =  e["timePeriod"] == "am" ? `<img src="/resources/images/sun-rise.png" height="85%" style="float: left;" > <i class="fa fa-user-md" aria-hidden="true" style="color: rgba(113, 183, 85, 0.72);"></i>` : `<img src="/resources/images/noon.png" height="85%" style="float: left;" ><i class="fa fa-user-md" style="color:rgba(71, 164, 179, 0.58);" aria-hidden="true"></i>`;
+                var pic =  e["timePeriod"] == "pm" ? `<img src="/resources/images/sun-rise-1.png" height="85%" style="float: left;" > <i class="fa fa-user-md" aria-hidden="true" style="color: rgba(113, 183, 85, 0.72);"></i>` : `<img src="/resources/images/anoon-1.png" height="85%" style="float: left;" ><i class="fa fa-user-md" style="color:rgba(71, 164, 179, 0.58);" aria-hidden="true"></i>`;
                 var p_text = ""
                 if(e['doctors'].length < 2) p_text = "danger";
                 else  if(e['doctors'].length <= 5) p_text = "warning";
@@ -297,6 +287,8 @@ export class StaffCalendarComponent implements AfterViewInit, OnInit {
                     console.log('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
                     console.log('View: ' + view.name);
                     self.selectedEvent = data;
+                    self.addingDoc=[];
+                    self.makeIssue()
                     console.log( moment(new Date(calEvent.start)).format("ll"));
                     console.log(moment.locale());
                     var period = data.timePeriod =="am" ? 'เช้า' : 'บ่าย';
@@ -324,9 +316,187 @@ export class StaffCalendarComponent implements AfterViewInit, OnInit {
              self.resizeData()
             $(window).resize();
      }
-     removeDoctor(x){
-         console.log("removing Doctor");
-         
+     
+     getAllDD(){
+         this.elementService.getAllDD().then((data)=>{
+             if(data["status"]=="success"){
+                //  this.DD = data["data"];
+                for(var i =0; i < data["data"].length ; i++){
+                    if(localStorage.getItem('department_id')==data["data"][i]["_id"]){
+                        this.DD = data["data"][i]["doctors"];
+                        this.thisDepName = data["data"][i]["dep_name"];
+                    }
+                }
+                console.log("this Department Doctor");
+                
+                console.log(this.DD);
+                
+             }
+         });
      }
+     makeIssue(){
+          this.issues=[];
+        for(var i =0; i < this.DD.length ; i++){
+            if(!this.isDoctorin(this.selectedEvent["doctors"],this.DD[i]) ){
+               
+                this.issues.push( {
+                    "key":i,
+                    "value" : this.DD[i]["_id"],
+                    "text" : this.DD[i]["name"]["title"]+" "+this.DD[i]["name"]["fname"]+" "+this.DD[i]["name"]["lname"];
+                });
+            }
+        }
+     }
+
+     isDoctorin(B,A){
+        for(var i=0; i < B.length; i++ ){
+            if(B[i]["_id"] == A["_id"] ){
+                return true;
+            }
+        }
+        return false;
+    }
+    handleChange($event){
+        this.addingDoc = $event;
+        console.log("adding doc");
+        console.log(this.addingDoc);
+    }
+    addDoctorSchedule(){
+        this.addingDoc.forEach((e) => {
+            var tmp_d = this.getDocobj(e);
+            var oneItem = {
+                "date": this.selectedEvent["date"].toISOString().split("T")[0].concat('T00:00:00.000Z'),
+                "timePeriod":this.selectedEvent["timePeriod"],
+                "doctor_fname": tmp_d["name"]["fname"],
+                "doctor_lname": tmp_d["name"]["lname"]
+            }
+            console.log("calling api add doctor");
+            console.log(tmp_d);
+            
+            this.diagnosisService.addSchedule(oneItem).then((data) => {
+                if(data['msg']=='saved'){
+                     console.log("add doc in staff calendar ok");
+                }else{
+                    console.log("add doctor in staff component error");
+                    console.log(data);
+                }
+            });
+        });
+        this.router.navigate(['manage','landing']);
+
+    }
+    getDocobj(id){
+        for(var i=0; i < this.DD.length; i++ ){
+            if(this.DD[i]["_id"] == id){
+                return this.DD[i];
+            }
+        }
+    }
+    removeDoctor(x){
+         console.log("removing Doctor");
+         var self = this;
+         this.elementService.staffSearchSchedule(this.selectedEvent["date"].toISOString().split("T")[0].concat('T00:00:00.000Z') ,this.selectedEvent["timePeriod"],x["_id"] ).then((data) => {
+              console.log("---------------------")
+              console.log(data);
+              data["appointments"].forEach((e)=>{
+                  this.elementService.staffShift(e,data["date"],x["_id"]).then((result)=>{
+                        var hours = new Date(result.data['newDate']).getHours();
+                    var hours = (hours+24-2)%24; 
+                    var mid='am';
+                    if(hours==0){ //At 00 hours we need to show 12 am
+                        hours=12;
+                    }
+                    else if(hours>12){
+                        hours=hours%12;
+                        mid='pm';
+                    }
+                        //-----TODO : KIN please fill these.------
+                        var d_fname =x.name.fname;//doctor name
+                        var d_lname =x.name.lname;
+                        var dep = self.thisDepName
+                        //----end of todo kinnch
+                        var oldDate = this.selectedEvent['date'];
+                        oldDate = moment(new Date(oldDate)).format("ll")
+                    if(result.status == "success"){
+                        // send some noti
+                        console.log("success");
+                        console.log(e);
+                        
+                        
+                        var newDate = result.data['newDate'];
+                        newDate = moment(new Date(newDate)).format("ll")
+                        this.notificationService.sendSMSDoctorCancelAppt(
+                                result.data['patient']['tel'],
+                                result.data['patient']['name']['fname'],
+                                result.data['patient']['name']['lname'],
+                                d_fname,
+                                d_lname,
+                                dep,
+                                oldDate,
+                                this.selectedEvent['_id']['period'],
+                                newDate,
+                                mid)
+                            .then((data)=>{
+                                console.log('sms sended');
+                                console.log(data);
+                            });
+
+                        //email
+                        this.notificationService.sendEmailDoctorCancelAppt(
+                                result.data['patient']['email'],
+                                result.data['patient']['name']['fname'],
+                                result.data['patient']['name']['lname'],
+                                d_fname,
+                                d_lname,
+                                dep,
+                                oldDate,
+                                this.selectedEvent['_id']['period'],
+                                newDate,
+                                mid)
+                            .then((data)=>{
+                                console.log('email sended');
+                                console.log(data);
+                            });
+                        
+                        console.log(result.data);
+                    }else{
+                        //send some noti
+                        console.log("fail");
+                        this.notificationService.sendSMSStaffCancelAppt(
+                            result.data['patient']['tel'],
+                            result.data['patient']['name']['fname'],
+                            result.data['patient']['name']['lname'],
+                            d_fname,
+                            d_lname,
+                            dep,
+                            oldDate,
+                            this.selectedEvent['_id']['period'])
+                            .then((data)=>{
+                                console.log('sms sended');
+                                console.log(data);
+                            });
+                        this.notificationService.sendEmailStaffCancelAppt(
+                            result.data['patient']['tel'],
+                            result.data['patient']['name']['fname'],
+                            result.data['patient']['name']['lname'],
+                            d_fname,
+                            d_lname,
+                            dep,
+                            oldDate,
+                            this.selectedEvent['_id']['period'])
+                            .then((data)=>{
+                                console.log('email sended');
+                                console.log(data);
+                            });
+                         console.log(result.data);
+                    }
+                  });
+              });
+              this.elementService.removeSchedule(data._id).then((data)=>{
+                this.modal1.modalClose();
+                this.router.navigate(['manage','landing']);
+            });
+         });
+    }
     
 }
