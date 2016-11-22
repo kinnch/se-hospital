@@ -1,94 +1,97 @@
 <modal #modal [id]="'add-emp'" [size]="'md'" [title]="'ผลลัพธ์การเพิ่มบุคลากร'" (modalSuccess)="goToNextPage()" [success]="'ตกลง'" [enableCancel]="false">
     เพิ่มบุคลากรสำเร็จ
 </modal>
-<h3>เพิ่มบุคลากร</h3>
+<!--<h3>เพิ่มบุคลากร</h3>-->
 <a class="back" (click)="goback()">< ย้อนกลับ</a>
 <hr>
 <div class = "container">
-    <br>
-    <br>    
-    <div class="form-add-staff">
-        <div class="form-group row">
-            <label class="col-xs-4 col-form-label right">คำนำหน้าชื่อ</label>
-            <div class="col-xs-6">
-                <input class="form-control" type="text" [(ngModel)]="title">
-                <small class="text-danger">{{errorTitle}}</small>
+     <div class="card">
+         <h3 class="card-header">เพิ่มบุคลากร</h3>
+        <div class="card-block">
+            <div class="form-group row">
+                <label class="col-xs-4 col-form-label right">คำนำหน้าชื่อ</label>
+                <div class="col-xs-6">
+                    <input placeholder="กรุณากรอกคำนำหน้าชื่อ" class="form-control" type="text" [(ngModel)]="title">
+                    <small class="text-danger">{{errorTitle}}</small>
+                </div>
+            </div> 
+            <div class="form-group row">
+                <label class="col-xs-4 col-form-label right">ชื่อ</label>
+                <div class="col-xs-6">
+                    <input placeholder="กรุณากรอกชื่อ" class="form-control" type="text" [(ngModel)]="fname">
+                    <small class="text-danger">{{errorFname}}</small>                
+                </div>
+            </div> 
+            <div class="form-group row">
+                <label class="col-xs-4 col-form-label right">นามสกุล</label>
+                <div class="col-xs-6">
+                    <input placeholder="กรุณากรอกนามสกุล" class="form-control" type="text" [(ngModel)]="lname">
+                    <small class="text-danger">{{errorLname}}</small>                
+                </div>                
             </div>
-        </div> 
-        <div class="form-group row">
-            <label class="col-xs-4 col-form-label right">ชื่อ</label>
-            <div class="col-xs-6">
-                <input class="form-control" type="text" [(ngModel)]="fname">
-                <small class="text-danger">{{errorFname}}</small>                
+            <!--<div class="form-group row">
+                <label class="col-xs-4 col-form-label right">เพศ</label>
+                <div class="col-xs-6">
+                    <select class="form-control">
+                        <option>กรุณาเลือกเพศ</option>
+                        <option>หญิง</option>
+                        <option>ชาย</option>
+                    </select>
+                </div>                
+            </div> -->
+            <div class="form-group row">
+                <label class="col-xs-4 col-form-label right">Username</label>
+                <div class="col-xs-6">
+                    <input placeholder="กรุณากรอกชื่อบัญชีผู้ใช้" class="form-control" type="text" [(ngModel)]="username">
+                    <small class="text-danger">{{errorUsername}}</small>                                
+                </div>                
+            </div> 
+            <div class="form-group row">
+                <label class="col-xs-4 col-form-label right">Password</label>
+                <div class="col-xs-6">
+                    <input placeholder="กรุณากรอกรหัสผ่าน" class="form-control" type="password" [(ngModel)]="password">
+                    <small class="text-danger">{{errorPassword}}</small>                                
+                </div>                
+            </div> 
+            <div class="form-group row"> 
+                <label class="col-xs-4 col-form-label right">Confirm Password</label>
+                <div class="col-xs-6">
+                    <input placeholder="กรุณากรอกรหัสผ่านอีกครั้ง" class="form-control" type="password" [(ngModel)]="confirmPassword">
+                    <small class="text-danger">{{errorConfirmPassword}}</small>                                
+                </div>                
+            </div> 
+            <div class="form-group row">
+                <label class="col-xs-4 col-form-label right">ตำแหน่ง</label>
+                <div class="col-xs-6">
+                    <select class="form-control" [(ngModel)]="roleId">
+                        <option value=0 selected disabled>กรุณาเลือกตำแหน่ง</option>
+                        <option value=2>แพทย์</option>
+                        <option value=3>พยาบาล</option>
+                        <option value=4>เภสัชกร</option>
+                        <option value=1>เจ้าหน้าที่ของโรงพยาบาล</option>
+                    </select>
+                    <small class="text-danger">{{errorRole}}</small>                                                
+                </div>                          
             </div>
-        </div> 
-        <div class="form-group row">
-            <label class="col-xs-4 col-form-label right">นามสกุล</label>
-            <div class="col-xs-6">
-                <input class="form-control" type="text" [(ngModel)]="lname">
-                <small class="text-danger">{{errorLname}}</small>                
-            </div>                
+            <div class="form-group row">
+                <label class="col-xs-4 col-form-label right">แผนก</label>
+                <div class="col-xs-6">
+                    <select class="form-control" [(ngModel)]="department">
+                        <option value="0" selected disabled>กรุณาเลือกแผนก</option>
+                        <option value="{{dep.name}}" *ngFor="let dep of departments" >{{dep.name}}</option>                               
+                    </select>
+                    <small class="text-danger">{{errorDepartment}}</small> 
+                </div>                
+            </div> 
         </div>
-        <!--<div class="form-group row">
-            <label class="col-xs-4 col-form-label right">เพศ</label>
-            <div class="col-xs-6">
-                <select class="form-control">
-                    <option>กรุณาเลือกเพศ</option>
-                    <option>หญิง</option>
-                    <option>ชาย</option>
-                </select>
-            </div>                
-        </div> -->
-        <div class="form-group row">
-            <label class="col-xs-4 col-form-label right">Username</label>
-            <div class="col-xs-6">
-                <input class="form-control" type="text" [(ngModel)]="username">
-                <small class="text-danger">{{errorUsername}}</small>                                
-            </div>                
-        </div> 
-        <div class="form-group row">
-            <label class="col-xs-4 col-form-label right">Password</label>
-            <div class="col-xs-6">
-                <input class="form-control" type="password" [(ngModel)]="password">
-                <small class="text-danger">{{errorPassword}}</small>                                
-            </div>                
-        </div> 
-        <div class="form-group row"> 
-            <label class="col-xs-4 col-form-label right">Confirm Password</label>
-            <div class="col-xs-6">
-                <input class="form-control" type="password" [(ngModel)]="confirmPassword">
-                <small class="text-danger">{{errorConfirmPassword}}</small>                                
-            </div>                
-        </div> 
-        <div class="form-group row">
-            <label class="col-xs-4 col-form-label right">ตำแหน่ง</label>
-            <div class="col-xs-6">
-                <select class="form-control" [(ngModel)]="roleId">
-                    <option value=0 selected disabled>กรุณาเลือกตำแหน่ง</option>
-                    <option value=2>แพทย์</option>
-                    <option value=3>พยาบาล</option>
-                    <option value=4>เภสัชกร</option>
-                    <option value=1>เจ้าหน้าที่ของโรงพยาบาล</option>
-                </select>
-                <small class="text-danger">{{errorRole}}</small>                                                
-            </div>                          
+ 
+        <div class="center">
+            <button routerLink="/manage/manage_staff" type="button" class="btn btn-danger" style="width: 150px; margin-right:50px;">ยกเลิก</button>
+            <button (click)="addHospitalEmployee()" type="button" class="btn btn-primary" style="width: 150px">ยืนยัน</button>
+            <br>
+            <br> 
         </div>
-        <div class="form-group row">
-            <label class="col-xs-4 col-form-label right">แผนก</label>
-            <div class="col-xs-6">
-                <select class="form-control" [(ngModel)]="department">
-                    <option value="0" selected disabled>กรุณาเลือกแผนก</option>
-                    <option value="{{dep.name}}" *ngFor="let dep of departments" >{{dep.name}}</option>                               
-                </select>
-                <small class="text-danger">{{errorDepartment}}</small> 
-            </div>                
-        </div> 
-    </div>
-    <br>
-    <div class="center">
-        <button routerLink="/manage/manage_staff" type="button" class="btn btn-danger" style="width: 150px; margin-right:50px;">ยกเลิก</button>
-        <button (click)="addHospitalEmployee()" type="button" class="btn btn-primary" style="width: 150px">ยืนยัน</button>
-    </div>
+     </div>
     <br>
     <br>    
 </div>
