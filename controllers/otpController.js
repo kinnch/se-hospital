@@ -95,14 +95,14 @@ var updateHash = function(tel,hash,otp,req,res){
                         } 
                     };
 
-                    // request(options, function (error, response, body) {
-                    //     if (!error) {
-                    //         console.log("return from gipsic");
-                    //         console.log(body);
-                    //         return;
-                    //     }
+                    request(options, function (error, response, body) {
+                        if (!error) {
+                            console.log("return from gipsic");
+                            console.log(body);
+                            return;
+                        }
                         
-                    // });
+                    });
                 }else{
                     res.send({
                         success: false,

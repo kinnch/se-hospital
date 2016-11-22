@@ -342,7 +342,7 @@ export class StaffCalendarComponent implements AfterViewInit, OnInit {
                 this.issues.push( {
                     "key":i,
                     "value" : this.DD[i]["_id"],
-                    "text" : this.DD[i]["name"]["title"]+" "+this.DD[i]["name"]["fname"]+" "+this.DD[i]["name"]["lname"];
+                    "text" : this.DD[i]["name"]["title"]+" "+this.DD[i]["name"]["fname"]+" "+this.DD[i]["name"]["lname"]
                 });
             }
         }
