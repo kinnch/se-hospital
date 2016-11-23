@@ -91,7 +91,7 @@ var updateHash = function(tel,hash,otp,req,res){
                             secret: 'KbQNLWCtL82qP0jP8HC1H0ZZM4R3slsv',
                             phone: tel,
                             sender: 'OTP',
-                            message: "รหัส opt ของท่านคือ :"+otp 
+                            message: "รหัส otp ของท่านคือ :"+otp+" กรุณาเข้าสู่ระบบภายใน 15 นาที" 
                         } 
                     };
 
