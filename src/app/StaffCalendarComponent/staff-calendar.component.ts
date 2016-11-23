@@ -28,6 +28,7 @@ export class StaffCalendarComponent implements AfterViewInit, OnInit {
     issues=[
        
         ];
+    errorMSG : string ="";
     thisDepName : string = "";
 
     constructor(private router: Router, private diagnosisService : DiagnosisService, private elementService: DoctorDateElementService, private notificationService: NotificationService){
@@ -293,6 +294,7 @@ export class StaffCalendarComponent implements AfterViewInit, OnInit {
                     console.log(moment.locale());
                     var period = data.timePeriod =="am" ? 'เช้า' : 'บ่าย';
                     self.titleModal = "รายละเอียดของช่วง<span class='text-primary'>        "+ period +"       วันที่         "+ moment(new Date(calEvent.start)).format("ll")+"</span>";
+                    self.errorMSG = "";
                     self.modal1.modalOpen();
                 },
                 dayClick: function () {
@@ -362,7 +364,9 @@ export class StaffCalendarComponent implements AfterViewInit, OnInit {
         console.log(this.addingDoc);
     }
     addDoctorSchedule(){
-        this.addingDoc.forEach((e) => {
+        if(this.addingDoc.length !=0){
+            this.errorMSG = "";
+            this.addingDoc.forEach((e) => {
             var tmp_d = this.getDocobj(e);
             var oneItem = {
                 "date": this.selectedEvent["date"].toISOString().split("T")[0].concat('T00:00:00.000Z'),
@@ -374,16 +378,18 @@ export class StaffCalendarComponent implements AfterViewInit, OnInit {
             console.log(tmp_d);
             
             this.diagnosisService.addSchedule(oneItem).then((data) => {
-                if(data['msg']=='saved'){
-                     console.log("add doc in staff calendar ok");
-                }else{
-                    console.log("add doctor in staff component error");
-                    console.log(data);
-                }
+                    if(data['msg']=='saved'){
+                        console.log("add doc in staff calendar ok");
+                    }else{
+                        console.log("add doctor in staff component error");
+                        console.log(data);
+                    }
+                });
             });
-        });
-        this.router.navigate(['manage','landing']);
-
+            this.modal1.modalClose();
+            this.router.navigate(['manage','landing']);
+        }
+        this.errorMSG = "กรุณาเลือกแพทย์ที่ต้องการเพิ่ม";
     }
     getDocobj(id){
         for(var i=0; i < this.DD.length; i++ ){
